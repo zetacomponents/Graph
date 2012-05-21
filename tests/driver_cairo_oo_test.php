@@ -557,7 +557,7 @@ class ezcGraphCairoOODriverTest extends ezcTestImageCase
             $filename,
             $this->basePath . 'compare/' . 'ezcGraphCairoDriverTest' . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
-            0
+            100
         );
     }
 
@@ -1220,7 +1220,7 @@ class ezcGraphCairoOODriverTest extends ezcTestImageCase
             $filename,
             $this->basePath . 'compare/' . 'ezcGraphCairoDriverTest' . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
-            10
+            100
         );
     }
 
