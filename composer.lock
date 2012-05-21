@@ -1,0 +1,24 @@
+{
+    "hash": "5a1a16aa7f9ea4fb899304f3f9e00d2c",
+    "packages": [
+        {
+            "package": "zetacomponents/base",
+            "version": "dev-master",
+            "source-reference": "d6f1d9179ebe56637b559570b0258b83b6a57554"
+        }
+    ],
+    "packages-dev": [
+        {
+            "package": "zetacomponents/unit-test",
+            "version": "dev-master",
+            "source-reference": "6d117e709ad5ade03a5cd395bcc80adb7fee68fc"
+        }
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": [
+
+    ]
+}
