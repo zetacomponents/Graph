@@ -24,7 +24,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 
-class ezcGraphTestCase extends ezcTestImageCase
+abstract class ezcGraphTestCase extends ezcTestImageCase
 {
     /**
      * Normalize given PHP code for flash generation
