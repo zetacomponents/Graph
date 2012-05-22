@@ -4,21 +4,17 @@
         {
             "package": "zetacomponents/base",
             "version": "dev-master",
-            "source-reference": "d6f1d9179ebe56637b559570b0258b83b6a57554"
+            "source-reference": "642f63a8a72c32996f1aaf8a317fdf746bc32ce7"
         }
     ],
     "packages-dev": [
         {
             "package": "zetacomponents/unit-test",
             "version": "dev-master",
-            "source-reference": "6d117e709ad5ade03a5cd395bcc80adb7fee68fc"
+            "source-reference": "772d6e651cb90c6de10f975b2e323df98d1e4a2c"
         }
     ],
     "aliases": [
-
-    ],
-    "minimum-stability": "dev",
-    "stability-flags": [
 
     ]
 }
