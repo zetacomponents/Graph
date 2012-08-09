@@ -100,7 +100,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
      */
     public function __construct( array $options = array() )
     {
-        ezcBase::checkDependency( 'Graph', ezcBase::DEP_PHP_EXTENSION, 'cairo_wrapper' );
+        ezcBase::checkDependency( 'Graph', ezcBase::DEP_PHP_EXTENSION, 'cairo' );
         $this->options = new ezcGraphCairoDriverOptions( $options );
     }
 
@@ -936,8 +936,8 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
         // Scale pattern to defined dimensions and move it to its destination position
         $matrix = cairo_matrix_multiply(
-            $move = cairo_matrix_create_translate( -$position->x, -$position->y ),
-            $scale = cairo_matrix_create_scale( $data[0] / $width, $data[1] / $height )
+            $move = CairoMatrix::initTranslate( -$position->x, -$position->y ),
+            $scale = CairoMatrix::initScale( $data[0] / $width, $data[1] / $height )
         );
         cairo_pattern_set_matrix( $pattern, $matrix );
 

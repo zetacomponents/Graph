@@ -50,9 +50,9 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
     protected function setUp()
     {
-        if ( !ezcBaseFeatures::hasExtensionSupport( 'cairo_wrapper' ) )
+        if ( !ezcBaseFeatures::hasExtensionSupport( 'cairo' ) )
         {
-            $this->markTestSkipped( 'This test needs pecl/cairo_wrapper support.' );
+            $this->markTestSkipped( 'This test needs pecl/cairo support.' );
         }
 
         static $i = 0;
