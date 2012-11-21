@@ -10,4 +10,8 @@
     -->
     <import file="setup/src/main/xml/base.xml" />
 
+    <target name="-compile:compile">
+        <!-- Disabled -->
+    </target>
+
 </project>
