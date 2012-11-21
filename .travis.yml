@@ -4,7 +4,3 @@ php:
   - 5.3
   - 5.4
 
-before_script:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar --dev install
-
