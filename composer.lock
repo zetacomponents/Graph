@@ -2,19 +2,72 @@
     "hash": "5a1a16aa7f9ea4fb899304f3f9e00d2c",
     "packages": [
         {
-            "package": "zetacomponents/base",
-            "version": "dev-master",
-            "source-reference": "642f63a8a72c32996f1aaf8a317fdf746bc32ce7"
+            "name": "zetacomponents/base",
+            "version": "1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zetacomponents/Base.git",
+                "reference": "1.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/zetacomponents/Base/zipball/1.8",
+                "reference": "1.8",
+                "shasum": ""
+            },
+            "time": "2009-12-21 04:14:16",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "license": [
+                "apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Alexeev"
+                },
+                {
+                    "name": "Sebastian Bergmann"
+                },
+                {
+                    "name": "Jan Borsodi"
+                },
+                {
+                    "name": "Raymond Bosman"
+                },
+                {
+                    "name": "Frederik Holljen"
+                },
+                {
+                    "name": "Kore Nordmann"
+                },
+                {
+                    "name": "Derick Rethans"
+                },
+                {
+                    "name": "Vadym Savchuk"
+                },
+                {
+                    "name": "Tobias Schlitt"
+                },
+                {
+                    "name": "Alexandru Stanoi"
+                }
+            ],
+            "description": "The Base package provides the basic infrastructure that all packages rely on. Therefore every component relies on this package.",
+            "homepage": "https://github.com/zetacomponents"
         }
     ],
-    "packages-dev": [
-        {
-            "package": "zetacomponents/unit-test",
-            "version": "dev-master",
-            "source-reference": "772d6e651cb90c6de10f975b2e323df98d1e4a2c"
-        }
-    ],
+    "packages-dev": null,
     "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
 
     ]
 }
