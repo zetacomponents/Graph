@@ -2251,40 +2251,46 @@ class ezcGraphRenderer3d
             'start' => clone $start,
             'end' => clone $end,
             'axis' => $axis,
+            'positioningDone' => false,
         );
 
         if ( $this->xAxisSpace && $this->yAxisSpace )
         {
-            foreach ( $this->axisLabels as $axisLabel )
+            foreach ( $this->axisLabels as &$axisLabel )
             {
-                // If font should not be synchronized, use font configuration from
-                // each axis
-                if ( $this->options->syncAxisFonts === false )
+                if ( !$axisLabel['positioningDone'] )
                 {
-                    $this->driver->options->font = $axisLabel['axis']->font;
-                }
+                    // If font should not be synchronized, use font configuration from
+                    // each axis
+                    if ( $this->options->syncAxisFonts === false )
+                    {
+                        $this->driver->options->font = $axisLabel['axis']->font;
+                    }
 
-                switch ( $axisLabel['axis']->position )
-                {
-                    case ezcGraph::RIGHT:
-                    case ezcGraph::LEFT:
-                        $axisLabel['start']->x += $this->xAxisSpace * ( $axisLabel['start'] > $axisLabel['end'] ? -1 : 1 );
-                        $axisLabel['end']->x -= $this->xAxisSpace * ( $axisLabel['start'] > $axisLabel['end'] ? -1 : 1 );
-                        break;
-                    case ezcGraph::TOP:
-                    case ezcGraph::BOTTOM:
-                        $axisLabel['start']->y += $this->yAxisSpace * ( $axisLabel['start'] > $axisLabel['end'] ? -1 : 1 );
-                        $axisLabel['end']->y -= $this->yAxisSpace * ( $axisLabel['start'] > $axisLabel['end'] ? -1 : 1 );
-                        break;
-                }
+                    switch ( $axisLabel['axis']->position )
+                    {
+                        case ezcGraph::RIGHT:
+                        case ezcGraph::LEFT:
+                            $axisLabel['start']->x += $this->xAxisSpace * ( $axisLabel['start'] > $axisLabel['end'] ? -1 : 1 );
+                            $axisLabel['end']->x -= $this->xAxisSpace * ( $axisLabel['start'] > $axisLabel['end'] ? -1 : 1 );
+                            break;
+                        case ezcGraph::TOP:
+                        case ezcGraph::BOTTOM:
+                            $axisLabel['start']->y += $this->yAxisSpace * ( $axisLabel['start'] > $axisLabel['end'] ? -1 : 1 );
+                            $axisLabel['end']->y -= $this->yAxisSpace * ( $axisLabel['start'] > $axisLabel['end'] ? -1 : 1 );
+                            break;
+                    }
 
-                $axisLabel['object']->renderLabels(
-                    $this,
-                    $axisLabel['boundings'],
-                    $axisLabel['start'],
-                    $axisLabel['end'],
-                    $axisLabel['axis']
-                );
+                    $axisLabel['object']->renderLabels(
+                        $this,
+                        $axisLabel['boundings'],
+                        $axisLabel['start'],
+                        $axisLabel['end'],
+                        $axisLabel['axis']
+                    );
+
+                    $axisLabel['positioningDone'] = true;
+                }
             }
         }
     }
