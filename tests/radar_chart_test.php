@@ -44,8 +44,10 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphRadarChartTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         static $i = 0;
         if ( version_compare( phpversion(), '5.1.3', '<' ) )
         {
@@ -55,7 +57,7 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         if ( !$this->hasFailed() )
         {

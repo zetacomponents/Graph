@@ -52,8 +52,10 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphFlashDriverTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         if ( !ezcBaseFeatures::hasExtensionSupport( 'ming' ) ) 
         {
             $this->markTestSkipped( 'This test needs ext/ming support.' );
@@ -70,7 +72,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $this->driver->options->font->path = $this->basePath . 'fdb_font.fdb';
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         unset( $this->driver );
         if ( !$this->hasFailed() )

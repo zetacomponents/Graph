@@ -40,15 +40,17 @@ class ezcGraphLegendTest extends ezcGraphTestCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphLegendTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         static $i = 0;
 
         $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         if ( !$this->hasFailed() )
         {

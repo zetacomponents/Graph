@@ -46,8 +46,10 @@ class ezcGraphDateAxisTest extends ezcGraphTestCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphDateAxisTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         date_default_timezone_set( 'Europe/Berlin' );
 
         static $i = 0;
@@ -58,7 +60,7 @@ class ezcGraphDateAxisTest extends ezcGraphTestCase
         $this->chart->xAxis = new ezcGraphChartElementDateAxis();
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         if ( !$this->hasFailed() )
         {

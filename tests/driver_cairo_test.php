@@ -48,8 +48,10 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphCairoDriverTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         if ( !ezcBaseFeatures::hasExtensionSupport( 'cairo_wrapper' ) )
         {
             $this->markTestSkipped( 'This test needs pecl/cairo_wrapper support.' );
@@ -65,7 +67,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $this->driver->options->font->path = $this->basePath . 'font.ttf';
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         unset( $this->driver );
         if ( !$this->hasFailed() )

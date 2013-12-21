@@ -46,13 +46,15 @@ class ezcGraphAxisSpaceTest extends ezcGraphTestCase
 		return new PHPUnit_Framework_TestSuite( __CLASS__ );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++self::$i ) ) . '/';
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         if ( !$this->hasFailed() )
         {

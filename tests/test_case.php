@@ -26,6 +26,11 @@
 
 abstract class ezcGraphTestCase extends ezcTestImageCase
 {
+    public function setUp()
+    {
+        $this->setLocale( LC_NUMERIC, 'en_US', 'en_US.UTF-8', 'en_US.UTF8', 'en', 'english', 'en_US@euro' );
+    }
+
     /**
      * Normalize given PHP code for flash generation
      * 

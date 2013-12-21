@@ -52,8 +52,10 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphSvgDriverTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         static $i = 0;
         $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
         $this->basePath = dirname( __FILE__ ) . '/data/';
@@ -63,15 +65,13 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $this->driver->options->height = 100;
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         unset( $this->driver );
         if ( !$this->hasFailed() )
         {
             $this->removeTempDir();
         }
-
-        $this->setLocale( LC_NUMERIC, 'en_US', 'en_US.UTF-8', 'en_US.UTF8', 'en', 'english', 'en_US@euro' );
     }
 
     public function testRenderToOutput()

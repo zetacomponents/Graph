@@ -42,8 +42,10 @@ class ezcGraphAxisCenteredRendererTest extends ezcTestCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphAxisCenteredRendererTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         if ( version_compare( phpversion(), '5.1.3', '<' ) )
         {
             $this->markTestSkipped( "These tests required atleast PHP 5.1.3" );

@@ -44,8 +44,10 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphRenderer3dTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         static $i = 0;
 
         if ( version_compare( phpversion(), '5.1.3', '<' ) )
@@ -53,13 +55,11 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             $this->markTestSkipped( "This test requires PHP 5.1.3 or later." );
         }
 
-        $this->setLocale( LC_NUMERIC, 'en_US', 'en_US.UTF-8', 'en_US.UTF8', 'en', 'english', 'en_US@euro' );
-
         $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         if ( !$this->hasFailed() )
         {

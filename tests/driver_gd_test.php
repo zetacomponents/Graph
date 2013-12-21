@@ -50,8 +50,10 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 		return new PHPUnit_Framework_TestSuite( "ezcGraphGdDriverTest" );
 	}
 
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
+
         if ( !ezcBaseFeatures::hasExtensionSupport( 'gd' ) && 
              ( ezcBaseFeatures::hasFunction( 'imagefttext' ) || ezcBaseFeatures::hasFunction( 'imagettftext' ) ) )
         {
@@ -69,7 +71,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->supersampling = 1;
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
         unset( $this->driver );
         if ( !$this->hasFailed() )
