@@ -68,7 +68,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $options = new ezcGraphPieChartOptions();
 
         $this->assertSame(
-            '%1$s: %2$d (%3$.1f%%)',
+            '%1$s: %2$d (%3$.1F%%)',
             $options->label,
             'Wrong default value for property label in class ezcGraphPieChartOptions'
         );
