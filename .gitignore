@@ -1,6 +1,7 @@
-vendor
-run-tests-tmp
-extract
-build
-.abc
-.pear
+/vendor
+/run-tests-tmp
+/extract
+/build
+/.abc
+/.pear
+/composer.phar
