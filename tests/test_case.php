@@ -96,8 +96,8 @@ abstract class ezcGraphTestCase extends ezcTestImageCase
     protected function compare( $generated, $compare )
     {
         $this->assertXmlFileEqualsXmlFile(
-            $generated,
-            $compare
+            $compare,
+            $generated
         );
     }
 
