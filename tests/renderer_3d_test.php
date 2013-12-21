@@ -69,9 +69,11 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderBackgroundImage()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMockBuilder( 'ezcGraphSvgDriver' )
+            ->enableArgumentCloning()
+            ->setMethods( array(
+                'drawImage',
+            ) )->getMock();
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -96,9 +98,11 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderTopLeftBackgroundImage()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMockBuilder( 'ezcGraphSvgDriver' )
+            ->enableArgumentCloning()
+            ->setMethods( array(
+                'drawImage',
+            ) )->getMock();
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -124,9 +128,11 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderBottomRightBackgroundImage()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMockBuilder( 'ezcGraphSvgDriver' )
+            ->enableArgumentCloning()
+            ->setMethods( array(
+                'drawImage',
+            ) )->getMock();
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -152,9 +158,11 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderToBigBackgroundImage()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMockBuilder( 'ezcGraphSvgDriver' )
+            ->enableArgumentCloning()
+            ->setMethods( array(
+                'drawImage',
+            ) )->getMock();
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -180,9 +188,11 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderBackgroundImageRepeatX()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMockBuilder( 'ezcGraphSvgDriver' )
+            ->enableArgumentCloning()
+            ->setMethods( array(
+                'drawImage',
+            ) )->getMock();
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -227,9 +237,11 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderBackgroundImageRepeatY()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMockBuilder( 'ezcGraphSvgDriver' )
+            ->enableArgumentCloning()
+            ->setMethods( array(
+                'drawImage',
+            ) )->getMock();
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -265,9 +277,11 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderBackgroundImageRepeatBoth()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMockBuilder( 'ezcGraphSvgDriver' )
+            ->enableArgumentCloning()
+            ->setMethods( array(
+                'drawImage',
+            ) )->getMock();
 
         $driver->options->width = 400;
         $driver->options->height = 200;

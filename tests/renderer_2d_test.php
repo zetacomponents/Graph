@@ -63,19 +63,21 @@ class ezcGraphRenderer2dTest extends ezcGraphTestCase
 
         $this->renderer = new ezcGraphRenderer2d();
 
-        $this->driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawPolygon',
-            'drawLine',
-            'drawTextBox',
-            'drawCircleSector',
-            'drawCircularArc',
-            'drawCircle',
-            'drawImage',
-        ) );
+        $this->driver = $this->getMockBuilder( 'ezcGraphSvgDriver' )
+            ->enableArgumentCloning()
+            ->setMethods( array(
+                'drawPolygon',
+                'drawLine',
+                'drawTextBox',
+                'drawCircleSector',
+                'drawCircularArc',
+                'drawCircle',
+                'drawImage',
+            ) )->getMock();
         $this->renderer->setDriver( $this->driver );
 
-        $this->driver->options->width = 400;
-        $this->driver->options->height = 200;
+        $this->driver->options->width= 400;
+        $this->driver->options->height= 200;
     }
 
     public function tearDown()
