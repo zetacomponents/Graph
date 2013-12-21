@@ -5,4 +5,7 @@ php:
   - 5.4
   - 5.5
 
+before_script:
+  - sudo locale-gen de_DE
+
 script: ant
