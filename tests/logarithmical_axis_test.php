@@ -156,9 +156,9 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
             'Wrong default value for property logarithmicalFormatString in class ezcGraphChartElementLogarithmicalAxis'
         );
 
-        $options->logarithmicalFormatString = '%2$.2F^%1$d';
+        $options->logarithmicalFormatString = '%2$.2f^%1$d';
         $this->assertSame(
-            '%2$.2F^%1$d',
+            '%2$.2f^%1$d',
             $options->logarithmicalFormatString,
             'Setting property value did not work for property logarithmicalFormatString in class ezcGraphChartElementLogarithmicalAxis'
         );

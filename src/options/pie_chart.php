@@ -40,7 +40,7 @@
  *   $graph->title = 'Access statistics';
  *   $graph->legend = false;
  *
- *   $graph->options->label = '%1$s (%3$.1F)';
+ *   $graph->options->label = '%1$s (%3$.1f)';
  *   $graph->options->percentThreshold = .05;
  *   
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
@@ -59,7 +59,7 @@
  *           String used to label pies
  *              %1$s    Name of pie
  *              %2$d    Value of pie
- *              %3$.1F  Percentage
+ *              %3$.1f  Percentage
  * @property callback $labelCallback
  *           Callback function to format pie chart labels.
  *           Function will receive 3 parameters:
@@ -89,7 +89,7 @@ class ezcGraphPieChartOptions extends ezcGraphChartOptions
      */
     public function __construct( array $options = array() )
     {
-        $this->properties['label'] = '%1$s: %2$d (%3$.1F%%)';
+        $this->properties['label'] = '%1$s: %2$d (%3$.1f%%)';
         $this->properties['labelCallback'] = null;
         $this->properties['sum'] = false;
 

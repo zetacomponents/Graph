@@ -445,7 +445,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             'Used' => 28,
         ) );
 
-        $graph->options->label = '%1$s (%3$.1F%%)';
+        $graph->options->label = '%1$s (%3$.1f%%)';
 
         // Configure renderer options
         $graph->renderer = new ezcGraphRenderer3d();

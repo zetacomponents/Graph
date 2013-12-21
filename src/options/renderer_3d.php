@@ -34,7 +34,7 @@
  *   $graph = new ezcGraphPieChart();
  *   $graph->palette = new ezcGraphPaletteEzRed();
  *   $graph->title = 'Access statistics';
- *   $graph->options->label = '%2$d (%3$.1F%%)';
+ *   $graph->options->label = '%2$d (%3$.1f%%)';
  *   
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
