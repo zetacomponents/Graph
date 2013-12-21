@@ -70,6 +70,8 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         {
             $this->removeTempDir();
         }
+
+        $this->setLocale( LC_NUMERIC, 'en_US', 'en_US.UTF-8', 'en_US.UTF8', 'en', 'english', 'en_US@euro' );
     }
 
     public function testRenderToOutput()

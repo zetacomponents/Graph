@@ -63,8 +63,6 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $this->driver->options->height = 100;
 
         $this->driver->options->font->path = $this->basePath . 'font.svg';
-
-        $this->setLocale( LC_NUMERIC, 'en_US', 'en_US.UTF-8', 'en_US.UTF8', 'en', 'english', 'en_US@euro' );
     }
 
     protected function tearDown()
@@ -74,6 +72,8 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         {
             $this->removeTempDir();
         }
+
+        $this->setLocale( LC_NUMERIC, 'en_US', 'en_US.UTF-8', 'en_US.UTF8', 'en', 'english', 'en_US@euro' );
     }
 
     public function testDrawTextBoxShortString()
