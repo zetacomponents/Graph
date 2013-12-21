@@ -169,7 +169,7 @@ class ezcGraphRadialGradient extends ezcGraphColor
      */
     public function __toString()
     {
-        return sprintf( 'RadialGradient_%d_%d_%d_%d_%.2f_%02x%02x%02x%02x_%02x%02x%02x%02x',
+        return sprintf( 'RadialGradient_%d_%d_%d_%d_%.2F_%02x%02x%02x%02x_%02x%02x%02x%02x',
             $this->properties['center']->x,
             $this->properties['center']->y,
             $this->properties['width'],

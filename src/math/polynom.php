@@ -233,13 +233,13 @@ class ezcGraphPolynom
                     $string .= sprintf( '%.2e ', $factor );
                     break;
                 case $factor >= 100:
-                    $string .= sprintf( '%.0f ', $factor );
+                    $string .= sprintf( '%.0F ', $factor );
                     break;
                 case $factor >= 10:
-                    $string .= sprintf( '%.1f ', $factor );
+                    $string .= sprintf( '%.1F ', $factor );
                     break;
                 default:
-                    $string .= sprintf( '%.2f ', $factor );
+                    $string .= sprintf( '%.2F ', $factor );
                     break;
             }
 

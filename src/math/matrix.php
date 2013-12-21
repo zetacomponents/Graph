@@ -516,7 +516,7 @@ class ezcGraphMatrix
             $string .= '| ';
             for ( $j = 0; $j < $this->columns; ++$j ) 
             {
-                $string .= sprintf( '%04.2f ', $this->get( $i, $j ) );
+                $string .= sprintf( '%04.2F ', $this->get( $i, $j ) );
             }
             $string .= "|\n";
         }

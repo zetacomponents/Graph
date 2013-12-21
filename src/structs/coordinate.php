@@ -85,7 +85,7 @@ class ezcGraphCoordinate extends ezcBaseStruct
      */
     public function __toString()
     {
-        return sprintf( '( %.2f, %.2f )', $this->x, $this->y );
+        return sprintf( '( %.2F, %.2F )', $this->x, $this->y );
     }
 }
 
