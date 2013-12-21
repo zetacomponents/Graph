@@ -2,6 +2,9 @@
 Zeta Components Graph component
 ===============================
 
+.. image:: https://travis-ci.org/zetacomponents/Graph.png?branch=master
+   :target: https://travis-ci.org/zetacomponents/Graph
+
 Component to render charts using PHP. Supports a bunch of different chart
 types, output drivers, axis and renderers.
 
