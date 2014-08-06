@@ -585,7 +585,9 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
         if ( is_numeric( $string ) )
         {
-            return $size * strlen( $string ) * $this->options->assumedNumericCharacterWidth;
+        	$length = strlen( $string );
+        	if (preg_match('/[.,]/', $string)) $length = $length - 0.9;
+            return $size * $length * $this->options->assumedNumericCharacterWidth;
         }
         else
         {
