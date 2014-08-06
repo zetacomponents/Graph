@@ -119,8 +119,6 @@
  *           Size of axis label
  * @property int $labelMargin
  *           Distance between label an axis
- * @property int $labelPosition
- *           Integer defining the labels position regarding the axe.
  * @property int $minArrowHeadSize
  *           Minimum Size used to draw arrow heads.
  * @property int $maxArrowHeadSize
@@ -181,7 +179,6 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
         $this->properties['label'] = false;
         $this->properties['labelSize'] = 14;
         $this->properties['labelMargin'] = 2;
-        $this->properties['labelPosition'] = ezcGraph::LEFT;
         $this->properties['minArrowHeadSize'] = 4;
         $this->properties['maxArrowHeadSize'] = 8;
         $this->properties['labelCallback'] = null;
@@ -298,23 +295,6 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 }
                 
                 $this->properties['labelMargin'] = (int) $propertyValue;
-                break;
-            case 'labelPosition':
-                $positions = array(
-                    ezcGraph::TOP,
-                    ezcGraph::BOTTOM,
-                    ezcGraph::LEFT,
-                    ezcGraph::RIGHT,
-                );
-
-                if ( in_array( $propertyValue, $positions, true ) )
-                {
-                    $this->properties['labelPosition'] = $propertyValue;
-                }
-                else 
-                {
-                    throw new ezcBaseValueException( 'labelPosition', $propertyValue, 'integer' );
-                }
                 break;
             case 'maxArrowHeadSize':
                 if ( !is_numeric( $propertyValue ) ||
