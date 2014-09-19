@@ -1,3 +1,26 @@
+1.5.2 - Sunday 14 September 2014
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Fixed Base dependency to use semver in composer.json
+
+1.5.1 - Saturday 21 December 2013
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Clean up mock objects stored in attributes at tearDown().
+- Fixed: Adjusted source headers of Graph to Apache license.
+- Updated: Moving copyright information to NOTICE files.
+- Fixed: Added missing file level doc blocks in order to satisfy ASF license regulations.
+- Fixed: Updated copyright dates in NOTICE files.
+- Remove custom test runner.
+- Fixed #95 (typo in docblock), thanks Yousif Masoud
+- Enabled 2 test cases (22 tests) in Graph component
+- Added composer.json
+- Added Travis config
+- Patched ezcGraphRenderer3d to render labels correclty in case of additional axes
+- Use non-local-aware number printing everywhere
+- Also make verbose driver non local aware
+- Fixed parameter order in comparison
+
 1.5 - Monday 21 December 2009
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
