@@ -51,6 +51,7 @@
     "name": "zetacomponents/graph",
     "type": "library",
         "require": {
+            "ext-gd": "*",
             "zetacomponents/base": "~1.8"
         },
         "require-dev": {
