@@ -51,10 +51,12 @@
     "name": "zetacomponents/graph",
     "type": "library",
         "require": {
-            "ext-gd": "*",
             "zetacomponents/base": "~1.8"
         },
         "require-dev": {
             "zetacomponents/unit-test": "*"
+        },
+        "suggest": {
+            "ext-gd": "Used by the GD driver, one of the choices for generating bitmap images."
         }
 }
