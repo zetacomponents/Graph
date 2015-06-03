@@ -334,7 +334,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
 
         foreach ( $averageDataSet as $key => $value )
         {
-            $this->assertEquals( (string) ( $start += $stepSize ), $key, 'Wrong step.', .01 );
+            $this->assertEquals( (string) ( round($start += $stepSize,12) ), $key, 'Wrong step.');
         }
     }
 
