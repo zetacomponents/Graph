@@ -43,7 +43,7 @@ class ezcGraphVector extends ezcGraphCoordinate
     /**
      * Rotates vector to the left by 90 degrees
      * 
-     * @return void
+     * @return ezcGraphVector
      */
     public function rotateCounterClockwise()
     {
@@ -57,7 +57,7 @@ class ezcGraphVector extends ezcGraphCoordinate
     /**
      * Rotates vector to the right by 90 degrees
      * 
-     * @return void
+     * @return ezcGraphVector
      */
     public function rotateClockwise()
     {
@@ -71,7 +71,7 @@ class ezcGraphVector extends ezcGraphCoordinate
     /**
      * Unifies vector length to 1
      * 
-     * @return void
+     * @return ezcGraphVector
      */
     public function unify()
     {
@@ -104,7 +104,7 @@ class ezcGraphVector extends ezcGraphCoordinate
      * Multiplies vector with a scalar
      * 
      * @param float $value 
-     * @return void
+     * @return ezcGraphVector
      */
     public function scalar( $value )
     {
@@ -118,7 +118,7 @@ class ezcGraphVector extends ezcGraphCoordinate
      * Calculates scalar product of two vectors
      * 
      * @param ezcGraphCoordinate $vector 
-     * @return void
+     * @return float
      */
     public function mul( ezcGraphCoordinate $vector )
     {
@@ -155,7 +155,7 @@ class ezcGraphVector extends ezcGraphCoordinate
      * Adds a vector to another vector
      * 
      * @param ezcGraphCoordinate $vector 
-     * @return void
+     * @return ezcGraphVector
      */
     public function add( ezcGraphCoordinate $vector )
     {
@@ -169,7 +169,7 @@ class ezcGraphVector extends ezcGraphCoordinate
      * Subtracts a vector from another vector
      * 
      * @param ezcGraphCoordinate $vector 
-     * @return void
+     * @return ezcGraphVector
      */
     public function sub( ezcGraphCoordinate $vector )
     {

@@ -34,7 +34,7 @@ abstract class ezcGraphDriver
     /**
      * Driveroptions
      * 
-     * @var ezcDriverOptions
+     * @var ezcGraphDriverOptions
      */
     protected $options;
     
