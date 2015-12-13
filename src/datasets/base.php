@@ -37,6 +37,9 @@
  *           Displayed string if a data point is highlighted
  * @property bool $highlight
  *           Status if datapoint element is hilighted
+ * @property mixed $fillLine
+ *           Interpretation depends on underlying chart type
+ *           @see chart type fillLines option for details
  * @property int $displayType
  *           Display type of chart data
  * @property string $url
@@ -110,6 +113,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
         $this->properties['yAxis'] = new ezcGraphDataSetAxisProperty( $this );
 
         $this->properties['highlight']->default = false;
+        $this->properties['fillLine'] = false;
     }
 
     /**
@@ -147,6 +151,21 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
                 $this->palette = $propertyValue;
                 $this->color->default = $this->palette->dataSetColor;
                 $this->symbol->default = $this->palette->dataSetSymbol;
+                break;
+
+            case 'fillLine':
+                if ( ( $propertyValue !== false ) &&
+                     !is_numeric( $propertyValue ) ||
+                     ( $propertyValue < 0 ) ||
+                     ( $propertyValue > 255 ) )
+                {
+                    throw new ezcBaseValueException( $propertyName, $propertyValue, 'false OR 0 <= int <= 255' );
+                }
+
+                $this->properties[$propertyName] = (
+                    $propertyValue === false
+                    ? false
+                    : (int) $propertyValue );
                 break;
 
             default:
