@@ -118,6 +118,76 @@ class ezcGraphHorizontalRenderer
     }
     
     /**
+     * Draw horizontal stacked bar
+     *
+     * Draws a horizontal stacked bar part as a data element in a line chart
+     * 
+     * @param ezcGraphBoundings $boundings Chart boundings
+     * @param ezcGraphContext $context Context of call
+     * @param ezcGraphColor $color Color of line
+     * @param ezcGraphCoordinate $start
+     * @param ezcGraphCoordinate $position
+     * @param float $stepSize Space which can be used for bars
+     * @param int $symbol Symbol to draw for line
+     * @param float $axisPosition Position of axis for drawing filled lines
+     * @return void
+     */
+    public function drawHorizontalStackedBar(
+        ezcGraphBoundings $boundings,
+        ezcGraphContext $context,
+        ezcGraphColor $color,
+        ezcGraphCoordinate $start,
+        ezcGraphCoordinate $position,
+        $stepSize,
+        $symbol = ezcGraph::NO_SYMBOL,
+        $axisPosition = 0. )
+    {
+        // Apply margin
+        $margin = $stepSize * $this->options->barMargin;
+        $barHeight = $stepSize - $margin;
+        $offset = - $stepSize / 2 + $margin / 2;
+
+        $barPointArray = array(
+            new ezcGraphCoordinate(
+                $boundings->x0 + ( $boundings->width ) * $start->x,
+                $boundings->y0 + ( $boundings->height ) * $position->y + $offset
+            ),
+            new ezcGraphCoordinate(
+                $boundings->x0 + ( $boundings->width ) * $position->x,
+                $boundings->y0 + ( $boundings->height ) * $position->y + $offset
+            ),
+            new ezcGraphCoordinate(
+                $boundings->x0 + ( $boundings->width ) * $position->x,
+                $boundings->y0 + ( $boundings->height ) * $position->y + $offset + $barHeight
+            ),
+            new ezcGraphCoordinate(
+                $boundings->x0 + ( $boundings->width ) * $start->x,
+                $boundings->y0 + ( $boundings->height ) * $position->y + $offset + $barHeight
+            ),
+        );
+
+        $this->addElementReference(
+            $context,
+            $this->driver->drawPolygon(
+                $barPointArray,
+                $color,
+                true
+            )
+        );
+
+        if ( $this->options->dataBorder > 0 )
+        {
+            $darkened = $color->darken( $this->options->dataBorder );
+            $this->driver->drawPolygon(
+                $barPointArray,
+                $darkened,
+                false,
+                1
+            );
+        }
+    }
+    
+    /**
      * Draw bar
      *
      * Draws a bar as a data element in a line chart

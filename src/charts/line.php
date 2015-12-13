@@ -276,7 +276,12 @@ class ezcGraphLineChart extends ezcGraphChart
             $yAxis = ( $data->yAxis->default ? $data->yAxis->default: $this->elements['yAxis'] );
 
             // Determine fill color for dataset
-            if ( $this->options->fillLines !== false )
+            if ( $data->fillLine !== false )
+            {
+                $fillColor = clone $data->color->default;
+                $fillColor->alpha = (int) round( ( 255 - $fillColor->alpha ) * ( $data->fillLine / 255 ) );
+            }
+            else if ( $this->options->fillLines !== false )
             {
                 $fillColor = clone $data->color->default;
                 $fillColor->alpha = (int) round( ( 255 - $fillColor->alpha ) * ( $this->options->fillLines / 255 ) );
