@@ -40,6 +40,10 @@
  * @property mixed $fillLine
  *           Interpretation depends on underlying chart type
  *           @see chart type fillLines option for details
+ * @property bool $boundFillToPreviousDataSet
+ *           Only fill the region between the current data set
+ *           and the previous data set.  Only works for radar
+ *           plots at this time.  @see $fillLine property.
  * @property int $displayType
  *           Display type of chart data
  * @property string $url
@@ -114,6 +118,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
 
         $this->properties['highlight']->default = false;
         $this->properties['fillLine'] = false;
+        $this->properties['boundFillToPreviousDataSet'] = false;
     }
 
     /**
@@ -166,6 +171,10 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
                     $propertyValue === false
                     ? false
                     : (int) $propertyValue );
+                break;
+
+            case 'boundFillToPreviousDataSet':
+                $this->properties[$propertyName] = $propertyValue;
                 break;
 
             default:
