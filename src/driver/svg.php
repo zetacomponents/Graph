@@ -616,11 +616,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                 // Manual escaping of non ANSII characters, because ext/DOM fails here
                 return preg_replace_callback( 
                     '/[\\x80-\\xFF]/', 
-                    create_function(
-                        '$char',
-                        'return sprintf( \'&#x%02x;\', ord( $char[0] ) );'
-                    ),
-                    $string 
+                    function ( $char ) { return sprintf( '&#x%02x;', ord( $char[0] ) ); },
+                    $string
                 );
         }
     }
