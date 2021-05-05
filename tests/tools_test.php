@@ -37,7 +37,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphToolsTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphToolsTest" );
 	}
 
     public function setUp()

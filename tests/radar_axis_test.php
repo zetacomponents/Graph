@@ -41,7 +41,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphRadarChartAxisTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphRadarChartAxisTest" );
 	}
 
     public function setUp()

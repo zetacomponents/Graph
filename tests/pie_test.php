@@ -41,7 +41,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphPieChartTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphPieChartTest" );
 	}
 
     public function setUp()

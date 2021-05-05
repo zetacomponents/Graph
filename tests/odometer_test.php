@@ -41,7 +41,7 @@ class ezcGraphOdometerChartTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphOdometerChartTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphOdometerChartTest" );
 	}
 
     public function setUp()

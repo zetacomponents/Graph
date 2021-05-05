@@ -41,7 +41,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphMultipleAxisTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphMultipleAxisTest" );
 	}
 
     public function setUp()

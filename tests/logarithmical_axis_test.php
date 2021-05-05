@@ -41,7 +41,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphLogarithmicalAxisTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphLogarithmicalAxisTest" );
 	}
 
     public function setUp()

@@ -35,7 +35,7 @@ class ezcGraphNumericAxisTest extends ezcTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphNumericAxisTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphNumericAxisTest" );
 	}
 
     public function testFactoryNumericAxis()

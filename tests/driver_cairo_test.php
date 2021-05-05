@@ -45,7 +45,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphCairoDriverTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphCairoDriverTest" );
 	}
 
     public function setUp()

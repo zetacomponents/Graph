@@ -43,7 +43,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphBackgroundTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphBackgroundTest" );
 	}
 
     public function setUp()

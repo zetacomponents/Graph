@@ -43,7 +43,7 @@ class ezcGraphDateAxisTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphDateAxisTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphDateAxisTest" );
 	}
 
     public function setUp()

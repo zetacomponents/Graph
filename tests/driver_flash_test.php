@@ -49,7 +49,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphFlashDriverTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphFlashDriverTest" );
 	}
 
     public function setUp()

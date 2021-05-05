@@ -36,7 +36,7 @@ class ezcGraphDriverOptionsTest extends ezcTestImageCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphDriverOptionsTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphDriverOptionsTest" );
 	}
 
     public function testDriverOptionsProperty()

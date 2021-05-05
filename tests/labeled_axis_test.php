@@ -41,7 +41,7 @@ class ezcGraphLabeledAxisTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphLabeledAxisTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphLabeledAxisTest" );
 	}
 
     public function setUp()

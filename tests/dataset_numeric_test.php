@@ -41,7 +41,7 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphNumericDataSetTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphNumericDataSetTest" );
 	}
 
     public function setUp()

@@ -45,7 +45,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-	    return new PHPUnit_Framework_TestSuite( "ezcGraphImageMapTest" );
+	    return new \PHPUnit\Framework\TestSuite( "ezcGraphImageMapTest" );
 	}
 
     public function setUp()

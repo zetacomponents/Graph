@@ -35,7 +35,7 @@ class ezcGraphVectorTest extends ezcTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphVectorTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphVectorTest" );
 	}
 
     public function testCreateVector()

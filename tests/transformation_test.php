@@ -35,7 +35,7 @@ class ezcGraphTransformationTest extends ezcTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphTransformationTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphTransformationTest" );
 	}
 
     public function testCreateTransformation()

@@ -47,7 +47,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphGdDriverTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphGdDriverTest" );
 	}
 
     public function setUp()

@@ -41,7 +41,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphDataSetAverageTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphDataSetAverageTest" );
 	}
 
     public function setUp()

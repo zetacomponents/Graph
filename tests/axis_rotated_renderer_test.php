@@ -45,7 +45,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphAxisRotatedRendererTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphAxisRotatedRendererTest" );
 	}
 
     public function setUp()

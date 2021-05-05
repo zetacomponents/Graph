@@ -37,7 +37,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphLegendTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphLegendTest" );
 	}
 
     public function setUp()

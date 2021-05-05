@@ -49,7 +49,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcGraphSvgDriverTest" );
+		return new \PHPUnit\Framework\TestSuite( "ezcGraphSvgDriverTest" );
 	}
 
     public function setUp()

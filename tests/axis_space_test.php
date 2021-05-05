@@ -43,7 +43,7 @@ class ezcGraphAxisSpaceTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new \PHPUnit\Framework\TestSuite( __CLASS__ );
 	}
 
     public function setUp()
