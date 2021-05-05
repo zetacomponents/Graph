@@ -166,7 +166,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 else
                 {
-                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( $values, ', ' ) );
+                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( ', ', $values ) );
                 }
                 break;
             case 'strokeLineCap':
@@ -183,7 +183,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 else
                 {
-                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( $values, ', ' ) );
+                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( ', ', $values ) );
                 }
                 break;
             case 'shapeRendering':
@@ -201,7 +201,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 else
                 {
-                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( $values, ', ' ) );
+                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( ', ', $values ) );
                 }
                 break;
             case 'colorRendering':
@@ -218,7 +218,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 else
                 {
-                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( $values, ', ' ) );
+                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( ', ', $values ) );
                 }
                 break;
             case 'textRendering':
@@ -236,7 +236,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 else
                 {
-                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( $values, ', ' ) );
+                    throw new ezcBaseValueException( $propertyName, $propertyValue, implode( ', ', $values ) );
                 }
                 break;
             case 'templateDocument':
