@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,7 +35,7 @@
  *   $graph->palette = new ezcGraphPaletteBlack();
  *   $graph->title = 'Access statistics';
  *   $graph->options->label = '%2$d (%3$.1f%%)';
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -44,26 +44,26 @@
  *       'Konqueror' => 474,
  *   ) );
  *   $graph->data['Access statistics']->highlight['Explorer'] = true;
- *   
+ *
  *   // $graph->renderer = new ezcGraphRenderer2d();
- *   
+ *
  *   $graph->renderer->options->moveOut = .2;
- *   
+ *
  *   $graph->renderer->options->pieChartOffset = 63;
- *   
+ *
  *   $graph->renderer->options->pieChartGleam = .3;
  *   $graph->renderer->options->pieChartGleamColor = '#FFFFFF';
  *   $graph->renderer->options->pieChartGleamBorder = 2;
- *   
+ *
  *   $graph->renderer->options->pieChartShadowSize = 3;
  *   $graph->renderer->options->pieChartShadowColor = '#000000';
- *   
+ *
  *   $graph->renderer->options->legendSymbolGleam = .5;
  *   $graph->renderer->options->legendSymbolGleamSize = .9;
  *   $graph->renderer->options->legendSymbolGleamColor = '#FFFFFF';
- *   
+ *
  *   $graph->renderer->options->pieChartSymbolColor = '#BABDB688';
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_pie_chart_pimped.svg' );
  * </code>
  *
@@ -71,7 +71,7 @@
  * @package Graph
  * @mainclass
  */
-class ezcGraphRenderer2d 
+class ezcGraphRenderer2d
     extends
         ezcGraphRenderer
     implements
@@ -81,7 +81,7 @@ class ezcGraphRenderer2d
     /**
      * Pie segment labels divided into two array, containing the labels on the
      * left and right side of the pie chart center.
-     * 
+     *
      * @var array
      */
     protected $pieSegmentLabels = array(
@@ -91,7 +91,7 @@ class ezcGraphRenderer2d
 
     /**
      * Contains the boundings used for pie segments
-     * 
+     *
      * @var ezcGraphBoundings
      */
     protected $pieSegmentBoundings = false;
@@ -99,37 +99,37 @@ class ezcGraphRenderer2d
     /**
      * Array with symbols for post processing, which ensures, that the symbols
      * are rendered topmost.
-     * 
+     *
      * @var array
      */
     protected $linePostSymbols = array();
 
     /**
-     * Options 
-     * 
+     * Options
+     *
      * @var ezcGraphRenderer2dOptions
      */
     protected $options;
 
     /**
-     * Collect axis labels, so that the axis are drawn, when all axis spaces 
+     * Collect axis labels, so that the axis are drawn, when all axis spaces
      * are known.
-     * 
+     *
      * @var array
      */
     protected $axisLabels = array();
 
     /**
-     * Collects circle sectors to draw shadow in background of all circle 
+     * Collects circle sectors to draw shadow in background of all circle
      * sectors.
-     * 
+     *
      * @var array
      */
     protected $circleSectors = array();
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -140,9 +140,9 @@ class ezcGraphRenderer2d
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -163,7 +163,7 @@ class ezcGraphRenderer2d
      * Draw pie segment
      *
      * Draws a single pie segment
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of pie segment
@@ -250,9 +250,9 @@ class ezcGraphRenderer2d
     /**
      * Draws the collected circle sectors
      *
-     * All circle sectors are collected and drawn later to be able to render 
+     * All circle sectors are collected and drawn later to be able to render
      * the shadows of the pie segments in the back of all pie segments.
-     * 
+     *
      * @return void
      */
     protected function finishCircleSectors()
@@ -280,7 +280,7 @@ class ezcGraphRenderer2d
         foreach ( $this->circleSectors as $circleSector )
         {
             // Draw circle sector
-            $this->addElementReference( 
+            $this->addElementReference(
                 $circleSector['context'],
                 $this->driver->drawCircleSector(
                     $circleSector['center'],
@@ -359,10 +359,10 @@ class ezcGraphRenderer2d
     /**
      * Draws the collected pie segment labels
      *
-     * All labels are collected and drawn later to be able to partition the 
-     * available space for the labels woth knowledge of the overall label 
+     * All labels are collected and drawn later to be able to partition the
+     * available space for the labels woth knowledge of the overall label
      * count and their required size and optimal position.
-     * 
+     *
      * @return void
      */
     protected function finishPieSegmentLabels()
@@ -430,19 +430,19 @@ class ezcGraphRenderer2d
                 $verticalDistance = ( $center->y - $minHeight - $labelHeight / 2 ) / $radius;
 
                 $labelPosition = new ezcGraphCoordinate(
-                    $center->x - 
+                    $center->x -
                     $sign * (
                         abs( $verticalDistance ) > 1
                         // If vertical distance to center is greater then the
-                        // radius, use the centerline for the horizontal 
+                        // radius, use the centerline for the horizontal
                         // position
                         ? max (
                             5,
                             abs( $label[0]->x - $center->x )
                         )
                         // Else place the label outside of the pie chart
-                        : ( cos ( asin ( $verticalDistance ) ) * $radius + 
-                            $symbolSize * (int) $this->options->showSymbol 
+                        : ( cos ( asin ( $verticalDistance ) ) * $radius +
+                            $symbolSize * (int) $this->options->showSymbol
                         )
                     ),
                     $minHeight + $labelHeight / 2
@@ -474,7 +474,7 @@ class ezcGraphRenderer2d
                     );
                 }
 
-                $this->addElementReference( 
+                $this->addElementReference(
                     $label[2],
                     $this->driver->drawTextBox(
                         $label[1],
@@ -497,9 +497,9 @@ class ezcGraphRenderer2d
     /**
      * Draw the collected line symbols
      *
-     * Symbols for the data lines are collected and delayed to ensure that 
+     * Symbols for the data lines are collected and delayed to ensure that
      * they are not covered and hidden by other data lines.
-     * 
+     *
      * @return void
      */
     protected function finishLineSymbols()
@@ -516,12 +516,12 @@ class ezcGraphRenderer2d
             );
         }
     }
-    
+
     /**
      * Draw bar
      *
      * Draws a bar as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -594,7 +594,7 @@ class ezcGraphRenderer2d
      * Draw stacked bar
      *
      * Draws a stacked bar part as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -659,12 +659,12 @@ class ezcGraphRenderer2d
             );
         }
     }
-    
+
     /**
      * Draw data line
      *
      * Draws a line as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -801,7 +801,7 @@ class ezcGraphRenderer2d
             {
                 $symbolColor = $color;
             }
-    
+
             $this->linePostSymbols[] = array(
                 'boundings' => new ezcGraphBoundings(
                     $boundings->x0 + ( $boundings->width ) * $end->x - $this->options->symbolSize / 2,
@@ -819,7 +819,7 @@ class ezcGraphRenderer2d
     /**
      * Returns a coordinate in the given bounding box for the given angle
      * radius with the center as base point.
-     * 
+     *
      * @param ezcGraphBoundings $boundings
      * @param ezcGraphCoordinate $center
      * @param float $angle
@@ -862,7 +862,7 @@ class ezcGraphRenderer2d
      * Draw radar chart data line
      *
      * Draws a line as a data element in a radar chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -945,13 +945,13 @@ class ezcGraphRenderer2d
             );
         }
     }
-    
+
     /**
      * Draws a highlight textbox for a datapoint.
      *
-     * A highlight textbox for line and bar charts means a box with the current 
+     * A highlight textbox for line and bar charts means a box with the current
      * value in the graph.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphCoordinate $end Ending point
@@ -975,9 +975,9 @@ class ezcGraphRenderer2d
         $axisPosition = 0.,
         $dataNumber = 1,
         $dataCount = 1,
-        ezcGraphFontOptions $font,
-        $text,
-        $size,
+        ezcGraphFontOptions $font = null,
+        $text = '',
+        $size = 0,
         ezcGraphColor $markLines = null,
         $xOffset = 0,
         $yOffset = 0,
@@ -995,7 +995,7 @@ class ezcGraphRenderer2d
 
         $this->driver->options->font = $font;
         $width = $boundings->width / $dataCount;
-        
+
         $dataPoint = new ezcGraphCoordinate(
             $boundings->x0 + ( $boundings->width ) * $end->x + $xOffset +
                 ( $type === ezcGraph::LINE ? 0 : $offset ),
@@ -1029,12 +1029,12 @@ class ezcGraphRenderer2d
             );
         }
     }
-    
+
     /**
      * Draw legend
      *
      * Will draw a legend in the bounding box
-     * 
+     *
      * @param ezcGraphBoundings $boundings Bounding of legend
      * @param ezcGraphChartElementLegend $legend Legend to draw;
      * @param int $type Type of legend: Protrait or landscape
@@ -1046,13 +1046,13 @@ class ezcGraphRenderer2d
         $type = ezcGraph::VERTICAL )
     {
         $labels = $legend->labels;
-        
+
         // Calculate boundings of each label
         if ( $type & ezcGraph::VERTICAL )
         {
             $labelWidth = $boundings->width;
-            $labelHeight = min( 
-                ( $boundings->height ) / count( $labels ) - $legend->spacing, 
+            $labelHeight = min(
+                ( $boundings->height ) / count( $labels ) - $legend->spacing,
                 $legend->symbolSize + 2 * $legend->padding
             );
         }
@@ -1099,7 +1099,7 @@ class ezcGraphRenderer2d
             $labelPosition->y += ( $type === ezcGraph::VERTICAL ? $labelHeight + $legend->spacing : 0 );
         }
     }
-    
+
     /**
      * Draw box
      *
@@ -1107,7 +1107,7 @@ class ezcGraphRenderer2d
      * and title to each chart element.
      *
      * Optionally a padding and margin for each box can be defined.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of the box
      * @param ezcGraphColor $background Background color
      * @param ezcGraphColor $borderColor Border color
@@ -1133,7 +1133,7 @@ class ezcGraphRenderer2d
         $boundings->y0 += $margin;
         $boundings->x1 -= $margin;
         $boundings->y1 -= $margin;
-        
+
         if ( $background instanceof ezcGraphColor )
         {
             // Draw box background
@@ -1211,12 +1211,12 @@ class ezcGraphRenderer2d
 
         return $boundings;
     }
-    
+
     /**
      * Draw text
      *
      * Draws the provided text in the boundings
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of text
      * @param string $text Text
      * @param int $align Alignement of text
@@ -1243,7 +1243,7 @@ class ezcGraphRenderer2d
      * Draw grid line
      *
      * Draw line for the grid in the chart background
-     * 
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Color of the grid line
@@ -1263,7 +1263,7 @@ class ezcGraphRenderer2d
      * Draw step line
      *
      * Draw a step (marker for label position) on a axis.
-     * 
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Color of the grid line
@@ -1278,14 +1278,14 @@ class ezcGraphRenderer2d
             1
         );
     }
-    
+
     /**
      * Draw axis
      *
-     * Draws an axis form the provided start point to the end point. A specific 
+     * Draws an axis form the provided start point to the end point. A specific
      * angle of the axis is not required.
      *
-     * For the labeleing of the axis a sorted array with major steps and an 
+     * For the labeleing of the axis a sorted array with major steps and an
      * array with minor steps is expected, which are build like this:
      *  array(
      *      array(
@@ -1296,13 +1296,13 @@ class ezcGraphRenderer2d
      * where the label is optional.
      *
      * The label renderer class defines how the labels are rendered. For more
-     * documentation on this topic have a look at the basic label renderer 
+     * documentation on this topic have a look at the basic label renderer
      * class.
      *
-     * Additionally it can be specified if a major and minor grid are rendered 
-     * by defining a color for them. The axis label is used to add a caption 
+     * Additionally it can be specified if a major and minor grid are rendered
+     * by defining a color for them. The axis label is used to add a caption
      * for the axis.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of axis
      * @param ezcGraphCoordinate $start Start point of axis
      * @param ezcGraphCoordinate $end Endpoint of axis
@@ -1328,7 +1328,7 @@ class ezcGraphRenderer2d
         if ( ( $axis->position === ezcGraph::TOP ) ||
              ( $axis->position === ezcGraph::BOTTOM ) )
         {
-            $innerStart = new ezcGraphCoordinate( 
+            $innerStart = new ezcGraphCoordinate(
                 $start->x + $boundings->x0,
                 ( $axis->position === ezcGraph::TOP ? $innerBoundings->y0 : $innerBoundings->y1 )
             );
@@ -1339,7 +1339,7 @@ class ezcGraphRenderer2d
         }
         else
         {
-            $innerStart = new ezcGraphCoordinate( 
+            $innerStart = new ezcGraphCoordinate(
                 ( $axis->position === ezcGraph::LEFT ? $innerBoundings->x0 : $innerBoundings->x1 ),
                 $start->y + $boundings->y0
             );
@@ -1416,10 +1416,10 @@ class ezcGraphRenderer2d
      * Draw axis label
      *
      * Draw labels at the end of an axis.
-     * 
-     * @param ezcGraphCoordinate $position 
-     * @param ezcGraphBoundings $boundings 
-     * @param ezcGraphChartElementAxis $axis 
+     *
+     * @param ezcGraphCoordinate $position
+     * @param ezcGraphBoundings $boundings
+     * @param ezcGraphChartElementAxis $axis
      * @return void
      */
     protected function drawAxisLabel( ezcGraphCoordinate $position, ezcGraphBoundings $boundings, ezcGraphChartElementAxis $axis )
@@ -1502,10 +1502,10 @@ class ezcGraphRenderer2d
     /**
      * Draw axis
      *
-     * Draws an axis form the provided start point to the end point. A specific 
+     * Draws an axis form the provided start point to the end point. A specific
      * angle of the axis is not required.
      *
-     * For the labeleing of the axis a sorted array with major steps and an 
+     * For the labeleing of the axis a sorted array with major steps and an
      * array with minor steps is expected, which are build like this:
      *  array(
      *      array(
@@ -1516,16 +1516,16 @@ class ezcGraphRenderer2d
      * where the label is optional.
      *
      * The label renderer class defines how the labels are rendered. For more
-     * documentation on this topic have a look at the basic label renderer 
+     * documentation on this topic have a look at the basic label renderer
      * class.
      *
-     * Additionally it can be specified if a major and minor grid are rendered 
-     * by defining a color for them. The axis label is used to add a caption 
+     * Additionally it can be specified if a major and minor grid are rendered
+     * by defining a color for them. The axis label is used to add a caption
      * for the axis.
      *
      * This function is deprecated and will be removed in favor of its
      * reimplementation using the innerBoundings parameter.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of axis
      * @param ezcGraphCoordinate $start Start point of axis
      * @param ezcGraphCoordinate $end Endpoint of axis
@@ -1642,7 +1642,7 @@ class ezcGraphRenderer2d
 
     /**
      * Draw all left axis labels
-     * 
+     *
      * @return void
      */
     protected function drawAxisLabels()
@@ -1697,7 +1697,7 @@ class ezcGraphRenderer2d
      *
      * Draws a background image at the defined position. If repeat is set the
      * background image will be repeated like any texture.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings for the background image
      * @param string $file Filename of background image
      * @param int $position Position of background image
@@ -1717,8 +1717,8 @@ class ezcGraphRenderer2d
         $imageWidth = min( $imageWidth, $boundings->width );
         $imageHeight = min( $imageHeight, $boundings->height );
 
-        $imagePosition = new ezcGraphCoordinate( 
-            $boundings->x0, 
+        $imagePosition = new ezcGraphCoordinate(
+            $boundings->x0,
             $boundings->y0
         );
 
@@ -1730,7 +1730,7 @@ class ezcGraphRenderer2d
                 $imagePosition->x = $boundings->x0;
                 break;
             case ( $position & ezcGraph::RIGHT ):
-                $imagePosition->x = max( 
+                $imagePosition->x = max(
                     $boundings->x1 - $imageWidth,
                     $boundings->x0
                 );
@@ -1751,7 +1751,7 @@ class ezcGraphRenderer2d
                 $imagePosition->y = $boundings->y0;
                 break;
             case ( $position & ezcGraph::BOTTOM ):
-                $imagePosition->y = max( 
+                $imagePosition->y = max(
                     $boundings->y1 - $imageHeight,
                     $boundings->y0
                 );
@@ -1769,25 +1769,25 @@ class ezcGraphRenderer2d
             $imagePosition->x,
             $imagePosition->y
         );
-        
-        do 
+
+        do
         {
             $position->y = $imagePosition->y;
 
-            do 
+            do
             {
-                $this->driver->drawImage( 
-                    $file, 
-                    $position, 
-                    $imageWidth, 
-                    $imageHeight 
+                $this->driver->drawImage(
+                    $file,
+                    $position,
+                    $imageWidth,
+                    $imageHeight
                 );
 
                 $position->y += $imageHeight;
             }
             while ( ( $position->y < $boundings->y1 ) &&
                     ( $repeat & ezcGraph::VERTICAL ) );
-            
+
             $position->x += $imageWidth;
         }
         while ( ( $position->x < $boundings->x1 ) &&
@@ -1796,7 +1796,7 @@ class ezcGraphRenderer2d
 
     /**
      * Call all postprocessing functions
-     * 
+     *
      * @return void
      */
     protected function finish()
@@ -1813,7 +1813,7 @@ class ezcGraphRenderer2d
      *
      * Reset all renderer properties, which were calculated during the
      * rendering process, to offer a clean environment for rerendering.
-     * 
+     *
      * @return void
      */
     protected function resetRenderer()
@@ -1833,14 +1833,14 @@ class ezcGraphRenderer2d
 
     /**
      * Render odometer chart
-     * 
-     * @param ezcGraphBoundings $boundings 
+     *
+     * @param ezcGraphBoundings $boundings
      * @param ezcGraphChartElementAxis $axis
      * @param ezcGraphOdometerChartOptions $options
      * @return ezcGraphBoundings
      */
-    public function drawOdometer( 
-        ezcGraphBoundings $boundings, 
+    public function drawOdometer(
+        ezcGraphBoundings $boundings,
         ezcGraphChartElementAxis $axis,
         ezcGraphOdometerChartOptions $options )
     {

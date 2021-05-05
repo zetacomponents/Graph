@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,29 +35,29 @@ abstract class ezcGraphRenderer
 
     /**
      * Driver used to render results
-     * 
+     *
      * @var ezcGraphDriver
      */
     protected $driver;
 
     /**
      * Axis space used for the x axis
-     * 
+     *
      * @var float
      */
     protected $xAxisSpace = false;
-    
+
     /**
      * Axis space used for the y axis
-     * 
+     *
      * @var float
      */
     protected $yAxisSpace = false;
 
     /**
-     * Context sensitive references to chart elements to use for referencing 
+     * Context sensitive references to chart elements to use for referencing
      * image elements depending on the output driver, like image maps, etc.
-     * 
+     *
      * @var array
      */
     protected $elements = array();
@@ -84,7 +84,7 @@ abstract class ezcGraphRenderer
 
     /**
      * Adds a element reference for context
-     * 
+     *
      * @param ezcGraphContext $context Dataoint context
      * @param mixed $reference Driver dependant reference
      * @return void
@@ -96,7 +96,7 @@ abstract class ezcGraphRenderer
 
     /**
      * Return all chart element references
-     * 
+     *
      * Returns element references for the data sets in the chart, so the
      * created graphic may be enhanced later.
      *
@@ -143,9 +143,9 @@ abstract class ezcGraphRenderer
     }
 
     /**
-     * __get 
-     * 
-     * @param string $propertyName 
+     * __get
+     *
+     * @param string $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -169,7 +169,7 @@ abstract class ezcGraphRenderer
      * Draw pie segment
      *
      * Draws a single pie segment
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of pie segment
@@ -188,12 +188,12 @@ abstract class ezcGraphRenderer
         $label = false,
         $moveOut = false
     );
-    
+
     /**
      * Draw bar
      *
      * Draws a bar as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -216,12 +216,12 @@ abstract class ezcGraphRenderer
         $symbol = ezcGraph::NO_SYMBOL,
         $axisPosition = 0.
     );
-    
+
     /**
      * Draw data line
      *
      * Draws a line as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -254,9 +254,9 @@ abstract class ezcGraphRenderer
     /**
      * Draws a highlight textbox for a datapoint.
      *
-     * A highlight textbox for line and bar charts means a box with the current 
+     * A highlight textbox for line and bar charts means a box with the current
      * value in the graph.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphCoordinate $end Ending point
@@ -280,21 +280,21 @@ abstract class ezcGraphRenderer
         $axisPosition = 0.,
         $dataNumber = 1,
         $dataCount = 1,
-        ezcGraphFontOptions $font,
-        $text,
-        $size,
+        ezcGraphFontOptions $font = null,
+        $text = '',
+        $size = 0,
         ezcGraphColor $markLines = null,
         $xOffset = 0,
         $yOffset = 0,
         $stepSize = 0.,
         $type = ezcGraph::LINE
     );
-    
+
     /**
      * Draw legend
      *
      * Will draw a legend in the bounding box
-     * 
+     *
      * @param ezcGraphBoundings $boundings Bounding of legend
      * @param ezcGraphChartElementLegend $legend Legend to draw
      * @param int $type Type of legend: Protrait or landscape
@@ -305,7 +305,7 @@ abstract class ezcGraphRenderer
         ezcGraphChartElementLegend $legend,
         $type = ezcGraph::VERTICAL
     );
-    
+
     /**
      * Draw box
      *
@@ -313,7 +313,7 @@ abstract class ezcGraphRenderer
      * and title to each chart element.
      *
      * Optionally a padding and margin for each box can be defined.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of the box
      * @param ezcGraphColor $background Background color
      * @param ezcGraphColor $borderColor Border color
@@ -332,14 +332,14 @@ abstract class ezcGraphRenderer
         $margin = 0,
         $padding = 0,
         $title = false,
-        $titleSize = 16 
+        $titleSize = 16
     );
-    
+
     /**
      * Draw text
      *
      * Draws the provided text in the boundings
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of text
      * @param string $text Text
      * @param int $align Alignement of text
@@ -356,10 +356,10 @@ abstract class ezcGraphRenderer
     /**
      * Draw axis
      *
-     * Draws an axis form the provided start point to the end point. A specific 
+     * Draws an axis form the provided start point to the end point. A specific
      * angle of the axis is not required.
      *
-     * For the labeleing of the axis a sorted array with major steps and an 
+     * For the labeleing of the axis a sorted array with major steps and an
      * array with minor steps is expected, which are build like this:
      *  array(
      *      array(
@@ -370,13 +370,13 @@ abstract class ezcGraphRenderer
      * where the label is optional.
      *
      * The label renderer class defines how the labels are rendered. For more
-     * documentation on this topic have a look at the basic label renderer 
+     * documentation on this topic have a look at the basic label renderer
      * class.
      *
-     * Additionally it can be specified if a major and minor grid are rendered 
-     * by defining a color for them. The axis label is used to add a caption 
+     * Additionally it can be specified if a major and minor grid are rendered
+     * by defining a color for them. The axis label is used to add a caption
      * for the axis.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of axis
      * @param ezcGraphCoordinate $start Start point of axis
      * @param ezcGraphCoordinate $end Endpoint of axis
@@ -394,15 +394,15 @@ abstract class ezcGraphRenderer
 
     /**
      * Draw axis arrow head
-     * 
+     *
      * Draw an arrow head at the specified position using specified size
      * and direction of the error head. Repsects the axisEndStyle option in
      * the base renderer options class.
      *
-     * @param ezcGraphCoordinate $position 
-     * @param ezcGraphVector $direction 
-     * @param float $size 
-     * @param ezcGraphColor $color 
+     * @param ezcGraphCoordinate $position
+     * @param ezcGraphVector $direction
+     * @param float $size
+     * @param ezcGraphColor $color
      * @return void
      */
     protected function drawAxisArrowHead( ezcGraphCoordinate $position, ezcGraphVector $direction, $size, ezcGraphColor $color )
@@ -475,7 +475,7 @@ abstract class ezcGraphRenderer
      *
      * Draws a background image at the defined position. If repeat is set the
      * background image will be repeated like any texture.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings for the background image
      * @param string $file Filename of background image
      * @param int $position Position of background image
@@ -488,13 +488,13 @@ abstract class ezcGraphRenderer
         $position = 48, // ezcGraph::CENTER | ezcGraph::MIDDLE
         $repeat = ezcGraph::NO_REPEAT
     );
-    
+
     /**
      * Draw Symbol
      *
      * Draws a single symbol defined by the symbol constants in ezcGraph. for
      * NO_SYMBOL a rect will be drawn.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of symbol
      * @param ezcGraphColor $color Color of symbol
      * @param int $symbol Type of symbol
@@ -525,21 +525,21 @@ abstract class ezcGraphRenderer
                 {
                     $return = $this->driver->drawPolygon(
                         array(
-                            $topLeft = new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                            $topLeft = new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize,
+                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize
                             ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                            new ezcGraphCoordinate(
+                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize,
+                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize
                             ),
-                            $bottomRight = new ezcGraphCoordinate( 
-                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                            $bottomRight = new ezcGraphCoordinate(
+                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize,
+                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize
                             ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                            new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize,
+                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize
                             ),
                         ),
                         new ezcGraphLinearGradient(
@@ -567,19 +567,19 @@ abstract class ezcGraphRenderer
             case ezcGraph::DIAMOND:
                 $return = $this->driver->drawPolygon(
                     array(
-                        new ezcGraphCoordinate( 
-                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
-                            $boundings->y0 
+                        new ezcGraphCoordinate(
+                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2,
+                            $boundings->y0
                         ),
-                        new ezcGraphCoordinate( 
+                        new ezcGraphCoordinate(
                             $boundings->x1,
                             $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
                         ),
-                        new ezcGraphCoordinate( 
-                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
-                            $boundings->y1 
+                        new ezcGraphCoordinate(
+                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2,
+                            $boundings->y1
                         ),
-                        new ezcGraphCoordinate( 
+                        new ezcGraphCoordinate(
                             $boundings->x0,
                             $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
                         ),
@@ -593,30 +593,30 @@ abstract class ezcGraphRenderer
                 {
                     $return = $this->driver->drawPolygon(
                         array(
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
-                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                            new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2,
+                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize
                             ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
+                            new ezcGraphCoordinate(
+                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize,
                                 $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
                             ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
-                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                            new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2,
+                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize
                             ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
+                            new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize,
                                 $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
                             ),
                         ),
                         new ezcGraphLinearGradient(
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * 0.353553391, 
+                            new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * 0.353553391,
                                 $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * 0.353553391
                             ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * ( 1 - 0.353553391 ), 
+                            new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * ( 1 - 0.353553391 ),
                                 $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * ( 1 - 0.353553391 )
                             ),
                             $color->darken( -$this->options->legendSymbolGleam ),
@@ -628,8 +628,8 @@ abstract class ezcGraphRenderer
                 return $return;
             case ezcGraph::BULLET:
                 $return = $this->driver->drawCircle(
-                    new ezcGraphCoordinate( 
-                        $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
+                    new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2,
                         $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
                     ),
                     $boundings->x1 - $boundings->x0,
@@ -642,19 +642,19 @@ abstract class ezcGraphRenderer
                 if ( $this->options->legendSymbolGleam !== false )
                 {
                     $return = $this->driver->drawCircle(
-                        new ezcGraphCoordinate( 
-                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
+                        new ezcGraphCoordinate(
+                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2,
                             $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
                         ),
                         ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize,
                         ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize,
                         new ezcGraphLinearGradient(
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * 0.292893219, 
+                            new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * 0.292893219,
                                 $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * 0.292893219
                             ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * 0.707106781, 
+                            new ezcGraphCoordinate(
+                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * 0.707106781,
                                 $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * 0.707106781
                             ),
                             $color->darken( -$this->options->legendSymbolGleam ),
@@ -666,8 +666,8 @@ abstract class ezcGraphRenderer
                 return $return;
             case ezcGraph::CIRCLE:
                 return $this->driver->drawCircle(
-                    new ezcGraphCoordinate( 
-                        $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
+                    new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2,
                         $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
                     ),
                     $boundings->x1 - $boundings->x0,
@@ -683,7 +683,7 @@ abstract class ezcGraphRenderer
      *
      * Method is called before the final image is renderer, so that finishing
      * operations can be performed here.
-     * 
+     *
      * @return void
      */
     abstract protected function finish();
@@ -693,7 +693,7 @@ abstract class ezcGraphRenderer
      *
      * Reset all renderer properties, which were calculated during the
      * rendering process, to offer a clean environment for rerendering.
-     * 
+     *
      * @return void
      */
     protected function resetRenderer()
@@ -709,8 +709,8 @@ abstract class ezcGraphRenderer
     }
 
     /**
-     * Finally renders the image 
-     * 
+     * Finally renders the image
+     *
      * @param string $file Filename of destination file
      * @return void
      */

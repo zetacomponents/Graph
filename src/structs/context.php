@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -49,28 +49,28 @@ class ezcGraphContext extends ezcBaseStruct
 {
     /**
      * Name of dataset
-     * 
+     *
      * @var string
      */
     public $dataset = false;
 
     /**
-     * Name of datapoint 
-     * 
+     * Name of datapoint
+     *
      * @var string
      */
     public $datapoint = false;
-    
+
     /**
      * Associated URL for datapoint
-     * 
+     *
      * @var string
      */
     public $url;
 
     /**
-     * Simple constructor 
-     * 
+     * Simple constructor
+     *
      * @param string $dataset
      * @param string $datapoint
      * @param string $url
@@ -85,13 +85,13 @@ class ezcGraphContext extends ezcBaseStruct
     }
 
     /**
-     * __set_state 
-     * 
+     * __set_state
+     *
      * @param array $properties Struct properties
      * @return void
      * @ignore
      */
-    public function __set_state( array $properties )
+    public static function __set_state( array $properties )
     {
         $this->dataset = (string) $properties['dataset'];
         $this->datapoint = (string) $properties['datapoint'];

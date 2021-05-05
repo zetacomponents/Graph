@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,7 +35,7 @@
  *   $graph->palette = new ezcGraphPaletteEzRed();
  *   $graph->title = 'Access statistics';
  *   $graph->options->label = '%2$d (%3$.1f%%)';
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -44,28 +44,28 @@
  *       'Konqueror' => 474,
  *   ) );
  *   $graph->data['Access statistics']->highlight['Explorer'] = true;
- *   
+ *
  *   $graph->renderer = new ezcGraphRenderer3d();
- *   
+ *
  *   $graph->renderer->options->moveOut = .2;
- *   
+ *
  *   $graph->renderer->options->pieChartOffset = 63;
- *   
+ *
  *   $graph->renderer->options->pieChartGleam = .3;
  *   $graph->renderer->options->pieChartGleamColor = '#FFFFFF';
- *   
+ *
  *   $graph->renderer->options->pieChartShadowSize = 5;
  *   $graph->renderer->options->pieChartShadowColor = '#000000';
- *   
+ *
  *   $graph->renderer->options->legendSymbolGleam = .5;
  *   $graph->renderer->options->legendSymbolGleamSize = .9;
  *   $graph->renderer->options->legendSymbolGleamColor = '#FFFFFF';
- *   
+ *
  *   $graph->renderer->options->pieChartSymbolColor = '#55575388';
- *   
+ *
  *   $graph->renderer->options->pieChartHeight = 5;
  *   $graph->renderer->options->pieChartRotation = .8;
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_pie_chart_3d.svg' );
  * </code>
  *
@@ -73,8 +73,8 @@
  * @package Graph
  * @mainclass
  */
-class ezcGraphRenderer3d 
-    extends 
+class ezcGraphRenderer3d
+    extends
         ezcGraphRenderer
     implements
         ezcGraphStackedBarsRenderer
@@ -83,7 +83,7 @@ class ezcGraphRenderer3d
     /**
      * Pie segment labels divided into two array, containing the labels on the
      * left and right side of the pie chart center.
-     * 
+     *
      * @var array
      */
     protected $pieSegmentLabels = array(
@@ -93,7 +93,7 @@ class ezcGraphRenderer3d
 
     /**
      * Contains the boundings used for pie segments
-     * 
+     *
      * @var ezcGraphBoundings
      */
     protected $pieSegmentBoundings = false;
@@ -101,7 +101,7 @@ class ezcGraphRenderer3d
     /**
      * Array with symbols for post processing, which ensures, that the symbols
      * are rendered topmost.
-     * 
+     *
      * @var array
      */
     protected $linePostSymbols = array();
@@ -109,15 +109,15 @@ class ezcGraphRenderer3d
     /**
      * Array containing lines from the axis and grid which should be redrawn on
      * top of the data.
-     * 
+     *
      * @var array
      */
     protected $frontLines = array();
 
     /**
-     * Collects circle sectors to draw shadow in background of all circle 
+     * Collects circle sectors to draw shadow in background of all circle
      * sectors.
-     * 
+     *
      * @var array
      */
     protected $circleSectors = array();
@@ -140,50 +140,50 @@ class ezcGraphRenderer3d
 
     /**
      * Options
-     * 
+     *
      * @var ezcGraphRenderer3dOptions
      */
     protected $options;
 
     /**
      * Depth of displayed pseudo three dimensional line chart elements.
-     * 
+     *
      * @var float
      */
     protected $depth = false;
 
     /**
-     * Factor to reduce the width according to depth 
-     * 
+     * Factor to reduce the width according to depth
+     *
      * @var float
      */
     protected $xDepthFactor = false;
 
     /**
-     * Factor to reduce the height according to depth 
-     * 
+     * Factor to reduce the height according to depth
+     *
      * @var float
      */
     protected $yDepthFactor = false;
 
     /**
      * Boundings for the chart data
-     * 
+     *
      * @var ezcGraphBoundings
      */
     protected $dataBoundings = false;
 
     /**
-     * Collect axis labels, so that the axis are drawn, when all axis spaces 
+     * Collect axis labels, so that the axis are drawn, when all axis spaces
      * are known.
-     * 
+     *
      * @var array
      */
     protected $axisLabels = array();
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -194,9 +194,9 @@ class ezcGraphRenderer3d
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -216,10 +216,10 @@ class ezcGraphRenderer3d
     /**
      * Calculate the display coordinate from a coordinate
      *
-     * Calculates the display coordinate of a coordinate depending on the 
-     * depth setting and the distance of the coordinate to the front of the 
+     * Calculates the display coordinate of a coordinate depending on the
+     * depth setting and the distance of the coordinate to the front of the
      * chart.
-     * 
+     *
      * @param ezcGraphCoordinate $c Coordinate
      * @param float $front Distance to front (0 - 1)
      * @return ezcGraphCoordinate Resulting coordinate
@@ -236,7 +236,7 @@ class ezcGraphRenderer3d
      * Draw pie segment
      *
      * Draws a single pie segment
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of pie segment
@@ -262,8 +262,8 @@ class ezcGraphRenderer3d
         // Calculate position and size of pie
         $center = new ezcGraphCoordinate(
             $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2,
-            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2 
-                - $this->options->pieChartHeight / 2 
+            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
+                - $this->options->pieChartHeight / 2
         );
 
         // Limit radius to fourth of width and half of height at maximum
@@ -324,10 +324,10 @@ class ezcGraphRenderer3d
     /**
      * Draws the collected pie segment labels
      *
-     * All labels are collected and drawn later to be able to partition the 
-     * available space for the labels woth knowledge of the overall label 
+     * All labels are collected and drawn later to be able to partition the
+     * available space for the labels woth knowledge of the overall label
      * count and their required size and optimal position.
-     * 
+     *
      * @return void
      */
     protected function finishPieSegmentLabels()
@@ -397,19 +397,19 @@ class ezcGraphRenderer3d
                 $verticalDistance = ( $center->y - $minHeight - $labelHeight / 2 ) / $radius;
 
                 $labelPosition = new ezcGraphCoordinate(
-                    $center->x - 
+                    $center->x -
                     $sign * (
                         abs( $verticalDistance ) > 1
                         // If vertical distance to center is greater then the
-                        // radius, use the centerline for the horizontal 
+                        // radius, use the centerline for the horizontal
                         // position
                         ? max (
                             5,
                             abs( $label[0]->x - $center->x )
                         )
                         // Else place the label outside of the pie chart
-                        : ( cos ( asin ( $verticalDistance ) ) * $radius + 
-                            $symbolSize * (int) $this->options->showSymbol 
+                        : ( cos ( asin ( $verticalDistance ) ) * $radius +
+                            $symbolSize * (int) $this->options->showSymbol
                         )
                     ),
                     $minHeight + $labelHeight / 2
@@ -441,7 +441,7 @@ class ezcGraphRenderer3d
                     );
                 }
 
-                $this->addElementReference( $label[2], 
+                $this->addElementReference( $label[2],
                     $this->driver->drawTextBox(
                         $label[1],
                         new ezcGraphCoordinate(
@@ -463,10 +463,10 @@ class ezcGraphRenderer3d
     /**
      * Draws the collected circle sectors
      *
-     * All circle sectors are collected and drawn later to be able to render 
-     * the shadows of the pie segments in the back of all pie segments, and 
+     * All circle sectors are collected and drawn later to be able to render
+     * the shadows of the pie segments in the back of all pie segments, and
      * ensure the correct drawing order for all pie segment elements.
-     * 
+     *
      * @return void
      */
     protected function finishCirleSectors()
@@ -495,9 +495,9 @@ class ezcGraphRenderer3d
                 }
                 else
                 {
-                    $shadows[] = array( 
+                    $shadows[] = array(
                         'center' => $shadowCenter,
-                        'start' => $shadowStartAngle, 
+                        'start' => $shadowStartAngle,
                         'end' => $shadowEndAngle,
                         'width' => $circleSector['width'],
                         'height' => $circleSector['height'],
@@ -615,9 +615,9 @@ class ezcGraphRenderer3d
 
         if ( $this->options->pieChartShadowSize > 0 )
         {
-            $shadows[] = array( 
+            $shadows[] = array(
                 'center' => $shadowCenter,
-                'start' => $shadowStartAngle, 
+                'start' => $shadowStartAngle,
                 'end' => $shadowEndAngle,
                 'width' => $circleSector['width'],
                 'height' => $circleSector['height'],
@@ -756,9 +756,9 @@ class ezcGraphRenderer3d
     /**
      * Draw collected front lines
      *
-     * Draw all grid and axis lines, which should be redrawn in front of the 
+     * Draw all grid and axis lines, which should be redrawn in front of the
      * data.
-     * 
+     *
      * @return void
      */
     protected function finishFrontLines()
@@ -777,9 +777,9 @@ class ezcGraphRenderer3d
     /**
      * Draw the collected line symbols
      *
-     * Symbols for the data lines are collected and delayed to ensure that 
+     * Symbols for the data lines are collected and delayed to ensure that
      * they are not covered and hidden by other data lines.
-     * 
+     *
      * @return void
      */
     protected function finishLineSymbols()
@@ -795,10 +795,10 @@ class ezcGraphRenderer3d
             );
         }
     }
-    
+
     /**
      * Draws a bar with a rectangular ground shape.
-     * 
+     *
      * @param ezcGraphContext $context
      * @param ezcGraphColor $color
      * @param ezcGraphCoordinate $position
@@ -822,19 +822,19 @@ class ezcGraphRenderer3d
         $endDepth )
     {
         $barPolygonArray = array(
-            new ezcGraphCoordinate( 
+            new ezcGraphCoordinate(
                 $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset,
                 $this->dataBoundings->y0 + $this->yAxisSpace + $axisPosition * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
             ),
-            new ezcGraphCoordinate( 
+            new ezcGraphCoordinate(
                 $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset,
                 $this->dataBoundings->y0 + $this->yAxisSpace + $position->y * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
             ),
-            new ezcGraphCoordinate( 
+            new ezcGraphCoordinate(
                 $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset + $barWidth,
                 $this->dataBoundings->y0 + $this->yAxisSpace + $position->y * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
             ),
-            new ezcGraphCoordinate( 
+            new ezcGraphCoordinate(
                 $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset + $barWidth,
                 $this->dataBoundings->y0 + $this->yAxisSpace + $axisPosition * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
             ),
@@ -966,7 +966,7 @@ class ezcGraphRenderer3d
 
     /**
      * Draws a bar with a diamond ground shape.
-     * 
+     *
      * @param ezcGraphContext $context
      * @param ezcGraphColor $color
      * @param ezcGraphCoordinate $position
@@ -990,7 +990,7 @@ class ezcGraphRenderer3d
         $endDepth )
     {
         $barCoordinateArray = array(
-            // The bottom point of the diamond is moved to .7 instead 
+            // The bottom point of the diamond is moved to .7 instead
             // of .5 because it looks more correct, even it is wrong...
             'x' => array(
                 $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset,
@@ -1088,7 +1088,7 @@ class ezcGraphRenderer3d
 
     /**
      * Draws a bar with a circular ground shape.
-     * 
+     *
      * @param ezcGraphContext $context
      * @param ezcGraphColor $color
      * @param ezcGraphCoordinate $position
@@ -1116,7 +1116,7 @@ class ezcGraphRenderer3d
         $barCenterTop = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset + $barWidth / 2,
             $this->dataBoundings->y0 + $this->yAxisSpace + $position->y * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
-            
+
         );
         $barCenterBottom = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset + $barWidth / 2,
@@ -1165,7 +1165,7 @@ class ezcGraphRenderer3d
                         ),
                         $color->darken( $this->options->barDarkenTop ),
                         $color
-                    )    
+                    )
                     : $color
                 )
             ),
@@ -1176,7 +1176,7 @@ class ezcGraphRenderer3d
      * Draw bar
      *
      * Draws a bar as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -1259,12 +1259,12 @@ class ezcGraphRenderer3d
                 break;
         }
     }
- 
+
     /**
      * Draw stacked bar
      *
      * Draws a stacked bar part as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -1325,7 +1325,7 @@ class ezcGraphRenderer3d
      *
      * Draw all collected bar elements after sorting them depending of their
      * position to simulate simple z buffering.
-     * 
+     *
      * @access protected
      * @return void
      */
@@ -1362,7 +1362,7 @@ class ezcGraphRenderer3d
      * Draw data line
      *
      * Draws a line as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line
@@ -1404,11 +1404,11 @@ class ezcGraphRenderer3d
         }
 
         // Determine Coordinates depending on boundings and data point position
-        $startCoord = new ezcGraphCoordinate( 
+        $startCoord = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $start->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ),
             $this->dataBoundings->y0 + $this->yAxisSpace + $start->y * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
         );
-        $endCoord = new ezcGraphCoordinate( 
+        $endCoord = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $end->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ),
             $this->dataBoundings->y0 + $this->yAxisSpace + $end->y * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
         );
@@ -1421,11 +1421,11 @@ class ezcGraphRenderer3d
             $this->get3dCoordinate( $startCoord, $endDepth ),
         );
 
-        $startAxisCoord = new ezcGraphCoordinate( 
+        $startAxisCoord = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $start->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ),
             $this->dataBoundings->y0 + $this->yAxisSpace + $axisPosition * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
         );
-        $endAxisCoord = new ezcGraphCoordinate( 
+        $endAxisCoord = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $end->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ),
             $this->dataBoundings->y0 + $this->yAxisSpace + $axisPosition * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
         );
@@ -1528,7 +1528,7 @@ class ezcGraphRenderer3d
         }
 
         // Draw line symbol
-        if ( $this->options->showSymbol && 
+        if ( $this->options->showSymbol &&
              ( $symbol !== ezcGraph::NO_SYMBOL ) )
         {
             if ( $symbolColor === null )
@@ -1549,13 +1549,13 @@ class ezcGraphRenderer3d
             );
         }
     }
-    
+
     /**
      * Draws a highlight textbox for a datapoint.
      *
-     * A highlight textbox for line and bar charts means a box with the current 
+     * A highlight textbox for line and bar charts means a box with the current
      * value in the graph.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphCoordinate $end Ending point
@@ -1579,9 +1579,9 @@ class ezcGraphRenderer3d
         $axisPosition = 0.,
         $dataNumber = 1,
         $dataCount = 1,
-        ezcGraphFontOptions $font,
-        $text,
-        $size,
+        ezcGraphFontOptions $font = null,
+        $text = '',
+        $size = 0,
         ezcGraphColor $markLines = null,
         $xOffset = 0,
         $yOffset = 0,
@@ -1600,8 +1600,8 @@ class ezcGraphRenderer3d
         {
             $endDepth = true;
         }
-        
-        $dataPoint = new ezcGraphCoordinate( 
+
+        $dataPoint = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $end->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ),
             $this->dataBoundings->y0 + $this->yAxisSpace + $end->y * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
         );
@@ -1633,12 +1633,12 @@ class ezcGraphRenderer3d
             );
         }
     }
-    
+
     /**
      * Draw legend
      *
      * Will draw a legend in the bounding box
-     * 
+     *
      * @param ezcGraphBoundings $boundings Bounding of legend
      * @param ezcGraphChartElementLegend $legend Legend to draw;
      * @param int $type Type of legend: Protrait or landscape
@@ -1650,13 +1650,13 @@ class ezcGraphRenderer3d
         $type = ezcGraph::VERTICAL )
     {
         $labels = $legend->labels;
-        
+
         // Calculate boundings of each label
         if ( $type & ezcGraph::VERTICAL )
         {
             $labelWidth = $boundings->x1 - $boundings->x0;
-            $labelHeight = min( 
-                ( $boundings->y1 - $boundings->y0 ) / count( $labels ) - $legend->spacing, 
+            $labelHeight = min(
+                ( $boundings->y1 - $boundings->y0 ) / count( $labels ) - $legend->spacing,
                 $legend->symbolSize + 2 * $legend->padding
             );
         }
@@ -1703,7 +1703,7 @@ class ezcGraphRenderer3d
             $labelPosition->y += ( $type === ezcGraph::VERTICAL ? $labelHeight + $legend->spacing : 0 );
         }
     }
-    
+
     /**
      * Draw box
      *
@@ -1711,7 +1711,7 @@ class ezcGraphRenderer3d
      * and title to each chart element.
      *
      * Optionally a padding and margin for each box can be defined.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of the box
      * @param ezcGraphColor $background Background color
      * @param ezcGraphColor $borderColor Border color
@@ -1737,7 +1737,7 @@ class ezcGraphRenderer3d
         $boundings->y0 += $margin;
         $boundings->x1 -= $margin;
         $boundings->y1 -= $margin;
-        
+
         if ( $background instanceof ezcGraphColor )
         {
             // Draw box background
@@ -1815,12 +1815,12 @@ class ezcGraphRenderer3d
 
         return $boundings;
     }
-    
+
     /**
      * Draw text
      *
      * Draws the provided text in the boundings
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of text
      * @param string $text Text
      * @param int $align Alignement of text
@@ -1837,29 +1837,29 @@ class ezcGraphRenderer3d
         {
             // We are not 3d for now, wg. rendering normal text boxes like the
             // title
-            $topleft = new ezcGraphCoordinate( 
-                $boundings->x0, 
+            $topleft = new ezcGraphCoordinate(
+                $boundings->x0,
                 $boundings->y0
             );
-            $bottomright = new ezcGraphCoordinate( 
-                $boundings->x1, 
+            $bottomright = new ezcGraphCoordinate(
+                $boundings->x1,
                 $boundings->y1
             );
         }
         else
         {
             // The 3d part started
-            $topleft = $this->get3dCoordinate( 
-                new ezcGraphCoordinate( 
-                    $boundings->x0, 
+            $topleft = $this->get3dCoordinate(
+                new ezcGraphCoordinate(
+                    $boundings->x0,
                     $boundings->y0
-                ), false 
+                ), false
             );
-            $bottomright = $this->get3dCoordinate( 
-                new ezcGraphCoordinate( 
-                    $boundings->x1, 
+            $bottomright = $this->get3dCoordinate(
+                new ezcGraphCoordinate(
+                    $boundings->x1,
                     $boundings->y1
-                ), false 
+                ), false
             );
 
             // Also modify rotation accordingly
@@ -1886,8 +1886,8 @@ class ezcGraphRenderer3d
      * Draw grid line
      *
      * Draw line for the grid in the chart background
-     * 
-     * 
+     *
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Color of the grid line
@@ -1929,8 +1929,8 @@ class ezcGraphRenderer3d
                     true
                 );
             }
-            
-            // Draw grid lines - scedule some for later to be drawn in front of 
+
+            // Draw grid lines - scedule some for later to be drawn in front of
             // the data
             $this->frontLines[] = array(
                 $gridPolygonCoordinates[0],
@@ -1938,7 +1938,7 @@ class ezcGraphRenderer3d
                 $color,
                 1
             );
-        
+
             $this->frontLines[] = array(
                 $gridPolygonCoordinates[1],
                 $gridPolygonCoordinates[2],
@@ -1966,7 +1966,7 @@ class ezcGraphRenderer3d
      * Draw step line
      *
      * Draw a step (marker for label position) on a axis.
-     * 
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Color of the grid line
@@ -2006,14 +2006,14 @@ class ezcGraphRenderer3d
             );
         }
     }
-    
+
     /**
      * Draw axis
      *
-     * Draws an axis form the provided start point to the end point. A specific 
+     * Draws an axis form the provided start point to the end point. A specific
      * angle of the axis is not required.
      *
-     * For the labeleing of the axis a sorted array with major steps and an 
+     * For the labeleing of the axis a sorted array with major steps and an
      * array with minor steps is expected, which are build like this:
      *  array(
      *      array(
@@ -2024,13 +2024,13 @@ class ezcGraphRenderer3d
      * where the label is optional.
      *
      * The label renderer class defines how the labels are rendered. For more
-     * documentation on this topic have a look at the basic label renderer 
+     * documentation on this topic have a look at the basic label renderer
      * class.
      *
-     * Additionally it can be specified if a major and minor grid are rendered 
-     * by defining a color for them. The axis label is used to add a caption 
+     * Additionally it can be specified if a major and minor grid are rendered
+     * by defining a color for them. The axis label is used to add a caption
      * for the axis.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings of axis
      * @param ezcGraphCoordinate $start Start point of axis
      * @param ezcGraphCoordinate $end Endpoint of axis
@@ -2143,7 +2143,7 @@ class ezcGraphRenderer3d
             );
         }
 
-        // Draw axis lines - scedule some for later to be drawn in front of 
+        // Draw axis lines - scedule some for later to be drawn in front of
         // the data
         $this->driver->drawLine(
             $axisPolygonCoordinates[0],
@@ -2151,7 +2151,7 @@ class ezcGraphRenderer3d
             $axis->border,
             1
         );
-    
+
         $this->frontLines[] = array(
             $axisPolygonCoordinates[1],
             $axisPolygonCoordinates[2],
@@ -2300,7 +2300,7 @@ class ezcGraphRenderer3d
      *
      * Draws a background image at the defined position. If repeat is set the
      * background image will be repeated like any texture.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Boundings for the background image
      * @param string $file Filename of background image
      * @param int $position Position of background image
@@ -2320,8 +2320,8 @@ class ezcGraphRenderer3d
         $imageWidth = min( $imageWidth, $boundings->x1 - $boundings->x0 );
         $imageHeight = min( $imageHeight, $boundings->y1 - $boundings->y0 );
 
-        $imagePosition = new ezcGraphCoordinate( 
-            $boundings->x0, 
+        $imagePosition = new ezcGraphCoordinate(
+            $boundings->x0,
             $boundings->y0
         );
 
@@ -2333,7 +2333,7 @@ class ezcGraphRenderer3d
                 $imagePosition->x = $boundings->x0;
                 break;
             case ( $position & ezcGraph::RIGHT ):
-                $imagePosition->x = max( 
+                $imagePosition->x = max(
                     $boundings->x1 - $imageWidth,
                     $boundings->x0
                 );
@@ -2354,7 +2354,7 @@ class ezcGraphRenderer3d
                 $imagePosition->y = $boundings->y0;
                 break;
             case ( $position & ezcGraph::BOTTOM ):
-                $imagePosition->y = max( 
+                $imagePosition->y = max(
                     $boundings->y1 - $imageHeight,
                     $boundings->y0
                 );
@@ -2372,25 +2372,25 @@ class ezcGraphRenderer3d
             $imagePosition->x,
             $imagePosition->y
         );
-        
-        do 
+
+        do
         {
             $position->y = $imagePosition->y;
 
-            do 
+            do
             {
-                $this->driver->drawImage( 
-                    $file, 
-                    $position, 
-                    $imageWidth, 
-                    $imageHeight 
+                $this->driver->drawImage(
+                    $file,
+                    $position,
+                    $imageWidth,
+                    $imageHeight
                 );
 
                 $position->y += $imageHeight;
             }
             while ( ( $position->y < $boundings->y1 ) &&
                     ( $repeat & ezcGraph::VERTICAL ) );
-            
+
             $position->x += $imageWidth;
         }
         while ( ( $position->x < $boundings->x1 ) &&
@@ -2399,7 +2399,7 @@ class ezcGraphRenderer3d
 
     /**
      * Call all postprocessing functions
-     * 
+     *
      * @return void
      */
     protected function finish()
@@ -2418,7 +2418,7 @@ class ezcGraphRenderer3d
      *
      * Reset all renderer properties, which were calculated during the
      * rendering process, to offer a clean environment for rerendering.
-     * 
+     *
      * @return void
      */
     protected function resetRenderer()

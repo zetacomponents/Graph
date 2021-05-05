@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -40,42 +40,42 @@ class ezcGraphAxisStep
 {
     /**
      * Position of step on one axis.
-     * 
+     *
      * @var float
      */
     public $position = 0;
 
     /**
      * Size of step
-     * 
+     *
      * @var float
      */
     public $width = 0;
 
     /**
-     * Steps label 
-     * 
+     * Steps label
+     *
      * @var string
      */
     public $label = false;
 
     /**
-     * Childrens of step 
-     * 
+     * Childrens of step
+     *
      * @var array(ezcGraphAxisStep)
      */
     public $childs = array();
 
     /**
      * True if the step is at the same position as the other axis
-     * 
+     *
      * @var bool
      */
     public $isZero = false;
 
     /**
      * True if this step is the last one
-     * 
+     *
      * @var bool
      */
     public $isLast = false;
@@ -83,12 +83,12 @@ class ezcGraphAxisStep
     /**
      * Simple constructor
      *
-     * @param float $position 
-     * @param float $width 
-     * @param string $label 
-     * @param array $childs 
-     * @param bool $isZero 
-     * @param bool $isLast 
+     * @param float $position
+     * @param float $width
+     * @param string $label
+     * @param array $childs
+     * @param bool $isZero
+     * @param bool $isLast
      * @ignore
      */
     public function __construct( $position = .0, $width = .0, $label = null, array $childs = array(), $isZero = false, $isLast = false )
@@ -102,13 +102,13 @@ class ezcGraphAxisStep
     }
 
     /**
-     * __set_state 
-     * 
+     * __set_state
+     *
      * @param array $properties Struct properties
      * @return void
      * @ignore
      */
-    public function __set_state( array $properties )
+    public static function __set_state( array $properties )
     {
         $this->position = $properties['position'];
         $this->width = $properties['width'];

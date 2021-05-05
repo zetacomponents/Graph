@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphGdDriverTest 
- * 
+ * ezcGraphGdDriverTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,7 +27,7 @@
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -54,7 +54,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
     {
         parent::setUp();
 
-        if ( !ezcBaseFeatures::hasExtensionSupport( 'gd' ) && 
+        if ( !ezcBaseFeatures::hasExtensionSupport( 'gd' ) &&
              ( ezcBaseFeatures::hasFunction( 'imagefttext' ) || ezcBaseFeatures::hasFunction( 'imagettftext' ) ) )
         {
             $this->markTestSkipped( 'This test needs ext/gd with native ttf support or FreeType 2 support.' );
@@ -124,10 +124,20 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         ob_end_clean();
 
         $resource = $this->driver->getResource();
-        $this->assertEquals(
-            'resource',
-            gettype( $resource )
-        );
+        if ( version_compare( phpversion(), '8.0' ) )
+        {
+            $this->assertEquals(
+                'object',
+                gettype( $resource )
+            );
+        }
+        else
+        {
+            $this->assertEquals(
+                'resource',
+                gettype( $resource )
+            );
+        }
     }
 
     public function testRenderJpegToOutput() {
@@ -244,7 +254,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $return = $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -269,7 +279,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 
         $this->assertEquals(
             $return,
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -283,7 +293,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -312,7 +322,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -341,7 +351,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -884,7 +894,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortStringRotated10Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -901,7 +911,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -917,7 +927,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         }
 
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -935,7 +945,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->font->path = $this->basePath . 'ps_font.pfb';
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -946,7 +956,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortNativeTTFStringRotated10Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -964,7 +974,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->forceNativeTTF = true;
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -975,7 +985,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortStringRotated45Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -992,7 +1002,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -1008,7 +1018,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         }
 
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -1026,7 +1036,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->font->path = $this->basePath . 'ps_font.pfb';
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -1037,7 +1047,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortNativeTTFStringRotated45Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -1055,7 +1065,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->forceNativeTTF = true;
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -1066,7 +1076,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortStringRotated340Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -1083,7 +1093,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -1099,7 +1109,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         }
 
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -1117,7 +1127,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->font->path = $this->basePath . 'ps_font.pfb';
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -1128,7 +1138,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortNativeTTFStringRotated340Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -1146,7 +1156,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->forceNativeTTF = true;
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -1240,7 +1250,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 20, 20 ),
                 new ezcGraphCoordinate( 110, 20 ),
                 new ezcGraphCoordinate( 110, 30 ),
@@ -1546,7 +1556,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->supersampling = 2;
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -1576,7 +1586,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->supersampling = 2;
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -2310,7 +2320,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -2396,7 +2406,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -2410,7 +2420,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 
         $this->driver->options->imageFormat = IMG_JPEG;
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),

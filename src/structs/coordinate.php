@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,18 +39,18 @@ class ezcGraphCoordinate extends ezcBaseStruct
 {
     /**
      * x coordinate
-     * 
+     *
      * @var float
      */
     public $x = 0;
 
     /**
      * y coordinate
-     * 
+     *
      * @var float
      */
     public $y = 0;
-    
+
     /**
      * Simple constructor
      *
@@ -65,13 +65,13 @@ class ezcGraphCoordinate extends ezcBaseStruct
     }
 
     /**
-     * __set_state 
-     * 
+     * __set_state
+     *
      * @param array $properties Struct properties
      * @return void
      * @ignore
      */
-    public function __set_state( array $properties )
+    public static function __set_state( array $properties )
     {
         $this->x = $properties['x'];
         $this->y = $properties['y'];
@@ -79,7 +79,7 @@ class ezcGraphCoordinate extends ezcBaseStruct
 
     /**
      * Returns simple string representation of coordinate
-     * 
+     *
      * @return string
      * @ignore
      */
