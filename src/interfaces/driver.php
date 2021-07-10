@@ -503,7 +503,7 @@ abstract class ezcGraphDriver
     protected function testFitStringInTextBox( $string, ezcGraphCoordinate $position, $width, $height, $size )
     {
         // Tokenize String
-        $tokens = preg_split( '/\s+/', $string );
+        $tokens = preg_split( '/\s+/u', $string );
         $initialHeight = $height;
 
         $lines = array( array() );
