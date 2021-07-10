@@ -11,10 +11,7 @@ $graph->xAxis = new ezcGraphChartElementNumericAxis();
 $graph->data['sinus'] = new ezcGraphNumericDataSet( 
     -360, // Start value
     360,  // End value
-    create_function(
-        '$x',
-        'return sin( deg2rad( $x ) );'
-    )
+    function ( $x ) { return sin( deg2rad( $x ) ); }
 );
 
 $graph->data['sinus']->resolution = 120;

@@ -521,10 +521,7 @@ class ezcGraphDateAxisTest extends ezcGraphTestCase
             '1.1.2003' => 324,
             '1.1.2004' => 324,
         ) );
-        $this->chart->xAxis->labelCallback = create_function(
-            '$label',
-            'return "*$label*";'
-        );
+        $this->chart->xAxis->labelCallback = function( $label ) { return "*$label*"; };
 
         try
         {

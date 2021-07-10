@@ -659,10 +659,7 @@ class ezcGraphLabeledAxisTest extends ezcGraphTestCase
         {
             $chart = new ezcGraphLineChart();
 
-            $chart->xAxis->labelCallback = create_function(
-                '$label',
-                'return "*$label*";'
-            );
+            $chart->xAxis->labelCallback = function( $label ) { return "*$label*"; };
 
             $chart->data['sample'] = new ezcGraphArrayDataSet( array( 2000 => 1045, 2001 => 1300, 2004 => 1012 ) );
             $chart->render( 500, 200 );

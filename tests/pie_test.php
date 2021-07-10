@@ -337,11 +337,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $chart->data['sample']->highlight['wget'] = true;
 
-        $chart->options->labelCallback = 
-            create_function( 
-                '$label, $value, $percent', 
-                "return 'Callback: ' . \$label;"
-            );
+        $chart->options->labelCallback = function( $label, $value, $percent ) { return 'Callback: ' . $label; };
 
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawPieSegment',
