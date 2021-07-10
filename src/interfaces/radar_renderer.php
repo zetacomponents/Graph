@@ -58,6 +58,8 @@ interface ezcGraphRadarRenderer
         ezcGraphCoordinate $center,
         ezcGraphCoordinate $start,
         ezcGraphCoordinate $end,
+        ezcGraphCoordinate $fillStart,
+        ezcGraphCoordinate $fillEnd,
         $dataNumber = 1,
         $dataCount = 1,
         $symbol = ezcGraph::NO_SYMBOL,

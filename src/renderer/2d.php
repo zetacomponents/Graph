@@ -884,6 +884,8 @@ class ezcGraphRenderer2d
         ezcGraphCoordinate $center,
         ezcGraphCoordinate $start,
         ezcGraphCoordinate $end,
+        ezcGraphCoordinate $fillStart,
+        ezcGraphCoordinate $fillEnd,
         $dataNumber = 1,
         $dataCount = 1,
         $symbol = ezcGraph::NO_SYMBOL,
@@ -905,6 +907,18 @@ class ezcGraphRenderer2d
             $end->x * 2 * M_PI,
             $end->y
         );
+        $fillStart = $this->getCoordinateFromAngleAndRadius(
+            $boundings,
+            $center,
+            $fillStart->x * 2 * M_PI,
+            $fillStart->y
+        );
+        $fillEnd = $this->getCoordinateFromAngleAndRadius(
+            $boundings,
+            $center,
+            $fillEnd->x * 2 * M_PI,
+            $fillEnd->y
+        );
 
         // Fill line
         if ( $fillColor !== null )
@@ -913,10 +927,8 @@ class ezcGraphRenderer2d
                 array(
                     $start,
                     $end,
-                    new ezcGraphCoordinate(
-                        $boundings->x0 + $center->x,
-                        $boundings->y0 + $center->y
-                    ),
+                    $fillStart,
+                    $fillEnd
                 ),
                 $fillColor,
                 true

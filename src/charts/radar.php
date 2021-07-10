@@ -296,11 +296,17 @@ class ezcGraphRadarChart extends ezcGraphChart
 
         // Display data
         $this->elements['axis']->position = ezcGraph::TOP;
+        $prevDataSetPoints = array();
         foreach ( $this->data as $datasetName => $data )
         {
             --$nr;
             // Determine fill color for dataset
-            if ( $this->options->fillLines !== false )
+            if ( $data->fillLine !== false )
+            {
+                $fillColor = clone $data->color->default;
+                $fillColor->alpha = (int) round( ( 255 - $fillColor->alpha ) * ( $data->fillLine / 255 ) );
+            }
+            else if ( $this->options->fillLines !== false )
             {
                 $fillColor = clone $data->color->default;
                 $fillColor->alpha = (int) round( ( 255 - $fillColor->alpha ) * ( $this->options->fillLines / 255 ) );
@@ -310,8 +316,11 @@ class ezcGraphRadarChart extends ezcGraphChart
                 $fillColor = null;
             }
 
+            $prevDataSetBounded = $data->boundFillToPreviousDataSet;
+
             // Draw lines for dataset
             $lastPoint = false;
+            $lastInnerPoint = false;
             foreach ( $data as $key => $value )
             {
                 $point = new ezcGraphCoordinate( 
@@ -331,6 +340,16 @@ class ezcGraphRadarChart extends ezcGraphChart
                 ); 
                 // */
 
+                if ($prevDataSetBounded && array_key_exists($key, $prevDataSetPoints)) {
+                    $innerPoint = $prevDataSetPoints[$key];
+                }
+                else {
+                    $innerPoint = new ezcGraphCoordinate(
+                        0,
+                        0
+                    );
+                }
+
                 $renderer->drawRadarDataLine(
                     $boundings,
                     new ezcGraphContext( $datasetName, $key, $data->url[$key] ),
@@ -338,6 +357,8 @@ class ezcGraphRadarChart extends ezcGraphChart
                     clone $center,
                     ( $lastPoint === false ? $point : $lastPoint ),
                     $point,
+                    $innerPoint,
+                    ( $lastInnerPoint === false ? $innerPoint : $lastInnerPoint ),
                     $nr,
                     $count,
                     $data->symbol[$key],
@@ -346,7 +367,10 @@ class ezcGraphRadarChart extends ezcGraphChart
                     $this->options->lineThickness
                 );
 
+                $prevDataSetPoints[$key] = $point;
+
                 $lastPoint = $point;
+                $lastInnerPoint = $innerPoint;
             }
         }
     }
