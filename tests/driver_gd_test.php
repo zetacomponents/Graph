@@ -50,7 +50,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphGdDriverTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -71,7 +71,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         $this->driver->options->supersampling = 1;
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         unset( $this->driver );
         if ( !$this->hasFailed() )

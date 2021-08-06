@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphCairoDriverTest 
- * 
+ * ezcGraphCairoDriverTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,7 +27,7 @@
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -48,7 +48,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphCairoDriverTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -67,7 +67,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $this->driver->options->font->path = $this->basePath . 'font.ttf';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         unset( $this->driver );
         if ( !$this->hasFailed() )
@@ -191,7 +191,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $return = $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -216,7 +216,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertEquals(
             $return,
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -230,7 +230,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -259,7 +259,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -288,7 +288,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -775,7 +775,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortStringRotated10Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -808,7 +808,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortStringRotated45Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -825,7 +825,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -836,7 +836,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
     public function testDrawTextBoxShortStringRotated340Degrees()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.png';
-        
+
         $this->driver->options->font->border = ezcGraphColor::fromHex( '#555555' );
         $this->driver->options->font->background = ezcGraphColor::fromHex( '#DDDDDD' );
         $this->driver->options->font->minimizeBorder = true;
@@ -853,7 +853,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -947,7 +947,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 20, 20 ),
                 new ezcGraphCoordinate( 110, 20 ),
                 new ezcGraphCoordinate( 110, 30 ),
@@ -1429,7 +1429,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
@@ -1515,7 +1515,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->driver->render( $filename );
 
-        $this->assertImageSimilar( 
+        $this->assertImageSimilar(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',

@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphLogarithmicalAxisTest 
- * 
+ * ezcGraphLogarithmicalAxisTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -44,7 +44,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphLogarithmicalAxisTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -53,7 +53,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -265,49 +265,49 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
             'As value for: max; '
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( .01 ),
             1,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( .1 ),
             .833,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 1 ),
             .667,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 10 ),
             .5,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 100 ),
             .333,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 1000 ),
             .167,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 10000 ),
             0,
             'Wrong value calculated on logarithmical axis.',
@@ -336,49 +336,49 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
             'As value for: max; '
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( .015625 ),
             1,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( .125 ),
             .833,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 1 ),
             .667,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 8 ),
             .5,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 64 ),
             .333,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 512 ),
             .167,
             'Wrong value calculated on logarithmical axis.',
             .001
         );
 
-        $this->assertEquals( 
+        $this->assertEquals(
             $chart->yAxis->getCoordinate( 4096 ),
             0,
             'Wrong value calculated on logarithmical axis.',
@@ -394,7 +394,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteEz();
         $chart->title = 'Function x^2 with logarithmical axis scaling';
         $chart->legend = false;
-        
+
         $chart->xAxis = new ezcGraphChartElementNumericAxis();
 
         $chart->yAxis = new ezcGraphChartElementLogarithmicalAxis();

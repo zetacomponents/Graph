@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphSvgDriverTest 
- * 
+ * ezcGraphSvgDriverTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -52,7 +52,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( __CLASS__ );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -67,7 +67,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $this->driver->options->font->path = $this->basePath . 'font.svg';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         unset( $this->driver );
         if ( !$this->hasFailed() )
@@ -81,7 +81,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -100,11 +100,11 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
-        
+
         $this->assertEquals(
             'ezcGraphTextBox_2',
             $return,
@@ -127,7 +127,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -148,7 +148,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -169,7 +169,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -180,7 +180,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -199,7 +199,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -210,7 +210,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -229,7 +229,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -240,7 +240,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -259,7 +259,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -270,7 +270,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 20, 20 ),
                 new ezcGraphCoordinate( 110, 20 ),
                 new ezcGraphCoordinate( 110, 30 ),
@@ -289,7 +289,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -300,7 +300,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -319,7 +319,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -330,7 +330,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -349,7 +349,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -360,7 +360,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -379,7 +379,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -390,7 +390,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -409,7 +409,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -420,7 +420,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -439,7 +439,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -450,7 +450,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -469,7 +469,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -480,7 +480,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -499,7 +499,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -510,7 +510,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -529,7 +529,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -559,7 +559,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -585,7 +585,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $chart->renderer = new ezcGraphRenderer3d();
         $chart->render( 500, 300, $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -613,7 +613,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $chart->renderer = new ezcGraphRenderer3d();
         $chart->render( 500, 300, $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -667,7 +667,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $chart->renderer = new ezcGraphRenderer3d();
         $chart->render( 500, 300, $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -690,7 +690,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -714,7 +714,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -737,7 +737,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -760,7 +760,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -785,7 +785,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -811,7 +811,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -836,7 +836,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -861,7 +861,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -878,7 +878,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
         $this->driver->options->textRendering = 'optimizeSpeed';
 
         $return = $this->driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 45, 12 ),
                 new ezcGraphCoordinate( 122, 34 ),
                 new ezcGraphCoordinate( 12, 71 ),
@@ -889,7 +889,7 @@ class ezcGraphSvgSvgFontDriverTest extends ezcGraphTestCase
 
         $this->driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );

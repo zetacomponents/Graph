@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphLineChartTest 
- * 
+ * ezcGraphLineChartTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -44,7 +44,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphMultipleAxisTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -54,7 +54,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -169,7 +169,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
         $chart->data['sampleData']->yAxis = $chart->additionalAxis['marker'];
         $chart->data['sampleData']->xAxis = $chart->additionalAxis['new base'];
-        
+
         $this->assertTrue(
             $chart->data['sampleData']->yAxis->default instanceof ezcGraphChartElementNumericAxis,
             'yAxis property should point to a ezcGraphChartElementNumericAxis.'
@@ -199,7 +199,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
         $chart->data['sampleData']->yAxis = new ezcGraphChartElementNumericAxis();
         $chart->data['sampleData']->xAxis = new ezcGraphChartElementLabeledAxis();
-        
+
         $this->assertEquals(
             new ezcGraphChartElementNumericAxis(),
             $chart->data['sampleData']->yAxis->default,
@@ -234,7 +234,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
         $chart->data['sampleData']->yAxis = $chart->additionalAxis['marker'];
         $chart->data['sampleData']->xAxis = $chart->additionalAxis['new base'];
-        
+
         try
         {
             $chart->render( 400, 200 );
@@ -265,13 +265,13 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
 
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 620, 'sample 5' => 1) );
         $chart->data['sampleData']->yAxis = $chart->additionalAxis['marker'];
-        
+
         $chart->data['moreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329) );
         $chart->data['Even more data'] = new ezcGraphArrayDataSet( array( 'sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450) );
 
         $chart->render( 500, 200, $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -295,13 +295,13 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
 
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1, 'sample 6' => 74) );
         $chart->data['sampleData']->xAxis = $chart->additionalAxis['marker'];
-        
+
         $chart->data['moreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329) );
         $chart->data['Even more data'] = new ezcGraphArrayDataSet( array( 'sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450) );
 
         $chart->render( 500, 200, $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -329,13 +329,13 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
 
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1, 'sample 6' => 74) );
         $chart->data['sampleData']->xAxis = $chart->additionalAxis['marker'];
-        
+
         $chart->data['moreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329) );
         $chart->data['Even more data'] = new ezcGraphArrayDataSet( array( 'sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450) );
 
         $chart->render( 500, 200, $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -370,7 +370,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
 
         $chart->render( 500, 200, $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
