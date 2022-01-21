@@ -68,13 +68,16 @@ class ezcGraphCoordinate extends ezcBaseStruct
      * __set_state
      *
      * @param array $properties Struct properties
-     * @return void
+     * @return ezcGraphCoordinate
      * @ignore
      */
     public static function __set_state( array $properties )
     {
-        $this->x = $properties['x'];
-        $this->y = $properties['y'];
+        $coordinate = new ezcGraphCoordinate( 0, 0 );
+        $coordinate->x = $properties['x'];
+        $coordinate->y = $properties['y'];
+
+        return $coordinate;
     }
 
     /**

@@ -105,17 +105,21 @@ class ezcGraphAxisStep
      * __set_state
      *
      * @param array $properties Struct properties
-     * @return void
+     * @return ezcGraphAxisStep
      * @ignore
      */
     public static function __set_state( array $properties )
     {
-        $this->position = $properties['position'];
-        $this->width = $properties['width'];
-        $this->label = $properties['label'];
-        $this->childs = $properties['childs'];
-        $this->isZero = $properties['isZero'];
-        $this->isLast = $properties['isLast'];
+        $step = new self();
+
+        $step->position = $properties['position'];
+        $step->width = $properties['width'];
+        $step->label = $properties['label'];
+        $step->childs = $properties['childs'];
+        $step->isZero = $properties['isZero'];
+        $step->isLast = $properties['isLast'];
+
+        return $step;
     }
 }
 

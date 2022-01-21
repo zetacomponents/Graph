@@ -117,9 +117,7 @@ class ezcGraphStructTest extends ezcTestCase
 
     public function testContextSetState()
     {
-        $context = new ezcGraphContext();
-
-        $context->__set_state(
+        $context = ezcGraphContext::__set_state(
         array(
             'dataset' => 'set',
             'datapoint' => 'point',
@@ -140,9 +138,7 @@ class ezcGraphStructTest extends ezcTestCase
 
     public function testContextSetStateWithURL()
     {
-        $context = new ezcGraphContext();
-
-        $context->__set_state(
+        $context = ezcGraphContext::__set_state(
         array(
             'dataset' => 'set',
             'datapoint' => 'point',
@@ -234,9 +230,7 @@ class ezcGraphStructTest extends ezcTestCase
 
     public function testCoordinateSetState()
     {
-        $context = new ezcGraphCoordinate( 0, 0 );
-
-        $context->__set_state(
+        $context = ezcGraphCoordinate::__set_state(
         array(
             'x' => 23,
             'y' => 42,
@@ -268,9 +262,7 @@ class ezcGraphStructTest extends ezcTestCase
 
     public function testStepSetState()
     {
-        $step = new ezcGraphAxisStep();
-
-        $step->__set_state(
+        $step = ezcGraphAxisStep::__set_state(
         array(
             'position' => .4,
             'width' => .2,
