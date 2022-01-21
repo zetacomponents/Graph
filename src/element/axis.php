@@ -301,8 +301,6 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 break;
             case 'labelPosition':
                 $positions = array(
-                    ezcGraph::TOP,
-                    ezcGraph::BOTTOM,
                     ezcGraph::LEFT,
                     ezcGraph::RIGHT,
                 );

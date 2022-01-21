@@ -652,6 +652,34 @@ class ezcGraphElementOptionsTest extends ezcTestImageCase
         $this->fail( 'Expected ezcBaseValueException.' );
     }
 
+    public function testChartElementAxisPropertyLabelPosition()
+    {
+        $options = new ezcGraphChartElementNumericAxis();
+
+        $this->assertSame(
+            ezcGraph::LEFT,
+            $options->labelPosition,
+            'Wrong default value for property labelPosition in class ezcGraphChartElementNumericAxis'
+        );
+
+        $options->labelPosition = ezcGraph::RIGHT;
+
+        $this->assertSame(
+            ezcGraph::RIGHT,
+            $options->labelPosition,
+            'Setting property value did not work for property labelPosition in class ezcGraphChartElementNumericAxis'
+        );
+
+        try
+        {
+            $options->labelPosition = ezcGraph::TOP;
+        }
+        catch ( ezcBaseValueException $e )
+        {
+            return true;
+        }
+    }
+
     /* Disabled for now.
     public function testChartElementAxisPropertyOuterAxisSpace()
     {
