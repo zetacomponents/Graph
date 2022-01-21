@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphDataSetAverageTest 
- * 
+ * ezcGraphDataSetAverageTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -44,7 +44,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphDataSetAverageTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -53,7 +53,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -185,7 +185,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
         }
 
         $arrayDataSet = new ezcGraphArrayDataSet( $points );
-        
+
         $averageDataSet = new ezcGraphDataSetAveragePolynom( $arrayDataSet, 3 );
         $polynom = $averageDataSet->getPolynom();
 
@@ -209,7 +209,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
         }
 
         $arrayDataSet = new ezcGraphArrayDataSet( $points );
-        
+
         $averageDataSet = new ezcGraphDataSetAveragePolynom( $arrayDataSet, 3 );
         $polynom = $averageDataSet->getPolynom();
 
@@ -233,7 +233,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
         }
 
         $arrayDataSet = new ezcGraphArrayDataSet( $points );
-        
+
         $averageDataSet = new ezcGraphDataSetAveragePolynom( $arrayDataSet, 3 );
         $polynom = $averageDataSet->getPolynom();
 
@@ -374,7 +374,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
         $chart->data['polynom order 1'] = new ezcGraphDataSetAveragePolynom( $chart->data['Statistical data'], 1 );
         $chart->data['polynom order 3'] = new ezcGraphDataSetAveragePolynom( $chart->data['Statistical data'], 3 );
         $chart->data['polynom order 5'] = new ezcGraphDataSetAveragePolynom( $chart->data['Statistical data'], 5 );
-        
+
         $chart->xAxis = new ezcGraphChartElementNumericAxis();
 
         $chart->render( 500, 200, $filename );
@@ -402,7 +402,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
         $chart->data['Statistical data']->symbol = ezcGraph::BULLET;
 
         $chart->data['polynom order 2'] = new ezcGraphDataSetAveragePolynom( $chart->data['Statistical data'], 2 );
-        
+
         $chart->xAxis = new ezcGraphChartElementNumericAxis();
 
         try
@@ -425,7 +425,7 @@ class ezcGraphDataSetAverageTest extends ezcGraphTestCase
         $averageDataSet->polynomOrder = 3;
         $averageDataSet->resolution = 10;
 
-        $this->assertSame( 
+        $this->assertSame(
             isset( $averageDataSet[0] ),
             true,
             'Polygon not properly initialized.'

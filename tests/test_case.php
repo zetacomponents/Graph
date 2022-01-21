@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -26,15 +26,15 @@
 
 abstract class ezcGraphTestCase extends ezcTestImageCase
 {
-    public function setUp()
+    public function setUp() : void
     {
         $this->setLocale( LC_NUMERIC, 'en_US', 'en_US.UTF-8', 'en_US.UTF8', 'en', 'english', 'en_US@euro' );
     }
 
     /**
      * Normalize given PHP code for flash generation
-     * 
-     * @param string $code 
+     *
+     * @param string $code
      * @return string
      */
     protected function normalizeFlashCode( $code )
@@ -56,7 +56,7 @@ abstract class ezcGraphTestCase extends ezcTestImageCase
 
     /**
      * Compares to flash files comparing the output of `swftophp`
-     * 
+     *
      * @param string $generated Filename of generated image
      * @param string $compare Filename of stored image
      * @return void
@@ -81,10 +81,10 @@ abstract class ezcGraphTestCase extends ezcTestImageCase
         }
 
         $this->assertEquals(
-            $this->normalizeFlashCode( 
+            $this->normalizeFlashCode(
                 shell_exec( $executeable . ' ' . escapeshellarg( $compare ) )
             ),
-            $this->normalizeFlashCode( 
+            $this->normalizeFlashCode(
                 shell_exec( $executeable . ' ' . escapeshellarg( $generated ) )
             ),
             'Rendered image is not correct.'
@@ -93,7 +93,7 @@ abstract class ezcGraphTestCase extends ezcTestImageCase
 
     /**
      * Compares a generated image with a stored file
-     * 
+     *
      * @param string $generated Filename of generated image
      * @param string $compare Filename of stored image
      * @return void
@@ -110,8 +110,8 @@ abstract class ezcGraphTestCase extends ezcTestImageCase
      * Get canned pseudorandom data
      *
      * Get numeric canned data.
-     * 
-     * @param int $count 
+     *
+     * @param int $count
      * @param int $min
      * @param int $max
      * @param int $randomize

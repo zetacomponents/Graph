@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphNumericDataSetTest 
- * 
+ * ezcGraphNumericDataSetTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -44,7 +44,7 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphNumericDataSetTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -53,7 +53,7 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -172,9 +172,9 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         );
 
         // Use random default enabled public static method
-        $dataset->callback = array( 'Reflection', 'export' );
+        $dataset->callback = array( 'DateTime', 'createFromFormat' );
         $this->assertSame(
-            array( 'Reflection', 'export' ),
+            array( 'DateTime', 'createFromFormat' ),
             $dataset->callback,
             'Setting property value did not work for property callback in class ezcGraphNumericDataSet'
         );
@@ -219,13 +219,12 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
 
     public function testIterateOverAverageDataset2()
     {
-        $numericDataSet = new ezcGraphNumericDataSet( 
-            -90, 
-            90, 
-            create_function( 
-                '$x',
-                'return 10 * sin( deg2rad( $x ) );'
-            )
+        $numericDataSet = new ezcGraphNumericDataSet(
+            -90,
+            90,
+            function ($x) {
+													return 10 * sin(deg2rad($x));
+												}
         );
         $numericDataSet->resolution = 180;
 
@@ -247,21 +246,19 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphLineChart();
-        $chart->data['Sinus'] = new ezcGraphNumericDataSet( 
-            -180, 
-            180, 
-            create_function( 
-                '$x',
-                'return 10 * sin( deg2rad( $x ) );'
-            )
+        $chart->data['Sinus'] = new ezcGraphNumericDataSet(
+            -180,
+            180,
+            function ($x) {
+													return 10 * sin(deg2rad($x));
+												}
         );
-        $chart->data['Cosinus'] = new ezcGraphNumericDataSet( 
-            -180, 
-            180, 
-            create_function( 
-                '$x',
-                'return 5 * cos( deg2rad( $x ) );'
-            )
+        $chart->data['Cosinus'] = new ezcGraphNumericDataSet(
+            -180,
+            180,
+            function ($x) {
+													return 5 * cos(deg2rad($x));
+												}
         );
         $chart->xAxis = new ezcGraphChartElementNumericAxis();
 

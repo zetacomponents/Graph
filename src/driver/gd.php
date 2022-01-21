@@ -168,10 +168,10 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
         if ( $color->alpha > 0 )
         {
-            $fetched = imagecolorexactalpha( $image, $color->red, $color->green, $color->blue, $color->alpha / 2 );
+            $fetched = imagecolorexactalpha( $image, $color->red, $color->green, $color->blue, (int) ($color->alpha / 2) );
             if ( $fetched < 0 )
             {
-                $fetched = imagecolorallocatealpha( $image, $color->red, $color->green, $color->blue, $color->alpha / 2 );
+                $fetched = imagecolorallocatealpha( $image, $color->red, $color->green, $color->blue, (int) ($color->alpha / 2) );
             }
             return $fetched;
         }
@@ -262,11 +262,25 @@ class ezcGraphGdDriver extends ezcGraphDriver
         // Draw polygon
         if ( $filled )
         {
-            imagefilledpolygon( $image, $pointArray, $pointCount, $drawColor );
+            if ( PHP_VERSION_ID >= 80000 )
+            {
+                imagefilledpolygon( $image, $pointArray, $drawColor );
+            }
+            else
+            {
+                imagefilledpolygon( $image, $pointArray, $pointCount, $drawColor );
+            }
         }
         else
         {
-            imagepolygon( $image, $pointArray, $pointCount, $drawColor );
+            if ( PHP_VERSION_ID >= 80000 )
+            {
+                imagepolygon( $image, $pointArray, $drawColor );
+            }
+            else
+            {
+                imagepolygon( $image, $pointArray, $pointCount, $drawColor );
+            }
         }
 
         return $points;

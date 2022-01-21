@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphRenderer3dTest 
- * 
+ * ezcGraphRenderer3dTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -44,7 +44,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphRenderer3dTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -59,7 +59,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -443,7 +443,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
     }
-    
+
     public function testRenderFullShadow()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
@@ -513,7 +513,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderLabeledPieSegmentWithGleamAndShadowGD()
     {
-        if ( !ezcBaseFeatures::hasExtensionSupport( 'gd' ) && 
+        if ( !ezcBaseFeatures::hasExtensionSupport( 'gd' ) &&
              ( ezcBaseFeatures::hasFunction( 'imagefttext' ) || ezcBaseFeatures::hasFunction( 'imagettftext' ) ) )
         {
             $this->markTestSkipped( 'This test needs ext/gd with native ttf support or FreeType 2 support.' );
@@ -1234,10 +1234,10 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
         $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
-        
+
         $chart->xAxis->axisSpace = .2;
         $chart->yAxis->axisSpace = .05;
-        
+
         $chart->driver = new ezcGraphSvgDriver();
         $chart->renderer = new ezcGraphRenderer3d();
 
@@ -1340,7 +1340,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart->options->highlightFont->color = ezcGraphColor::fromHex( '#3465A4' );
         $chart->options->highlightFont->background = ezcGraphColor::fromHex( '#D3D7CF' );
         $chart->options->highlightFont->border = ezcGraphColor::fromHex( '#888A85' );
-        
+
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisBoxedLabelRenderer();
 
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1358,7 +1358,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
     public function testNoArrowHead()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
-        
+
         $graph = new ezcGraphLineChart();
         $graph->palette = new ezcGraphPaletteBlack();
         $graph->legend->position = ezcGraph::BOTTOM;
@@ -1380,7 +1380,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
     public function testCircleArrowHead()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
-        
+
         $graph = new ezcGraphLineChart();
         $graph->palette = new ezcGraphPaletteBlack();
         $graph->legend->position = ezcGraph::BOTTOM;
@@ -1402,7 +1402,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
     public function testShortAxis()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
-        
+
         $graph = new ezcGraphLineChart();
         $graph->palette = new ezcGraphPaletteBlack();
         $graph->legend->position = ezcGraph::BOTTOM;

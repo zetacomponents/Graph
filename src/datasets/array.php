@@ -78,6 +78,7 @@ class ezcGraphArrayDataSet extends ezcGraphDataSet
      * 
      * @return int
      */
+    #[ReturnTypeWillChange]
     public function count()
     {
         return count( $this->data );

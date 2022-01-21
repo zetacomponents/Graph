@@ -111,7 +111,7 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
                     throw new ezcBaseValueException( $propertyName, $propertyValue, '0 <= float < 360' );
                 }
 
-                $reducement = (int) ( $propertyValue - $propertyValue % 360 );
+                $reducement = (int) ( $propertyValue - (int) $propertyValue % 360 );
                 $this->properties['angle'] = (float) $propertyValue - $reducement;
                 break;
 

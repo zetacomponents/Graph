@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphImageMapTest 
- * 
+ * ezcGraphImageMapTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -48,7 +48,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
 	    return new \PHPUnit\Framework\TestSuite( "ezcGraphImageMapTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -57,7 +57,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -79,7 +79,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $chart->data['sampleData']->url = 'http://example.com/';
 
         $chart->render( 500, 200, $filename );
-        
+
         $reference = $chart->renderer->getElementReferences();
 
         // Check data references
@@ -93,7 +93,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $this->assertSame( 2, count( $reference['legend']['moreData'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphCircle_6', $reference['legend']['moreData']['symbol'], 'ezcGraphCircle expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_7', $reference['legend']['moreData']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check for legend URLs
         $this->assertSame( 3, count( $reference['legend_url'] ), '3 legend url items expected.' );
         $this->assertSame( null, $reference['legend_url']['moreData'], 'No link expected for "moreData".' );
@@ -117,7 +117,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         ) );
 
         $chart->render( 500, 200, $filename );
-        
+
         $reference = $chart->renderer->getElementReferences();
 
         // Check data references
@@ -132,7 +132,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $this->assertSame( 2, count( $reference['legend']['IE'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphPolygon_5', $reference['legend']['IE']['symbol'], 'ezcGraphPolygon expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_6', $reference['legend']['IE']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check for legend URLs
         $this->assertSame( 5, count( $reference['legend_url'] ), '5 legend url items expected.' );
         $this->assertSame( null, $reference['legend_url']['Mozilla'], 'No link expected for "moreData".' );
@@ -154,7 +154,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $chart->data['sampleData']->url = 'http://example.com/';
 
         $chart->render( 500, 200, $filename );
-        
+
         $reference = $chart->renderer->getElementReferences();
 
         // Check data references
@@ -182,7 +182,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
             $reference['legend']['moreData']['text'][2] instanceof ezcGraphCoordinate,
             'Expected ezcGraphCoordinate objects.'
         );
-        
+
         // Check for legend URLs
         $this->assertSame( 3, count( $reference['legend_url'] ), '3 legend url items expected.' );
         $this->assertSame( null, $reference['legend_url']['moreData'], 'No link expected for "moreData".' );
@@ -204,7 +204,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $chart->data['sampleData']->url = 'http://example.com/';
 
         $chart->render( 500, 200, $filename );
-        
+
         $reference = $chart->renderer->getElementReferences();
 
         // Check data references
@@ -218,7 +218,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $this->assertSame( 2, count( $reference['legend']['moreData'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphCircle_6', $reference['legend']['moreData']['symbol'], 'ezcGraphCircle expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_7', $reference['legend']['moreData']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check for legend URLs
         $this->assertSame( 3, count( $reference['legend_url'] ), '3 legend url items expected.' );
         $this->assertSame( null, $reference['legend_url']['moreData'], 'No link expected for "moreData".' );
@@ -245,7 +245,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $chart->data['evenMoreData']->symbol = ezcGraph::BULLET;
 
         $chart->render( 500, 200, $filename );
-        
+
         $reference = $chart->renderer->getElementReferences();
 
         // Check data references
@@ -273,19 +273,19 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $this->assertSame( 2, count( $reference['legend']['sampleData'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphPolygon_4', $reference['legend']['sampleData']['symbol'], 'ezcGraphCircle expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_5', $reference['legend']['sampleData']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check legend references
         $this->assertSame( 3, count( $reference['legend'] ), '3 legend items expected.' );
         $this->assertSame( 2, count( $reference['legend']['moreData'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphCircle_6', $reference['legend']['moreData']['symbol'], 'ezcGraphCircle expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_7', $reference['legend']['moreData']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check legend references
         $this->assertSame( 3, count( $reference['legend'] ), '3 legend items expected.' );
         $this->assertSame( 2, count( $reference['legend']['evenMoreData'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphCircle_8', $reference['legend']['evenMoreData']['symbol'], 'ezcGraphCircle expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_9', $reference['legend']['evenMoreData']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check for legend URLs
         $this->assertSame( 3, count( $reference['legend_url'] ), '3 legend url items expected.' );
         $this->assertSame( 'http://example.com/moreData', $reference['legend_url']['moreData'], 'Link expected for "moreData".' );
@@ -309,7 +309,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         ) );
 
         $chart->render( 500, 200, $filename );
-        
+
         $reference = $chart->renderer->getElementReferences();
 
         // Check data references
@@ -324,7 +324,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $this->assertSame( 2, count( $reference['legend']['IE'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphCircle_6', $reference['legend']['IE']['symbol'], 'ezcGraphCircle expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_7', $reference['legend']['IE']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check for legend URLs
         $this->assertSame( 5, count( $reference['legend_url'] ), '5 legend url items expected.' );
         $this->assertSame( null, $reference['legend_url']['Mozilla'], 'No link expected for "moreData".' );
@@ -363,7 +363,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $this->assertSame( 2, count( $reference['legend']['IE'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphPolygon_5', $reference['legend']['IE']['symbol'], 'ezcGraphPolygon expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_6', $reference['legend']['IE']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check for legend URLs
         $this->assertSame( 5, count( $reference['legend_url'] ), '5 legend url items expected.' );
         $this->assertSame( null, $reference['legend_url']['Mozilla'], 'No link expected for "moreData".' );
@@ -402,7 +402,7 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
         $this->assertSame( 2, count( $reference['legend']['IE'] ), '2 elements for legend item expected.' );
         $this->assertSame( 'ezcGraphPolygon_5', $reference['legend']['IE']['symbol'], 'ezcGraphPolygon expected as legend symbol.' );
         $this->assertSame( 'ezcGraphTextBox_6', $reference['legend']['IE']['text'], 'ezcGraphTextBox expected for legend text.' );
-        
+
         // Check for legend URLs
         $this->assertSame( 5, count( $reference['legend_url'] ), '5 legend url items expected.' );
         $this->assertSame( null, $reference['legend_url']['Mozilla'], 'No link expected for "moreData".' );

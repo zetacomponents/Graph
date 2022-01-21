@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphFontTest 
- * 
+ * ezcGraphFontTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -44,7 +44,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphFontTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -53,7 +53,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         unset( $this->driver );
         if ( !$this->hasFailed() )
@@ -66,7 +66,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphPieChart();
         $chart->options->font->path = $this->basePath . 'font.ttf';
-        
+
         $this->assertTrue(
             $chart->options->font instanceof ezcGraphFontOptions,
             'No fontOptions object was created.'
@@ -89,7 +89,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphPieChart();
         $chart->options->font->path = $this->basePath . 'font.ttf';
-        
+
         $this->assertTrue(
             $chart->legend->font instanceof ezcGraphFontOptions,
             'No fontOptions object was created.'
@@ -113,13 +113,13 @@ class ezcGraphFontTest extends ezcGraphTestCase
             $chart->options->font->path,
             'General font face should be the old one.'
         );
-        
+
         $this->assertEquals(
             $this->basePath . 'font.ttf',
             $chart->title->font->path,
             'Font face for X axis should be the old one.'
         );
-        
+
         $this->assertTrue(
             $chart->legend->font instanceof ezcGraphFontOptions,
             'No fontOptions object was created.'
@@ -145,13 +145,13 @@ class ezcGraphFontTest extends ezcGraphTestCase
             $chart->options->font->path,
             'General font face should be the old one.'
         );
-        
+
         $this->assertEquals(
             $this->basePath . 'font.ttf',
             $chart->title->font->path,
             'Font face for X axis should be the old one.'
         );
-        
+
         $this->assertTrue(
             $chart->legend->font instanceof ezcGraphFontOptions,
             'No fontOptions object was created.'
@@ -168,8 +168,8 @@ class ezcGraphFontTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphLineChart();
         $chart->options->font->path = $this->basePath . 'font.ttf';
-        
-        $this->assertSame( 
+
+        $this->assertSame(
             $chart->options->font->type,
             ezcGraph::TTF_FONT,
             'Font type is not TTF.'
@@ -180,8 +180,8 @@ class ezcGraphFontTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphLineChart();
         $chart->options->font->path = $this->basePath . 'ps_font.pfb';
-        
-        $this->assertSame( 
+
+        $this->assertSame(
             $chart->options->font->type,
             ezcGraph::PS_FONT,
             'Font type is not TTF.'
@@ -719,7 +719,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
         $driver->options->height = 100;
 
         $driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -738,7 +738,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
 
         $driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -756,7 +756,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
         $driver->options->encoding = 'ISO-8859-15';
 
         $driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -775,7 +775,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
 
         $driver->render( $filename );
 
-        $this->compare( 
+        $this->compare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
@@ -791,7 +791,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
         $driver->options->height = 100;
 
         $driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -828,7 +828,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
         $driver->options->height = 100;
 
         $driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -867,7 +867,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
         $driver->options->height = 100;
 
         $driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -886,7 +886,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
 
         $driver->render( $filename );
 
-        $this->swfCompare( 
+        $this->swfCompare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
         );
@@ -907,7 +907,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
         $driver->options->height = 100;
 
         $driver->drawPolygon(
-            array( 
+            array(
                 new ezcGraphCoordinate( 10, 10 ),
                 new ezcGraphCoordinate( 160, 10 ),
                 new ezcGraphCoordinate( 160, 80 ),
@@ -926,7 +926,7 @@ class ezcGraphFontTest extends ezcGraphTestCase
 
         $driver->render( $filename );
 
-        $this->swfCompare( 
+        $this->swfCompare(
             $filename,
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
         );

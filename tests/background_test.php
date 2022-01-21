@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphBackgroundTest 
- * 
+ * ezcGraphBackgroundTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -46,7 +46,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphBackgroundTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -56,7 +56,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -66,30 +66,30 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
     public function testSetOptionsInvalidBackgroundImage()
     {
-        try 
+        try
         {
             $pieChart = new ezcGraphPieChart();
             $pieChart->background->image = $this->basePath . $this->testFiles['invalid'];
-        } 
-        catch ( ezcGraphInvalidImageFileException $e ) 
+        }
+        catch ( ezcGraphInvalidImageFileException $e )
         {
             return true;
-        } 
+        }
 
         $this->fail( 'Expected ezcGraphInvalidImageFileException' );
     }
 
     public function testSetOptionsNonexistantBackgroundImage()
     {
-        try 
+        try
         {
             $pieChart = new ezcGraphPieChart();
             $pieChart->background->image = $this->basePath . $this->testFiles['nonexistant'];
-        } 
-        catch ( ezcBaseFileNotFoundException $e ) 
+        }
+        catch ( ezcBaseFileNotFoundException $e )
         {
             return true;
-        } 
+        }
 
         $this->fail( 'Expected ezcBaseFileNotFoundException' );
     }
@@ -99,7 +99,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $pieChart = new ezcGraphPieChart();
         $pieChart->background->color = '#FF0000';
 
-        $this->assertEquals( 
+        $this->assertEquals(
             ezcGraphColor::fromHex( 'FF0000' ),
             $pieChart->background->color
         );
@@ -110,7 +110,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $pieChart = new ezcGraphPieChart();
         $pieChart->background->border = '#FF0000';
 
-        $this->assertEquals( 
+        $this->assertEquals(
             ezcGraphColor::fromHex( 'FF0000' ),
             $pieChart->background->border
         );
@@ -121,7 +121,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $lineChart = new ezcGraphLineChart();
         $lineChart->background = '#FF0000';
 
-        $this->assertEquals( 
+        $this->assertEquals(
             ezcGraphColor::fromHex( 'FF0000' ),
             $lineChart->background->color
         );

@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphAxisExactRendererTest 
- * 
+ * ezcGraphAxisExactRendererTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -48,7 +48,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( __CLASS__ );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -63,7 +63,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -158,7 +158,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawGridLine',
         ) );
@@ -193,7 +193,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
         $chart->xAxis->axisLabelRenderer->outerGrid = true;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawGridLine',
         ) );
@@ -227,7 +227,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawStepLine',
         ) );
@@ -262,7 +262,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
         $chart->xAxis->axisLabelRenderer->outerStep = true;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawStepLine',
         ) );
@@ -298,7 +298,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->xAxis->axisLabelRenderer->innerStep = false;
         $chart->xAxis->axisLabelRenderer->outerStep = true;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawStepLine',
         ) );
@@ -334,7 +334,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->xAxis->axisLabelRenderer->innerStep = false;
         $chart->yAxis->axisLabelRenderer->innerStep = false;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawStepLine',
         ) );
@@ -355,7 +355,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawText',
         ) );
@@ -398,7 +398,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
         $chart->xAxis->axisLabelRenderer->showLastValue = false;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawText',
         ) );
@@ -441,7 +441,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
         $chart->xAxis->position = ezcGraph::RIGHT;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawGridLine',
         ) );
@@ -476,7 +476,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
         $chart->yAxis->position = ezcGraph::TOP;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawGridLine',
         ) );
@@ -503,7 +503,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
         $chart->yAxis->position = ezcGraph::BOTTOM;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawGridLine',
         ) );
@@ -530,7 +530,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->xAxis->position = ezcGraph::RIGHT;
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawText',
         ) );
@@ -573,7 +573,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
         $chart->yAxis->position = ezcGraph::TOP;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawText',
         ) );
@@ -616,7 +616,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
         $chart->yAxis->position = ezcGraph::BOTTOM;
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        
+
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawText',
         ) );
@@ -944,7 +944,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
     public function testOutsideLabelsBottomLeft()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
-        
+
         $graph = new ezcGraphLineChart();
         $graph->legend = false;
 
@@ -968,7 +968,7 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
     public function testOutsideLabelsTopRight()
     {
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
-        
+
         $graph = new ezcGraphLineChart();
         $graph->legend = false;
 

@@ -140,6 +140,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
      * @param string $key The name of the option to get.
      * @return bool Wether the option exists.
      */
+    #[ReturnTypeWillChange]
     final public function offsetExists( $key )
     {
         return isset( $this->dataset[$key] );
@@ -155,6 +156,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
      * @throws ezcBasePropertyNotFoundException
      *         If a the value for the property options is not an instance of
      */
+    #[ReturnTypeWillChange]
     final public function offsetGet( $key )
     {
         if ( isset( $this->dataValue[$key] ) )
@@ -184,6 +186,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
      * @throws ezcBaseValueException
      *         If a the value for a property is out of range.
      */
+    #[ReturnTypeWillChange]
     public function offsetSet( $key, $value )
     {
         if ( isset( $this->dataset[$key] ) &&
@@ -209,6 +212,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
      * @throws ezcBaseValueException
      *         If a the value for a property is out of range.
      */
+    #[ReturnTypeWillChange]
     final public function offsetUnset( $key )
     {
         if ( isset( $this->dataset[$key] ) )

@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphPieChartTest 
- * 
+ * ezcGraphPieChartTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,7 +29,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -44,7 +44,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphPieChartTest" );
 	}
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -57,7 +57,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $this->basePath = dirname( __FILE__ ) . '/data/';
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         if ( !$this->hasFailed() )
         {
@@ -196,7 +196,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $chart = new ezcGraphPieChart();
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1 ) );
         $chart->render( 500, 200 );
-        
+
         $legend = $this->readAttribute( $chart->legend, 'labels' );
 
         $this->assertEquals(
@@ -230,7 +230,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1 ) );
         $chart->data['sampleData']->displayType = ezcGraph::LINE;
 
-        try 
+        try
         {
             $chart->render( 500, 200 );
         }
@@ -337,11 +337,10 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $chart->data['sample']->highlight['wget'] = true;
 
-        $chart->options->labelCallback = 
-            create_function( 
-                '$label, $value, $percent', 
-                "return 'Callback: ' . \$label;"
-            );
+        $chart->options->labelCallback =
+            function ($label, $value, $percent) {
+													return 'Callback: ' . $label;
+												};
 
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawPieSegment',
@@ -451,7 +450,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
             $chart = new ezcGraphPieChart();
             $chart->data['Skien'] = new ezcGraphArrayDataSet( array() );
             $chart->render( 500, 200 );
-        } 
+        }
         catch ( ezcGraphInvalidDataException $e )
         {
             return true;

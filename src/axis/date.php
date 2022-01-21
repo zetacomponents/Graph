@@ -351,7 +351,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
                     $date[$element++] = (int) ( $element > 2 );
                 }
 
-                $date[$element] -= $date[$element] % $interval;
+                $date[$element] -= ((int) $date[$element] % $interval);
 
                 return mktime(
                     $date[2],

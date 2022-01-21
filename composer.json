@@ -54,7 +54,8 @@
             "zetacomponents/base": "~1.8"
         },
         "require-dev": {
-            "zetacomponents/unit-test": "*"
+            "phpunit/phpunit": "~8.0",
+            "zetacomponents/unit-test": "^1.1.5"
         },
         "suggest": {
             "ext-gd": "Used by the GD driver, one of the choices for generating bitmap images."

@@ -88,20 +88,23 @@ class ezcGraphContext extends ezcBaseStruct
      * __set_state
      *
      * @param array $properties Struct properties
-     * @return void
+     * @return ezcGraphContext
      * @ignore
      */
     public static function __set_state( array $properties )
     {
-        $this->dataset = (string) $properties['dataset'];
-        $this->datapoint = (string) $properties['datapoint'];
+        $context = new self();
+        $context->dataset = (string) $properties['dataset'];
+        $context->datapoint = (string) $properties['datapoint'];
 
         // Check to keep BC
         // @TODO: Remvove unnesecary check on next major version
         if ( array_key_exists( 'url', $properties ) )
         {
-            $this->url = (string) $properties['url'];
+            $context->url = (string) $properties['url'];
         }
+
+        return $context;
     }
 }
 
