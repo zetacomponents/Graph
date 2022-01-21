@@ -124,7 +124,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
         ob_end_clean();
 
         $resource = $this->driver->getResource();
-        if ( version_compare( phpversion(), '8.0' ) )
+        if ( version_compare( phpversion(), '8.0' ) >= 0 )
         {
             $this->assertEquals(
                 'object',
