@@ -455,10 +455,9 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
             $chart = new ezcGraphLineChart();
 
             $chart->yAxis = new ezcGraphChartElementLogarithmicalAxis();
-            $chart->yAxis->labelCallback = create_function(
-                '$label',
-                'return "*$label*";'
-            );
+            $chart->yAxis->labelCallback = function ($label) {
+													return "*{$label}*";
+												};
 
             $chart->data['sample'] = new ezcGraphArrayDataSet( array( .03, 12, 43, 1023, .02, 1.5, 9823 ) );
 

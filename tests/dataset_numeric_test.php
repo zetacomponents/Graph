@@ -222,10 +222,9 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         $numericDataSet = new ezcGraphNumericDataSet(
             -90,
             90,
-            create_function(
-                '$x',
-                'return 10 * sin( deg2rad( $x ) );'
-            )
+            function ($x) {
+													return 10 * sin(deg2rad($x));
+												}
         );
         $numericDataSet->resolution = 180;
 
@@ -250,18 +249,16 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         $chart->data['Sinus'] = new ezcGraphNumericDataSet(
             -180,
             180,
-            create_function(
-                '$x',
-                'return 10 * sin( deg2rad( $x ) );'
-            )
+            function ($x) {
+													return 10 * sin(deg2rad($x));
+												}
         );
         $chart->data['Cosinus'] = new ezcGraphNumericDataSet(
             -180,
             180,
-            create_function(
-                '$x',
-                'return 5 * cos( deg2rad( $x ) );'
-            )
+            function ($x) {
+													return 5 * cos(deg2rad($x));
+												}
         );
         $chart->xAxis = new ezcGraphChartElementNumericAxis();
 

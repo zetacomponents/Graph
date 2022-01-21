@@ -1078,10 +1078,9 @@ class ezcGraphNumericAxisTest extends ezcTestCase
         {
             $chart = new ezcGraphLineChart();
 
-            $chart->yAxis->labelCallback = create_function(
-                '$label',
-                'return "*$label*";'
-            );
+            $chart->yAxis->labelCallback = function ($label) {
+													return "*{$label}*";
+												};
 
             $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
             $chart->render( 500, 200 );
