@@ -172,9 +172,9 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         );
 
         // Use random default enabled public static method
-        $dataset->callback = array( 'Reflection', 'export' );
+        $dataset->callback = array( 'DateTime', 'createFromFormat' );
         $this->assertSame(
-            array( 'Reflection', 'export' ),
+            array( 'DateTime', 'createFromFormat' ),
             $dataset->callback,
             'Setting property value did not work for property callback in class ezcGraphNumericDataSet'
         );
