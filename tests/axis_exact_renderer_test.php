@@ -390,6 +390,49 @@ class ezcGraphAxisExactRendererTest extends ezcGraphTestCase
         $chart->render( 500, 200 );
     }
 
+    public function testRenderTextBoxesWithLabelPositionRight()
+    {
+        $chart = new ezcGraphLineChart();
+        $chart->palette = new ezcGraphPaletteBlack();
+        $chart->xAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
+        $chart->xAxis->labelPosition = ezcGraph::RIGHT;
+        $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
+            'drawText',
+        ) );
+
+        $mockedRenderer
+            ->expects( $this->at( 0 ) )
+            ->method( 'drawText' )
+            ->with(
+                $this->equalTo( new ezcGraphBoundings( 142., 162., 178., 178. ), 1. ),
+                $this->equalTo( 'sample 1' ),
+                $this->equalTo( ezcGraph::BOTTOM | ezcGraph::LEFT )
+            );
+        $mockedRenderer
+            ->expects( $this->at( 1 ) )
+            ->method( 'drawText' )
+            ->with(
+                $this->equalTo( new ezcGraphBoundings( 222., 162., 258., 178. ), 1. ),
+                $this->equalTo( 'sample 2' ),
+                $this->equalTo( ezcGraph::BOTTOM | ezcGraph::LEFT )
+            );
+        $mockedRenderer
+            ->expects( $this->at( 4 ) )
+            ->method( 'drawText' )
+            ->with(
+                $this->equalTo( new ezcGraphBoundings( 462., 182., 498., 198. ), 1. ),
+                $this->equalTo( 'sample 5' ),
+                $this->equalTo( ezcGraph::TOP | ezcGraph::LEFT )
+            );
+
+        $chart->renderer = $mockedRenderer;
+
+        $chart->render( 500, 200 );
+    }
+
     public function testRenderTextBoxesWithoutLastLabel()
     {
         $chart = new ezcGraphLineChart();
