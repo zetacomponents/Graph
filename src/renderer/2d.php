@@ -231,7 +231,7 @@ class ezcGraphRenderer2d
 
             // Split labels up into left an right size and index them on their
             // y position
-            $this->pieSegmentLabels[(int) ($pieSegmentCenter->x > $center->x)][$pieSegmentCenter->y] = array(
+            $this->pieSegmentLabels[(int) ( $pieSegmentCenter->x > $center->x )][(int) $pieSegmentCenter->y] = array(
                 new ezcGraphCoordinate(
                     $center->x + cos( deg2rad( $direction ) ) * $radius * 2 / 3,
                     $center->y + sin( deg2rad( $direction ) ) * $radius * 2 / 3

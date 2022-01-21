@@ -184,6 +184,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      * @param string $key The key of the datapoint to get.
      * @return bool Wether the key exists.
      */
+    #[ReturnTypeWillChange]
     public function offsetExists( $key )
     {
         return isset( $this->data[$key] );
@@ -196,6 +197,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      * @param string $key The key of the datapoint to get.
      * @return float The datapoint value.
      */
+    #[ReturnTypeWillChange]
     public function offsetGet( $key )
     {
         return $this->data[$key];
@@ -209,6 +211,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      * @param float $value The value for the datapoint.
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet( $key, $value )
     {
         $this->data[$key] = (float) $value;
@@ -226,6 +229,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      * @throws ezcBaseValueException
      *         If a the value for a property is out of range.
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset( $key )
     {
         unset( $this->data[$key] );
@@ -240,6 +244,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      * 
      * @return string The currently selected datapoint.
      */
+    #[ReturnTypeWillChange]
     public function current()
     {
         if ( !isset( $this->current ) )
@@ -260,6 +265,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      *
      * @return float datapoint if it exists, or false.
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         if ( ++$this->current >= count( $this->keys ) )
@@ -281,6 +287,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      * 
      * @return string The key of the currently selected datapoint.
      */
+    #[ReturnTypeWillChange]
     public function key()
     {
         return $this->keys[$this->current];
@@ -295,6 +302,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      *
      * @return bool If the current datapoint is valid
      */
+    #[ReturnTypeWillChange]
     public function valid()
     {
         return isset( $this->keys[$this->current] );
@@ -308,6 +316,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      *
      * @return float The very first datapoint.
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         $this->keys    = array_keys( $this->data );

@@ -87,6 +87,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      * @param string $key Identifier of dataset.
      * @return bool True when the offset exists, otherwise false.
      */
+    #[ReturnTypeWillChange]
     public function offsetExists( $key )
     {
         return isset( $this->data[$key] );
@@ -104,6 +105,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      * @throws ezcGraphNoSuchDataSetException
      *         If no dataset with identifier exists
      */
+    #[ReturnTypeWillChange]
     public function offsetGet( $key )
     {
         if ( !isset( $this->data[$key] ) )
@@ -127,6 +129,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      * @throws ezcBaseValueException
      *         If supplied value is not an ezcGraphDataSet
      */
+    #[ReturnTypeWillChange]
     public function offsetSet( $key, $value )
     {
         if ( !$value instanceof ezcGraphDataSet )
@@ -146,6 +149,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      * @param string $key
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset( $key )
     {
         if ( !isset( $this->data[$key] ) )
@@ -165,6 +169,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      * 
      * @return ezcGraphDataSet The currently selected dataset.
      */
+    #[ReturnTypeWillChange]
     public function current()
     {
         return current( $this->data );
@@ -179,6 +184,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      *
      * @return mixed ezcGraphDataSet if the next dataset exists, or false.
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next( $this->data );
@@ -193,6 +199,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      * 
      * @return int The key of the currently selected dataset.
      */
+    #[ReturnTypeWillChange]
     public function key()
     {
         return key( $this->data );
@@ -207,6 +214,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      *
      * @return bool If the current dataset is valid
      */
+    #[ReturnTypeWillChange]
     public function valid()
     {
         return ( current( $this->data ) !== false );
@@ -220,6 +228,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      *
      * @return ezcGraphDataSet The very first dataset.
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset( $this->data );
@@ -233,6 +242,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      *
      * @return int Number of datasets.
      */
+    #[ReturnTypeWillChange]
     public function count()
     {
         return count( $this->data );

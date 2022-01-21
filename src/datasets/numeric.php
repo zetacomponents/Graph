@@ -177,6 +177,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      * @param string $key The key of the datapoint to get.
      * @return bool Wether the key exists.
      */
+    #[ReturnTypeWillChange]
     public function offsetExists( $key )
     {
         return ( ( $key >= $this->start ) && ( $key <= $this->end ) );
@@ -189,6 +190,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      * @param string $key The key of the datapoint to get.
      * @return float The datapoint value.
      */
+    #[ReturnTypeWillChange]
     public function offsetGet( $key )
     {
         return call_user_func( $this->callback, $key );
@@ -204,6 +206,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      *         Always, because access is readonly.
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet( $key, $value )
     {
         throw new ezcBasePropertyPermissionException( $key, ezcBasePropertyPermissionException::READ );
@@ -218,6 +221,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      * 
      * @return string The currently selected datapoint.
      */
+    #[ReturnTypeWillChange]
     final public function current()
     {
         return call_user_func( $this->callback, $this->getKey() );
@@ -232,6 +236,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      *
      * @return float datapoint if it exists, or false.
      */
+    #[ReturnTypeWillChange]
     final public function next()
     {
         if ( $this->start === $this->end )
@@ -258,6 +263,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      * 
      * @return string The key of the currently selected datapoint.
      */
+    #[ReturnTypeWillChange]
     final public function key()
     {
         return (string) $this->getKey();
@@ -272,6 +278,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      *
      * @return bool If the current datapoint is valid
      */
+    #[ReturnTypeWillChange]
     final public function valid()
     {
         return ( ( $this->getKey() >= $this->start ) && ( $this->getKey() <= $this->end ) );
@@ -285,6 +292,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      *
      * @return float The very first datapoint.
      */
+    #[ReturnTypeWillChange]
     final public function rewind()
     {
         $this->position = 0;
@@ -295,6 +303,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      * 
      * @return int
      */
+    #[ReturnTypeWillChange]
     public function count()
     {
         return $this->resolution + 1;

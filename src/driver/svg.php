@@ -574,7 +574,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      */
     protected function getTextWidth( $string, $size )
     {
-        switch ( strtolower( $this->options->encoding ) )
+        switch ( strtolower( (string) $this->options->encoding ) )
         {
             case '':
             case 'utf-8':
@@ -606,7 +606,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     {
         $string = htmlspecialchars( $string );
 
-        switch ( strtolower( $this->options->encoding ) )
+        switch ( strtolower( (string) $this->options->encoding ) )
         {
             case '':
             case 'utf-8':
