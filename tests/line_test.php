@@ -657,13 +657,8 @@ class ezcGraphLineChartTest extends ezcGraphTestCase
         $chart->render( 500, 200 );
     }
 
-    public function testRenderChartFilledLines()
+    private function getMockedRendererForChartWithFilledLines()
     {
-        $chart = new ezcGraphLineChart();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => -46, 'sample 4' => 120, 'sample 5'  => 100 ) );
-        $chart->palette = new ezcGraphPaletteBlack();
-        $chart->options->fillLines = 100;
-
         $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
             'drawDataLine',
         ) );
@@ -713,6 +708,33 @@ class ezcGraphLineChartTest extends ezcGraphTestCase
                 $this->equalTo( ezcGraphColor::fromHex( '#3465A4' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#3465A464' ) )
             );
+
+        return $mockedRenderer;
+    }
+
+    public function testRenderChartFilledLines()
+    {
+        $chart = new ezcGraphLineChart();
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => -46, 'sample 4' => 120, 'sample 5'  => 100 ) );
+        $chart->palette = new ezcGraphPaletteBlack();
+        $chart->options->fillLines = 100;
+
+        $mockedRenderer = $this->getMockedRendererForChartWithFilledLines();
+
+        $chart->renderer = $mockedRenderer;
+
+        $chart->render( 500, 200 );
+    }
+
+    public function testRenderChartDataSetFilledLine()
+    {
+        $chart = new ezcGraphLineChart();
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => -46, 'sample 4' => 120, 'sample 5'  => 100 ) );
+        $chart->data['sampleData']->fillLine = 100;
+        $chart->palette = new ezcGraphPaletteBlack();
+        $chart->options->fillLines = 200;
+
+        $mockedRenderer = $this->getMockedRendererForChartWithFilledLines();
 
         $chart->renderer = $mockedRenderer;
 
