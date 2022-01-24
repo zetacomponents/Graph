@@ -50,17 +50,17 @@
     "license": "Apache-2.0",
     "name": "zetacomponents/graph",
     "type": "library",
-        "require": {
-            "zetacomponents/base": "~1.8"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~8.0",
-            "zetacomponents/unit-test": "^1.1.5",
+    "require": {
+        "zetacomponents/base": "~1.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~8.0",
+        "zetacomponents/unit-test": "^1.1.5",
         "zetacomponents/coding-standard": "dev-main"
-        },
-        "suggest": {
-            "ext-gd": "Used by the GD driver, one of the choices for generating bitmap images."
-        },
+    },
+    "suggest": {
+        "ext-gd": "Used by the GD driver, one of the choices for generating bitmap images."
+    },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
