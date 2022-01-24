@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,16 +31,16 @@
  *   $graph->palette = new ezcGraphPaletteEzGreen();
  *   $graph->title = 'Access statistics';
  *   $graph->legend = false;
- *   
+ *
  *   $graph->driver = new ezcGraphGdDriver();
  *   $graph->options->font = 'tutorial_font.ttf';
- *   
+ *
  *   // Generate a Jpeg with lower quality. The default settings result in a better
  *   // quality image
  *   $graph->driver->options->supersampling = 1;
  *   $graph->driver->options->jpegQuality = 100;
  *   $graph->driver->options->imageFormat = IMG_JPEG;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -48,7 +48,7 @@
  *       'Safari' => 652,
  *       'Konqueror' => 474,
  *   ) );
- *   
+ *
  *   $graph->render( 400, 200, 'tutorial_dirver_gd.jpg' );
  * </code>
  *
@@ -68,7 +68,7 @@
  * @property bool $forceNativeTTF
  *           Force use of native ttf functions instead of free type 2
  * @property float $imageMapResolution
- *           Degree step used to interpolate round image primitives by 
+ *           Degree step used to interpolate round image primitives by
  *           polygons for image maps
  *
  * @version //autogentag//
@@ -78,7 +78,7 @@ class ezcGraphGdDriverOptions extends ezcGraphDriverOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -97,12 +97,12 @@ class ezcGraphGdDriverOptions extends ezcGraphDriverOptions
 
         parent::__construct( $options );
     }
-    
+
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void

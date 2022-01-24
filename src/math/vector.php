@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -42,7 +42,7 @@ class ezcGraphVector extends ezcGraphCoordinate
 {
     /**
      * Rotates vector to the left by 90 degrees
-     * 
+     *
      * @return void
      */
     public function rotateCounterClockwise()
@@ -56,7 +56,7 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Rotates vector to the right by 90 degrees
-     * 
+     *
      * @return void
      */
     public function rotateClockwise()
@@ -67,10 +67,10 @@ class ezcGraphVector extends ezcGraphCoordinate
 
         return $this;
     }
-    
+
     /**
      * Unifies vector length to 1
-     * 
+     *
      * @return void
      */
     public function unify()
@@ -89,7 +89,7 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Returns length of vector
-     * 
+     *
      * @return float
      */
     public function length()
@@ -102,8 +102,8 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Multiplies vector with a scalar
-     * 
-     * @param float $value 
+     *
+     * @param float $value
      * @return void
      */
     public function scalar( $value )
@@ -116,8 +116,8 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Calculates scalar product of two vectors
-     * 
-     * @param ezcGraphCoordinate $vector 
+     *
+     * @param ezcGraphCoordinate $vector
      * @return void
      */
     public function mul( ezcGraphCoordinate $vector )
@@ -127,8 +127,8 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Returns the angle between two vectors in radian
-     * 
-     * @param ezcGraphCoordinate $vector 
+     *
+     * @param ezcGraphCoordinate $vector
      * @return float
      */
     public function angle( ezcGraphCoordinate $vector )
@@ -138,7 +138,7 @@ class ezcGraphVector extends ezcGraphCoordinate
             // Ensure beeing a vector for calling length()
             $vector = ezcGraphVector::fromCoordinate( $vector );
         }
-        
+
         $factor = $this->length() * $vector->length();
 
         if ( $factor == 0 )
@@ -153,8 +153,8 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Adds a vector to another vector
-     * 
-     * @param ezcGraphCoordinate $vector 
+     *
+     * @param ezcGraphCoordinate $vector
      * @return void
      */
     public function add( ezcGraphCoordinate $vector )
@@ -167,8 +167,8 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Subtracts a vector from another vector
-     * 
-     * @param ezcGraphCoordinate $vector 
+     *
+     * @param ezcGraphCoordinate $vector
      * @return void
      */
     public function sub( ezcGraphCoordinate $vector )
@@ -181,8 +181,8 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Creates a vector from a coordinate object
-     * 
-     * @param ezcGraphCoordinate $coordinate 
+     *
+     * @param ezcGraphCoordinate $coordinate
      * @return ezcGraphVector
      */
     public static function fromCoordinate( ezcGraphCoordinate $coordinate )
@@ -192,8 +192,8 @@ class ezcGraphVector extends ezcGraphCoordinate
 
     /**
      * Transform vector using transformation matrix
-     * 
-     * @param ezcGraphTransformation $transformation 
+     *
+     * @param ezcGraphTransformation $transformation
      * @return ezcGraphVector
      */
     public function transform( ezcGraphTransformation $transformation )

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,7 +35,7 @@
  *   $graph->palette = new ezcGraphPaletteEzRed();
  *   $graph->title = 'Access statistics';
  *   $graph->options->label = '%2$d (%3$.1f%%)';
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -44,28 +44,28 @@
  *       'Konqueror' => 474,
  *   ) );
  *   $graph->data['Access statistics']->highlight['Explorer'] = true;
- *   
+ *
  *   $graph->renderer = new ezcGraphRenderer3d();
- *   
+ *
  *   $graph->renderer->options->moveOut = .2;
- *   
+ *
  *   $graph->renderer->options->pieChartOffset = 63;
- *   
+ *
  *   $graph->renderer->options->pieChartGleam = .3;
  *   $graph->renderer->options->pieChartGleamColor = '#FFFFFF';
- *   
+ *
  *   $graph->renderer->options->pieChartShadowSize = 5;
  *   $graph->renderer->options->pieChartShadowColor = '#000000';
- *   
+ *
  *   $graph->renderer->options->legendSymbolGleam = .5;
  *   $graph->renderer->options->legendSymbolGleamSize = .9;
  *   $graph->renderer->options->legendSymbolGleamColor = '#FFFFFF';
- *   
+ *
  *   $graph->renderer->options->pieChartSymbolColor = '#55575388';
- *   
+ *
  *   $graph->renderer->options->pieChartHeight = 5;
  *   $graph->renderer->options->pieChartRotation = .8;
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_pie_chart_3d.svg' );
  * </code>
  *
@@ -81,7 +81,7 @@
  * @property float $pieChartHeight
  *           Height of the pie charts border.
  * @property float $pieChartRotation
- *           Rotation of pie chart. Defines the percent of width used to 
+ *           Rotation of pie chart. Defines the percent of width used to
  *           calculate the height of the ellipse.
  * @property int $pieChartShadowSize
  *           Size of shadows.
@@ -95,7 +95,7 @@
  *           Factor to darken the color used for the bars top polygon.
  * @property float $barChartGleam
  *           Transparancy for gleam on bar charts
- * 
+ *
  * @version //autogentag//
  * @package Graph
  */
@@ -103,7 +103,7 @@ class ezcGraphRenderer3dOptions extends ezcGraphRendererOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -130,9 +130,9 @@ class ezcGraphRenderer3dOptions extends ezcGraphRendererOptions
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void
@@ -146,13 +146,13 @@ class ezcGraphRenderer3dOptions extends ezcGraphRendererOptions
             case 'fillGrid':
                 if ( $propertyValue !== false &&
                      !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 0 ) || 
+                     ( $propertyValue < 0 ) ||
                      ( $propertyValue > 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'false OR 0 <= float <= 1' );
                 }
 
-                $this->properties[$propertyName] = ( 
+                $this->properties[$propertyName] = (
                     $propertyValue === false
                     ? false
                     : (float) $propertyValue );
@@ -165,7 +165,7 @@ class ezcGraphRenderer3dOptions extends ezcGraphRendererOptions
             case 'barDarkenTop':
             case 'barChartGleam':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 0 ) || 
+                     ( $propertyValue < 0 ) ||
                      ( $propertyValue > 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, '0 <= float <= 1' );
@@ -177,7 +177,7 @@ class ezcGraphRenderer3dOptions extends ezcGraphRendererOptions
             case 'pieChartHeight':
             case 'pieChartShadowSize':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue <= 0 ) ) 
+                     ( $propertyValue <= 0 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'float > 0' );
                 }

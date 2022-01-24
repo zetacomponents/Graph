@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -25,7 +25,7 @@
  */
 
 /**
- * Class representing radial gradient fills. For drivers which cannot draw 
+ * Class representing radial gradient fills. For drivers which cannot draw
  * gradients it falls back to a native ezcGraphColor. In this case the start
  * color of the gradient will be used.
  *
@@ -49,12 +49,12 @@ class ezcGraphRadialGradient extends ezcGraphColor
 {
     /**
      * Constructor
-     * 
-     * @param ezcGraphCoordinate $center 
-     * @param mixed $width 
-     * @param mixed $height 
-     * @param ezcGraphColor $startColor 
-     * @param ezcGraphColor $endColor 
+     *
+     * @param ezcGraphCoordinate $center
+     * @param mixed $width
+     * @param mixed $height
+     * @param ezcGraphColor $startColor
+     * @param ezcGraphColor $endColor
      * @return void
      */
     public function __construct( ezcGraphCoordinate $center, $width, $height, ezcGraphColor $startColor, ezcGraphColor $endColor )
@@ -68,10 +68,10 @@ class ezcGraphRadialGradient extends ezcGraphColor
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -113,7 +113,7 @@ class ezcGraphRadialGradient extends ezcGraphColor
                 break;
             case 'offset':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 0 ) || 
+                     ( $propertyValue < 0 ) ||
                      ( $propertyValue > 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, '0 <= float <= 1' );
@@ -131,9 +131,9 @@ class ezcGraphRadialGradient extends ezcGraphColor
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -163,13 +163,14 @@ class ezcGraphRadialGradient extends ezcGraphColor
 
     /**
      * Returns a unique string representation for the gradient.
-     * 
+     *
      * @access public
      * @return void
      */
     public function __toString()
     {
-        return sprintf( 'RadialGradient_%d_%d_%d_%d_%.2F_%02x%02x%02x%02x_%02x%02x%02x%02x',
+        return sprintf(
+            'RadialGradient_%d_%d_%d_%d_%.2F_%02x%02x%02x%02x_%02x%02x%02x%02x',
             $this->properties['center']->x,
             $this->properties['center']->y,
             $this->properties['width'],

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,30 +31,29 @@
  * @version //autogentag//
  * @package Graph
  */
-class ezcGraphAxisContainer
-    implements
-        Countable,
-        ArrayAccess,
-        Iterator
+class ezcGraphAxisContainer implements
+    Countable,
+    ArrayAccess,
+    Iterator
 {
     /**
      * Chart the container is used with
-     * 
+     *
      * @var ezcGraphLineChart
      */
     protected $chart;
 
     /**
      * Contains the data of a chart
-     * 
+     *
      * @var array(ezcGraphChartElementAxis)
      */
     protected $data = array();
 
     /**
      * Construct container with corresponding chart.
-     * 
-     * @param ezcGraphLineChart $chart 
+     *
+     * @param ezcGraphLineChart $chart
      * @return void
      * @ignore
      */
@@ -68,7 +67,7 @@ class ezcGraphAxisContainer
      *
      * This method is part of the ArrayAccess interface to allow access to the
      * data of this object as if it was an array.
-     * 
+     *
      * @param string $key Identifier of dataset.
      * @return bool True when the offset exists, otherwise false.
      */
@@ -79,11 +78,11 @@ class ezcGraphAxisContainer
     }
 
     /**
-     * Returns the element with the given offset. 
+     * Returns the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param string $key Identifier of dataset.
      * @return ezcGraphChartElementAxis
      *
@@ -102,11 +101,11 @@ class ezcGraphAxisContainer
     }
 
     /**
-     * Set the element with the given offset. 
+     * Set the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param string $key
      * @param ezcGraphChartElementAxis $value
      * @return void
@@ -136,11 +135,11 @@ class ezcGraphAxisContainer
     }
 
     /**
-     * Unset the element with the given offset. 
+     * Unset the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param string $key
      * @return void
      */
@@ -158,10 +157,10 @@ class ezcGraphAxisContainer
     /**
      * Returns the currently selected dataset.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return ezcGraphChartElementAxis The currently selected dataset.
      */
     #[ReturnTypeWillChange]
@@ -173,7 +172,7 @@ class ezcGraphAxisContainer
     /**
      * Returns the next dataset and selects it or false on the last dataset.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -188,10 +187,10 @@ class ezcGraphAxisContainer
     /**
      * Returns the key of the currently selected dataset.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return int The key of the currently selected dataset.
      */
     #[ReturnTypeWillChange]
@@ -203,7 +202,7 @@ class ezcGraphAxisContainer
     /**
      * Returns if the current dataset is valid.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -217,7 +216,7 @@ class ezcGraphAxisContainer
 
     /**
      * Selects the very first dataset and returns it.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
      *

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -30,33 +30,33 @@
  * <code>
  *  $graph = new ezcGraphOdometerChart();
  *  $graph->title = 'Custom odometer';
- *  
+ *
  *  $graph->data['data'] = new ezcGraphArrayDataSet(
  *      array( 87 )
  *  );
- *  
+ *
  *  // Set the marker color
  *  $graph->data['data']->color[0]  = '#A0000055';
- *  
+ *
  *  // Set colors for the background gradient
  *  $graph->options->startColor     = '#2E3436';
  *  $graph->options->endColor       = '#EEEEEC';
- *  
+ *
  *  // Define a border for the odometer
  *  $graph->options->borderWidth    = 2;
  *  $graph->options->borderColor    = '#BABDB6';
- *  
+ *
  *  // Set marker width
  *  $graph->options->markerWidth    = 5;
- *  
+ *
  *  // Set space, which the odometer may consume
  *  $graph->options->odometerHeight = .7;
- *  
+ *
  *  // Set axis span and label
  *  $graph->axis->min               = 0;
  *  $graph->axis->max               = 100;
  *  $graph->axis->label             = 'Coverage  ';
- *  
+ *
  *  $graph->render( 400, 150, 'custom_odometer_chart.svg' );
  * </code>
  *
@@ -73,7 +73,7 @@
  * </code>
  *
  * The chart itself also offers several options to configure the appearance.
- * The extended configure options are available in 
+ * The extended configure options are available in
  * {@link ezcGraphOdometerChartOptions} extending the {@link
  * ezcGraphChartOptions}.
  *
@@ -86,7 +86,6 @@
  */
 class ezcGraphOdometerChart extends ezcGraphChart
 {
-
     /**
      * Constructor
      *
@@ -102,7 +101,7 @@ class ezcGraphOdometerChart extends ezcGraphChart
 
         $this->data = new ezcGraphChartSingleDataContainer( $this );
 
-        $this->addElement( 'axis', new ezcGraphChartElementNumericAxis());
+        $this->addElement( 'axis', new ezcGraphChartElementNumericAxis() );
         $this->elements['axis']->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
         $this->elements['axis']->axisLabelRenderer->showZeroValue = true;
         $this->elements['axis']->position  = ezcGraph::LEFT;
@@ -111,7 +110,7 @@ class ezcGraphOdometerChart extends ezcGraphChart
 
     /**
      * Property write access
-     * 
+     *
      * @throws ezcBasePropertyNotFoundException
      *          If Option could not be found
      * @throws ezcBaseValueException
@@ -121,7 +120,7 @@ class ezcGraphOdometerChart extends ezcGraphChart
      * @return void
      * @ignore
      */
-    public function __set( $propertyName, $propertyValue ) 
+    public function __set( $propertyName, $propertyValue )
     {
         switch ( $propertyName ) {
             case 'axis':
@@ -143,7 +142,7 @@ class ezcGraphOdometerChart extends ezcGraphChart
                 {
                     parent::__set( $propertyName, $propertyValue );
                 }
-                else 
+                else
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'ezcGraphOdometerRenderer' );
                 }
@@ -254,7 +253,7 @@ class ezcGraphOdometerChart extends ezcGraphChart
 
         // Draw basic odometer
         $this->driver->options->font = $this->elements['axis']->font;
-        $boundings = $this->renderer->drawOdometer( 
+        $boundings = $this->renderer->drawOdometer(
             $boundings,
             $this->elements['axis'],
             $this->options

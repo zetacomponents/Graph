@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -42,7 +42,7 @@ class ezcGraphAxisRadarLabelRenderer extends ezcGraphAxisLabelRenderer
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -55,10 +55,10 @@ class ezcGraphAxisRadarLabelRenderer extends ezcGraphAxisLabelRenderer
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -135,23 +135,23 @@ class ezcGraphAxisRadarLabelRenderer extends ezcGraphAxisLabelRenderer
             // Draw major grid
             if ( ( $this->lastStep !== null ) && $axis->majorGrid )
             {
-                $this->drawGrid( 
-                    $renderer, 
-                    $boundings, 
+                $this->drawGrid(
+                    $renderer,
+                    $boundings,
                     $position,
                     $stepSize,
                     $axis->majorGrid,
                     $step->position
                 );
             }
-            
+
             // major step
-            $this->drawStep( 
-                $renderer, 
+            $this->drawStep(
+                $renderer,
                 $position,
-                $direction, 
-                $axis->position, 
-                $this->majorStepSize, 
+                $direction,
+                $axis->position,
+                $this->majorStepSize,
                 $axis->border
             );
 
@@ -251,35 +251,35 @@ class ezcGraphAxisRadarLabelRenderer extends ezcGraphAxisLabelRenderer
 
                     if ( ( $this->lastStep !== null ) && $axis->minorGrid )
                     {
-                        $this->drawGrid( 
-                            $renderer, 
-                            $boundings, 
+                        $this->drawGrid(
+                            $renderer,
+                            $boundings,
                             $minorStepPosition,
                             $minorStepSize,
                             $axis->minorGrid,
                             $minorStep->position
                         );
                     }
-                    
+
                     // major step
-                    $this->drawStep( 
-                        $renderer, 
+                    $this->drawStep(
+                        $renderer,
                         $minorStepPosition,
-                        $direction, 
-                        $axis->position, 
-                        $this->minorStepSize, 
+                        $direction,
+                        $axis->position,
+                        $this->minorStepSize,
                         $axis->border
                     );
                 }
             }
         }
     }
-    
+
     /**
      * Draw grid
      *
      * Draws a grid line at the current position
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer to draw the grid with
      * @param ezcGraphBoundings $boundings Boundings of axis
      * @param ezcGraphCoordinate $position Position of step
@@ -313,7 +313,7 @@ class ezcGraphAxisRadarLabelRenderer extends ezcGraphAxisLabelRenderer
         $angle = $direction->angle( new ezcGraphVector( 0, 1 ) );
 
         $movement = new ezcGraphVector(
-            sin( $angle ) * $renderer->xAxisSpace 
+            sin( $angle ) * $renderer->xAxisSpace
                 * ( $direction->x < 0 ? -1 : 1 ),
             cos( $angle ) * $renderer->yAxisSpace
         );

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -26,11 +26,11 @@
  */
 /**
  * Provides a genereic matrix class with basic math operations
- * 
+ *
  * The matrix class is used for internal matrix calculations, and it should not
  * be required to be used by end users. It offers the common arithmetics
  * operations, and a __toString mechanism for debugging.
- * 
+ *
  * Beside this it implements more complex matrix algorithms to solve non linear
  * equatations using the Gauss-Newton algorithm and LR decomposition using the
  * Cholesky-Crout algorithm. These algorithms are required by the average
@@ -45,14 +45,14 @@ class ezcGraphMatrix
 
     /**
      * Count of matrix rows
-     * 
+     *
      * @var int
      */
     protected $rows;
 
     /**
      * Count of matrix columns
-     * 
+     *
      * @var int
      */
     protected $columns;
@@ -68,7 +68,7 @@ class ezcGraphMatrix
      *          (float)
      *      )
      *  )
-     * 
+     *
      * @var array(array(float))
      */
     protected $matrix;
@@ -76,10 +76,10 @@ class ezcGraphMatrix
     /**
      * Constructor
      *
-     * Creates a matrix with given dimensions. Optionally accepts an array to 
-     * define the initial matrix values. If no array is given an identity 
+     * Creates a matrix with given dimensions. Optionally accepts an array to
+     * define the initial matrix values. If no array is given an identity
      * matrix is created.
-     * 
+     *
      * @param int $rows Number of rows
      * @param int $columns Number of columns
      * @param array $values Array with values
@@ -104,7 +104,7 @@ class ezcGraphMatrix
      * Create matrix from array
      *
      * Use an array with float values to set matrix values.
-     * 
+     *
      * @param array $values Array with values
      * @return ezcGraphMatrix Modified matrix
      */
@@ -128,7 +128,7 @@ class ezcGraphMatrix
      * Init matrix
      *
      * Sets matrix to identity matrix.
-     * 
+     *
      * @return ezcGraphMatrix Modified matrix
      */
     public function init()
@@ -146,7 +146,7 @@ class ezcGraphMatrix
 
     /**
      * Returns number of rows
-     * 
+     *
      * @return int Number of rows
      */
     public function rows()
@@ -155,8 +155,8 @@ class ezcGraphMatrix
     }
 
     /**
-     * Returns number of columns 
-     * 
+     * Returns number of columns
+     *
      * @return int Number of columns
      */
     public function columns()
@@ -168,7 +168,7 @@ class ezcGraphMatrix
      * Get a single matrix value
      *
      * Returns the value of the matrix at the given position
-     * 
+     *
      * @param int $i Column
      * @param int $j Row
      * @return float Matrix value
@@ -190,7 +190,7 @@ class ezcGraphMatrix
      * Set a single matrix value
      *
      * Sets the value of the matrix at the given position.
-     * 
+     *
      * @param int $i Column
      * @param int $j Row
      * @param float $value Value
@@ -215,7 +215,7 @@ class ezcGraphMatrix
      * Adds one matrix to the current one
      *
      * Calculate the sum of two matrices and returns the resulting matrix.
-     * 
+     *
      * @param ezcGraphMatrix $matrix Matrix to sum with
      * @return ezcGraphMatrix Result matrix
      */
@@ -242,7 +242,7 @@ class ezcGraphMatrix
      * Subtracts matrix from current one
      *
      * Calculate the diffenrence of two matices and returns the result matrix.
-     * 
+     *
      * @param ezcGraphMatrix $matrix subtrahend
      * @return ezcGraphMatrix Result matrix
      */
@@ -269,7 +269,7 @@ class ezcGraphMatrix
      * Scalar multiplication
      *
      * Multiplies matrix with the given scalar and returns the result matrix
-     * 
+     *
      * @param float $scalar Scalar
      * @return ezcGraphMatrix Result matrix
      */
@@ -288,7 +288,7 @@ class ezcGraphMatrix
 
     /**
      * Transpose matrix
-     * 
+     *
      * @return ezcGraphMatrix Transposed matrix
      */
     public function transpose()
@@ -314,28 +314,29 @@ class ezcGraphMatrix
     /**
      * Multiplies two matrices
      *
-     * Multiply current matrix with another matrix and returns the result 
+     * Multiply current matrix with another matrix and returns the result
      * matrix.
      *
      * @param ezcGraphMatrix $matrix Second factor
      * @return ezcGraphMatrix Result matrix
      */
-    public function multiply( ezcGraphMatrix $matrix ) 
+    public function multiply( ezcGraphMatrix $matrix )
     {
         $mColumns = $matrix->columns();
-        if ( $this->columns !== ( $mRows = $matrix->rows() ) ) 
+        if ( $this->columns !== ( $mRows = $matrix->rows() ) )
         {
             throw new ezcGraphMatrixInvalidDimensionsException( $this->columns, $this->rows, $mColumns, $mRows );
         }
 
         $result = new ezcGraphMatrix( $this->rows, $mColumns );
 
-        for ( $i = 0; $i < $this->rows; ++$i ) 
+        for ( $i = 0; $i < $this->rows; ++$i )
         {
-            for ( $j = 0; $j < $mColumns; ++$j ) 
+            for ( $j = 0; $j < $mColumns; ++$j )
             {
                 $sum = 0;
-                for ( $k = 0; $k < $mRows; ++$k ) {
+                for ( $k = 0; $k < $mRows; ++$k )
+                {
                     $sum += $this->matrix[$i][$k] * $matrix->get( $k, $j );
                 }
 
@@ -348,7 +349,7 @@ class ezcGraphMatrix
 
     /**
      * Solve nonlinear equatation
-     * 
+     *
      * Tries to solve equatation given by two matrices, with assumption, that:
      *      A * x = B
      * where $this is A, and the paramenter B. x is cosnidered as a vector
@@ -366,9 +367,9 @@ class ezcGraphMatrix
         // Build complete equatation
         $equatation = new ezcGraphMatrix( $this->rows, $columns = ( $this->columns + 1 ) );
 
-        for ( $i = 0; $i < $this->rows; ++$i ) 
+        for ( $i = 0; $i < $this->rows; ++$i )
         {
-            for ( $j = 0; $j < $this->columns; ++$j ) 
+            for ( $j = 0; $j < $this->columns; ++$j )
             {
                 $equatation->set( $i, $j, $this->matrix[$i][$j] );
             }
@@ -376,9 +377,9 @@ class ezcGraphMatrix
         }
 
         // Compute upper triangular matrix on left side of equatation
-        for ( $i = 0; $i < ( $this->rows - 1 ); ++$i ) 
+        for ( $i = 0; $i < ( $this->rows - 1 ); ++$i )
         {
-            for ( $j = $i + 1; $j < $this->rows; ++$j ) 
+            for ( $j = $i + 1; $j < $this->rows; ++$j )
             {
                 if ( $equatation->get( $j, $i ) !== 0 )
                 {
@@ -400,7 +401,7 @@ class ezcGraphMatrix
         }
 
         // Normalize values on left side matrix diagonale
-        for ( $i = 0; $i < $this->rows; ++$i ) 
+        for ( $i = 0; $i < $this->rows; ++$i )
         {
             if ( ( ( $value = $equatation->get( $i, $i ) ) != 1 ) &&
                  ( $value != 0 ) )
@@ -420,8 +421,8 @@ class ezcGraphMatrix
             for ( $j = $i + 1; $j < $this->columns; ++$j )
             {
                 $equatation->set(
-                    $i, 
-                    $this->columns, 
+                    $i,
+                    $this->columns,
                     $equatation->get( $i, $this->columns ) + ( -$equatation->get( $i, $j ) * $polynom->get( $j ) )
                 );
                 $equatation->set( $i, $j, 0 );
@@ -435,7 +436,7 @@ class ezcGraphMatrix
     /**
      * Build LR decomposition from matrix
      *
-     * Use Cholesky-Crout algorithm to get LR decomposition of the current 
+     * Use Cholesky-Crout algorithm to get LR decomposition of the current
      * matrix.
      *
      * Will return an array with two matrices:
@@ -443,7 +444,7 @@ class ezcGraphMatrix
      *      'l' => (ezcGraphMatrix) $left,
      *      'r' => (ezcGraphMatrix) $right,
      *  )
-     * 
+     *
      * @return array( ezcGraphMatrix )
      */
     public function LRdecomposition()
@@ -452,14 +453,14 @@ class ezcGraphMatrix
          * Use Cholesky-Crout algorithm to get LR decomposition
          *
          *  Input: Matrix A ($this)
-         *  
+         *
          *  For i = 1 To n
          *      For j = i To n
-         *          R(i,j)=A(i,j)             
-         *          For k = 1 TO i-1               
+         *          R(i,j)=A(i,j)
+         *          For k = 1 TO i-1
          *              R(i,j)-=L(i,k)*R(k,j)
          *          end
-         *      end    
+         *      end
          *      For j=i+1 To n
          *          L(j,i)= A(j,i)
          *          For k = 1 TO i-1
@@ -468,15 +469,15 @@ class ezcGraphMatrix
          *          L(j,i)/=R(i,i)
          *      end
          *  end
-         *  
+         *
          *  Output: matrices L,R
          */
         $l = new ezcGraphMatrix( $this->columns, $this->rows );
         $r = new ezcGraphMatrix( $this->columns, $this->rows );
 
-        for ( $i = 0; $i < $this->columns; ++$i ) 
+        for ( $i = 0; $i < $this->columns; ++$i )
         {
-            for ( $j = $i; $j < $this->rows; ++$j ) 
+            for ( $j = $i; $j < $this->rows; ++$j )
             {
                 $r->set( $i, $j, $this->matrix[$i][$j] );
                 for ( $k = 0; $k <= ( $i - 1 ); ++$k )
@@ -485,7 +486,7 @@ class ezcGraphMatrix
                 }
             }
 
-            for ( $j = $i + 1; $j < $this->rows; ++$j ) 
+            for ( $j = $i + 1; $j < $this->rows; ++$j )
             {
                 $l->set( $j, $i, $this->matrix[$j][$i] );
                 for ( $k = 0; $k <= ( $i - 1 ); ++$k )
@@ -496,25 +497,25 @@ class ezcGraphMatrix
             }
         }
 
-        return array( 
-            'l' => $l, 
+        return array(
+            'l' => $l,
             'r' => $r,
         );
     }
 
     /**
      * Returns a string representation of the matrix
-     * 
+     *
      * @return string
      */
     public function __toString()
     {
         $string = sprintf( "%d x %d matrix:\n", $this->rows, $this->columns );
 
-        for ( $i = 0; $i < $this->rows; ++$i ) 
+        for ( $i = 0; $i < $this->rows; ++$i )
         {
             $string .= '| ';
-            for ( $j = 0; $j < $this->columns; ++$j ) 
+            for ( $j = 0; $j < $this->columns; ++$j )
             {
                 $string .= sprintf( '%04.2F ', $this->get( $i, $j ) );
             }

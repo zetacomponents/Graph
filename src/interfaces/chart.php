@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -43,42 +43,42 @@ abstract class ezcGraphChart
 
     /**
      * Contains all general chart options
-     * 
+     *
      * @var ezcGraphChartConfig
      */
     protected $options;
 
     /**
      * Contains subelelemnts of the chart like legend and axes
-     * 
+     *
      * @var array(ezcGraphChartElement)
      */
     protected $elements = array();
 
     /**
      * Contains the data of the chart
-     * 
+     *
      * @var ezcGraphChartDataContainer
      */
     protected $data;
 
     /**
      * Array containing chart properties
-     * 
+     *
      * @var array
      */
     protected $properties;
 
     /**
      * Contains the status wheather an element should be rendered
-     * 
+     *
      * @var array
      */
     protected $renderElement;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -117,7 +117,7 @@ abstract class ezcGraphChart
      *
      * Add a chart element to the chart and perform the required configuration
      * tasks for the chart element.
-     * 
+     *
      * @param string $name Element name
      * @param ezcGraphChartElement $element Chart element
      * @return void
@@ -134,7 +134,7 @@ abstract class ezcGraphChart
 
     /**
      * Options write access
-     * 
+     *
      * @throws ezcBasePropertyNotFoundException
      *          If Option could not be found
      * @throws ezcBaseValueException
@@ -144,7 +144,7 @@ abstract class ezcGraphChart
      * @return void
      * @ignore
      */
-    public function __set( $propertyName, $propertyValue ) 
+    public function __set( $propertyName, $propertyValue )
     {
         switch ( $propertyName ) {
             case 'title':
@@ -170,7 +170,7 @@ abstract class ezcGraphChart
                     $this->properties['renderer']->setDriver( $this->driver );
                     return $this->properties['renderer'];
                 }
-                else 
+                else
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'ezcGraphRenderer' );
                 }
@@ -182,7 +182,7 @@ abstract class ezcGraphChart
                     $this->properties['renderer']->setDriver( $this->driver );
                     return $this->properties['driver'];
                 }
-                else 
+                else
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'ezcGraphDriver' );
                 }
@@ -219,7 +219,7 @@ abstract class ezcGraphChart
 
     /**
      * Set colors and border fro this element
-     * 
+     *
      * @param ezcGraphPalette $palette Palette
      * @return void
      */
@@ -235,9 +235,9 @@ abstract class ezcGraphChart
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -268,14 +268,14 @@ abstract class ezcGraphChart
 
     /**
      * Returns the default display type of the current chart type.
-     * 
+     *
      * @return int Display type
      */
     abstract public function getDefaultDisplayType();
 
     /**
      * Return filename of rendered file, and false if no file was yet rendered.
-     * 
+     *
      * @return mixed
      */
     public function getRenderedFile()
@@ -285,10 +285,10 @@ abstract class ezcGraphChart
 
     /**
      * Renders this chart
-     * 
-     * Creates basic visual chart elements from the chart to be processed by 
+     *
+     * Creates basic visual chart elements from the chart to be processed by
      * the renderer.
-     * 
+     *
      * @param int $width
      * @param int $height
      * @param string $file
@@ -298,10 +298,10 @@ abstract class ezcGraphChart
 
     /**
      * Renders this chart to direct output
-     * 
-     * Does the same as ezcGraphChart::render(), but renders directly to 
+     *
+     * Does the same as ezcGraphChart::render(), but renders directly to
      * output and not into a file.
-     * 
+     *
      * @param int $width
      * @param int $height
      * @return void

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,23 +33,23 @@ abstract class ezcGraphDriver
 {
     /**
      * Driveroptions
-     * 
+     *
      * @var ezcDriverOptions
      */
     protected $options;
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
      */
     abstract public function __construct( array $options = array() );
-    
+
     /**
      * Options write access
-     * 
+     *
      * @throws ezcBasePropertyNotFoundException
      *          If Option could not be found
      * @throws ezcBaseValueException
@@ -59,7 +59,7 @@ abstract class ezcGraphDriver
      * @return mixed
      * @ignore
      */
-    public function __set( $propertyName, $propertyValue ) 
+    public function __set( $propertyName, $propertyValue )
     {
         switch ( $propertyName ) {
             case 'options':
@@ -80,9 +80,9 @@ abstract class ezcGraphDriver
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -102,18 +102,18 @@ abstract class ezcGraphDriver
     /**
      * Reduces the size of a polygon
      *
-     * The method takes a polygon defined by a list of points and reduces its 
+     * The method takes a polygon defined by a list of points and reduces its
      * size by moving all lines to the middle by the given $size value.
      *
-     * The detection of the inner side of the polygon depends on the angle at 
-     * each edge point. This method will always work for 3 edged polygones, 
-     * because the smaller angle will always be on the inner side. For 
+     * The detection of the inner side of the polygon depends on the angle at
+     * each edge point. This method will always work for 3 edged polygones,
+     * because the smaller angle will always be on the inner side. For
      * polygons with more then 3 edges this method may fail. For ezcGraph this
-     * is a valid simplification, because we do not have any polygones which 
+     * is a valid simplification, because we do not have any polygones which
      * have an inner angle >= 180 degrees.
-     * 
-     * @param array(ezcGraphCoordinate) $points 
-     * @param float $size 
+     *
+     * @param array(ezcGraphCoordinate) $points
+     * @param float $size
      * @throws ezcGraphReducementFailedException
      * @return array( ezcGraphCoordinate )
      */
@@ -142,7 +142,7 @@ abstract class ezcGraphDriver
             if ( ( $vectors[$i]->x == $vectors[$i]->y ) && ( $vectors[$i]->x == 0 ) )
             {
                 $pointCount--;
-                if ( $i === 0 ) 
+                if ( $i === 0 )
                 {
                     $points = array_slice( $points, $i + 1 );
                 }
@@ -157,9 +157,9 @@ abstract class ezcGraphDriver
             }
         }
 
-        // Remove vectors and appendant point, if local angle equals zero 
+        // Remove vectors and appendant point, if local angle equals zero
         // dergrees.
-        for ( $i = 0; $i < $pointCount; ++$i ) 
+        for ( $i = 0; $i < $pointCount; ++$i )
         {
             $nextPoint = ( $i + 1 ) % $pointCount;
 
@@ -189,22 +189,22 @@ abstract class ezcGraphDriver
         // Determine one of the angles - we need to know where the smaller
         // angle is, to determine if the inner side of the polygon is on
         // the left or right hand.
-        // 
+        //
         // This is a valid simplification for ezcGraph(, for now).
-        // 
+        //
         // The sign of the scalar products results indicates on which site
-        // the smaller angle is, when comparing the orthogonale vector of 
+        // the smaller angle is, when comparing the orthogonale vector of
         // one of the vectors with the other. Why? .. use pen and paper ..
-        // 
-        // It is sufficant to do this once before iterating over the points, 
-        // because the inner side of the polygon is on the same side of the 
+        //
+        // It is sufficant to do this once before iterating over the points,
+        // because the inner side of the polygon is on the same side of the
         // point for each point.
         $last = 0;
         $next = 1;
 
-        $sign = ( 
+        $sign = (
                 -$vectors[$last]->y * $vectors[$next]->x +
-                $vectors[$last]->x * $vectors[$next]->y 
+                $vectors[$last]->x * $vectors[$next]->y
             ) < 0 ? 1 : -1;
 
         // Move points to center
@@ -230,19 +230,19 @@ abstract class ezcGraphDriver
             $lastVector = clone $vectors[$last];
             $lastVector->scalar( -1 );
 
-            // Calculate new point: Move point to the center site of the 
-            // polygon using the normalized orthogonal vectors next to the 
+            // Calculate new point: Move point to the center site of the
+            // polygon using the normalized orthogonal vectors next to the
             // point and the size as distance to move.
             // point + v + size / tan( angle / 2 ) * startVector
             $newPoint = clone $vectors[$next];
-            $v  ->add( 
+            $v  ->add(
                 $newPoint
-                    ->scalar( 
-                        $size / 
-                        tan( 
+                    ->scalar(
+                        $size /
+                        tan(
                             $lastVector->angle( $vectors[$next] ) / 2
-                        ) 
-                    ) 
+                        )
+                    )
             );
 
             // A fast guess: If the movement of the point exceeds the length of
@@ -270,23 +270,23 @@ abstract class ezcGraphDriver
     /**
      * Reduce the size of an ellipse
      *
-     * The method returns a the edgepoints and angles for an ellipse where all 
-     * borders are moved to the inner side of the ellipse by the give $size 
+     * The method returns a the edgepoints and angles for an ellipse where all
+     * borders are moved to the inner side of the ellipse by the give $size
      * value.
      *
-     * The method returns an 
+     * The method returns an
      * array (
      *      'center' => (ezcGraphCoordinate) New center point,
      *      'start' => (ezcGraphCoordinate) New outer start point,
      *      'end' => (ezcGraphCoordinate) New outer end point,
      * )
-     * 
-     * @param ezcGraphCoordinate $center 
+     *
+     * @param ezcGraphCoordinate $center
      * @param float $width
      * @param float $height
-     * @param float $startAngle 
-     * @param float $endAngle 
-     * @param float $size 
+     * @param float $startAngle
+     * @param float $endAngle
+     * @param float $size
      * @throws ezcGraphReducementFailedException
      * @return array
      */
@@ -316,7 +316,7 @@ abstract class ezcGraphDriver
         $oldStartPoint->add( $center );
         $oldEndPoint->add( $center );
 
-        // Use orthogonal vectors of normalized ellipse spanning vectors to 
+        // Use orthogonal vectors of normalized ellipse spanning vectors to
         $v = clone $unifiedStartVector;
         $v->rotateClockwise()->scalar( $size );
 
@@ -325,7 +325,7 @@ abstract class ezcGraphDriver
         $centerMovement = clone $unifiedStartVector;
         $newCenter = $v->add( $centerMovement->scalar( $size / tan( ( $endAngle - $startAngle ) / 2 ) ) )->add( $center );
 
-        // Test if center is still inside the ellipse, otherwise the sector 
+        // Test if center is still inside the ellipse, otherwise the sector
         // was to small to be reduced
         $innerBoundingBoxSize = 0.7 * min( $width, $height );
         if ( ( $newCenter->x < ( $center->x + $innerBoundingBoxSize ) ) &&
@@ -386,12 +386,12 @@ abstract class ezcGraphDriver
             }
         }
 
-        // Use start spanning vector and its orthogonal vector to calculate 
+        // Use start spanning vector and its orthogonal vector to calculate
         // new start point
         $newStartPoint = clone $oldStartPoint;
 
         // Create tangent vector from tangent angle
-        
+
         // Ellipse tangent factor
         $ellipseTangentFactor = sqrt(
             pow( $height, 2 ) *
@@ -408,16 +408,16 @@ abstract class ezcGraphDriver
         $innerVector = clone $unifiedStartVector;
         $innerVector->scalar( $size )->scalar( -1 );
 
-        $newStartPoint->add( $innerVector)->add( $ellipseTangentVector->scalar( $size ) );
+        $newStartPoint->add( $innerVector )->add( $ellipseTangentVector->scalar( $size ) );
         $newStartVector = clone $startVector;
         $newStartVector->add( $ellipseTangentVector );
 
-        // Use end spanning vector and its orthogonal vector to calculate 
+        // Use end spanning vector and its orthogonal vector to calculate
         // new end point
         $newEndPoint = clone $oldEndPoint;
 
         // Create tangent vector from tangent angle
-        
+
         // Ellipse tangent factor
         $ellipseTangentFactor = sqrt(
             pow( $height, 2 ) *
@@ -448,8 +448,8 @@ abstract class ezcGraphDriver
     }
 
     /**
-     * Draws a single polygon. 
-     * 
+     * Draws a single polygon.
+     *
      * @param array $points Point array
      * @param ezcGraphColor $color Polygon color
      * @param mixed $filled Filled
@@ -457,10 +457,10 @@ abstract class ezcGraphDriver
      * @return void
      */
     abstract public function drawPolygon( array $points, ezcGraphColor $color, $filled = true, $thickness = 1. );
-    
+
     /**
-     * Draws a line 
-     * 
+     * Draws a line
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Line color
@@ -468,24 +468,24 @@ abstract class ezcGraphDriver
      * @return void
      */
     abstract public function drawLine( ezcGraphCoordinate $start, ezcGraphCoordinate $end, ezcGraphColor $color, $thickness = 1. );
-    
+
     /**
      * Returns boundings of text depending on the available font extension
-     * 
+     *
      * @param float $size Textsize
      * @param ezcGraphFontOptions $font Font
      * @param string $text Text
      * @return ezcGraphBoundings Boundings of text
      */
     abstract protected function getTextBoundings( $size, ezcGraphFontOptions $font, $text );
-    
+
     /**
      * Test if string fits in a box with given font size
      *
      * This method splits the text up into tokens and tries to wrap the text
      * in an optimal way to fit in the Box defined by width and height.
-     * 
-     * If the text fits into the box an array with lines is returned, which 
+     *
+     * If the text fits into the box an array with lines is returned, which
      * can be used to render the text later:
      *  array(
      *      // Lines
@@ -536,7 +536,7 @@ abstract class ezcGraphDriver
                 // Everything is ok - put token in this line
                 $lines[$line][] = $token;
             }
-            
+
             // Return false if text exceeds vertical limit
             if ( $size > $height )
             {
@@ -559,19 +559,19 @@ abstract class ezcGraphDriver
      * If it is allow to shortened the string, this method tries to extract as
      * many chars as possible to display a decent amount of characters.
      *
-     * If no complete token (word) does fit, the largest possible amount of 
+     * If no complete token (word) does fit, the largest possible amount of
      * chars from the first word are taken. If the amount of chars is bigger
      * then strlen( shortenedStringPostFix ) * 2 the last chars are replace by
      * the postfix.
      *
-     * If one complete word fits the box as many words are taken as possible 
+     * If one complete word fits the box as many words are taken as possible
      * including a appended shortenedStringPostFix.
-     * 
-     * @param mixed $string 
-     * @param ezcGraphCoordinate $position 
-     * @param mixed $width 
-     * @param mixed $height 
-     * @param mixed $size 
+     *
+     * @param mixed $string
+     * @param ezcGraphCoordinate $position
+     * @param mixed $width
+     * @param mixed $height
+     * @param mixed $size
      * @access protected
      * @return void
      */
@@ -580,9 +580,9 @@ abstract class ezcGraphDriver
         $tokens = preg_split( '/\s+/', $string );
 
         // Try to fit a complete word first
-        $boundings = $this->getTextBoundings( 
-            $size, 
-            $this->options->font, 
+        $boundings = $this->getTextBoundings(
+            $size,
+            $this->options->font,
             reset( $tokens ) . ( $postfix = $this->options->autoShortenStringPostFix )
         );
 
@@ -635,7 +635,7 @@ abstract class ezcGraphDriver
 
             for ( $i = 2; $i < count( $tokens ); ++$i )
             {
-                $string = implode( ' ', array_slice( $tokens, 0, $i ) ) . 
+                $string = implode( ' ', array_slice( $tokens, 0, $i ) ) .
                     $postfix;
 
                 $boundings = $this->getTextBoundings( $size, $this->options->font, $string );
@@ -659,7 +659,7 @@ abstract class ezcGraphDriver
 
     /**
      * Writes text in a box of desired size
-     * 
+     *
      * @param string $string Text
      * @param ezcGraphCoordinate $position Top left position
      * @param float $width Width of text box
@@ -669,10 +669,10 @@ abstract class ezcGraphDriver
      * @return void
      */
     abstract public function drawTextBox( $string, ezcGraphCoordinate $position, $width, $height, $align, ezcGraphRotation $rotation = null );
-    
+
     /**
      * Draws a sector of cirlce
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of circle
      * @param mixed $width Width
      * @param mixed $height Height
@@ -683,10 +683,10 @@ abstract class ezcGraphDriver
      * @return void
      */
     abstract public function drawCircleSector( ezcGraphCoordinate $center, $width, $height, $startAngle, $endAngle, ezcGraphColor $color, $filled = true );
-    
+
     /**
      * Draws a circular arc
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param integer $width Width of ellipse
      * @param integer $height Height of ellipse
@@ -698,10 +698,10 @@ abstract class ezcGraphDriver
      * @return void
      */
     abstract public function drawCircularArc( ezcGraphCoordinate $center, $width, $height, $size, $startAngle, $endAngle, ezcGraphColor $color, $filled = true );
-    
+
     /**
-     * Draw circle 
-     * 
+     * Draw circle
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param mixed $width Width of ellipse
      * @param mixed $height height of ellipse
@@ -710,10 +710,10 @@ abstract class ezcGraphDriver
      * @return void
      */
     abstract public function drawCircle( ezcGraphCoordinate $center, $width, $height, ezcGraphColor $color, $filled = true );
-    
+
     /**
-     * Draw an image 
-     * 
+     * Draw an image
+     *
      * @param mixed $file Image file
      * @param ezcGraphCoordinate $position Top left position
      * @param mixed $width Width of image in destination image
@@ -724,7 +724,7 @@ abstract class ezcGraphDriver
 
     /**
      * Return mime type for current image format
-     * 
+     *
      * @return string
      */
     abstract public function getMimeType();
@@ -732,10 +732,10 @@ abstract class ezcGraphDriver
     /**
      * Render image directly to output
      *
-     * The method renders the image directly to the standard output. You 
-     * normally do not want to use this function, because it makes it harder 
+     * The method renders the image directly to the standard output. You
+     * normally do not want to use this function, because it makes it harder
      * to proper cache the generated graphs.
-     * 
+     *
      * @return void
      */
     public function renderToOutput()
@@ -746,7 +746,7 @@ abstract class ezcGraphDriver
 
     /**
      * Finally save image
-     * 
+     *
      * @param string $file Destination filename
      * @return void
      */

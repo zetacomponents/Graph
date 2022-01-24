@@ -73,11 +73,8 @@
  * @package Graph
  * @mainclass
  */
-class ezcGraphRenderer3d
-    extends
-        ezcGraphRenderer
-    implements
-        ezcGraphStackedBarsRenderer
+class ezcGraphRenderer3d extends ezcGraphRenderer implements
+    ezcGraphStackedBarsRenderer
 {
 
     /**
@@ -352,7 +349,7 @@ class ezcGraphRenderer3d
         );
 
         $pieChartHeight = min(
-            $radius * 2 + $radius / max( 1, count ( $this->pieSegmentLabels[0] ), count( $this->pieSegmentLabels[1] ) ) * 4,
+            $radius * 2 + $radius / max( 1, count( $this->pieSegmentLabels[0] ), count( $this->pieSegmentLabels[1] ) ) * 4,
             $boundings->height
         );
         $pieChartYPosition = $boundings->y0 + ( ( $boundings->height ) - $pieChartHeight ) / 2;
@@ -403,12 +400,12 @@ class ezcGraphRenderer3d
                         // If vertical distance to center is greater then the
                         // radius, use the centerline for the horizontal
                         // position
-                        ? max (
+                        ? max(
                             5,
                             abs( $label[0]->x - $center->x )
                         )
                         // Else place the label outside of the pie chart
-                        : ( cos ( asin ( $verticalDistance ) ) * $radius +
+                        : ( cos( asin( $verticalDistance ) ) * $radius +
                             $symbolSize * (int) $this->options->showSymbol
                         )
                     ),
@@ -441,7 +438,8 @@ class ezcGraphRenderer3d
                     );
                 }
 
-                $this->addElementReference( $label[2],
+                $this->addElementReference(
+                    $label[2],
                     $this->driver->drawTextBox(
                         $label[1],
                         new ezcGraphCoordinate(
@@ -678,7 +676,8 @@ class ezcGraphRenderer3d
         // Draw circle sector for front
         foreach ( $this->circleSectors as $circleSector )
         {
-            $this->addElementReference( $circleSector['context'],
+            $this->addElementReference(
+                $circleSector['context'],
                 $this->driver->drawCircleSector(
                     $circleSector['center'],
                     $circleSector['width'],
@@ -702,7 +701,8 @@ class ezcGraphRenderer3d
                     $this->options->pieChartGleamColor->transparent( $this->options->pieChartGleam )
                 );
 
-                $this->addElementReference( $circleSector['context'],
+                $this->addElementReference(
+                    $circleSector['context'],
                     $this->driver->drawCircleSector(
                         $circleSector['center'],
                         $circleSector['width'] - $this->options->pieChartGleamBorder * 2,
@@ -786,7 +786,8 @@ class ezcGraphRenderer3d
     {
         foreach ( $this->linePostSymbols as $symbol )
         {
-            $this->addElementReference( $symbol['context'],
+            $this->addElementReference(
+                $symbol['context'],
                 $this->drawSymbol(
                     $symbol['boundings'],
                     $symbol['color'],
@@ -1116,7 +1117,6 @@ class ezcGraphRenderer3d
         $barCenterTop = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset + $barWidth / 2,
             $this->dataBoundings->y0 + $this->yAxisSpace + $position->y * ( $this->dataBoundings->y1 - ( $this->dataBoundings->y0 + 2 * $this->yAxisSpace ) )
-
         );
         $barCenterBottom = new ezcGraphCoordinate(
             $this->dataBoundings->x0 + $this->xAxisSpace + $position->x * ( $this->dataBoundings->x1 - ( $this->dataBoundings->x0 + 2 * $this->xAxisSpace ) ) + $offset + $barWidth / 2,
@@ -1349,7 +1349,8 @@ class ezcGraphRenderer3d
 
         foreach ( $this->barPostProcessing as $bar )
         {
-            $this->addElementReference( $bar['context'],
+            $this->addElementReference(
+                $bar['context'],
                 call_user_func_array(
                     array( $this->driver, $bar['method'] ),
                     $bar['parameters']
@@ -1507,7 +1508,6 @@ class ezcGraphRenderer3d
             );
         }
 
-
         // Draw line
         $this->driver->drawPolygon(
             $linePolygonPoints,
@@ -1610,10 +1610,12 @@ class ezcGraphRenderer3d
         {
             $this->driver->drawTextBox(
                 $text,
-                $this->get3dCoordinate( new ezcGraphCoordinate(
-                    $dataPoint->x - $width / 2,
-                    $dataPoint->y - $size - $font->padding - $this->options->symbolSize
-                ), $endDepth ),
+                $this->get3dCoordinate(
+                    new ezcGraphCoordinate(
+                        $dataPoint->x - $width / 2,
+                        $dataPoint->y - $size - $font->padding - $this->options->symbolSize
+                    ), $endDepth
+                ),
                 $width * $this->xDepthFactor,
                 $size,
                 ezcGraph::CENTER | ezcGraph::BOTTOM
@@ -1623,10 +1625,12 @@ class ezcGraphRenderer3d
         {
             $this->driver->drawTextBox(
                 $text,
-                $this->get3dCoordinate( new ezcGraphCoordinate(
-                    $dataPoint->x - $width / 2,
-                    $dataPoint->y + $font->padding + $this->options->symbolSize
-                ), $endDepth ),
+                $this->get3dCoordinate(
+                    new ezcGraphCoordinate(
+                        $dataPoint->x - $width / 2,
+                        $dataPoint->y + $font->padding + $this->options->symbolSize
+                    ), $endDepth
+                ),
                 $width * $this->xDepthFactor,
                 $size,
                 ezcGraph::CENTER | ezcGraph::TOP

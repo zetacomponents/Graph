@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -45,11 +45,11 @@ class ezcGraphLinearGradient extends ezcGraphColor
 {
     /**
      * Constructor
-     * 
-     * @param ezcGraphCoordinate $startPoint 
-     * @param ezcGraphCoordinate $endPoint 
-     * @param ezcGraphColor $startColor 
-     * @param ezcGraphColor $endColor 
+     *
+     * @param ezcGraphCoordinate $startPoint
+     * @param ezcGraphCoordinate $endPoint
+     * @param ezcGraphColor $startColor
+     * @param ezcGraphColor $endColor
      * @return void
      */
     public function __construct( ezcGraphCoordinate $startPoint, ezcGraphCoordinate $endPoint, ezcGraphColor $startColor, ezcGraphColor $endColor )
@@ -61,10 +61,10 @@ class ezcGraphLinearGradient extends ezcGraphColor
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -106,9 +106,9 @@ class ezcGraphLinearGradient extends ezcGraphColor
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -138,13 +138,14 @@ class ezcGraphLinearGradient extends ezcGraphColor
 
     /**
      * Returns a unique string representation for the gradient.
-     * 
+     *
      * @access public
      * @return void
      */
     public function __toString()
     {
-        return sprintf( 'LinearGradient_%d_%d_%d_%d_%02x%02x%02x%02x_%02x%02x%02x%02x',
+        return sprintf(
+            'LinearGradient_%d_%d_%d_%d_%02x%02x%02x%02x_%02x%02x%02x%02x',
             $this->properties['startPoint']->x,
             $this->properties['startPoint']->y,
             $this->properties['endPoint']->x,

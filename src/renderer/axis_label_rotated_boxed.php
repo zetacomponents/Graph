@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -104,7 +104,7 @@ class ezcGraphAxisRotatedBoxedLabelRenderer extends ezcGraphAxisRotatedLabelRend
                 $start->x + ( $end->x - $start->x ) * ( $step->position + $step->width ) / $this->widthModifier,
                 $start->y + ( $end->y - $start->y ) * ( $step->position + $step->width ) / $this->widthModifier
             );
-    
+
             $stepWidth = $step->width / $this->widthModifier;
 
             $stepSize = new ezcGraphCoordinate(
@@ -126,17 +126,17 @@ class ezcGraphAxisRotatedBoxedLabelRenderer extends ezcGraphAxisRotatedLabelRend
             {
                 $this->drawGrid( $renderer, $gridBoundings, $position, $stepSize, $axis->majorGrid );
             }
-            
+
             // Major step
             $this->drawStep( $renderer, $position, $this->direction, $axis->position, $this->majorStepSize, $axis->border );
         }
     }
-    
+
     /**
      * Modify chart data position
      *
      * Optionally additionally modify the coodinate of a data point
-     * 
+     *
      * @param ezcGraphCoordinate $coordinate Data point coordinate
      * @return ezcGraphCoordinate Modified coordinate
      */

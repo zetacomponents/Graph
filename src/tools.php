@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,10 +33,10 @@
 class ezcGraphTools
 {
     /**
-     * Create an XHtml image map from a chart with gd driver. The name of the 
+     * Create an XHtml image map from a chart with gd driver. The name of the
      * image map can be specified and will be ezcGraphImageMap otherwise.
-     * 
-     * @param ezcGraphChart $chart 
+     *
+     * @param ezcGraphChart $chart
      * @param string $name
      * @return string
      */
@@ -58,7 +58,7 @@ class ezcGraphTools
         {
             throw new ezcGraphToolsNotRenderedException( $chart );
         }
-    
+
         $imageMap = sprintf( "<map name=\"%s\">\n", $name );
 
         // Iterate over legends elements
@@ -81,7 +81,8 @@ class ezcGraphTools
                         $coordinateString .= sprintf( '%d,%d,', $coordinate->x, $coordinate->y );
                     }
 
-                    $imageMap .= sprintf( "\t<area shape=\"poly\" coords=\"%s\" href=\"%s\" alt=\"%s\" />\n",
+                    $imageMap .= sprintf(
+                        "\t<area shape=\"poly\" coords=\"%s\" href=\"%s\" alt=\"%s\" />\n",
                         substr( $coordinateString, 0, -1 ),
                         $url,
                         $objectName
@@ -110,7 +111,8 @@ class ezcGraphTools
                         $coordinateString .= sprintf( '%d,%d,', $coordinate->x, $coordinate->y );
                     }
 
-                    $imageMap .= sprintf( "\t<area shape=\"poly\" coords=\"%s\" href=\"%s\" alt=\"%s\" />\n",
+                    $imageMap .= sprintf(
+                        "\t<area shape=\"poly\" coords=\"%s\" href=\"%s\" alt=\"%s\" />\n",
                         substr( $coordinateString, 0, -1 ),
                         $url,
                         $datapoint
@@ -124,8 +126,8 @@ class ezcGraphTools
 
     /**
      * Add links to clickable SVG elements in a chart with SVG driver.
-     * 
-     * @param ezcGraphChart $chart 
+     *
+     * @param ezcGraphChart $chart
      * @return void
      */
     public static function linkSvgElements( ezcGraphChart $chart )

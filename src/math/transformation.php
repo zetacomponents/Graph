@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,7 +35,7 @@
  * There are some classes extending this basic tranformation class, to
  * give you more convinient access to the creation of such transformation
  * matrices, which are:
- * 
+ *
  * - ezcGraphRotation (rotations of objects)
  * - ezcGraphTranslation (moving of objects)
  *
@@ -48,10 +48,10 @@ class ezcGraphTransformation extends ezcGraphMatrix
     /**
      * Constructor
      *
-     * Creates a matrix with 3x3 dimensions. Optionally accepts an array to 
-     * define the initial matrix values. If no array is given an identity 
+     * Creates a matrix with 3x3 dimensions. Optionally accepts an array to
+     * define the initial matrix values. If no array is given an identity
      * matrix is created.
-     * 
+     *
      * @param array $values
      * @return void
      */
@@ -63,13 +63,13 @@ class ezcGraphTransformation extends ezcGraphMatrix
     /**
      * Multiplies two matrices
      *
-     * Multiply current matrix with another matrix and returns the result 
+     * Multiply current matrix with another matrix and returns the result
      * matrix.
      *
      * @param ezcGraphMatrix $matrix Second factor
      * @return ezcGraphMatrix Result matrix
      */
-    public function multiply( ezcGraphMatrix $matrix ) 
+    public function multiply( ezcGraphMatrix $matrix )
     {
         $mColumns = $matrix->columns();
 
@@ -83,9 +83,9 @@ class ezcGraphTransformation extends ezcGraphMatrix
         $result = parent::multiply( $matrix );
 
         // The matrix dimensions stay the same, so that we can modify $this.
-        for ( $i = 0; $i < $this->rows; ++$i ) 
+        for ( $i = 0; $i < $this->rows; ++$i )
         {
-            for ( $j = 0; $j < $mColumns; ++$j ) 
+            for ( $j = 0; $j < $mColumns; ++$j )
             {
                 $this->set( $i, $j, $result->get( $i, $j ) );
             }
@@ -96,8 +96,8 @@ class ezcGraphTransformation extends ezcGraphMatrix
 
     /**
      * Transform a coordinate with the current transformation matrix.
-     * 
-     * @param ezcGraphCoordinate $coordinate 
+     *
+     * @param ezcGraphCoordinate $coordinate
      * @return ezcGraphCoordinate
      */
     public function transformCoordinate( ezcGraphCoordinate $coordinate )

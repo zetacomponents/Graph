@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -34,14 +34,14 @@
  *   $graph = new ezcGraphPieChart();
  *   $graph->title = 'Access statistics';
  *   $graph->legend = false;
- *   
+ *
  *   $graph->driver = new ezcGraphFlashDriver();
  *   $graph->driver->options->compresion = 0;
  *
  *   $graph->options->font = 'tutorial_font.fdb';
- *   
+ *
  *   $graph->driver->options->compression = 7;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -49,7 +49,7 @@
  *       'Safari' => 652,
  *       'Konqueror' => 474,
  *   ) );
- *   
+ *
  *   $graph->render( 400, 200, 'tutorial_driver_flash.swf' );
  * </code>
  *
@@ -59,7 +59,7 @@
  * @property float $circleResolution
  *           Resolution for circles, until I understand how to draw ellipses
  *           with SWFShape::curveTo()
- * 
+ *
  * @version //autogentag//
  * @package Graph
  */
@@ -67,7 +67,7 @@ class ezcGraphFlashDriverOptions extends ezcGraphDriverOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -82,9 +82,9 @@ class ezcGraphFlashDriverOptions extends ezcGraphDriverOptions
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void

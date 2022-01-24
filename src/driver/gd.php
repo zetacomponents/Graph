@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -24,12 +24,12 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 /**
- * Driver using PHPs ext/gd to draw images. The GD extension is available on 
- * nearly all PHP installations, but slow and produces slightly incorrect 
+ * Driver using PHPs ext/gd to draw images. The GD extension is available on
+ * nearly all PHP installations, but slow and produces slightly incorrect
  * results.
  *
- * The driver can make use of the different font extensions available with 
- * ext/gd. It is possible to use Free Type 2, native TTF and PostScript Type 1 
+ * The driver can make use of the different font extensions available with
+ * ext/gd. It is possible to use Free Type 2, native TTF and PostScript Type 1
  * fonts.
  *
  * The options of this driver are configured in {@link ezcGraphGdDriverOptions}
@@ -40,20 +40,20 @@
  *   $graph->palette = new ezcGraphPaletteEzGreen();
  *   $graph->title = 'Access statistics';
  *   $graph->legend = false;
- *   
+ *
  *   $graph->driver = new ezcGraphGdDriver();
  *   $graph->options->font = 'tutorial_font.ttf';
  *
  *   // Generate a Jpeg with lower quality. The default settings result in a image
  *   // with better quality.
- *   // 
+ *   //
  *   // The reduction of the supersampling to 1 will result in no anti aliasing of
  *   // the image. JPEG is not the optimal format for grapics, PNG is far better for
  *   // this kind of images.
  *   $graph->driver->options->supersampling = 1;
  *   $graph->driver->options->jpegQuality = 100;
  *   $graph->driver->options->imageFormat = IMG_JPEG;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -61,7 +61,7 @@
  *       'Safari' => 652,
  *       'Konqueror' => 474,
  *   ) );
- *   
+ *
  *   $graph->render( 400, 200, 'tutorial_dirver_gd.jpg' );
  * </code>
  *
@@ -74,14 +74,14 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
     /**
      * Image resource
-     * 
+     *
      * @var resource
      */
     protected $image;
 
     /**
      * Array with image files to draw
-     * 
+     *
      * @var array
      */
     protected $preProcessImages = array();
@@ -92,7 +92,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
      *          'text' => array( 'strings' ),
      *          'options' => ezcGraphFontOptions,
      *      )
-     * 
+     *
      * @var array
      */
     protected $strings = array();
@@ -102,14 +102,14 @@ class ezcGraphGdDriver extends ezcGraphDriver
      *  array(
      *      path => resource
      *  )
-     * 
+     *
      * @var array
      */
     protected $psFontResources = array();
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -123,18 +123,18 @@ class ezcGraphGdDriver extends ezcGraphDriver
     /**
      * Returns the image resource to draw on.
      *
-     * If no resource exists the image will be created. The size of the 
+     * If no resource exists the image will be created. The size of the
      * returned image depends on the supersampling factor and the size of the
      * chart.
-     * 
+     *
      * @return resource
      */
     protected function getImage()
     {
         if ( !isset( $this->image ) )
         {
-            $this->image = imagecreatetruecolor( 
-                $this->supersample( $this->options->width ), 
+            $this->image = imagecreatetruecolor(
+                $this->supersample( $this->options->width ),
                 $this->supersample( $this->options->height )
             );
 
@@ -144,8 +144,8 @@ class ezcGraphGdDriver extends ezcGraphDriver
             imagesavealpha( $this->image, true );
             imagefill( $this->image, 1, 1, $bgColor );
 
-            imagesetthickness( 
-                $this->image, 
+            imagesetthickness(
+                $this->image,
                 $this->options->supersampling
             );
         }
@@ -156,10 +156,10 @@ class ezcGraphGdDriver extends ezcGraphDriver
     /**
      * Allocates a color
      *
-     * This function tries to allocate the requested color. If the color 
+     * This function tries to allocate the requested color. If the color
      * already exists in the imaga it will be reused.
-     * 
-     * @param ezcGraphColor $color 
+     *
+     * @param ezcGraphColor $color
      * @return int Color index
      */
     protected function allocate( ezcGraphColor $color )
@@ -225,7 +225,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
      * Supersamples a single coordinate value.
      *
      * Applies supersampling to a single coordinate value.
-     * 
+     *
      * @param float $value Coordinate value
      * @return float Supersampled coordinate value
      */
@@ -236,8 +236,8 @@ class ezcGraphGdDriver extends ezcGraphDriver
     }
 
     /**
-     * Draws a single polygon. 
-     * 
+     * Draws a single polygon.
+     *
      * @param array $points Point array
      * @param ezcGraphColor $color Polygon color
      * @param mixed $filled Filled
@@ -285,10 +285,10 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
         return $points;
     }
-    
+
     /**
-     * Draws a line 
-     * 
+     * Draws a line
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Line color
@@ -301,31 +301,31 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
         $drawColor = $this->allocate( $color );
 
-        imagesetthickness( 
-            $this->image, 
+        imagesetthickness(
+            $this->image,
             $this->options->supersampling * $thickness
         );
 
-        imageline( 
-            $image, 
-            $this->supersample( $start->x ), 
-            $this->supersample( $start->y ), 
-            $this->supersample( $end->x ), 
-            $this->supersample( $end->y ), 
+        imageline(
+            $image,
+            $this->supersample( $start->x ),
+            $this->supersample( $start->y ),
+            $this->supersample( $end->x ),
+            $this->supersample( $end->y ),
             $drawColor
         );
 
-        imagesetthickness( 
-            $this->image, 
+        imagesetthickness(
+            $this->image,
             $this->options->supersampling
         );
 
         return array();
     }
-    
+
     /**
      * Returns boundings of text depending on the available font extension
-     * 
+     *
      * @param float $size Textsize
      * @param ezcGraphFontOptions $font Font
      * @param string $text Text
@@ -374,7 +374,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
     /**
      * Render text depending of font type and available font extensions
-     * 
+     *
      * @param resource $image Image resource
      * @param string $text Text
      * @param int $type Font type
@@ -404,16 +404,16 @@ class ezcGraphGdDriver extends ezcGraphDriver
         switch ( $type )
         {
             case ezcGraph::PS_FONT:
-                imagePsText( 
-                    $image, 
-                    $text, 
-                    $this->psFontResources[$path], 
-                    $size, 
-                    $this->allocate( $color ), 
-                    1, 
-                    $position->x + 
+                imagePsText(
+                    $image,
+                    $text,
+                    $this->psFontResources[$path],
+                    $size,
+                    $this->allocate( $color ),
+                    1,
+                    $position->x +
                         ( $rotation === null ? 0 : $rotation->get( 0, 2 ) ),
-                    $position->y + 
+                    $position->y +
                         ( $rotation === null ? 0 : $rotation->get( 1, 2 ) ),
                     0,
                     0,
@@ -426,12 +426,12 @@ class ezcGraphGdDriver extends ezcGraphDriver
                 {
                     case ezcBaseFeatures::hasFunction( 'imagefttext' ) && !$this->options->forceNativeTTF:
                         imageFtText(
-                            $image, 
+                            $image,
                             $size,
                             ( $rotation === null ? 0 : -$rotation->getRotation() ),
-                            $position->x + 
+                            $position->x +
                                 ( $rotation === null ? 0 : $rotation->get( 0, 2 ) ),
-                            $position->y + 
+                            $position->y +
                                 ( $rotation === null ? 0 : $rotation->get( 1, 2 ) ),
                             $this->allocate( $color ),
                             $path,
@@ -440,12 +440,12 @@ class ezcGraphGdDriver extends ezcGraphDriver
                         break;
                     case ezcBaseFeatures::hasFunction( 'imagettftext' ):
                         imageTtfText(
-                            $image, 
+                            $image,
                             $size,
                             ( $rotation === null ? 0 : -$rotation->getRotation() ),
-                            $position->x + 
+                            $position->x +
                                 ( $rotation === null ? 0 : $rotation->get( 0, 2 ) ),
-                            $position->y + 
+                            $position->y +
                                 ( $rotation === null ? 0 : $rotation->get( 1, 2 ) ),
                             $this->allocate( $color ),
                             $path,
@@ -459,7 +459,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
     /**
      * Writes text in a box of desired size
-     * 
+     *
      * @param string $string Text
      * @param ezcGraphCoordinate $position Top left position
      * @param float $width Width of text box
@@ -496,7 +496,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
                  ( $this->options->autoShortenString ) )
             {
                 $result = $this->tryFitShortenedString( $string, $position, $width, $height, $size = $this->options->font->minFontSize );
-            } 
+            }
             else
             {
                 throw new ezcGraphFontRenderingException( $string, $this->options->font->minFontSize, $width, $height );
@@ -522,21 +522,21 @@ class ezcGraphGdDriver extends ezcGraphDriver
             new ezcGraphCoordinate( $position->x, $position->y + $height ),
         );
     }
-    
+
     /**
      * Draw all collected texts
      *
-     * The texts are collected and their maximum possible font size is 
+     * The texts are collected and their maximum possible font size is
      * calculated. This function finally draws the texts on the image, this
      * delayed drawing has two reasons:
      *
-     * 1) This way the text strings are always on top of the image, what 
+     * 1) This way the text strings are always on top of the image, what
      *    results in better readable texts
      * 2) The maximum possible font size can be calculated for a set of texts
-     *    with the same font configuration. Strings belonging to one chart 
+     *    with the same font configuration. Strings belonging to one chart
      *    element normally have the same font configuration, so that all texts
      *    belonging to one element will have the same font size.
-     * 
+     *
      * @access protected
      * @return void
      */
@@ -644,8 +644,8 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
             if ( $text['font']->background !== false )
             {
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     $text['font']->background,
                     true
                 );
@@ -653,8 +653,8 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
             if ( $text['font']->border !== false )
             {
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     $text['font']->border,
                     false,
                     $text['font']->borderWidth
@@ -671,20 +671,20 @@ class ezcGraphGdDriver extends ezcGraphDriver
                 switch ( true )
                 {
                     case ( $text['align'] & ezcGraph::LEFT ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x, 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x,
                             $text['position']->y + $yOffset
                         );
                         break;
                     case ( $text['align'] & ezcGraph::RIGHT ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x + ( $text['width'] - $boundings->width ), 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x + ( $text['width'] - $boundings->width ),
                             $text['position']->y + $yOffset
                         );
                         break;
                     case ( $text['align'] & ezcGraph::CENTER ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x + ( ( $text['width'] - $boundings->width ) / 2 ), 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x + ( ( $text['width'] - $boundings->width ) / 2 ),
                             $text['position']->y + $yOffset
                         );
                         break;
@@ -696,9 +696,9 @@ class ezcGraphGdDriver extends ezcGraphDriver
                     $rotation = new ezcGraphRotation(
                         $text['rotation']->getRotation(),
                         new ezcGraphCoordinate(
-                            $text['rotation']->getCenter()->x + 
+                            $text['rotation']->getCenter()->x +
                                 $position->x - $text['position']->x,
-                            $text['rotation']->getCenter()->y + 
+                            $text['rotation']->getCenter()->y +
                                 $position->y - $text['position']->y
                         )
                     );
@@ -712,11 +712,11 @@ class ezcGraphGdDriver extends ezcGraphDriver
                 // Optionally draw text shadow
                 if ( $text['font']->textShadow === true )
                 {
-                    $this->renderText( 
-                        $image, 
+                    $this->renderText(
+                        $image,
                         $string,
-                        $text['font']->type, 
-                        $text['font']->path, 
+                        $text['font']->type,
+                        $text['font']->path,
                         $text['font']->textShadowColor,
                         new ezcGraphCoordinate(
                             $position->x + $text['font']->textShadowOffset,
@@ -726,14 +726,14 @@ class ezcGraphGdDriver extends ezcGraphDriver
                         $rotation
                     );
                 }
-                
+
                 // Finally draw text
-                $this->renderText( 
-                    $image, 
+                $this->renderText(
+                    $image,
                     $string,
-                    $text['font']->type, 
-                    $text['font']->path, 
-                    $text['font']->color, 
+                    $text['font']->type,
+                    $text['font']->path,
+                    $text['font']->color,
                     $position,
                     $size,
                     $rotation
@@ -746,7 +746,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
     /**
      * Draws a sector of cirlce
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of circle
      * @param mixed $width Width
      * @param mixed $height Height
@@ -779,18 +779,20 @@ class ezcGraphGdDriver extends ezcGraphDriver
         // the distance is lower then 1.
         //
         // See also: http://bugs.php.net/45552
-        $startPoint = new ezcGraphVector( 
-            $center->x + 
+        $startPoint = new ezcGraphVector(
+            $center->x +
                 ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ),
-            $center->y + 
+            $center->y +
                 ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 )
         );
-        if ( $startPoint->sub( new ezcGraphVector( 
-                $center->x + 
+        if ( $startPoint->sub(
+            new ezcGraphVector(
+                $center->x +
                     ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-                $center->y + 
+                $center->y +
                     ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 )
-             ) )->length() < 1 )
+            )
+        )->length() < 1 )
         {
             // Skip this circle sector
             return array();
@@ -798,29 +800,29 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
         if ( $filled )
         {
-            imagefilledarc( 
-                $image, 
-                $this->supersample( $center->x ), 
-                $this->supersample( $center->y ), 
-                $this->supersample( $width ), 
-                $this->supersample( $height ), 
-                $startAngle, 
-                $endAngle, 
-                $drawColor, 
-                IMG_ARC_PIE 
+            imagefilledarc(
+                $image,
+                $this->supersample( $center->x ),
+                $this->supersample( $center->y ),
+                $this->supersample( $width ),
+                $this->supersample( $height ),
+                $startAngle,
+                $endAngle,
+                $drawColor,
+                IMG_ARC_PIE
             );
         }
         else
         {
-            imagefilledarc( 
-                $image, 
-                $this->supersample( $center->x ), 
-                $this->supersample( $center->y ), 
-                $this->supersample( $width ), 
-                $this->supersample( $height ), 
-                $startAngle, 
-                $endAngle, 
-                $drawColor, 
+            imagefilledarc(
+                $image,
+                $this->supersample( $center->x ),
+                $this->supersample( $center->y ),
+                $this->supersample( $width ),
+                $this->supersample( $height ),
+                $startAngle,
+                $endAngle,
+                $drawColor,
                 IMG_ARC_PIE | IMG_ARC_NOFILL | IMG_ARC_EDGED
             );
         }
@@ -830,16 +832,16 @@ class ezcGraphGdDriver extends ezcGraphDriver
         for ( $angle = $startAngle; $angle < $endAngle; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x + 
+                $center->x +
                     ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ),
-                $center->y + 
+                $center->y +
                     ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
             );
         }
         $polygonArray[] = new ezcGraphCoordinate(
-            $center->x + 
+            $center->x +
                 ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-            $center->y + 
+            $center->y +
                 ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 )
         );
 
@@ -848,7 +850,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
     /**
      * Draws a single element of a circular arc
-     * 
+     *
      * ext/gd itself does not support something like circular arcs, so that
      * this functions draws rectangular polygons as a part of circular arcs
      * to interpolate them. This way it is possible to apply a linear gradient
@@ -868,38 +870,38 @@ class ezcGraphGdDriver extends ezcGraphDriver
         $this->drawPolygon(
             array(
                 new ezcGraphCoordinate(
-                    $center->x + 
+                    $center->x +
                         ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ),
-                    $center->y + 
+                    $center->y +
                         ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 )
                 ),
                 new ezcGraphCoordinate(
-                    $center->x + 
+                    $center->x +
                         ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ),
-                    $center->y + 
+                    $center->y +
                         ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 ) + $size
                 ),
                 new ezcGraphCoordinate(
-                    $center->x + 
+                    $center->x +
                         ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-                    $center->y + 
+                    $center->y +
                         ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 ) + $size
                 ),
                 new ezcGraphCoordinate(
-                    $center->x + 
+                    $center->x +
                         ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-                    $center->y + 
+                    $center->y +
                         ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 )
                 ),
             ),
-            $color->darken( $this->options->shadeCircularArc * ( 1 + cos ( deg2rad( $startAngle ) ) ) / 2 ),
+            $color->darken( $this->options->shadeCircularArc * ( 1 + cos( deg2rad( $startAngle ) ) ) / 2 ),
             true
         );
     }
- 
+
     /**
      * Draws a circular arc
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param integer $width Width of ellipse
      * @param integer $height Height of ellipse
@@ -922,7 +924,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
             $startAngle = $endAngle;
             $endAngle = $tmp;
         }
- 
+
         if ( $filled === true )
         {
             $startIteration = ceil( $startAngle / $this->options->detail ) * $this->options->detail;
@@ -931,13 +933,13 @@ class ezcGraphGdDriver extends ezcGraphDriver
             if ( $startAngle < $startIteration )
             {
                 // Draw initial step
-                $this->drawCircularArcStep( 
-                    $center, 
-                    $width, 
-                    $height, 
-                    $size, 
-                    $startAngle, 
-                    $startIteration, 
+                $this->drawCircularArcStep(
+                    $center,
+                    $width,
+                    $height,
+                    $size,
+                    $startAngle,
+                    $startIteration,
                     $color
                 );
             }
@@ -945,42 +947,42 @@ class ezcGraphGdDriver extends ezcGraphDriver
             // Draw all steps
             for ( ; $startIteration < $endIteration; $startIteration += $this->options->detail )
             {
-                $this->drawCircularArcStep( 
-                    $center, 
-                    $width, 
-                    $height, 
-                    $size, 
-                    $startIteration, 
-                    $startIteration + $this->options->detail, 
-                    $color 
+                $this->drawCircularArcStep(
+                    $center,
+                    $width,
+                    $height,
+                    $size,
+                    $startIteration,
+                    $startIteration + $this->options->detail,
+                    $color
                 );
             }
 
             if ( $endIteration < $endAngle )
             {
                 // Draw closing step
-                $this->drawCircularArcStep( 
-                    $center, 
-                    $width, 
-                    $height, 
-                    $size, 
-                    $endIteration, 
-                    $endAngle, 
-                    $color 
+                $this->drawCircularArcStep(
+                    $center,
+                    $width,
+                    $height,
+                    $size,
+                    $endIteration,
+                    $endAngle,
+                    $color
                 );
             }
         }
         else
         {
-            imagefilledarc( 
-                $image, 
-                $this->supersample( $center->x ), 
-                $this->supersample( $center->y ), 
-                $this->supersample( $width ), 
-                $this->supersample( $height ), 
-                $startAngle, 
-                $endAngle, 
-                $drawColor, 
+            imagefilledarc(
+                $image,
+                $this->supersample( $center->x ),
+                $this->supersample( $center->y ),
+                $this->supersample( $width ),
+                $this->supersample( $height ),
+                $startAngle,
+                $endAngle,
+                $drawColor,
                 IMG_ARC_PIE | IMG_ARC_NOFILL
             );
         }
@@ -990,41 +992,41 @@ class ezcGraphGdDriver extends ezcGraphDriver
         for ( $angle = $startAngle; $angle < $endAngle; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x + 
+                $center->x +
                     ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ),
-                $center->y + 
+                $center->y +
                     ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
             );
         }
         $polygonArray[] = new ezcGraphCoordinate(
-            $center->x + 
+            $center->x +
                 ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-            $center->y + 
+            $center->y +
                 ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 )
         );
 
         for ( $angle = $endAngle; $angle > $startAngle; $angle -= $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x + 
+                $center->x +
                     ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ) + $size,
-                $center->y + 
+                $center->y +
                     ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
             );
         }
         $polygonArray[] = new ezcGraphCoordinate(
-            $center->x + 
+            $center->x +
                 ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ) + $size,
-            $center->y + 
+            $center->y +
                 ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 )
         );
 
         return $polygonArray;
     }
-    
+
     /**
-     * Draw circle 
-     * 
+     * Draw circle
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param mixed $width Width of ellipse
      * @param mixed $height height of ellipse
@@ -1040,24 +1042,24 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
         if ( $filled )
         {
-            imagefilledellipse( 
-                $image, 
-                $this->supersample( $center->x ), 
-                $this->supersample( $center->y ), 
-                $this->supersample( $width ), 
-                $this->supersample( $height ), 
-                $drawColor 
+            imagefilledellipse(
+                $image,
+                $this->supersample( $center->x ),
+                $this->supersample( $center->y ),
+                $this->supersample( $width ),
+                $this->supersample( $height ),
+                $drawColor
             );
         }
         else
         {
-            imageellipse( 
-                $image, 
-                $this->supersample( $center->x ), 
-                $this->supersample( $center->y ), 
-                $this->supersample( $width ), 
-                $this->supersample( $height ), 
-                $drawColor 
+            imageellipse(
+                $image,
+                $this->supersample( $center->x ),
+                $this->supersample( $center->y ),
+                $this->supersample( $width ),
+                $this->supersample( $height ),
+                $drawColor
             );
         }
 
@@ -1065,26 +1067,26 @@ class ezcGraphGdDriver extends ezcGraphDriver
         for ( $angle = 0; $angle < 360; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x + 
+                $center->x +
                     ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ),
-                $center->y + 
+                $center->y +
                     ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
             );
         }
 
         return $polygonArray;
     }
-    
+
     /**
      * Draw an image
      *
-     * The actual drawing of the image is delayed, to not apply supersampling 
+     * The actual drawing of the image is delayed, to not apply supersampling
      * to the image. The image will normally be resized using the gd function
      * imagecopyresampled, which provides nice antialiased scaling, so that
      * additional supersampling would make the image look blurred. The delayed
-     * images will be pre-processed, so that they are draw in the back of 
+     * images will be pre-processed, so that they are draw in the back of
      * everything else.
-     * 
+     *
      * @param mixed $file Image file
      * @param ezcGraphCoordinate $position Top left position
      * @param mixed $width Width of image in destination image
@@ -1094,7 +1096,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
     public function drawImage( $file, ezcGraphCoordinate $position, $width, $height )
     {
         $this->preProcessImages[] = array(
-            'file' => $file, 
+            'file' => $file,
             'position' => clone $position,
             'width' => $width,
             'height' => $height,
@@ -1110,7 +1112,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
     /**
      * Draw all images to image resource handler
-     * 
+     *
      * @param resource $image Image to draw on
      * @return resource Updated image resource
      */
@@ -1137,7 +1139,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
     /**
      * Return mime type for current image format
-     * 
+     *
      * @return string
      */
     public function getMimeType()
@@ -1154,10 +1156,10 @@ class ezcGraphGdDriver extends ezcGraphDriver
     /**
      * Render image directly to output
      *
-     * The method renders the image directly to the standard output. You 
-     * normally do not want to use this function, because it makes it harder 
+     * The method renders the image directly to the standard output. You
+     * normally do not want to use this function, because it makes it harder
      * to proper cache the generated graphs.
-     * 
+     *
      * @return void
      */
     public function renderToOutput()
@@ -1168,7 +1170,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
     /**
      * Finally save image
-     * 
+     *
      * @param string $file Destination filename
      * @return void
      */
@@ -1254,7 +1256,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
      * Return the resource of the rendered result. You should not use this
      * method before you called either renderToOutput() or render(), as the
      * image may not be completely rendered until then.
-     * 
+     *
      * @return resource
      */
     public function getResource()

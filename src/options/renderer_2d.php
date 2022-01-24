@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -25,13 +25,13 @@
  */
 /**
  * Class containing the extended options available in 2d renderer.
- * 
+ *
  * <code>
  *   $graph = new ezcGraphPieChart();
  *   $graph->palette = new ezcGraphPaletteBlack();
  *   $graph->title = 'Access statistics';
  *   $graph->options->label = '%2$d (%3$.1f%%)';
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -40,26 +40,26 @@
  *       'Konqueror' => 474,
  *   ) );
  *   $graph->data['Access statistics']->highlight['Explorer'] = true;
- *   
+ *
  *   // $graph->renderer = new ezcGraphRenderer2d();
- *   
+ *
  *   $graph->renderer->options->moveOut = .2;
- *   
+ *
  *   $graph->renderer->options->pieChartOffset = 63;
- *   
+ *
  *   $graph->renderer->options->pieChartGleam = .3;
  *   $graph->renderer->options->pieChartGleamColor = '#FFFFFF';
  *   $graph->renderer->options->pieChartGleamBorder = 2;
- *   
+ *
  *   $graph->renderer->options->pieChartShadowSize = 3;
  *   $graph->renderer->options->pieChartShadowColor = '#000000';
- *   
+ *
  *   $graph->renderer->options->legendSymbolGleam = .5;
  *   $graph->renderer->options->legendSymbolGleamSize = .9;
  *   $graph->renderer->options->legendSymbolGleamColor = '#FFFFFF';
- *   
+ *
  *   $graph->renderer->options->pieChartSymbolColor = '#BABDB688';
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_pie_chart_pimped.svg' );
  * </code>
  *
@@ -69,7 +69,7 @@
  *           Used transparency for pie chart shadows.
  * @property float $pieChartShadowColor
  *           Color used for pie chart shadows.
- * 
+ *
  * @version //autogentag//
  * @package Graph
  */
@@ -77,7 +77,7 @@ class ezcGraphRenderer2dOptions extends ezcGraphRendererOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -93,9 +93,9 @@ class ezcGraphRenderer2dOptions extends ezcGraphRendererOptions
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -30,7 +30,7 @@
  * the palettes. The renderer transforms chart primitives (like the legend, or
  * one pie slice) into image primitives, which are then rendered by the
  * drivers. The way this transformation is done, and which effects are also
- * rendered is specified by the values in this option class. 
+ * rendered is specified by the values in this option class.
  *
  * The example below shows some basic bar rendering options, which are
  * available in all renderers. You mya want to check the tutorial sections
@@ -38,23 +38,23 @@
  *
  * <code>
  *   $wikidata = include 'tutorial_wikipedia_data.php';
- *   
+ *
  *   $graph = new ezcGraphBarChart();
  *   $graph->title = 'Wikipedia articles';
- *   
+ *
  *   // Add data
  *   foreach ( $wikidata as $language => $data )
  *   {
  *       $graph->data[$language] = new ezcGraphArrayDataSet( $data );
  *   }
- *   
+ *
  *   // $graph->renderer = new ezcGraphRenderer2d();
- *   
+ *
  *   $graph->renderer->options->barMargin = .2;
  *   $graph->renderer->options->barPadding = .2;
- *   
+ *
  *   $graph->renderer->options->dataBorder = 0;
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_bar_chart_options.svg' );
  * </code>
  *
@@ -74,10 +74,10 @@
  * - ezcGraphRenderer3dOptions
  *
  * @property float $maxLabelHeight
- *           Percent of chart height used as maximum height for pie chart 
+ *           Percent of chart height used as maximum height for pie chart
  *           labels.
  * @property bool $showSymbol
- *           Indicates wheather to show the line between pie elements and 
+ *           Indicates wheather to show the line between pie elements and
  *           labels.
  * @property float $symbolSize
  *           Size of symbols used to connect a label with a pie.
@@ -88,7 +88,7 @@
  * @property int $titleAlignement
  *           Alignement of box titles.
  * @property float $dataBorder
- *           Factor to darken border of data elements, like lines, bars and 
+ *           Factor to darken border of data elements, like lines, bars and
  *           pie segments.
  * @property float $barMargin
  *           Percentual distance between bar blocks.
@@ -124,7 +124,7 @@
  * @property bool $shortAxis
  *           Defines wheather to render the axis extending the chart boundings
  *           or stop them at the chart boundings. Deafults to false.
- * 
+ *
  * @version //autogentag//
  * @package Graph
  */
@@ -132,7 +132,7 @@ class ezcGraphRendererOptions extends ezcGraphChartOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -165,12 +165,11 @@ class ezcGraphRendererOptions extends ezcGraphChartOptions
         parent::__construct( $options );
     }
 
-
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void
@@ -185,13 +184,13 @@ class ezcGraphRendererOptions extends ezcGraphChartOptions
             case 'legendSymbolGleam':
                 if ( $propertyValue !== false &&
                      !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 0 ) || 
+                     ( $propertyValue < 0 ) ||
                      ( $propertyValue > 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'false OR 0 <= float <= 1' );
                 }
 
-                $this->properties[$propertyName] = ( 
+                $this->properties[$propertyName] = (
                     $propertyValue === false
                     ? false
                     : (float) $propertyValue );

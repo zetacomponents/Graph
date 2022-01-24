@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -24,7 +24,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 /**
- * Class for bar charts. Can make use of an unlimited amount of datasets and 
+ * Class for bar charts. Can make use of an unlimited amount of datasets and
  * will display them as bars by default.
  * X axis:
  *  - Labeled axis
@@ -45,14 +45,14 @@
  *          '300' => -34.14,
  *          '350' => 65,
  *          '400' => 123,
- *      )   
+ *      )
  *  );
  *
  *  // Render chart with default 2d renderer and default SVG driver
  *  $chart->render( 500, 200, 'bar_chart.svg' );
  * </code>
  *
- * Each chart consists of several chart elements which represents logical 
+ * Each chart consists of several chart elements which represents logical
  * parts of the chart and can be formatted independently. The bar chart
  * consists of:
  *  - title ( {@link ezcGraphChartElementText} )
@@ -70,7 +70,7 @@
  *
  * The chart itself also offers several options to configure the appearance. As
  * bar charts extend line charts the the extended configure options are
- * available in {@link ezcGraphLineChartOptions} extending the 
+ * available in {@link ezcGraphLineChartOptions} extending the
  * {@link ezcGraphChartOptions}.
  *
  * @property ezcGraphLineChartOptions $options
@@ -82,10 +82,9 @@
  */
 class ezcGraphBarChart extends ezcGraphLineChart
 {
- 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -99,7 +98,7 @@ class ezcGraphBarChart extends ezcGraphLineChart
 
     /**
      * Returns the default display type of the current chart type.
-     * 
+     *
      * @return int Display type
      */
     public function getDefaultDisplayType()

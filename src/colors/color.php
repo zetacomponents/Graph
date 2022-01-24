@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -25,10 +25,10 @@
  */
 
 /**
- * ezcGraphColor 
+ * ezcGraphColor
  *
  * Struct for representing colors in ezcGraph. A color is defined using the
- * common RGBA model with integer values between 0 and 255. An alpha value 
+ * common RGBA model with integer values between 0 and 255. An alpha value
  * of zero means full opacity, while 255 means full transparency.
  *
  * @property integer $red
@@ -47,7 +47,7 @@ class ezcGraphColor extends ezcBaseOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -63,10 +63,10 @@ class ezcGraphColor extends ezcBaseOptions
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -82,8 +82,8 @@ class ezcGraphColor extends ezcBaseOptions
             case 'green':
             case 'blue':
             case 'alpha':
-                if ( !is_numeric( $propertyValue ) || 
-                     ( $propertyValue < 0 ) || 
+                if ( !is_numeric( $propertyValue ) ||
+                     ( $propertyValue < 0 ) ||
                      ( $propertyValue > 255 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, '0 <= int <= 255' );
@@ -99,30 +99,30 @@ class ezcGraphColor extends ezcBaseOptions
 
     /**
      * Creates an ezcGraphColor object from a hexadecimal color representation
-     * 
+     *
      * @param mixed $string Hexadecimal color representation
      * @return ezcGraphColor
      */
-    static public function fromHex( $string ) 
+    static public function fromHex( $string )
     {
         // Remove trailing #
         if ( $string[0] === '#' )
         {
             $string = substr( $string, 1 );
         }
-        
+
         // Iterate over chunks and convert to integer
         $color = new ezcGraphColor();
         $keys = array( 'red', 'green', 'blue', 'alpha' );
-        foreach ( str_split( $string, 2) as $nr => $hexValue )
+        foreach ( str_split( $string, 2 ) as $nr => $hexValue )
         {
-            if ( isset( $keys[$nr] ) ) 
+            if ( isset( $keys[$nr] ) )
             {
                 $key = $keys[$nr];
                 $color->$key = hexdec( $hexValue ) % 256;
             }
         }
-        
+
         // Set missing values to zero
         for ( ++$nr; $nr < count( $keys ); ++$nr )
         {
@@ -135,7 +135,7 @@ class ezcGraphColor extends ezcBaseOptions
 
     /**
      * Creates an ezcGraphColor object from an array of integers
-     * 
+     *
      * @param array $array Array of integer color values
      * @return ezcGraphColor
      */
@@ -147,13 +147,13 @@ class ezcGraphColor extends ezcBaseOptions
         $nr = 0;
         foreach ( $array as $colorValue )
         {
-            if ( isset( $keys[$nr] ) ) 
+            if ( isset( $keys[$nr] ) )
             {
                 $key = $keys[$nr++];
                 $color->$key = ( (int) $colorValue ) % 256;
             }
         }
-        
+
         // Set missing values to zero
         for ( $nr; $nr < count( $keys ); ++$nr )
         {
@@ -166,7 +166,7 @@ class ezcGraphColor extends ezcBaseOptions
 
     /**
      * Creates an ezcGraphColor object from an array of floats
-     * 
+     *
      * @param array $array Array of float color values
      * @return ezcGraphColor
      */
@@ -178,13 +178,13 @@ class ezcGraphColor extends ezcBaseOptions
         $nr = 0;
         foreach ( $array as $colorValue )
         {
-            if ( isset( $keys[$nr] ) ) 
+            if ( isset( $keys[$nr] ) )
             {
                 $key = $keys[$nr++];
                 $color->$key = ( (float) $colorValue * 255 ) % 256;
             }
         }
-        
+
         // Set missing values to zero
         for ( $nr; $nr < count( $keys ); ++$nr )
         {
@@ -213,13 +213,13 @@ class ezcGraphColor extends ezcBaseOptions
      *   If an array of integers is provided as input teh value in each channel
      *   may be in the span [0 - 255] and is assigned to the color channels
      *   RGB(A). Up to four values are used from the array.
-     * 
+     *
      * - Array of floats
      *
      *   If an array of floats is provided as input teh value in each channel
      *   may be in the span [0 - 1] and is assigned to the color channels
      *   RGB(A). Up to four values are used from the array.
-     * 
+     *
      * @param mixed $color Some kind of color definition
      * @return ezcGraphColor
      */
@@ -239,8 +239,8 @@ class ezcGraphColor extends ezcBaseOptions
             if ( is_int( $testElement ) )
             {
                 return ezcGraphColor::fromIntegerArray( $color );
-            } 
-            else 
+            }
+            else
             {
                 return ezcGraphColor::fromFloatArray( $color );
             }
@@ -254,7 +254,7 @@ class ezcGraphColor extends ezcBaseOptions
     /**
      * Returns a copy of the current color made more transparent by the given
      * factor
-     * 
+     *
      * @param mixed $value  Percent to make color mor transparent
      * @return ezcGraphColor New color
      */
@@ -269,13 +269,13 @@ class ezcGraphColor extends ezcBaseOptions
 
     /**
      * Inverts and returns a copy of the current color
-     * 
+     *
      * @return ezcGraphColor New Color
      */
     public function invert()
     {
         $color = new ezcGraphColor();
-               
+
         $color->red   = 255 - $this->red;
         $color->green = 255 - $this->green;
         $color->blue  = 255 - $this->blue;
@@ -286,7 +286,7 @@ class ezcGraphColor extends ezcBaseOptions
 
     /**
      * Returns a copy of the current color darkened by the given factor
-     * 
+     *
      * @param float $value Percent to darken the color
      * @return ezcGraphColor New color
      */

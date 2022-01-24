@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -46,14 +46,14 @@
  *          '300' => -34.14,
  *          '350' => 65,
  *          '400' => 123,
- *      )   
+ *      )
  *  );
  *
  *  // Render chart with default 2d renderer and default SVG driver
  *  $chart->render( 500, 200, 'radar_chart.svg' );
  * </code>
  *
- * Each chart consists of several chart elements which represents logical 
+ * Each chart consists of several chart elements which represents logical
  * parts of the chart and can be formatted independently. The line chart
  * consists of:
  *  - title ( {@link ezcGraphChartElementText} )
@@ -66,8 +66,8 @@
  * accessing them as properties of the chart:
  *
  * The chart itself also offers several options to configure the appearance.
- * The extended configure options are available in 
- * {@link ezcGraphRadarChartOptions} extending the 
+ * The extended configure options are available in
+ * {@link ezcGraphRadarChartOptions} extending the
  * {@link ezcGraphChartOptions}.
  *
  * <code>
@@ -85,14 +85,14 @@ class ezcGraphRadarChart extends ezcGraphChart
 {
     /**
      * Store major grid color for child axis.
-     * 
+     *
      * @var ezcGraphColor
      */
     protected $childAxisColor;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -121,7 +121,7 @@ class ezcGraphRadarChart extends ezcGraphChart
 
     /**
      * Set colors and border fro this element
-     * 
+     *
      * @param ezcGraphPalette $palette Palette
      * @return void
      */
@@ -134,7 +134,7 @@ class ezcGraphRadarChart extends ezcGraphChart
 
     /**
      * Property write access
-     * 
+     *
      * @throws ezcBasePropertyNotFoundException
      *          If Option could not be found
      * @throws ezcBaseValueException
@@ -144,7 +144,7 @@ class ezcGraphRadarChart extends ezcGraphChart
      * @return void
      * @ignore
      */
-    public function __set( $propertyName, $propertyValue ) 
+    public function __set( $propertyName, $propertyValue )
     {
         switch ( $propertyName ) {
             case 'axis':
@@ -176,7 +176,7 @@ class ezcGraphRadarChart extends ezcGraphChart
                 {
                     parent::__set( $propertyName, $propertyValue );
                 }
-                else 
+                else
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'ezcGraphRadarRenderer' );
                 }
@@ -190,17 +190,17 @@ class ezcGraphRadarChart extends ezcGraphChart
      * Draws a single rotated axis
      *
      * Sets the axis label position depending on the axis rotation.
-     * 
-     * @param ezcGraphChartElementAxis $axis 
-     * @param ezcGraphBoundings $boundings 
-     * @param ezcGraphCoordinate $center 
-     * @param float $position 
-     * @param float $lastPosition 
+     *
+     * @param ezcGraphChartElementAxis $axis
+     * @param ezcGraphBoundings $boundings
+     * @param ezcGraphCoordinate $center
+     * @param float $position
+     * @param float $lastPosition
      * @return void
      */
     protected function drawRotatedAxis( ezcGraphChartElementAxis $axis, ezcGraphBoundings $boundings, ezcGraphCoordinate $center, $position, $lastPosition = null )
     {
-        // Set axis position depending on angle for better axis label 
+        // Set axis position depending on angle for better axis label
         // positioning
         $angle = $position * 2 * M_PI;
         switch ( (int) ( ( $position + .125 ) * 4 ) )
@@ -227,7 +227,7 @@ class ezcGraphRadarChart extends ezcGraphChart
         }
 
         // Do not draw axis label for last step
-        if ( abs( $position - 1 ) <= .001 ) 
+        if ( abs( $position - 1 ) <= .001 )
         {
             $axis->label = null;
         }
@@ -247,10 +247,10 @@ class ezcGraphRadarChart extends ezcGraphChart
     /**
      * Render the assigned data
      *
-     * Will renderer all charts data in the remaining boundings after drawing 
-     * all other chart elements. The data will be rendered depending on the 
+     * Will renderer all charts data in the remaining boundings after drawing
+     * all other chart elements. The data will be rendered depending on the
      * settings in the dataset.
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer
      * @param ezcGraphBoundings $boundings Remaining boundings
      * @return void
@@ -314,21 +314,21 @@ class ezcGraphRadarChart extends ezcGraphChart
             $lastPoint = false;
             foreach ( $data as $key => $value )
             {
-                $point = new ezcGraphCoordinate( 
+                $point = new ezcGraphCoordinate(
                     $this->elements['rotationAxis']->getCoordinate( $key ),
                     $this->elements['axis']->getCoordinate( $value )
-                ); 
+                );
 
-                /* Transformation required for 3d like renderers ... 
+                /* Transformation required for 3d like renderers ...
                  * which axis should transform here?
-                $point = $this->elements['xAxis']->axisLabelRenderer->modifyChartDataPosition( 
+                $point = $this->elements['xAxis']->axisLabelRenderer->modifyChartDataPosition(
                     $this->elements['yAxis']->axisLabelRenderer->modifyChartDataPosition(
-                        new ezcGraphCoordinate( 
+                        new ezcGraphCoordinate(
                             $this->elements['xAxis']->getCoordinate( $key ),
                             $this->elements['yAxis']->getCoordinate( $value )
                         )
                     )
-                ); 
+                );
                 // */
 
                 $renderer->drawRadarDataLine(
@@ -353,7 +353,7 @@ class ezcGraphRadarChart extends ezcGraphChart
 
     /**
      * Returns the default display type of the current chart type.
-     * 
+     *
      * @return int Display type
      */
     public function getDefaultDisplayType()
@@ -363,9 +363,9 @@ class ezcGraphRadarChart extends ezcGraphChart
 
     /**
      * Renders the basic elements of this chart type
-     * 
-     * @param int $width 
-     * @param int $height 
+     *
+     * @param int $width
+     * @param int $height
      * @return void
      */
     protected function renderElements( $width, $height )
@@ -429,10 +429,10 @@ class ezcGraphRadarChart extends ezcGraphChart
     /**
      * Render the line chart
      *
-     * Renders the chart into a file or stream. The width and height are 
+     * Renders the chart into a file or stream. The width and height are
      * needed to specify the dimensions of the resulting image. For direct
      * output use 'php://stdout' as output file.
-     * 
+     *
      * @param int $width Image width
      * @param int $height Image height
      * @param string $file Output file
@@ -453,8 +453,8 @@ class ezcGraphRadarChart extends ezcGraphChart
 
     /**
      * Renders this chart to direct output
-     * 
-     * Does the same as ezcGraphChart::render(), but renders directly to 
+     *
+     * Does the same as ezcGraphChart::render(), but renders directly to
      * output and not into a file.
      *
      * @param int $width
@@ -464,7 +464,7 @@ class ezcGraphRadarChart extends ezcGraphChart
      */
     public function renderToOutput( $width, $height )
     {
-        // @TODO: merge this function with render an deprecate ommit of third 
+        // @TODO: merge this function with render an deprecate ommit of third
         // argument in render() when API break is possible
         $this->renderElements( $width, $height );
         $this->renderer->render( null );

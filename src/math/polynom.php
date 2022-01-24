@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,11 +27,11 @@
 /**
  * Provides a class for generic operations on polynoms
  *
- * This class is mainly used for internal representation of polynoms in the 
+ * This class is mainly used for internal representation of polynoms in the
  * average dataset ezcGraphDataSetAveragePolynom.
  *
  * It provides only very basic mechanisms to work with polynoms, like adding of
- * polynomes and evaluating the polynom with a given number, to calculate a 
+ * polynomes and evaluating the polynom with a given number, to calculate a
  * point in the chart for a given value on the x axis.
  *
  * Beside this the __toString implementation may be used to echo the polynoms
@@ -39,17 +39,17 @@
  * datasets. The class does not provide any options to customize the output.
  *
  * The class can be used like:
- * 
+ *
  * <code>
  *  // Equivalent to: x^2 + .5
  *  $polynom = new ezcGraphPolynom( array( 2 => 1, 0 => .5 ) );
- *  
+ *
  *  // Calculate result for x = 1, echos: 1.5
  *  echo $polynom->evaluate( 1 ), PHP_EOL;
- *  
+ *
  *  // Build the sum with another polynom
  *  $polynom->add( new ezcGraphPolynom( array( 1 => 1 ) ) );
- *  
+ *
  *  // Print polynom, echos:
  *  // x^2 + x + 5.00e-1
  *  echo $polynom, PHP_EOL;
@@ -72,7 +72,7 @@ class ezcGraphPolynom
      *          (int) 1 => (float) .5,
      *          (int) 0 => (float) -3,
      *      )
-     * 
+     *
      * @var array
      */
     protected $values;
@@ -82,7 +82,7 @@ class ezcGraphPolynom
     /**
      * Constructor
      *
-     * Constructs a polynom object from given array, where the key is the 
+     * Constructs a polynom object from given array, where the key is the
      * exponent and the value the factor.
      * An example:
      *  Polynom:
@@ -93,7 +93,7 @@ class ezcGraphPolynom
      *          (int) 1 => (float) .5,
      *          (int) 0 => (float) -3,
      *      )
-     * 
+     *
      * @param array $values Array with values
      * @return ezcGraphPolynom
      */
@@ -109,7 +109,7 @@ class ezcGraphPolynom
      * Initialise a polygon
      *
      * Initialise a polygon of the given order. Sets all factors to 0.
-     * 
+     *
      * @param int $order Order of polygon
      * @return ezcGraphPolynom Created polynom
      */
@@ -125,7 +125,7 @@ class ezcGraphPolynom
 
     /**
      * Return factor for one exponent
-     * 
+     *
      * @param int $exponent Exponent
      * @return float Factor
      */
@@ -143,7 +143,7 @@ class ezcGraphPolynom
 
     /**
      * Set the factor for one exponent
-     * 
+     *
      * @param int $exponent Exponent
      * @param float $factor Factor
      * @return ezcGraphPolynom Modified polynom
@@ -157,7 +157,7 @@ class ezcGraphPolynom
 
     /**
      * Returns the order of the polynom
-     * 
+     *
      * @return int Polynom order
      */
     public function getOrder()
@@ -167,8 +167,8 @@ class ezcGraphPolynom
 
     /**
      * Adds polynom to current polynom
-     * 
-     * @param ezcGraphPolynom $polynom Polynom to add 
+     *
+     * @param ezcGraphPolynom $polynom Polynom to add
      * @return ezcGraphPolynom Modified polynom
      */
     public function add( ezcGraphPolynom $polynom )
@@ -188,7 +188,7 @@ class ezcGraphPolynom
 
     /**
      * Evaluate Polynom with a given value
-     * 
+     *
      * @param float $x Value
      * @return float Result
      */
@@ -205,7 +205,7 @@ class ezcGraphPolynom
 
     /**
      * Returns a string represenation of the polynom
-     * 
+     *
      * @return string String representation of polynom
      */
     public function __toString()

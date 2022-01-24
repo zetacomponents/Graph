@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -55,14 +55,14 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
 
     /**
      * Property array
-     * 
+     *
      * @var array
      */
     protected $properties;
 
     /**
      * Array which contains the data of the datapoint
-     * 
+     *
      * @var array
      */
     protected $data;
@@ -70,28 +70,28 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Current datapoint element
      * needed for iteration over datapoint with ArrayAccess
-     * 
+     *
      * @var mixed
      */
     protected $current;
 
     /**
      * Color palette used for datapoint colorization
-     * 
+     *
      * @var ezcGraphPalette
      */
     protected $pallet;
 
     /**
      * Array keys
-     * 
+     *
      * @var array
      */
     protected $keys;
 
     /**
      * Constructor
-     * 
+     *
      * @return void
      * @ignore
      */
@@ -114,7 +114,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
 
     /**
      * Options write access
-     * 
+     *
      * @throws ezcBasePropertyNotFoundException
      *          If Option could not be found
      * @throws ezcBaseValueException
@@ -158,7 +158,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Property get access.
      * Simply returns a given option.
-     * 
+     *
      * @param string $propertyName The name of the option to get.
      * @return mixed The option value.
      *
@@ -171,16 +171,16 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
         {
             return $this->properties[$propertyName];
         }
-        else 
+        else
         {
             throw new ezcBasePropertyNotFoundException( $propertyName );
         }
     }
-    
+
     /**
      * Returns true if the given datapoint exists
      * Allows isset() using ArrayAccess.
-     * 
+     *
      * @param string $key The key of the datapoint to get.
      * @return bool Wether the key exists.
      */
@@ -193,7 +193,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Returns the value for the given datapoint
      * Get an datapoint value by ArrayAccess.
-     * 
+     *
      * @param string $key The key of the datapoint to get.
      * @return float The datapoint value.
      */
@@ -206,7 +206,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Sets the value for a datapoint.
      * Sets an datapoint using ArrayAccess.
-     * 
+     *
      * @param string $key The kex of a datapoint to set.
      * @param float $value The value for the datapoint.
      * @return void
@@ -220,7 +220,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Unset an option.
      * Unsets an option using ArrayAccess.
-     * 
+     *
      * @param string $key The options to unset.
      * @return void
      *
@@ -238,10 +238,10 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Returns the currently selected datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return string The currently selected datapoint.
      */
     #[ReturnTypeWillChange]
@@ -259,7 +259,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Returns the next datapoint and selects it or false on the last datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -272,7 +272,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
         {
             return false;
         }
-        else 
+        else
         {
             return $this->data[$this->keys[$this->current]];
         }
@@ -281,10 +281,10 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Returns the key of the currently selected datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return string The key of the currently selected datapoint.
      */
     #[ReturnTypeWillChange]
@@ -296,7 +296,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
     /**
      * Returns if the current datapoint is valid.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -310,7 +310,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
 
     /**
      * Selects the very first datapoint and returns it.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *

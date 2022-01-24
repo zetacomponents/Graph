@@ -71,11 +71,10 @@
  * @package Graph
  * @mainclass
  */
-class ezcGraphRenderer2d
-    extends
-        ezcGraphRenderer
-    implements
-        ezcGraphRadarRenderer, ezcGraphStackedBarsRenderer, ezcGraphOdometerRenderer
+class ezcGraphRenderer2d extends ezcGraphRenderer implements
+    ezcGraphRadarRenderer,
+    ezcGraphStackedBarsRenderer,
+    ezcGraphOdometerRenderer
 {
 
     /**
@@ -316,7 +315,8 @@ class ezcGraphRenderer2d
                     $this->options->pieChartGleamColor->transparent( $this->options->pieChartGleam )
                 );
 
-                $this->addElementReference( $circleSector['context'],
+                $this->addElementReference(
+                    $circleSector['context'],
                     $this->driver->drawCircleSector(
                         $circleSector['center'],
                         $circleSector['width'] - $this->options->pieChartGleamBorder * 2,
@@ -341,7 +341,8 @@ class ezcGraphRenderer2d
                     $this->options->pieChartGleamColor->transparent( $this->options->pieChartGleam )
                 );
 
-                $this->addElementReference( $circleSector['context'],
+                $this->addElementReference(
+                    $circleSector['context'],
                     $this->driver->drawCircleSector(
                         $circleSector['center'],
                         $circleSector['width'] - $this->options->pieChartGleamBorder * 2,
@@ -387,7 +388,7 @@ class ezcGraphRenderer2d
         );
 
         $pieChartHeight = min(
-            $radius * 2 + $radius / max( 1, count ( $this->pieSegmentLabels[0] ), count( $this->pieSegmentLabels[1] ) ) * 4,
+            $radius * 2 + $radius / max( 1, count( $this->pieSegmentLabels[0] ), count( $this->pieSegmentLabels[1] ) ) * 4,
             $boundings->height
         );
         $pieChartYPosition = $boundings->y0 + ( ( $boundings->height ) - $pieChartHeight ) / 2;
@@ -436,12 +437,12 @@ class ezcGraphRenderer2d
                         // If vertical distance to center is greater then the
                         // radius, use the centerline for the horizontal
                         // position
-                        ? max (
+                        ? max(
                             5,
                             abs( $label[0]->x - $center->x )
                         )
                         // Else place the label outside of the pie chart
-                        : ( cos ( asin ( $verticalDistance ) ) * $radius +
+                        : ( cos( asin( $verticalDistance ) ) * $radius +
                             $symbolSize * (int) $this->options->showSymbol
                         )
                     ),
@@ -1442,10 +1443,12 @@ class ezcGraphRenderer2d
                     $width * ( 1 - $axis->axisSpace * 2 ) - $axis->labelMargin,
                     $axis->labelSize,
                     ezcGraph::TOP | ezcGraph::RIGHT,
-                    new ezcGraphRotation( $axis->labelRotation, new ezcGraphCoordinate(
-                        $position->x + $axis->labelSize / 2,
-                        $position->y - $axis->labelSize / 2
-                    ) )
+                    new ezcGraphRotation(
+                        $axis->labelRotation, new ezcGraphCoordinate(
+                            $position->x + $axis->labelSize / 2,
+                            $position->y - $axis->labelSize / 2
+                        )
+                    )
                 );
                 break;
             case ezcGraph::BOTTOM:
@@ -1458,10 +1461,12 @@ class ezcGraphRenderer2d
                     $width * ( 1 - $axis->axisSpace * 2 ) - $axis->labelMargin,
                     $axis->labelSize,
                     ezcGraph::TOP | ezcGraph::LEFT,
-                    new ezcGraphRotation( $axis->labelRotation, new ezcGraphCoordinate(
-                        $position->x + $axis->labelSize / 2,
-                        $position->y + $axis->labelSize / 2
-                    ) )
+                    new ezcGraphRotation(
+                        $axis->labelRotation, new ezcGraphCoordinate(
+                            $position->x + $axis->labelSize / 2,
+                            $position->y + $axis->labelSize / 2
+                        )
+                    )
                 );
                 break;
             case ezcGraph::LEFT:
@@ -1474,10 +1479,12 @@ class ezcGraphRenderer2d
                     $width - $axis->labelMargin,
                     $axis->labelSize,
                     ezcGraph::BOTTOM | ezcGraph::RIGHT,
-                    new ezcGraphRotation( $axis->labelRotation, new ezcGraphCoordinate(
-                        $position->x - $axis->labelSize / 2,
-                        $position->y - $axis->labelSize / 2
-                    ) )
+                    new ezcGraphRotation(
+                        $axis->labelRotation, new ezcGraphCoordinate(
+                            $position->x - $axis->labelSize / 2,
+                            $position->y - $axis->labelSize / 2
+                        )
+                    )
                 );
                 break;
             case ezcGraph::RIGHT:
@@ -1490,10 +1497,12 @@ class ezcGraphRenderer2d
                     $width - $axis->labelMargin,
                     $axis->labelSize,
                     ezcGraph::BOTTOM | ezcGraph::LEFT,
-                    new ezcGraphRotation( $axis->labelRotation, new ezcGraphCoordinate(
-                        $position->x + $axis->labelSize / 2,
-                        $position->y - $axis->labelSize / 2
-                    ) )
+                    new ezcGraphRotation(
+                        $axis->labelRotation, new ezcGraphCoordinate(
+                            $position->x + $axis->labelSize / 2,
+                            $position->y - $axis->labelSize / 2
+                        )
+                    )
                 );
                 break;
         }

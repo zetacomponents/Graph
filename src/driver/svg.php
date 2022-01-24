@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -26,9 +26,9 @@
 /**
  * Extension of the basic Driver package to utilize the SVGlib.
  *
- * This drivers options are defined in the class 
+ * This drivers options are defined in the class
  * {@link ezcGraphSvgDriverOptions} extending the basic driver options class
- * {@link ezcGraphDriverOptions}. 
+ * {@link ezcGraphDriverOptions}.
  *
  * As this is the default driver you do not need to explicitely set anything to
  * use it, but may use some of its advanced features.
@@ -38,7 +38,7 @@
  *   $graph->background->color = '#FFFFFFFF';
  *   $graph->title = 'Access statistics';
  *   $graph->legend = false;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -46,19 +46,19 @@
  *       'Safari' => 652,
  *       'Konqueror' => 474,
  *   ) );
- *   
+ *
  *   $graph->renderer = new ezcGraphRenderer3d();
  *   $graph->renderer->options->pieChartShadowSize = 10;
  *   $graph->renderer->options->pieChartGleam = .5;
  *   $graph->renderer->options->dataBorder = false;
  *   $graph->renderer->options->pieChartHeight = 16;
  *   $graph->renderer->options->legendSymbolGleam = .5;
- * 
+ *
  *   // SVG driver options
  *   $graph->driver->options->templateDocument = dirname( __FILE__ ) . '/template.svg';
  *   $graph->driver->options->graphOffset = new ezcGraphCoordinate( 25, 40 );
  *   $graph->driver->options->insertIntoGroup = 'ezcGraph';
- *   
+ *
  *   $graph->render( 400, 200, 'tutorial_driver_svg.svg' );
  * </code>
  *
@@ -71,21 +71,21 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
     /**
      * DOM tree of the svg document
-     * 
+     *
      * @var DOMDocument
      */
     protected $dom;
 
     /**
      * DOMElement containing all svg style definitions
-     * 
+     *
      * @var DOMElement
      */
     protected $defs;
 
     /**
      * DOMElement containing all svg objects
-     * 
+     *
      * @var DOMElement
      */
     protected $elements;
@@ -96,35 +96,35 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      *          'text' => array( 'strings' ),
      *          'options' => ezcGraphFontOptions,
      *      )
-     * 
+     *
      * @var array
      */
     protected $strings = array();
 
     /**
      * List of already created gradients
-     * 
+     *
      * @var array
      */
     protected $drawnGradients = array();
 
     /**
      * Numeric unique element id
-     * 
+     *
      * @var int
      */
     protected $elementID = 0;
 
     /**
      * Font storage for SVG font glyphs and kernings.
-     * 
+     *
      * @var ezcGraphSvgFont
      */
     protected $font = null;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -139,9 +139,9 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     /**
      * Creates the DOM object to insert SVG nodes in.
      *
-     * If the DOM document does not exists it will be created or loaded 
+     * If the DOM document does not exists it will be created or loaded
      * according to the settings.
-     * 
+     *
      * @return void
      */
     protected function createDocument()
@@ -181,7 +181,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
             if ( $this->options->insertIntoGroup !== false )
             {
-                // getElementById only works for Documents validated against a certain 
+                // getElementById only works for Documents validated against a certain
                 // schema, so that the use of XPath should be faster in most cases.
                 $xpath = new DomXPath( $this->dom );
                 $this->elements = $xpath->query( '//*[@id = \'' . $this->options->insertIntoGroup . '\']' )->item( 0 );
@@ -208,7 +208,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      * Creates the definitions needed for a gradient, if a proper gradient does
      * not yet exists. In each case a URL referencing the correct gradient will
      * be returned.
-     * 
+     *
      * @param ezcGraphColor $color Gradient
      * @return string Gradient URL
      */
@@ -226,11 +226,13 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     // Start of linear gradient
                     $stop = $this->dom->createElement( 'stop' );
                     $stop->setAttribute( 'offset', 0 );
-                    $stop->setAttribute( 'style', sprintf( 'stop-color: #%02x%02x%02x; stop-opacity: %.2F;',
-                        $color->startColor->red,
-                        $color->startColor->green,
-                        $color->startColor->blue,
-                        1 - ( $color->startColor->alpha / 255 )
+                    $stop->setAttribute(
+                        'style', sprintf(
+                            'stop-color: #%02x%02x%02x; stop-opacity: %.2F;',
+                            $color->startColor->red,
+                            $color->startColor->green,
+                            $color->startColor->blue,
+                            1 - ( $color->startColor->alpha / 255 )
                         )
                     );
                     $gradient->appendChild( $stop );
@@ -238,11 +240,13 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     // End of linear gradient
                     $stop = $this->dom->createElement( 'stop' );
                     $stop->setAttribute( 'offset', 1 );
-                    $stop->setAttribute( 'style', sprintf( 'stop-color: #%02x%02x%02x; stop-opacity: %.2F;',
-                        $color->endColor->red,
-                        $color->endColor->green,
-                        $color->endColor->blue,
-                        1 - ( $color->endColor->alpha / 255 )
+                    $stop->setAttribute(
+                        'style', sprintf(
+                            'stop-color: #%02x%02x%02x; stop-opacity: %.2F;',
+                            $color->endColor->red,
+                            $color->endColor->green,
+                            $color->endColor->blue,
+                            1 - ( $color->endColor->alpha / 255 )
                         )
                     );
                     $gradient->appendChild( $stop );
@@ -254,8 +258,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     $gradient->setAttribute( 'x2', sprintf( '%.4F', $color->endPoint->x ) );
                     $gradient->setAttribute( 'y2', sprintf( '%.4F', $color->endPoint->y ) );
                     $gradient->setAttribute( 'gradientUnits', 'userSpaceOnUse' );
-                    $gradient->setAttributeNS( 
-                        'http://www.w3.org/1999/xlink', 
+                    $gradient->setAttributeNS(
+                        'http://www.w3.org/1999/xlink',
                         'xlink:href',
                         '#Definition_' . $color->__toString()
                     );
@@ -264,7 +268,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     $this->drawnGradients[] = $color->__toString();
                 }
 
-                return sprintf( 'url(#%s)',
+                return sprintf(
+                    'url(#%s)',
                     $color->__toString()
                 );
             case ( $color instanceof ezcGraphRadialGradient ):
@@ -277,11 +282,13 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     // Start of linear gradient
                     $stop = $this->dom->createElement( 'stop' );
                     $stop->setAttribute( 'offset', 0 );
-                    $stop->setAttribute( 'style', sprintf( 'stop-color: #%02x%02x%02x; stop-opacity: %.2F;',
-                        $color->startColor->red,
-                        $color->startColor->green,
-                        $color->startColor->blue,
-                        1 - ( $color->startColor->alpha / 255 )
+                    $stop->setAttribute(
+                        'style', sprintf(
+                            'stop-color: #%02x%02x%02x; stop-opacity: %.2F;',
+                            $color->startColor->red,
+                            $color->startColor->green,
+                            $color->startColor->blue,
+                            1 - ( $color->startColor->alpha / 255 )
                         )
                     );
                     $gradient->appendChild( $stop );
@@ -289,11 +296,13 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     // End of linear gradient
                     $stop = $this->dom->createElement( 'stop' );
                     $stop->setAttribute( 'offset', 1 );
-                    $stop->setAttribute( 'style', sprintf( 'stop-color: #%02x%02x%02x; stop-opacity: %.2F;',
-                        $color->endColor->red,
-                        $color->endColor->green,
-                        $color->endColor->blue,
-                        1 - ( $color->endColor->alpha / 255 )
+                    $stop->setAttribute(
+                        'style', sprintf(
+                            'stop-color: #%02x%02x%02x; stop-opacity: %.2F;',
+                            $color->endColor->red,
+                            $color->endColor->green,
+                            $color->endColor->blue,
+                            1 - ( $color->endColor->alpha / 255 )
                         )
                     );
                     $gradient->appendChild( $stop );
@@ -306,8 +315,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     $gradient->setAttribute( 'fy', sprintf( '%.4F', $color->center->y ) );
                     $gradient->setAttribute( 'r', max( $color->height, $color->width ) );
                     $gradient->setAttribute( 'gradientUnits', 'userSpaceOnUse' );
-                    $gradient->setAttributeNS( 
-                        'http://www.w3.org/1999/xlink', 
+                    $gradient->setAttributeNS(
+                        'http://www.w3.org/1999/xlink',
                         'xlink:href',
                         '#Definition_' . $color->__toString()
                     );
@@ -316,7 +325,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     $this->drawnGradients[] = $color->__toString();
                 }
 
-                return sprintf( 'url(#%s)',
+                return sprintf(
+                    'url(#%s)',
                     $color->__toString()
                 );
             default:
@@ -328,9 +338,9 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     /**
      * Get SVG style definition
      *
-     * Returns a string with SVG style definitions created from color, 
+     * Returns a string with SVG style definitions created from color,
      * fillstatus and line thickness.
-     * 
+     *
      * @param ezcGraphColor $color Color
      * @param mixed $filled Filled
      * @param float $thickness Line thickness.
@@ -346,7 +356,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             }
             else
             {
-                return sprintf( 'fill: #%02x%02x%02x; fill-opacity: %.2F; stroke: none;',
+                return sprintf(
+                    'fill: #%02x%02x%02x; fill-opacity: %.2F; stroke: none;',
                     $color->red,
                     $color->green,
                     $color->blue,
@@ -362,7 +373,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             }
             else
             {
-                return sprintf( 'fill: none; stroke: #%02x%02x%02x; stroke-width: %d; stroke-opacity: %.2F; stroke-linecap: %s; stroke-linejoin: %s;',
+                return sprintf(
+                    'fill: none; stroke: #%02x%02x%02x; stroke-width: %d; stroke-opacity: %.2F; stroke-linecap: %s; stroke-linejoin: %s;',
                     $color->red,
                     $color->green,
                     $color->blue,
@@ -376,8 +388,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     }
 
     /**
-     * Draws a single polygon. 
-     * 
+     * Draws a single polygon.
+     *
      * @param array $points Point array
      * @param ezcGraphColor $color Polygon color
      * @param mixed $filled Filled
@@ -390,7 +402,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
         if ( !$filled )
         {
-            // The middle of the border is on the outline of a polygon in SVG, 
+            // The middle of the border is on the outline of a polygon in SVG,
             // fix that:
             try
             {
@@ -403,14 +415,16 @@ class ezcGraphSvgDriver extends ezcGraphDriver
         }
 
         $lastPoint = end( $points );
-        $pointString = sprintf( ' M %.4F,%.4F', 
-            $lastPoint->x + $this->options->graphOffset->x, 
+        $pointString = sprintf(
+            ' M %.4F,%.4F',
+            $lastPoint->x + $this->options->graphOffset->x,
             $lastPoint->y + $this->options->graphOffset->y
         );
 
         foreach ( $points as $point )
         {
-            $pointString .= sprintf( ' L %.4F,%.4F', 
+            $pointString .= sprintf(
+                ' L %.4F,%.4F',
                 $point->x + $this->options->graphOffset->x,
                 $point->y + $this->options->graphOffset->y
             );
@@ -429,10 +443,10 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
         return $id;
     }
-    
+
     /**
-     * Draws a line 
-     * 
+     * Draws a line
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Line color
@@ -441,19 +455,20 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      */
     public function drawLine( ezcGraphCoordinate $start, ezcGraphCoordinate $end, ezcGraphColor $color, $thickness = 1. )
     {
-        $this->createDocument();  
-        
-        $pointString = sprintf( ' M %.4F,%.4F L %.4F,%.4F', 
-            $start->x + $this->options->graphOffset->x, 
+        $this->createDocument();
+
+        $pointString = sprintf(
+            ' M %.4F,%.4F L %.4F,%.4F',
+            $start->x + $this->options->graphOffset->x,
             $start->y + $this->options->graphOffset->y,
-            $end->x + $this->options->graphOffset->x, 
+            $end->x + $this->options->graphOffset->x,
             $end->y + $this->options->graphOffset->y
         );
 
         $path = $this->dom->createElement( 'path' );
         $path->setAttribute( 'd', $pointString );
         $path->setAttribute(
-            'style', 
+            'style',
             $this->getStyle( $color, false, $thickness )
         );
 
@@ -465,7 +480,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
     /**
      * Returns boundings of text depending on the available font extension
-     * 
+     *
      * @param float $size Textsize
      * @param ezcGraphFontOptions $font Font
      * @param string $text Text
@@ -496,7 +511,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
     /**
      * Writes text in a box of desired size
-     * 
+     *
      * @param string $string Text
      * @param ezcGraphCoordinate $position Top left position
      * @param float $width Width of text box
@@ -528,14 +543,14 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             }
             $size = ( ( $newsize = $size * ( $result ) ) >= $size ? $size - 1 : floor( $newsize ) );
         }
-        
+
         if ( !is_array( $result ) )
         {
             if ( ( $height >= $this->options->font->minFontSize ) &&
                  ( $this->options->autoShortenString ) )
             {
                 $result = $this->tryFitShortenedString( $string, $position, $width, $height, $size = $this->options->font->minFontSize );
-            } 
+            }
             else
             {
                 throw new ezcGraphFontRenderingException( $string, $this->options->font->minFontSize, $width, $height );
@@ -561,14 +576,14 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      * Guess text width for string
      *
      * The is no way to know the font or fontsize used by the SVG renderer to
-     * render the string. We assume some character width defined in the SVG 
+     * render the string. We assume some character width defined in the SVG
      * driver options, tu guess the length of a string. We discern between
-     * numeric an non numeric strings, because we often use only numeric 
+     * numeric an non numeric strings, because we often use only numeric
      * strings to display chart data and numbers tend to be a bit wider then
      * characters.
-     * 
-     * @param mixed $string 
-     * @param mixed $size 
+     *
+     * @param mixed $string
+     * @param mixed $size
      * @access protected
      * @return void
      */
@@ -596,10 +611,10 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     /**
      * Encodes non-utf-8 strings
      *
-     * Transforms non-utf-8 strings to their hex entities, because ext/DOM 
+     * Transforms non-utf-8 strings to their hex entities, because ext/DOM
      * fails here with conversion errors.
-     * 
-     * @param string $string 
+     *
+     * @param string $string
      * @return string
      */
     protected function encode( $string )
@@ -614,13 +629,13 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                 return $string;
             default:
                 // Manual escaping of non ANSII characters, because ext/DOM fails here
-                return preg_replace_callback( 
-                    '/[\\x80-\\xFF]/', 
+                return preg_replace_callback(
+                    '/[\\x80-\\xFF]/',
                     create_function(
                         '$char',
                         'return sprintf( \'&#x%02x;\', ord( $char[0] ) );'
                     ),
-                    $string 
+                    $string
                 );
         }
     }
@@ -628,17 +643,17 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     /**
      * Draw all collected texts
      *
-     * The texts are collected and their maximum possible font size is 
+     * The texts are collected and their maximum possible font size is
      * calculated. This function finally draws the texts on the image, this
      * delayed drawing has two reasons:
      *
-     * 1) This way the text strings are always on top of the image, what 
+     * 1) This way the text strings are always on top of the image, what
      *    results in better readable texts
      * 2) The maximum possible font size can be calculated for a set of texts
-     *    with the same font configuration. Strings belonging to one chart 
+     *    with the same font configuration. Strings belonging to one chart
      *    element normally have the same font configuration, so that all texts
      *    belonging to one element will have the same font size.
-     * 
+     *
      * @access protected
      * @return void
      */
@@ -654,11 +669,14 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
             if ( $text['rotation'] !== null )
             {
-                $group->setAttribute( 'transform', sprintf( 'rotate( %.2F %.4F %.4F )',
-                    $text['rotation']->getRotation(),
-                    $text['rotation']->getCenter()->x,
-                    $text['rotation']->getCenter()->y
-                ) );
+                $group->setAttribute(
+                    'transform', sprintf(
+                        'rotate( %.2F %.4F %.4F )',
+                        $text['rotation']->getRotation(),
+                        $text['rotation']->getCenter()->x,
+                        $text['rotation']->getCenter()->y
+                    )
+                );
             }
 
             $group = $elementsRoot->appendChild( $group );
@@ -751,24 +769,24 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                 );
             }
 
-            // Set elements root temporary to local text group to ensure 
+            // Set elements root temporary to local text group to ensure
             // background and border beeing elements of text group
             $this->elements = $group;
             if ( $text['font']->background !== false )
             {
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     $text['font']->background,
                     true
                 );
             }
             else
             {
-                // Always draw full tranparent background polygon as fallback, 
-                // to be able to click on complete font space, not only on 
+                // Always draw full tranparent background polygon as fallback,
+                // to be able to click on complete font space, not only on
                 // the text
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     ezcGraphColor::fromHex( '#FFFFFFFF' ),
                     true
                 );
@@ -776,8 +794,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
             if ( $text['font']->border !== false )
             {
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     $text['font']->border,
                     false,
                     $text['font']->borderWidth
@@ -797,7 +815,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                 {
                     case ( $text['align'] & ezcGraph::LEFT ):
                         $position = new ezcGraphCoordinate(
-                            $text['position']->x, 
+                            $text['position']->x,
                             $text['position']->y + $yOffset
                         );
                         break;
@@ -823,8 +841,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     $textNode->setAttribute( 'x', sprintf( '%.4F', $position->x + $this->options->graphOffset->x + $text['font']->textShadowOffset ) );
                     $textNode->setAttribute( 'text-length', sprintf( '%.4Fpx', $this->getTextBoundings( $size, $text['font'], $string )->width ) );
                     $textNode->setAttribute( 'y', sprintf( '%.4F', $position->y + $this->options->graphOffset->y + $text['font']->textShadowOffset ) );
-                    $textNode->setAttribute( 
-                        'style', 
+                    $textNode->setAttribute(
+                        'style',
                         sprintf(
                             'font-size: %dpx; font-family: \'%s\'; fill: #%02x%02x%02x; fill-opacity: %.2F; stroke: none;',
                             $size,
@@ -837,15 +855,15 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                     );
                     $group->appendChild( $textNode );
                 }
-                
+
                 // Finally draw text
                 $textNode = $this->dom->createElement( 'text', $this->encode( $string ) );
                 $textNode->setAttribute( 'id', $text['id'] . '_text' );
                 $textNode->setAttribute( 'x', sprintf( '%.4F', $position->x + $this->options->graphOffset->x ) );
                 $textNode->setAttribute( 'text-length', sprintf( '%.4Fpx', $this->getTextBoundings( $size, $text['font'], $string )->width ) );
                 $textNode->setAttribute( 'y', sprintf( '%.4F', $position->y + $this->options->graphOffset->y ) );
-                $textNode->setAttribute( 
-                    'style', 
+                $textNode->setAttribute(
+                    'style',
                     sprintf(
                         'font-size: %dpx; font-family: \'%s\'; fill: #%02x%02x%02x; fill-opacity: %.2F; stroke: none;',
                         $size,
@@ -865,7 +883,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
     /**
      * Draws a sector of cirlce
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of circle
      * @param mixed $width Width
      * @param mixed $height Height
@@ -877,7 +895,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      */
     public function drawCircleSector( ezcGraphCoordinate $center, $width, $height, $startAngle, $endAngle, ezcGraphColor $color, $filled = true )
     {
-        $this->createDocument();  
+        $this->createDocument();
 
         // Normalize angles
         if ( $startAngle > $endAngle )
@@ -886,7 +904,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             $startAngle = $endAngle;
             $endAngle = $tmp;
         }
-        
+
         if ( ( $endAngle - $startAngle ) >= 360 )
         {
             return $this->drawCircle( $center, $width, $height, $color, $filled );
@@ -909,22 +927,24 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             $Yend = $center->y + $height * sin( ( deg2rad( $endAngle ) ) );
 
             $arc = $this->dom->createElement( 'path' );
-            $arc->setAttribute( 'd', sprintf( 'M %.2F,%.2F L %.2F,%.2F A %.2F,%.2F 0 %d,1 %.2F,%.2F z',
-                // Middle
-                $center->x, $center->y,
-                // Startpoint
-                $Xstart, $Ystart,
-                // Radius
-                $width, $height,
-                // SVG-Stuff
-                ( $endAngle - $startAngle ) > 180,
-                // Endpoint
-                $Xend, $Yend
+            $arc->setAttribute(
+                'd', sprintf(
+                    'M %.2F,%.2F L %.2F,%.2F A %.2F,%.2F 0 %d,1 %.2F,%.2F z',
+                    // Middle
+                    $center->x, $center->y,
+                    // Startpoint
+                    $Xstart, $Ystart,
+                    // Radius
+                    $width, $height,
+                    // SVG-Stuff
+                    ( $endAngle - $startAngle ) > 180,
+                    // Endpoint
+                    $Xend, $Yend
                 )
             );
 
             $arc->setAttribute(
-                'style', 
+                'style',
                 $this->getStyle( $color, $filled, 1 )
             );
             $arc->setAttribute( 'id', $id = ( $this->options->idPrefix . 'CircleSector_' . ++$this->elementID ) );
@@ -943,35 +963,37 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             }
 
             $arc = $this->dom->createElement( 'path' );
-            $arc->setAttribute( 'd', sprintf( 'M %.2F,%.2F L %.2F,%.2F A %.2F,%.2F 0 %d,1 %.2F,%.2F z',
-                // Middle
-                $reduced['center']->x, $reduced['center']->y,
-                // Startpoint
-                $reduced['start']->x, $reduced['start']->y,
-                // Radius
-                $width - .5, $height - .5,
-                // SVG-Stuff
-                ( $endAngle - $startAngle ) > 180,
-                // Endpoint
-                $reduced['end']->x, $reduced['end']->y
+            $arc->setAttribute(
+                'd', sprintf(
+                    'M %.2F,%.2F L %.2F,%.2F A %.2F,%.2F 0 %d,1 %.2F,%.2F z',
+                    // Middle
+                    $reduced['center']->x, $reduced['center']->y,
+                    // Startpoint
+                    $reduced['start']->x, $reduced['start']->y,
+                    // Radius
+                    $width - .5, $height - .5,
+                    // SVG-Stuff
+                    ( $endAngle - $startAngle ) > 180,
+                    // Endpoint
+                    $reduced['end']->x, $reduced['end']->y
                 )
             );
 
             $arc->setAttribute(
-                'style', 
+                'style',
                 $this->getStyle( $color, $filled, 1 )
             );
-            
+
             $arc->setAttribute( 'id', $id = ( $this->options->idPrefix . 'CircleSector_' . ++$this->elementID ) );
             $this->elements->appendChild( $arc );
-            
+
             return $id;
         }
     }
 
     /**
      * Draws a circular arc
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param integer $width Width of ellipse
      * @param integer $height Height of ellipse
@@ -984,7 +1006,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      */
     public function drawCircularArc( ezcGraphCoordinate $center, $width, $height, $size, $startAngle, $endAngle, ezcGraphColor $color, $filled = true )
     {
-        $this->createDocument();  
+        $this->createDocument();
 
         // Normalize angles
         if ( $startAngle > $endAngle )
@@ -993,7 +1015,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             $startAngle = $endAngle;
             $endAngle = $tmp;
         }
-        
+
         if ( ( $endAngle - $startAngle > 180 ) ||
              ( ( $startAngle % 180 != 0) && ( $endAngle % 180 != 0) && ( ( $startAngle % 360 > 180 ) XOR ( $endAngle % 360 > 180 ) ) ) )
         {
@@ -1017,48 +1039,52 @@ class ezcGraphSvgDriver extends ezcGraphDriver
         $Ystart = $center->y + $this->options->graphOffset->y + $height * sin( deg2rad( $startAngle ) );
         $Xend = $center->x + $this->options->graphOffset->x + $width * cos( ( -deg2rad( $endAngle ) ) );
         $Yend = $center->y + $this->options->graphOffset->y + $height * sin( ( deg2rad( $endAngle ) ) );
-        
+
         if ( $filled === true )
         {
             $arc = $this->dom->createElement( 'path' );
-            $arc->setAttribute( 'd', sprintf( 'M %.2F,%.2F A %.2F,%.2F 0 %d,0 %.2F,%.2F L %.2F,%.2F A %.2F,%2F 0 %d,1 %.2F,%.2F z',
-                // Endpoint low
-                $Xend, $Yend + $size,
-                // Radius
-                $width, $height,
-                // SVG-Stuff
-                ( $endAngle - $startAngle ) > 180,
-                // Startpoint low
-                $Xstart, $Ystart + $size,
-                // Startpoint
-                $Xstart, $Ystart,
-                // Radius
-                $width, $height,
-                // SVG-Stuff
-                ( $endAngle - $startAngle ) > 180,
-                // Endpoint
-                $Xend, $Yend
+            $arc->setAttribute(
+                'd', sprintf(
+                    'M %.2F,%.2F A %.2F,%.2F 0 %d,0 %.2F,%.2F L %.2F,%.2F A %.2F,%2F 0 %d,1 %.2F,%.2F z',
+                    // Endpoint low
+                    $Xend, $Yend + $size,
+                    // Radius
+                    $width, $height,
+                    // SVG-Stuff
+                    ( $endAngle - $startAngle ) > 180,
+                    // Startpoint low
+                    $Xstart, $Ystart + $size,
+                    // Startpoint
+                    $Xstart, $Ystart,
+                    // Radius
+                    $width, $height,
+                    // SVG-Stuff
+                    ( $endAngle - $startAngle ) > 180,
+                    // Endpoint
+                    $Xend, $Yend
                 )
             );
         }
         else
         {
             $arc = $this->dom->createElement( 'path' );
-            $arc->setAttribute( 'd', sprintf( 'M %.2F,%.2F  A %.2F,%.2F 0 %d,1 %.2F,%.2F',
-                // Startpoint
-                $Xstart, $Ystart,
-                // Radius
-                $width, $height,
-                // SVG-Stuff
-                ( $endAngle - $startAngle ) > 180,
-                // Endpoint
-                $Xend, $Yend
+            $arc->setAttribute(
+                'd', sprintf(
+                    'M %.2F,%.2F  A %.2F,%.2F 0 %d,1 %.2F,%.2F',
+                    // Startpoint
+                    $Xstart, $Ystart,
+                    // Radius
+                    $width, $height,
+                    // SVG-Stuff
+                    ( $endAngle - $startAngle ) > 180,
+                    // Endpoint
+                    $Xend, $Yend
                 )
             );
         }
 
         $arc->setAttribute(
-            'style', 
+            'style',
             $this->getStyle( $color, $filled )
         );
 
@@ -1082,28 +1108,30 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             );
 
             $arc = $this->dom->createElement( 'path' );
-            $arc->setAttribute( 'd', sprintf( 'M %.2F,%.2F A %.2F,%.2F 0 %d,0 %.2F,%.2F L %.2F,%.2F A %.2F,%2F 0 %d,1 %.2F,%.2F z',
-                // Endpoint low
-                $Xend, $Yend + $size,
-                // Radius
-                $width, $height,
-                // SVG-Stuff
-                ( $endAngle - $startAngle ) > 180,
-                // Startpoint low
-                $Xstart, $Ystart + $size,
-                // Startpoint
-                $Xstart, $Ystart,
-                // Radius
-                $width, $height,
-                // SVG-Stuff
-                ( $endAngle - $startAngle ) > 180,
-                // Endpoint
-                $Xend, $Yend
+            $arc->setAttribute(
+                'd', sprintf(
+                    'M %.2F,%.2F A %.2F,%.2F 0 %d,0 %.2F,%.2F L %.2F,%.2F A %.2F,%2F 0 %d,1 %.2F,%.2F z',
+                    // Endpoint low
+                    $Xend, $Yend + $size,
+                    // Radius
+                    $width, $height,
+                    // SVG-Stuff
+                    ( $endAngle - $startAngle ) > 180,
+                    // Startpoint low
+                    $Xstart, $Ystart + $size,
+                    // Startpoint
+                    $Xstart, $Ystart,
+                    // Radius
+                    $width, $height,
+                    // SVG-Stuff
+                    ( $endAngle - $startAngle ) > 180,
+                    // Endpoint
+                    $Xend, $Yend
                 )
             );
-        
+
             $arc->setAttribute(
-                'style', 
+                'style',
                 $this->getStyle( $gradient, $filled )
             );
             $arc->setAttribute( 'id', $id = ( $this->options->idPrefix . 'CircularArc_' . ++$this->elementID ) );
@@ -1115,8 +1143,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     }
 
     /**
-     * Draw circle 
-     * 
+     * Draw circle
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param mixed $width Width of ellipse
      * @param mixed $height height of ellipse
@@ -1126,8 +1154,8 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      */
     public function drawCircle( ezcGraphCoordinate $center, $width, $height, ezcGraphColor $color, $filled = true )
     {
-        $this->createDocument();  
-        
+        $this->createDocument();
+
         $ellipse = $this->dom->createElement( 'ellipse' );
         $ellipse->setAttribute( 'cx', sprintf( '%.4F', $center->x + $this->options->graphOffset->x ) );
         $ellipse->setAttribute( 'cy', sprintf( '%.4F', $center->y + $this->options->graphOffset->y ) );
@@ -1135,10 +1163,10 @@ class ezcGraphSvgDriver extends ezcGraphDriver
         $ellipse->setAttribute( 'ry', sprintf( '%.4F', $height / 2 - ( $filled ? 0 : .5 ) ) );
 
         $ellipse->setAttribute(
-            'style', 
+            'style',
             $this->getStyle( $color, $filled, 1 )
         );
-        
+
         $ellipse->setAttribute( 'id', $id = ( $this->options->idPrefix . 'Circle_' . ++$this->elementID ) );
         $this->elements->appendChild( $ellipse );
 
@@ -1146,12 +1174,12 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     }
 
     /**
-     * Draw an image 
+     * Draw an image
      *
      * The image will be inlined in the SVG document using data URL scheme. For
-     * this the mime type and base64 encoded file content will be merged to 
+     * this the mime type and base64 encoded file content will be merged to
      * URL.
-     * 
+     *
      * @param mixed $file Image file
      * @param ezcGraphCoordinate $position Top left position
      * @param mixed $width Width of image in destination image
@@ -1169,10 +1197,11 @@ class ezcGraphSvgDriver extends ezcGraphDriver
         $image->setAttribute( 'y', sprintf( '%.4F', $position->y + $this->options->graphOffset->y ) );
         $image->setAttribute( 'width', sprintf( '%.4Fpx', $width ) );
         $image->setAttribute( 'height', sprintf( '%.4Fpx', $height ) );
-        $image->setAttributeNS( 
-            'http://www.w3.org/1999/xlink', 
-            'xlink:href', 
-            sprintf( 'data:%s;base64,%s',
+        $image->setAttributeNS(
+            'http://www.w3.org/1999/xlink',
+            'xlink:href',
+            sprintf(
+                'data:%s;base64,%s',
                 $data['mime'],
                 base64_encode( file_get_contents( $file ) )
             )
@@ -1186,7 +1215,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
     /**
      * Return mime type for current image format
-     * 
+     *
      * @return string
      */
     public function getMimeType()
@@ -1197,15 +1226,15 @@ class ezcGraphSvgDriver extends ezcGraphDriver
     /**
      * Render image directly to output
      *
-     * The method renders the image directly to the standard output. You 
-     * normally do not want to use this function, because it makes it harder 
+     * The method renders the image directly to the standard output. You
+     * normally do not want to use this function, because it makes it harder
      * to proper cache the generated graphs.
-     * 
+     *
      * @return void
      */
     public function renderToOutput()
     {
-        $this->createDocument();  
+        $this->createDocument();
         $this->drawAllTexts();
 
         header( 'Content-Type: ' . $this->getMimeType() );
@@ -1214,13 +1243,13 @@ class ezcGraphSvgDriver extends ezcGraphDriver
 
     /**
      * Finally save image
-     * 
+     *
      * @param string $file Destination filename
      * @return void
      */
     public function render( $file )
     {
-        $this->createDocument();  
+        $this->createDocument();
         $this->drawAllTexts();
 
         // Embed used glyphs
@@ -1234,7 +1263,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      * Return the resource of the rendered result. You should not use this
      * method before you called either renderToOutput() or render(), as the
      * image may not be completely rendered until then.
-     * 
+     *
      * @return DOMDocument
      */
     public function getResource()

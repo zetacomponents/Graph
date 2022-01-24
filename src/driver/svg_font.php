@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -64,7 +64,7 @@ class ezcGraphSvgFont
 
     /**
      * Cache for glyph size to save XPath lookups.
-     * 
+     *
      * @var array
      */
     protected $glyphCache = array();
@@ -123,8 +123,8 @@ class ezcGraphSvgFont
      *
      * Get the name of the given font, by extracting its font family from the
      * SVG font file.
-     * 
-     * @param string $fontPath 
+     *
+     * @param string $fontPath
      * @return string
      */
     public static function getFontName( $fontPath )
@@ -151,10 +151,11 @@ class ezcGraphSvgFont
      */
     protected static function xpathEscape( $char )
     {
-        return "'" . str_replace( 
+        return "'" . str_replace(
             array( '\'', '\\' ),
             array( '\\\'', '\\\\' ),
-            $char ) . "'";
+            $char
+        ) . "'";
     }
 
     /**
@@ -181,7 +182,7 @@ class ezcGraphSvgFont
              // Just ignore missing glyphs. The client will still render them
              // using a default font. We try to estimate some width by using a
              // common other character.
-            return $this->glyphCache[$fontPath][$char] = 
+            return $this->glyphCache[$fontPath][$char] =
                 ( $char === 'o' ? false : $this->getGlyph( $fontPath, 'o' ) );
         }
 
@@ -215,7 +216,7 @@ class ezcGraphSvgFont
         $g2Uni = self::xpathEscape( ( string ) $glyph2['unicode'] );
 
         // Search for kerning pairs
-        $pair = $this->fonts[$fontPath]->xpath( 
+        $pair = $this->fonts[$fontPath]->xpath(
             "svg:hkern[( @g1=$g1Name and @g2=$g2Name )
                 or
              ( @u1=$g1Uni and @g2=$g2Uni )]"
@@ -289,8 +290,8 @@ class ezcGraphSvgFont
      *
      * Add the SVG font definition paths for all used glyphs and kernings to
      * the given SVG document.
-     * 
-     * @param DOMDocument $document 
+     *
+     * @param DOMDocument $document
      * @return void
      */
     public function addFontToDocument( DOMDocument $document )

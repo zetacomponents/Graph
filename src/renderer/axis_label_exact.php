@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,8 +31,8 @@
  * </code>
  *
  * @property bool $showLastValue
- *           Show the last value on the axis, which will be aligned different 
- *           than all other values, to not interfere with the arrow head of 
+ *           Show the last value on the axis, which will be aligned different
+ *           than all other values, to not interfere with the arrow head of
  *           the axis.
  * @property bool $renderLastOutside
  *           Render the last label outside of the normal axis label boundings
@@ -45,10 +45,9 @@
  */
 class ezcGraphAxisExactLabelRenderer extends ezcGraphAxisLabelRenderer
 {
-
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -62,10 +61,10 @@ class ezcGraphAxisExactLabelRenderer extends ezcGraphAxisLabelRenderer
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -125,7 +124,7 @@ class ezcGraphAxisExactLabelRenderer extends ezcGraphAxisLabelRenderer
             $end->y - $start->y
         );
         $direction->unify();
-        
+
         // Get axis space
         $gridBoundings = null;
         list( $xSpace, $ySpace ) = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
@@ -147,22 +146,22 @@ class ezcGraphAxisExactLabelRenderer extends ezcGraphAxisLabelRenderer
                 // major grid
                 if ( $axis->majorGrid )
                 {
-                    $this->drawGrid( 
-                        $renderer, 
-                        $gridBoundings, 
+                    $this->drawGrid(
+                        $renderer,
+                        $gridBoundings,
                         $position,
                         $stepSize,
                         $axis->majorGrid
                     );
                 }
-                
+
                 // major step
-                $this->drawStep( 
-                    $renderer, 
+                $this->drawStep(
+                    $renderer,
                     $position,
-                    $direction, 
-                    $axis->position, 
-                    $this->majorStepSize, 
+                    $direction,
+                    $axis->position,
+                    $this->majorStepSize,
                     $axis->border
                 );
             }
@@ -173,7 +172,7 @@ class ezcGraphAxisExactLabelRenderer extends ezcGraphAxisLabelRenderer
                 {
                     case ezcGraph::RIGHT:
                     case ezcGraph::LEFT:
-                        $labelWidth = $axisBoundings->width * 
+                        $labelWidth = $axisBoundings->width *
                             $steps[$nr - $step->isLast]->width /
                             ( $this->showLastValue + 1 );
                         $labelHeight = $ySpace;
@@ -188,7 +187,7 @@ class ezcGraphAxisExactLabelRenderer extends ezcGraphAxisLabelRenderer
                     case ezcGraph::BOTTOM:
                     case ezcGraph::TOP:
                         $labelWidth = $xSpace;
-                        $labelHeight = $axisBoundings->height * 
+                        $labelHeight = $axisBoundings->height *
                             $steps[$nr - $step->isLast]->width /
                             ( $this->showLastValue + 1 );
 
@@ -294,22 +293,22 @@ class ezcGraphAxisExactLabelRenderer extends ezcGraphAxisLabelRenderer
 
                     if ( $axis->minorGrid )
                     {
-                        $this->drawGrid( 
-                            $renderer, 
-                            $gridBoundings, 
+                        $this->drawGrid(
+                            $renderer,
+                            $gridBoundings,
                             $minorStepPosition,
                             $minorStepSize,
                             $axis->minorGrid
                         );
                     }
-                    
+
                     // major step
-                    $this->drawStep( 
-                        $renderer, 
+                    $this->drawStep(
+                        $renderer,
                         $minorStepPosition,
-                        $direction, 
-                        $axis->position, 
-                        $this->minorStepSize, 
+                        $direction,
+                        $axis->position,
+                        $this->minorStepSize,
                         $axis->border
                     );
                 }

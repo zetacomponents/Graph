@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -51,25 +51,25 @@
  *  $graph = new ezcGraphLineChart();
  *  $graph->title = 'The power of x';
  *  $graph->legend->position = ezcGraph::BOTTOM;
- *  
+ *
  *  $graph->xAxis = new ezcGraphChartElementNumericAxis();
  *  $graph->yAxis = new ezcGraphChartElementLogarithmicalAxis();
- *  
- *  $graph->data['x^2'] = new ezcGraphNumericDataSet( 
+ *
+ *  $graph->data['x^2'] = new ezcGraphNumericDataSet(
  *      -10, 10,
  *      create_function( '$x', 'return pow( $x, 2 ) + 1;' )
  *  );
- *  
- *  $graph->data['x^4'] = new ezcGraphNumericDataSet( 
+ *
+ *  $graph->data['x^4'] = new ezcGraphNumericDataSet(
  *      -10, 10,
  *      create_function( '$x', 'return pow( $x, 4 ) + 1;' )
  *  );
- *  
- *  $graph->data['x^6'] = new ezcGraphNumericDataSet( 
+ *
+ *  $graph->data['x^6'] = new ezcGraphNumericDataSet(
  *      -10, 10,
  *      create_function( '$x', 'return pow( $x, 6 ) + 1;' )
  *  );
- *  
+ *
  *  $graph->render( 400, 250, 'tutorial_axis_logarithmic.svg' );
  * </code>
  *
@@ -83,7 +83,7 @@
  *                Minimum Value to display on this axis.
  * @property-read float $maxValue
  *                Maximum value to display on this axis.
- *           
+ *
  * @version //autogentag//
  * @package Graph
  * @mainclass
@@ -92,14 +92,14 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
 {
 
     /**
-     * Constant used for calculation of automatic definition of major scaling 
+     * Constant used for calculation of automatic definition of major scaling
      * steps
      */
     const MAX_STEPS = 9;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -117,10 +117,10 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -159,10 +159,10 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
                 break;
         }
     }
-    
+
     /**
      * Add data for this axis
-     * 
+     *
      * @param array $values Value which will be displayed on this axis
      * @return void
      */
@@ -187,8 +187,8 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
     }
 
     /**
-     * Calculate axis bounding values on base of the assigned values 
-     * 
+     * Calculate axis bounding values on base of the assigned values
+     *
      * @abstract
      * @access public
      * @return void
@@ -251,7 +251,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
 
     /**
      * Get coordinate for a dedicated value on the chart
-     * 
+     *
      * @param float $value Value to determine position for
      * @return float Position on chart
      */
@@ -290,7 +290,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
 
     /**
      * Return count of minor steps
-     * 
+     *
      * @return integer Count of minor steps
      */
     public function getMinorStepCount()
@@ -300,7 +300,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
 
     /**
      * Return count of major steps
-     * 
+     *
      * @return integer Count of major steps
      */
     public function getMajorStepCount()
@@ -310,7 +310,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
 
     /**
      * Get label for a dedicated step on the axis
-     * 
+     *
      * @param integer $step Number of step
      * @return string label
      */
@@ -321,7 +321,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
             return call_user_func_array(
                 $this->properties['labelCallback'],
                 array(
-                    sprintf( 
+                    sprintf(
                         $this->properties['logarithmicalFormatString'],
                         $this->properties['base'],
                         $this->properties['min'] + ( $step * $this->properties['majorStep'] )
@@ -332,7 +332,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
         }
         else
         {
-            return sprintf( 
+            return sprintf(
                 $this->properties['logarithmicalFormatString'],
                 $this->properties['base'],
                 $this->properties['min'] + ( $step * $this->properties['majorStep'] )
@@ -344,7 +344,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
      * Is zero step
      *
      * Returns true if the given step is the one on the initial axis position
-     * 
+     *
      * @param int $step Number of step
      * @return bool Status If given step is initial axis position
      */

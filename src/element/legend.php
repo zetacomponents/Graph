@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -55,7 +55,7 @@
  *      'Foo' => 23,
  *      'Bar' => 42,
  *  ) );
- *  
+ *
  *  // Format the legend element
  *  $graph->legend->background    = '#FFFFFF80';
  *
@@ -63,20 +63,20 @@
  *  // chart space.
  *  $graph->legend->position      = ezcGraph::BOTTOM;
  *  $graph->legend->landscapeSize = .05;
- *  
+ *
  *  $graph->render( 400, 250, 'legend.svg' );
  * </code>
  *
  * @property float $portraitSize
- *           Size of a portrait style legend in percent of the size of the 
+ *           Size of a portrait style legend in percent of the size of the
  *           complete chart.
  * @property float $landscapeSize
- *           Size of a landscape style legend in percent of the size of the 
+ *           Size of a landscape style legend in percent of the size of the
  *           complete chart.
  * @property int $symbolSize
  *           Standard size of symbols and text in legends.
  * @property float $minimumSymbolSize
- *           Scale symbol size up to to percent of complete legends size for 
+ *           Scale symbol size up to to percent of complete legends size for
  *           very big legends.
  * @property int $spacing
  *           Space between labels elements in pixel.
@@ -98,14 +98,14 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
      *      ),
      *      ...
      *  )
-     * 
+     *
      * @var array
      */
     protected $labels;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -123,10 +123,10 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -200,11 +200,11 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
                 break;
         }
     }
-    
+
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -223,8 +223,8 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
 
     /**
      * Generate legend from several datasets with on entry per dataset
-     * 
-     * @param ezcGraphChartDataContainer $datasets 
+     *
+     * @param ezcGraphChartDataContainer $datasets
      * @return void
      */
     public function generateFromDataSets( ezcGraphChartDataContainer $datasets )
@@ -244,9 +244,9 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
     }
 
     /**
-     * Generate legend from single dataset with on entry per data element 
-     * 
-     * @param ezcGraphDataSet $dataset 
+     * Generate legend from single dataset with on entry per data element
+     *
+     * @param ezcGraphDataSet $dataset
      * @return void
      */
     public function generateFromDataSet( ezcGraphDataSet $dataset )
@@ -264,13 +264,13 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
             );
         }
     }
-    
+
     /**
      * Calculated boundings needed for the legend.
      *
-     * Uses the position and the configured horizontal or vertical size of a 
+     * Uses the position and the configured horizontal or vertical size of a
      * legend to calculate the boundings for the legend.
-     * 
+     *
      * @param ezcGraphBoundings $boundings Avalable boundings
      * @return ezcGraphBoundings Remaining boundings
      */
@@ -311,7 +311,7 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
 
     /**
      * Render a legend
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer
      * @param ezcGraphBoundings $boundings Boundings for the axis
      * @return ezcGraphBoundings Remaining boundings
@@ -319,7 +319,7 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
     public function render( ezcGraphRenderer $renderer, ezcGraphBoundings $boundings )
     {
         $boundings = $this->calculateBoundings( $boundings );
-        
+
         if ( $this->position === ezcGraph::LEFT || $this->position === ezcGraph::RIGHT )
         {
             $type = ezcGraph::VERTICAL;
@@ -348,7 +348,7 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
             $type
         );
 
-        return $boundings;  
+        return $boundings;
     }
 }
 

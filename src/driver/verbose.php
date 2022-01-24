@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -37,15 +37,15 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
 {
     /**
      * Number of call on driver
-     * 
+     *
      * @var int
      */
     protected $call = 0;
 
     /**
      * Constructor
-     * 
-     * @param array $options 
+     *
+     * @param array $options
      * @return void
      * @ignore
      */
@@ -56,11 +56,11 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
     }
 
     /**
-     * Draws a single polygon 
-     * 
-     * @param array $points 
-     * @param ezcGraphColor $color 
-     * @param bool $filled 
+     * Draws a single polygon
+     *
+     * @param array $points
+     * @param ezcGraphColor $color
+     * @param bool $filled
      * @param float $thickness
      * @return void
      */
@@ -72,25 +72,27 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
             $pointString .= sprintf( "\t( %.2F, %.2F )\n", $point->x, $point->y );
         }
 
-        printf( "% 4d: Draw %spolygon:\n%s", 
+        printf(
+            "% 4d: Draw %spolygon:\n%s",
             $this->call++,
             ( $filled ? 'filled ' : '' ),
             $pointString
         );
     }
-    
+
     /**
      * Draws a single line
-     * 
-     * @param ezcGraphCoordinate $start 
-     * @param ezcGraphCoordinate $end 
-     * @param ezcGraphColor $color 
+     *
+     * @param ezcGraphCoordinate $start
+     * @param ezcGraphCoordinate $end
+     * @param ezcGraphColor $color
      * @param float $thickness
      * @return void
      */
     public function drawLine( ezcGraphCoordinate $start, ezcGraphCoordinate $end, ezcGraphColor $color, $thickness = 1. )
     {
-        printf( "% 4d: Draw line from ( %.2F, %.2F ) to ( %.2F, %.2F ) with thickness %d.\n",
+        printf(
+            "% 4d: Draw line from ( %.2F, %.2F ) to ( %.2F, %.2F ) with thickness %d.\n",
             $this->call++,
             $start->x,
             $start->y,
@@ -102,7 +104,7 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
 
     /**
      * Returns boundings of text depending on the available font extension
-     * 
+     *
      * @param float $size Textsize
      * @param ezcGraphFontOptions $font Font
      * @param string $text Text
@@ -115,18 +117,19 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
 
     /**
      * Wrties text in a box of desired size
-     * 
-     * @param mixed $string 
-     * @param ezcGraphCoordinate $position 
-     * @param mixed $width 
-     * @param mixed $height 
-     * @param int $align 
+     *
+     * @param mixed $string
+     * @param ezcGraphCoordinate $position
+     * @param mixed $width
+     * @param mixed $height
+     * @param int $align
      * @param ezcGraphRotation $rotation
      * @return void
      */
     public function drawTextBox( $string, ezcGraphCoordinate $position, $width, $height, $align, ezcGraphRotation $rotation = null )
     {
-        printf( "% 4d: Draw text '%s' at ( %.2F, %.2F ) with dimensions ( %d, %d ) and alignement %d.\n",
+        printf(
+            "% 4d: Draw text '%s' at ( %.2F, %.2F ) with dimensions ( %d, %d ) and alignement %d.\n",
             $this->call++,
             $string,
             $position->x,
@@ -136,21 +139,23 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
             $align
         );
     }
+
     /**
      * Draws a sector of cirlce
-     * 
-     * @param ezcGraphCoordinate $center 
+     *
+     * @param ezcGraphCoordinate $center
      * @param mixed $width
      * @param mixed $height
-     * @param mixed $startAngle 
-     * @param mixed $endAngle 
-     * @param ezcGraphColor $color 
+     * @param mixed $startAngle
+     * @param mixed $endAngle
+     * @param ezcGraphColor $color
      * @param bool $filled
      * @return void
      */
     public function drawCircleSector( ezcGraphCoordinate $center, $width, $height, $startAngle, $endAngle, ezcGraphColor $color, $filled = true )
     {
-        printf( "% 4d: Draw %scicle sector at ( %.2F, %.2F ) with dimensions ( %d, %d ) from %.2F to %.2F.\n",
+        printf(
+            "% 4d: Draw %scicle sector at ( %.2F, %.2F ) with dimensions ( %d, %d ) from %.2F to %.2F.\n",
             $this->call++,
             ( $filled ? 'filled ' : '' ),
             $center->x,
@@ -164,7 +169,7 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
 
     /**
      * Draws a circular arc
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param integer $width Width of ellipse
      * @param integer $height Height of ellipse
@@ -177,7 +182,8 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
      */
     public function drawCircularArc( ezcGraphCoordinate $center, $width, $height, $size, $startAngle, $endAngle, ezcGraphColor $color, $filled = true )
     {
-        printf( "% 4d: Draw circular arc at ( %.2F, %.2F ) with dimensions ( %d, %d ) and size %.2F from %.2F to %.2F.\n",
+        printf(
+            "% 4d: Draw circular arc at ( %.2F, %.2F ) with dimensions ( %d, %d ) and size %.2F from %.2F to %.2F.\n",
             $this->call++,
             $center->x,
             $center->y,
@@ -191,8 +197,8 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
 
     /**
      * Draws a circle
-     * 
-     * @param ezcGraphCoordinate $center 
+     *
+     * @param ezcGraphCoordinate $center
      * @param mixed $width
      * @param mixed $height
      * @param ezcGraphColor $color
@@ -202,7 +208,8 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
      */
     public function drawCircle( ezcGraphCoordinate $center, $width, $height, ezcGraphColor $color, $filled = true )
     {
-        printf( "% 4d: Draw %scircle at ( %.2F, %.2F ) with dimensions ( %d, %d ).\n",
+        printf(
+            "% 4d: Draw %scircle at ( %.2F, %.2F ) with dimensions ( %d, %d ).\n",
             $this->call++,
             ( $filled ? 'filled ' : '' ),
             $center->x,
@@ -214,16 +221,17 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
 
     /**
      * Draws a imagemap of desired size
-     * 
-     * @param mixed $file 
-     * @param ezcGraphCoordinate $position 
-     * @param mixed $width 
-     * @param mixed $height 
+     *
+     * @param mixed $file
+     * @param ezcGraphCoordinate $position
+     * @param mixed $width
+     * @param mixed $height
      * @return void
      */
     public function drawImage( $file, ezcGraphCoordinate $position, $width, $height )
     {
-        printf( "% 4d: Draw image '%s' at ( %.2F, %.2F ) with dimensions ( %d, %d ).\n",
+        printf(
+            "% 4d: Draw image '%s' at ( %.2F, %.2F ) with dimensions ( %d, %d ).\n",
             $this->call++,
             $file,
             $position->x,
@@ -235,7 +243,7 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
 
     /**
      * Return mime type for current image format
-     * 
+     *
      * @return string
      */
     public function getMimeType()
@@ -245,11 +253,11 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
 
     /**
      * Finally save image
-     * 
-     * @param mixed $file 
+     *
+     * @param mixed $file
      * @return void
      */
-    public function render ( $file )
+    public function render( $file )
     {
         printf( "Render image.\n" );
     }

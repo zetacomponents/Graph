@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -55,14 +55,14 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
 {
     /**
      * Driver to render axis labels
-     * 
+     *
      * @var ezcGraphDriver
      */
     protected $driver;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -83,10 +83,10 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -195,30 +195,30 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
     /**
      * Checks for the cutting point of two lines.
      *
-     * The lines are given by a start position and the direction of the line, 
+     * The lines are given by a start position and the direction of the line,
      * both as instances of {@link ezcGraphCoordinate}. If no cutting point
      * could be calculated, because the lines are parallel the function will
      * return false. Otherwise the factor returned can be used to calculate the
      * cutting point using the following equatation:
      *  point = $aStart + $factor * $aDir;
      *
-     * We return the factor instead of the resulting point because it can be 
+     * We return the factor instead of the resulting point because it can be
      * easily determined from the factor if the cutting point is in "behind"
      * the line starting point, or if the distance to the cutting point is
      * bigger then the direction vector is long ( $factor > 1 ).
-     * 
-     * @param ezcGraphCoordinate $aStart 
-     * @param ezcGraphCoordinate $aDir 
-     * @param ezcGraphCoordinate $bStart 
-     * @param ezcGraphCoordinate $bDir 
+     *
+     * @param ezcGraphCoordinate $aStart
+     * @param ezcGraphCoordinate $aDir
+     * @param ezcGraphCoordinate $bStart
+     * @param ezcGraphCoordinate $bDir
      * @return mixed
      */
     public function determineLineCuttingPoint( ezcGraphCoordinate $aStart, ezcGraphCoordinate $aDir, ezcGraphCoordinate $bStart, ezcGraphCoordinate $bDir )
     {
         // Check if lines are parallel
         if ( ( ( abs( $aDir->x ) < .000001 ) && ( abs( $bDir->x ) < .000001 ) ) ||
-             ( ( abs( $aDir->y ) < .000001 ) && ( abs( $bDir->y ) < .000001 ) ) || 
-             ( ( abs( $aDir->x * $bDir->x * $aDir->y * $bDir->y ) > .000001 ) && 
+             ( ( abs( $aDir->y ) < .000001 ) && ( abs( $bDir->y ) < .000001 ) ) ||
+             ( ( abs( $aDir->x * $bDir->x * $aDir->y * $bDir->y ) > .000001 ) &&
                ( abs( ( $aDir->x / $aDir->y ) - ( $bDir->x / $bDir->y ) ) < .000001 )
              )
            )
@@ -227,23 +227,23 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
         }
 
         // Use ? : to prevent division by zero
-        $denominator = 
-            ( abs( $aDir->y ) > .000001 ? $bDir->y / $aDir->y : .0 ) - 
+        $denominator =
+            ( abs( $aDir->y ) > .000001 ? $bDir->y / $aDir->y : .0 ) -
             ( abs( $aDir->x ) > .000001 ? $bDir->x / $aDir->x : .0 );
 
         // Solve equatation
         if ( abs( $denominator ) < .000001 )
         {
-            return - ( 
+            return - (
                 ( abs( $aDir->y ) > .000001 ? $bStart->y / $aDir->y : .0 ) -
                 ( abs( $aDir->y ) > .000001 ? $aStart->y / $aDir->y : .0 ) -
                 ( abs( $aDir->x ) > .000001 ? $bStart->x / $aDir->x : .0 ) +
                 ( abs( $aDir->x ) > .000001 ? $aStart->x / $aDir->x : .0 )
             );
         }
-        else 
+        else
         {
-            return - ( 
+            return - (
                 ( abs( $aDir->y ) > .000001 ? $bStart->y / $aDir->y : .0 ) -
                 ( abs( $aDir->y ) > .000001 ? $aStart->y / $aDir->y : .0 ) -
                 ( abs( $aDir->x ) > .000001 ? $bStart->x / $aDir->x : .0 ) +
@@ -256,7 +256,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
      * Draw single step on a axis
      *
      * Draws a step on a axis at the current position
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer to draw the step with
      * @param ezcGraphCoordinate $position Position of step
      * @param ezcGraphCoordinate $direction Direction of axis
@@ -279,7 +279,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
              ( ( $axisPosition === ezcGraph::RIGHT ) && $this->outerStep ) ||
              ( ( $axisPosition === ezcGraph::LEFT ) && $this->innerStep ) )
         {
-            // Turn direction vector to left by 90 degrees and multiply 
+            // Turn direction vector to left by 90 degrees and multiply
             // with major step size
             $stepStart = new ezcGraphCoordinate(
                 $position->x + $direction->y * $size,
@@ -298,7 +298,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
              ( ( $axisPosition === ezcGraph::RIGHT ) && $this->innerStep ) ||
              ( ( $axisPosition === ezcGraph::LEFT ) && $this->outerStep ) )
         {
-            // Turn direction vector to right by 90 degrees and multiply 
+            // Turn direction vector to right by 90 degrees and multiply
             // with major step size
             $stepEnd = new ezcGraphCoordinate(
                 $position->x - $direction->y * $size,
@@ -320,12 +320,12 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
             );
         }
     }
-    
+
     /**
      * Draw non-rectangular grid lines grid
      *
      * Draws a grid line at the current position, for non-rectangular axis.
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer to draw the grid with
      * @param ezcGraphBoundings $boundings Boundings of axis
      * @param ezcGraphCoordinate $position Position of step
@@ -335,7 +335,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
      */
     protected function drawNonRectangularGrid( ezcGraphRenderer $renderer, ezcGraphBoundings $boundings, ezcGraphCoordinate $position, ezcGraphCoordinate $direction, ezcGraphColor $color )
     {
-        // Direction of grid line is direction of axis turned right by 90 
+        // Direction of grid line is direction of axis turned right by 90
         // degrees
         $gridDirection = new ezcGraphCoordinate(
             $direction->y,
@@ -381,7 +381,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
 
             $cuttingPosition = abs( $cuttingPosition );
 
-            if ( ( $cuttingPosition >= 0 ) && 
+            if ( ( $cuttingPosition >= 0 ) &&
                  ( $cuttingPosition <= 1 ) )
             {
                 $cuttingPoints[] = new ezcGraphCoordinate(
@@ -413,7 +413,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
      * Method special for rectangularly directed axis to minimize the floating
      * point calculation inaccuracies. Those are not necessary for rectangles,
      * while for non-rectangular directed axis.
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer to draw the grid with
      * @param ezcGraphBoundings $boundings Boundings of axis
      * @param ezcGraphCoordinate $position Position of step
@@ -457,7 +457,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
      * Draw grid
      *
      * Draws a grid line at the current position
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer to draw the grid with
      * @param ezcGraphBoundings $boundings Boundings of axis
      * @param ezcGraphCoordinate $position Position of step
@@ -483,7 +483,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
      * Modify chart boundings
      *
      * Optionally modify boundings of chart data
-     * 
+     *
      * @param ezcGraphBoundings $boundings Current boundings of chart
      * @param ezcGraphCoordinate $direction Direction of the current axis
      * @return ezcGraphBoundings Modified boundings
@@ -492,12 +492,12 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
     {
         return $boundings;
     }
-    
+
     /**
      * Modify chart data position
      *
      * Optionally additionally modify the coodinate of a data point
-     * 
+     *
      * @param ezcGraphCoordinate $coordinate Data point coordinate
      * @return ezcGraphCoordinate Modified coordinate
      */
@@ -517,10 +517,10 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
      *
      * Returns an array( $xSpace, $ySpace ), containing the irespective size in
      * pixels. Additionally calculates the grid boundings passed by reference.
-     * 
-     * @param ezcGraphRenderer $renderer 
-     * @param ezcGraphBoundings $boundings 
-     * @param mixed $innerBoundings 
+     *
+     * @param ezcGraphRenderer $renderer
+     * @param ezcGraphBoundings $boundings
+     * @param mixed $innerBoundings
      * @return array
      */
     protected function getAxisSpace( ezcGraphRenderer $renderer, ezcGraphBoundings $boundings, ezcGraphChartElementAxis $axis, $innerBoundings, &$gridBoundings )
