@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -30,16 +30,16 @@
  *   $graph = new ezcGraphPieChart();
  *   $graph->palette = new ezcGraphPaletteEzBlue();
  *   $graph->title = 'Access statistics';
- *   
+ *
  *   // Global font options
  *   $graph->options->font->name = 'serif';
- *   
+ *
  *   // Special font options for sub elements
  *   $graph->title->background = '#EEEEEC';
  *   $graph->title->font->name = 'sans-serif';
- *   
+ *
  *   $graph->options->font->maxFontSize = 8;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -47,7 +47,7 @@
  *       'Safari' => 652,
  *       'Konqueror' => 474,
  *   ) );
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_chart_title.svg' );
  * </code>
  *
@@ -65,7 +65,7 @@ class ezcGraphChartOptions extends ezcBaseOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -81,9 +81,9 @@ class ezcGraphChartOptions extends ezcBaseOptions
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @ignore
@@ -94,7 +94,7 @@ class ezcGraphChartOptions extends ezcBaseOptions
         {
             case 'width':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 1 ) ) 
+                     ( $propertyValue < 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 1' );
                 }
@@ -103,7 +103,7 @@ class ezcGraphChartOptions extends ezcBaseOptions
                 break;
             case 'height':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 1 ) ) 
+                     ( $propertyValue < 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 1' );
                 }

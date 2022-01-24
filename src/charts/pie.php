@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -24,7 +24,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 /**
- * Class for pie charts. Can only use one dataset which will be dispalyed as a 
+ * Class for pie charts. Can only use one dataset which will be dispalyed as a
  * pie chart.
  *
  * <code>
@@ -39,14 +39,14 @@
  *          'three' => -34.14,
  *          'four' => 65,
  *          'five' => 123,
- *      )   
+ *      )
  *  );
  *
  *  // Render chart with default 2d renderer and default SVG driver
  *  $chart->render( 500, 200, 'pie_chart.svg' );
  * </code>
  *
- * Each chart consists of several chart elements which represents logical 
+ * Each chart consists of several chart elements which represents logical
  * parts of the chart and can be formatted independently. The pie chart
  * consists of:
  *  - title ( {@link ezcGraphChartElementText} )
@@ -60,7 +60,7 @@
  * </code>
  *
  * The chart itself also offers several options to configure the appearance.
- * The extended configure options are available in 
+ * The extended configure options are available in
  * {@link ezcGraphPieChartOptions} extending the {@link ezcGraphChartOptions}.
  *
  * @property ezcGraphPieChartOptions $options
@@ -72,10 +72,9 @@
  */
 class ezcGraphPieChart extends ezcGraphChart
 {
-    
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -92,10 +91,10 @@ class ezcGraphPieChart extends ezcGraphChart
     /**
      * Render the assigned data
      *
-     * Will renderer all charts data in the remaining boundings after drawing 
-     * all other chart elements. The data will be rendered depending on the 
+     * Will renderer all charts data in the remaining boundings after drawing
+     * all other chart elements. The data will be rendered depending on the
      * settings in the dataset.
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer
      * @param ezcGraphBoundings $boundings Remaining boundings
      * @return void
@@ -164,7 +163,7 @@ class ezcGraphPieChart extends ezcGraphChart
 
     /**
      * Returns the default display type of the current chart type.
-     * 
+     *
      * @return int Display type
      */
     public function getDefaultDisplayType()
@@ -177,7 +176,7 @@ class ezcGraphPieChart extends ezcGraphChart
      *
      * Iterates over the dataset and applies the configured tresh hold to
      * the datasets data.
-     * 
+     *
      * @return void
      */
     protected function applyThreshold()
@@ -215,7 +214,7 @@ class ezcGraphPieChart extends ezcGraphChart
                     {
                         $dataset[$this->options->summarizeCaption] += $value;
                     }
-                    
+
                     $unset[] = $label;
                 }
             }
@@ -229,9 +228,9 @@ class ezcGraphPieChart extends ezcGraphChart
 
     /**
      * Renders the basic elements of this chart type
-     * 
-     * @param int $width 
-     * @param int $height 
+     *
+     * @param int $width
+     * @param int $height
      * @return void
      */
     protected function renderElements( $width, $height )
@@ -279,10 +278,10 @@ class ezcGraphPieChart extends ezcGraphChart
     /**
      * Render the pie chart
      *
-     * Renders the chart into a file or stream. The width and height are 
+     * Renders the chart into a file or stream. The width and height are
      * needed to specify the dimensions of the resulting image. For direct
      * output use 'php://stdout' as output file.
-     * 
+     *
      * @param int $width Image width
      * @param int $height Image height
      * @param string $file Output file
@@ -303,8 +302,8 @@ class ezcGraphPieChart extends ezcGraphChart
 
     /**
      * Renders this chart to direct output
-     * 
-     * Does the same as ezcGraphChart::render(), but renders directly to 
+     *
+     * Does the same as ezcGraphChart::render(), but renders directly to
      * output and not into a file.
      *
      * @param int $width
@@ -314,7 +313,7 @@ class ezcGraphPieChart extends ezcGraphChart
      */
     public function renderToOutput( $width, $height )
     {
-        // @TODO: merge this function with render an deprecate ommit of third 
+        // @TODO: merge this function with render an deprecate ommit of third
         // argument in render() when API break is possible
         $this->renderElements( $width, $height );
         $this->renderer->render( null );

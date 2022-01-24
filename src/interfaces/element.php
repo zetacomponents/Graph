@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -41,7 +41,7 @@
  *   ezcGraphChartElementLogarithmicalAxis, ezcGraphChartElementLabeledAxis,
  *   ezcGraphChartElementDateAxis)
  * - ...
- * 
+ *
  * The position of chart elements is defined in the $position property. The
  * effect this has on the visual representation depends on the actual type of
  * the chart element.
@@ -65,7 +65,7 @@
  *      'Foo' => 23,
  *      'Bar' => 42,
  *  ) );
- *  
+ *
  *  // Set a title and format the title element
  *  $graph->title              = 'Example formatted pie chart';
  *  $graph->title->margin      = 2;
@@ -74,7 +74,7 @@
  *  $graph->title->borderWidth = 1;
  *  $graph->title->margin      = 1;
  *  $graph->title->padding     = 1;
- *  
+ *
  *  // Format the legend element
  *  $graph->legend->margin      = 2;
  *  $graph->legend->background  = '#FFFFFF80';
@@ -82,9 +82,9 @@
  *  $graph->legend->borderWidth = 1;
  *  $graph->legend->margin      = 1;
  *  $graph->legend->padding     = 1;
- *  
+ *
  *  $graph->background->background = '#888a85';
- *  
+ *
  *  $graph->render( 400, 250, 'element.svg' );
  * </code>
  *
@@ -105,15 +105,15 @@
  * @property int $maxTitleHeight
  *           Maximum size of the title.
  * @property float $portraitTitleSize
- *           Percentage of boundings which are used for the title with 
+ *           Percentage of boundings which are used for the title with
  *           position left, right or center.
  * @property float $landscapeTitleSize
- *           Percentage of boundings which are used for the title with 
+ *           Percentage of boundings which are used for the title with
  *           position top or bottom.
  * @property ezcGraphFontOptions $font
  *           Font used for this element.
  * @property-read bool $fontCloned
- *                Indicates if font configuration was already cloned for this 
+ *                Indicates if font configuration was already cloned for this
  *                specific element.
  * @property-read ezcGraphBoundings $boundings
  *                Boundings of this elements.
@@ -123,10 +123,9 @@
  */
 abstract class ezcGraphChartElement extends ezcBaseOptions
 {
-
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -152,7 +151,7 @@ abstract class ezcGraphChartElement extends ezcBaseOptions
 
     /**
      * Set colors and border fro this element
-     * 
+     *
      * @param ezcGraphPalette $palette Palette
      * @return void
      */
@@ -166,10 +165,10 @@ abstract class ezcGraphChartElement extends ezcBaseOptions
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -249,7 +248,7 @@ abstract class ezcGraphChartElement extends ezcBaseOptions
                 {
                     $this->properties['position'] = $propertyValue;
                 }
-                else 
+                else
                 {
                     throw new ezcBaseValueException( 'position', $propertyValue, 'integer' );
                 }
@@ -288,11 +287,11 @@ abstract class ezcGraphChartElement extends ezcBaseOptions
                 break;
         }
     }
-    
+
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -318,9 +317,9 @@ abstract class ezcGraphChartElement extends ezcBaseOptions
     /**
      * Renders this chart element
      *
-     * This method receives and returns a part of the canvas where it can be 
+     * This method receives and returns a part of the canvas where it can be
      * rendered on.
-     * 
+     *
      * @param ezcGraphRenderer $renderer
      * @param ezcGraphBoundings $boundings
      * @return ezcGraphBoundings Part of canvas, which is still free to draw on
@@ -328,12 +327,12 @@ abstract class ezcGraphChartElement extends ezcBaseOptions
     abstract public function render( ezcGraphRenderer $renderer, ezcGraphBoundings $boundings );
 
     /**
-     * Returns calculated boundings based on available percentual space of 
-     * given bounding box specified in the elements options and direction of 
+     * Returns calculated boundings based on available percentual space of
+     * given bounding box specified in the elements options and direction of
      * the box.
-     * 
-     * @param ezcGraphBoundings $boundings 
-     * @param int $direction 
+     *
+     * @param ezcGraphBoundings $boundings
+     * @param int $direction
      * @return ezcGraphBoundings
      */
     protected function getTitleSize( ezcGraphBoundings $boundings, $direction = ezcGraph::HORIZONTAL )

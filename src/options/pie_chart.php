@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -42,7 +42,7 @@
  *
  *   $graph->options->label = '%1$s (%3$.1f)';
  *   $graph->options->percentThreshold = .05;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -51,7 +51,7 @@
  *       'Konqueror' => 474,
  *   ) );
  *   $graph->data['Access statistics']->highlight['Explorer'] = true;
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_pie_chart_options.svg' );
  * </code>
  *
@@ -65,7 +65,7 @@
  *           Function will receive 3 parameters:
  *              string function( label, value, percent )
  * @property float $sum
- *           Fixed sum of values. This should be used for incomplete pie 
+ *           Fixed sum of values. This should be used for incomplete pie
  *           charts.
  * @property float $percentThreshold
  *           Values with a lower percentage value are aggregated.
@@ -82,7 +82,7 @@ class ezcGraphPieChartOptions extends ezcGraphChartOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -102,9 +102,9 @@ class ezcGraphPieChartOptions extends ezcGraphChartOptions
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void
@@ -129,7 +129,7 @@ class ezcGraphPieChartOptions extends ezcGraphChartOptions
                 break;
             case 'sum':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue <= 0 ) ) 
+                     ( $propertyValue <= 0 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'float > 0' );
                 }
@@ -138,8 +138,8 @@ class ezcGraphPieChartOptions extends ezcGraphChartOptions
                 break;
             case 'percentThreshold':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 0 ) || 
-                     ( $propertyValue > 1 ) ) 
+                     ( $propertyValue < 0 ) ||
+                     ( $propertyValue > 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, '0 <= float <= 1' );
                 }
@@ -148,7 +148,7 @@ class ezcGraphPieChartOptions extends ezcGraphChartOptions
                 break;
             case 'absoluteThreshold':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue <= 0 ) ) 
+                     ( $propertyValue <= 0 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'float > 0' );
                 }

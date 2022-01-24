@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -24,7 +24,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 /**
- * Interface which adds the methods required for rendering radar charts to a 
+ * Interface which adds the methods required for rendering radar charts to a
  * renderer
  *
  * @version //autogentag//
@@ -36,7 +36,7 @@ interface ezcGraphStackedBarsRenderer
      * Draw stacked bar
      *
      * Draws a stacked bar part as a data element in a line chart
-     * 
+     *
      * @param ezcGraphBoundings $boundings Chart boundings
      * @param ezcGraphContext $context Context of call
      * @param ezcGraphColor $color Color of line

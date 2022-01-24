@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -77,44 +77,44 @@ class ezcGraph
     const VERTICAL = 2;
 
     /**
-     * Constant used for positioning of elements. May be used as a bitmask 
+     * Constant used for positioning of elements. May be used as a bitmask
      * together with other postioning constants.
      * Element will be placed at the top of the current boundings.
      */
     const TOP = 1;
     /**
-     * Constant used for positioning of elements. May be used as a bitmask 
+     * Constant used for positioning of elements. May be used as a bitmask
      * together with other postioning constants.
      * Element will be placed at the bottom of the current boundings.
      */
     const BOTTOM = 2;
     /**
-     * Constant used for positioning of elements. May be used as a bitmask 
+     * Constant used for positioning of elements. May be used as a bitmask
      * together with other postioning constants.
      * Element will be placed at the left of the current boundings.
      */
     const LEFT = 4;
     /**
-     * Constant used for positioning of elements. May be used as a bitmask 
+     * Constant used for positioning of elements. May be used as a bitmask
      * together with other postioning constants.
      * Element will be placed at the right of the current boundings.
      */
     const RIGHT = 8;
     /**
-     * Constant used for positioning of elements. May be used as a bitmask 
+     * Constant used for positioning of elements. May be used as a bitmask
      * together with other postioning constants.
      * Element will be placed at the horizontalcenter of the current boundings.
      */
     const CENTER = 16;
     /**
-     * Constant used for positioning of elements. May be used as a bitmask 
+     * Constant used for positioning of elements. May be used as a bitmask
      * together with other postioning constants.
      * Element will be placed at the vertical middle of the current boundings.
      */
     const MIDDLE = 32;
 
     /**
-     * Display type for datasets. Pie may only be used with pie charts. 
+     * Display type for datasets. Pie may only be used with pie charts.
      */
     const PIE = 1;
     /**

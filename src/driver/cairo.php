@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -26,9 +26,9 @@
 /**
  * Extension of the basic driver package to utilize the cairo library.
  *
- * This drivers options are defined in the class 
+ * This drivers options are defined in the class
  * {@link ezcGraphCairoDriverOptions} extending the basic driver options class
- * {@link ezcGraphDriverOptions}. 
+ * {@link ezcGraphDriverOptions}.
  *
  * As this is the default driver you do not need to explicitely set anything to
  * use it, but may use some of its advanced features.
@@ -38,7 +38,7 @@
  *   $graph->background->color = '#FFFFFFFF';
  *   $graph->title = 'Access statistics';
  *   $graph->legend = false;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -46,17 +46,17 @@
  *       'Safari' => 652,
  *       'Konqueror' => 474,
  *   ) );
- *   
+ *
  *   $graph->renderer = new ezcGraphRenderer3d();
  *   $graph->renderer->options->pieChartShadowSize = 10;
  *   $graph->renderer->options->pieChartGleam = .5;
  *   $graph->renderer->options->dataBorder = false;
  *   $graph->renderer->options->pieChartHeight = 16;
  *   $graph->renderer->options->legendSymbolGleam = .5;
- * 
+ *
  *   // Use cairo driver
  *   $graph->driver = new ezcGraphCairoDriver();
- *   
+ *
  *   $graph->render( 400, 200, 'tutorial_driver_cairo.png' );
  * </code>
  *
@@ -68,14 +68,14 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 {
     /**
      * Surface for cairo
-     * 
+     *
      * @var resource
      */
     protected $surface;
 
     /**
      * Current cairo context.
-     * 
+     *
      * @var resource
      */
     protected $context;
@@ -86,14 +86,14 @@ class ezcGraphCairoDriver extends ezcGraphDriver
      *          'text' => array( 'strings' ),
      *          'options' => ezcGraphFontOptions,
      *      )
-     * 
+     *
      * @var array
      */
     protected $strings = array();
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -109,7 +109,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
      *
      * Initilize cairo surface from values provided in the options object, if
      * is has not been already initlized.
-     * 
+     *
      * @return void
      */
     protected function initiliazeSurface()
@@ -120,9 +120,9 @@ class ezcGraphCairoDriver extends ezcGraphDriver
             return;
         }
 
-        $this->surface = cairo_image_surface_create( 
-            CAIRO_FORMAT_ARGB32, 
-            $this->options->width, 
+        $this->surface = cairo_image_surface_create(
+            CAIRO_FORMAT_ARGB32,
+            $this->options->width,
             $this->options->height
         );
 
@@ -133,9 +133,9 @@ class ezcGraphCairoDriver extends ezcGraphDriver
     /**
      * Get SVG style definition
      *
-     * Returns a string with SVG style definitions created from color, 
+     * Returns a string with SVG style definitions created from color,
      * fillstatus and line thickness.
-     * 
+     *
      * @param ezcGraphColor $color Color
      * @param mixed $filled Filled
      * @param float $thickness Line thickness.
@@ -151,7 +151,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                     $color->endPoint->x, $color->endPoint->y
                 );
 
-                cairo_pattern_add_color_stop_rgba ( 
+                cairo_pattern_add_color_stop_rgba(
                     $pattern,
                     0,
                     $color->startColor->red / 255,
@@ -160,8 +160,8 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                     1 - $color->startColor->alpha / 255
                 );
 
-                cairo_pattern_add_color_stop_rgba ( 
-                    $pattern, 
+                cairo_pattern_add_color_stop_rgba(
+                    $pattern,
                     1,
                     $color->endColor->red / 255,
                     $color->endColor->green / 255,
@@ -179,7 +179,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                     0, 0, 1
                 );
 
-                cairo_pattern_add_color_stop_rgba ( 
+                cairo_pattern_add_color_stop_rgba(
                     $pattern,
                     0,
                     $color->startColor->red / 255,
@@ -188,8 +188,8 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                     1 - $color->startColor->alpha / 255
                 );
 
-                cairo_pattern_add_color_stop_rgba ( 
-                    $pattern, 
+                cairo_pattern_add_color_stop_rgba(
+                    $pattern,
                     1,
                     $color->endColor->red / 255,
                     $color->endColor->green / 255,
@@ -208,7 +208,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                 cairo_fill( $this->context );
                 break;
             default:
-                cairo_set_source_rgba( 
+                cairo_set_source_rgba(
                     $this->context,
                     $color->red / 255,
                     $color->green / 255,
@@ -229,8 +229,8 @@ class ezcGraphCairoDriver extends ezcGraphDriver
     }
 
     /**
-     * Draws a single polygon. 
-     * 
+     * Draws a single polygon.
+     *
      * @param array $points Point array
      * @param ezcGraphColor $color Polygon color
      * @param mixed $filled Filled
@@ -258,10 +258,10 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
         return $points;
     }
-    
+
     /**
-     * Draws a line 
-     * 
+     * Draws a line
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Line color
@@ -285,7 +285,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
     /**
      * Returns boundings of text depending on the available font extension
-     * 
+     *
      * @param float $size Textsize
      * @param ezcGraphFontOptions $font Font
      * @param string $text Text
@@ -307,7 +307,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
     /**
      * Writes text in a box of desired size
-     * 
+     *
      * @param string $string Text
      * @param ezcGraphCoordinate $position Top left position
      * @param float $width Width of text box
@@ -341,14 +341,14 @@ class ezcGraphCairoDriver extends ezcGraphDriver
             }
             $size = ( ( $newsize = $size * ( $result ) ) >= $size ? $size - 1 : floor( $newsize ) );
         }
-        
+
         if ( !is_array( $result ) )
         {
             if ( ( $height >= $this->options->font->minFontSize ) &&
                  ( $this->options->autoShortenString ) )
             {
                 $result = $this->tryFitShortenedString( $string, $position, $width, $height, $size = $this->options->font->minFontSize );
-            } 
+            }
             else
             {
                 throw new ezcGraphFontRenderingException( $string, $this->options->font->minFontSize, $width, $height );
@@ -373,24 +373,24 @@ class ezcGraphCairoDriver extends ezcGraphDriver
             new ezcGraphCoordinate( $position->x, $position->y + $height ),
         );
     }
-    
+
     /**
      * Render text depending of font type and available font extensions
-     * 
-     * @param string $id 
-     * @param string $text 
-     * @param string $font 
-     * @param ezcGraphColor $color 
-     * @param ezcGraphCoordinate $position 
-     * @param float $size 
-     * @param float $rotation 
+     *
+     * @param string $id
+     * @param string $text
+     * @param string $font
+     * @param ezcGraphColor $color
+     * @param ezcGraphCoordinate $position
+     * @param float $size
+     * @param float $rotation
      * @return void
      */
     protected function renderText( $text, $font, ezcGraphColor $color, ezcGraphCoordinate $position, $size, $rotation = null )
     {
         cairo_select_font_face( $this->context, $font, CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL );
         cairo_set_font_size( $this->context, $size );
-        
+
         // Store current state of context
         cairo_save( $this->context );
         cairo_move_to( $this->context, 0, 0 );
@@ -398,21 +398,25 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         if ( $rotation !== null )
         {
             // Move to the center
-            cairo_translate( $this->context, 
-                $rotation->getCenter()->x, 
+            cairo_translate(
+                $this->context,
+                $rotation->getCenter()->x,
                 $rotation->getCenter()->y
             );
             // Rotate around text center
-            cairo_rotate( $this->context, 
-                deg2rad( $rotation->getRotation() ) 
+            cairo_rotate(
+                $this->context,
+                deg2rad( $rotation->getRotation() )
             );
             // Center the text
-            cairo_translate( $this->context, 
+            cairo_translate(
+                $this->context,
                 $position->x - $rotation->getCenter()->x,
                 $position->y - $rotation->getCenter()->y - $size * .15
             );
         } else {
-            cairo_translate( $this->context,
+            cairo_translate(
+                $this->context,
                 $position->x,
                 $position->y - $size * .15
             );
@@ -430,17 +434,17 @@ class ezcGraphCairoDriver extends ezcGraphDriver
     /**
      * Draw all collected texts
      *
-     * The texts are collected and their maximum possible font size is 
+     * The texts are collected and their maximum possible font size is
      * calculated. This function finally draws the texts on the image, this
      * delayed drawing has two reasons:
      *
-     * 1) This way the text strings are always on top of the image, what 
+     * 1) This way the text strings are always on top of the image, what
      *    results in better readable texts
      * 2) The maximum possible font size can be calculated for a set of texts
-     *    with the same font configuration. Strings belonging to one chart 
+     *    with the same font configuration. Strings belonging to one chart
      *    element normally have the same font configuration, so that all texts
      *    belonging to one element will have the same font size.
-     * 
+     *
      * @access protected
      * @return void
      */
@@ -549,8 +553,8 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
             if ( $text['font']->background !== false )
             {
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     $text['font']->background,
                     true
                 );
@@ -558,8 +562,8 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
             if ( $text['font']->border !== false )
             {
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     $text['font']->border,
                     false,
                     $text['font']->borderWidth
@@ -578,20 +582,20 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                 switch ( true )
                 {
                     case ( $text['align'] & ezcGraph::LEFT ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x, 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x,
                             $text['position']->y + $yOffset
                         );
                         break;
                     case ( $text['align'] & ezcGraph::RIGHT ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x + ( $text['width'] - $boundings->width ), 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x + ( $text['width'] - $boundings->width ),
                             $text['position']->y + $yOffset
                         );
                         break;
                     case ( $text['align'] & ezcGraph::CENTER ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x + ( ( $text['width'] - $boundings->width ) / 2 ), 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x + ( ( $text['width'] - $boundings->width ) / 2 ),
                             $text['position']->y + $yOffset
                         );
                         break;
@@ -600,9 +604,9 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                 // Optionally draw text shadow
                 if ( $text['font']->textShadow === true )
                 {
-                    $this->renderText( 
+                    $this->renderText(
                         $string,
-                        $text['font']->name, 
+                        $text['font']->name,
                         $text['font']->textShadowColor,
                         new ezcGraphCoordinate(
                             $position->x + $text['font']->textShadowOffset,
@@ -612,12 +616,12 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                         $text['rotation']
                     );
                 }
-                
+
                 // Finally draw text
-                $this->renderText( 
+                $this->renderText(
                     $string,
-                    $text['font']->name, 
-                    $text['font']->color, 
+                    $text['font']->name,
+                    $text['font']->color,
                     $position,
                     $size,
                     $text['rotation']
@@ -630,7 +634,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
     /**
      * Draws a sector of cirlce
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of circle
      * @param mixed $width Width
      * @param mixed $height Height
@@ -651,23 +655,26 @@ class ezcGraphCairoDriver extends ezcGraphDriver
             $startAngle = $endAngle;
             $endAngle = $tmp;
         }
-        
+
         cairo_save( $this->context );
-        
+
         // Draw circular arc path
         $path = cairo_new_path( $this->context );
-        cairo_translate( $this->context, 
+        cairo_translate(
+            $this->context,
             $center->x,
             $center->y
         );
-        cairo_scale( $this->context, 
+        cairo_scale(
+            $this->context,
             1, $height / $width
         );
 
         cairo_move_to( $this->context, 0, 0 );
-        cairo_arc( $this->context, 
-            0., 0., 
-            $width / 2, 
+        cairo_arc(
+            $this->context,
+            0., 0.,
+            $width / 2,
             deg2rad( $startAngle ),
             deg2rad( $endAngle )
         );
@@ -682,16 +689,16 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         for ( $angle = $startAngle; $angle < $endAngle; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x + 
+                $center->x +
                     ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ),
-                $center->y + 
+                $center->y +
                     ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
             );
         }
         $polygonArray[] = new ezcGraphCoordinate(
-            $center->x + 
+            $center->x +
                 ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-            $center->y + 
+            $center->y +
                 ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 )
         );
 
@@ -699,40 +706,36 @@ class ezcGraphCairoDriver extends ezcGraphDriver
     }
 
     /**
-     * Draws a circular arc consisting of several minor steps on the bounding 
+     * Draws a circular arc consisting of several minor steps on the bounding
      * lines.
-     * 
-     * @param ezcGraphCoordinate $center 
-     * @param mixed $width 
-     * @param mixed $height 
-     * @param mixed $size 
-     * @param mixed $startAngle 
-     * @param mixed $endAngle 
-     * @param ezcGraphColor $color 
-     * @param bool $filled 
+     *
+     * @param ezcGraphCoordinate $center
+     * @param mixed $width
+     * @param mixed $height
+     * @param mixed $size
+     * @param mixed $startAngle
+     * @param mixed $endAngle
+     * @param ezcGraphColor $color
+     * @param bool $filled
      * @return string Element id
      */
     protected function simulateCircularArc( ezcGraphCoordinate $center, $width, $height, $size, $startAngle, $endAngle, ezcGraphColor $color, $filled )
     {
-        for ( 
-            $tmpAngle = min( ceil ( $startAngle / 180 ) * 180, $endAngle ); 
-            $tmpAngle <= $endAngle; 
-            $tmpAngle = min( ceil ( $startAngle / 180 + 1 ) * 180, $endAngle ) )
+        for ( $tmpAngle = min( ceil( $startAngle / 180 ) * 180, $endAngle ); $tmpAngle <= $endAngle; $tmpAngle = min( ceil( $startAngle / 180 + 1 ) * 180, $endAngle ) )
         {
             $path = cairo_new_path( $this->context );
-            cairo_move_to( $this->context,
-                $center->x + cos( deg2rad( $startAngle ) ) * $width / 2, 
+            cairo_move_to(
+                $this->context,
+                $center->x + cos( deg2rad( $startAngle ) ) * $width / 2,
                 $center->y + sin( deg2rad( $startAngle ) ) * $height / 2
             );
 
             // @TODO: Use cairo_curve_to()
-            for(
-                $angle = $startAngle;
-                $angle <= $tmpAngle;
-                $angle = min( $angle + $this->options->circleResolution, $tmpAngle ) )
+            for( $angle = $startAngle; $angle <= $tmpAngle; $angle = min( $angle + $this->options->circleResolution, $tmpAngle ) )
             {
-                cairo_line_to( $this->context,
-                    $center->x + cos( deg2rad( $angle ) ) * $width / 2, 
+                cairo_line_to(
+                    $this->context,
+                    $center->x + cos( deg2rad( $angle ) ) * $width / 2,
                     $center->y + sin( deg2rad( $angle ) ) * $height / 2 + $size
                 );
 
@@ -742,13 +745,11 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                 }
             }
 
-            for(
-                $angle = $tmpAngle;
-                $angle >= $startAngle;
-                $angle = max( $angle - $this->options->circleResolution, $startAngle ) )
+            for( $angle = $tmpAngle; $angle >= $startAngle; $angle = max( $angle - $this->options->circleResolution, $startAngle ) )
             {
-                cairo_line_to(  $this->context,
-                    $center->x + cos( deg2rad( $angle ) ) * $width / 2, 
+                cairo_line_to(
+                    $this->context,
+                    $center->x + cos( deg2rad( $angle ) ) * $width / 2,
                     $center->y + sin( deg2rad( $angle ) ) * $height / 2
                 );
 
@@ -763,7 +764,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
             cairo_stroke( $this->context );
 
             $startAngle = $tmpAngle;
-            if ( $tmpAngle === $endAngle ) 
+            if ( $tmpAngle === $endAngle )
             {
                 break;
             }
@@ -772,7 +773,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
     /**
      * Draws a circular arc
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param integer $width Width of ellipse
      * @param integer $height Height of ellipse
@@ -812,7 +813,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                 ezcGraphColor::fromHex( '#FFFFFF' )->transparent( $this->options->shadeCircularArc * 1.5 ),
                 ezcGraphColor::fromHex( '#000000' )->transparent( $this->options->shadeCircularArc * 1.5 )
             );
-        
+
             $this->simulateCircularArc( $center, $width, $height, $size, $startAngle, $endAngle, $gradient, $filled );
         }
 
@@ -821,32 +822,32 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         for ( $angle = $startAngle; $angle < $endAngle; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x + 
+                $center->x +
                     ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ),
-                $center->y + 
+                $center->y +
                     ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
             );
         }
         $polygonArray[] = new ezcGraphCoordinate(
-            $center->x + 
+            $center->x +
                 ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-            $center->y + 
+            $center->y +
                 ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 )
         );
 
         for ( $angle = $endAngle; $angle > $startAngle; $angle -= $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x + 
+                $center->x +
                     ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ) + $size,
-                $center->y + 
+                $center->y +
                     ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
             );
         }
         $polygonArray[] = new ezcGraphCoordinate(
-            $center->x + 
+            $center->x +
                 ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ) + $size,
-            $center->y + 
+            $center->y +
                 ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 )
         );
 
@@ -854,8 +855,8 @@ class ezcGraphCairoDriver extends ezcGraphDriver
     }
 
     /**
-     * Draw circle 
-     * 
+     * Draw circle
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param mixed $width Width of ellipse
      * @param mixed $height height of ellipse
@@ -866,22 +867,25 @@ class ezcGraphCairoDriver extends ezcGraphDriver
     public function drawCircle( ezcGraphCoordinate $center, $width, $height, ezcGraphColor $color, $filled = true )
     {
         $this->initiliazeSurface();
-        
+
         cairo_save( $this->context );
-        
+
         // Draw circular arc path
         $path = cairo_new_path( $this->context );
-        cairo_translate( $this->context, 
+        cairo_translate(
+            $this->context,
             $center->x,
             $center->y
         );
-        cairo_scale( $this->context, 
+        cairo_scale(
+            $this->context,
             1, $height / $width
         );
 
-        cairo_arc( $this->context, 
-            0., 0., 
-            $width / 2, 
+        cairo_arc(
+            $this->context,
+            0., 0.,
+            $width / 2,
             0, 2 * M_PI
         );
 
@@ -894,9 +898,9 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         for ( $angle = 0; $angle < ( 2 * M_PI ); $angle += deg2rad( $this->options->imageMapResolution ) )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x + 
+                $center->x +
                     ( ( cos( $angle ) * $width ) / 2 ),
-                $center->y + 
+                $center->y +
                     ( ( sin( $angle ) * $height ) / 2 )
             );
         }
@@ -905,12 +909,12 @@ class ezcGraphCairoDriver extends ezcGraphDriver
     }
 
     /**
-     * Draw an image 
+     * Draw an image
      *
      * The image will be inlined in the SVG document using data URL scheme. For
-     * this the mime type and base64 encoded file content will be merged to 
+     * this the mime type and base64 encoded file content will be merged to
      * URL.
-     * 
+     *
      * @param mixed $file Image file
      * @param ezcGraphCoordinate $position Top left position
      * @param mixed $width Width of image in destination image
@@ -949,7 +953,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
     /**
      * Return mime type for current image format
-     * 
+     *
      * @return string
      */
     public function getMimeType()
@@ -960,10 +964,10 @@ class ezcGraphCairoDriver extends ezcGraphDriver
     /**
      * Render image directly to output
      *
-     * The method renders the image directly to the standard output. You 
-     * normally do not want to use this function, because it makes it harder 
+     * The method renders the image directly to the standard output. You
+     * normally do not want to use this function, because it makes it harder
      * to proper cache the generated graphs.
-     * 
+     *
      * @return void
      */
     public function renderToOutput()
@@ -986,7 +990,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
 
     /**
      * Finally save image
-     * 
+     *
      * @param string $file Destination filename
      * @return void
      */
@@ -1011,12 +1015,12 @@ class ezcGraphCairoDriver extends ezcGraphDriver
      *      'context' => resource,
      *  )
      * </code>
-     * 
+     *
      * @return array
      */
     public function getResource()
     {
-        return array( 
+        return array(
             'surface' => $this->surface,
             'context' => $this->context,
         );

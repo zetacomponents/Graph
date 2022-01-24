@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,22 +35,22 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
 {
     /**
      * Contains the data of a chart
-     * 
+     *
      * @var array(ezcGraphDataSet)
      */
     protected $data = array();
 
     /**
      * Chart using this data set storage
-     * 
+     *
      * @var ezcGraphChart
      */
     protected $chart;
 
     /**
      * Constructor
-     * 
-     * @param ezcGraphChart $chart 
+     *
+     * @param ezcGraphChart $chart
      * @ignore
      * @return void
      */
@@ -61,7 +61,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
 
     /**
      * Adds a dataset to the charts data
-     * 
+     *
      * @param string $name Name of dataset
      * @param ezcGraphDataSet $dataSet
      * @param mixed $values Values to create dataset with
@@ -72,7 +72,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
     protected function addDataSet( $name, ezcGraphDataSet $dataSet )
     {
         $this->data[$name] = $dataSet;
-        
+
         $this->data[$name]->label = $name;
         $this->data[$name]->palette = $this->chart->palette;
         $this->data[$name]->displayType = $this->chart->getDefaultDisplayType();
@@ -83,7 +83,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      *
      * This method is part of the ArrayAccess interface to allow access to the
      * data of this object as if it was an array.
-     * 
+     *
      * @param string $key Identifier of dataset.
      * @return bool True when the offset exists, otherwise false.
      */
@@ -94,11 +94,11 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
     }
 
     /**
-     * Returns the element with the given offset. 
+     * Returns the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param string $key Identifier of dataset.
      * @return ezcGraphDataSet
      *
@@ -117,11 +117,11 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
     }
 
     /**
-     * Set the element with the given offset. 
+     * Set the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param string $key
      * @param ezcGraphDataSet $value
      * @return void
@@ -141,11 +141,11 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
     }
 
     /**
-     * Unset the element with the given offset. 
+     * Unset the element with the given offset.
      *
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param string $key
      * @return void
      */
@@ -163,10 +163,10 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
     /**
      * Returns the currently selected dataset.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return ezcGraphDataSet The currently selected dataset.
      */
     #[ReturnTypeWillChange]
@@ -178,7 +178,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
     /**
      * Returns the next dataset and selects it or false on the last dataset.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -193,10 +193,10 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
     /**
      * Returns the key of the currently selected dataset.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return int The key of the currently selected dataset.
      */
     #[ReturnTypeWillChange]
@@ -208,7 +208,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
     /**
      * Returns if the current dataset is valid.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -222,7 +222,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
 
     /**
      * Selects the very first dataset and returns it.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datasets of this row by iterating over it like an array (e.g. using
      * foreach).
      *

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -41,36 +41,36 @@
 class ezcGraphBoundings
 {
     /**
-     * Top left x coordinate 
-     * 
+     * Top left x coordinate
+     *
      * @var float
      */
     public $x0 = 0;
 
     /**
-     * Top left y coordinate 
-     * 
+     * Top left y coordinate
+     *
      * @var float
      */
     public $y0 = 0;
-    
+
     /**
-     * Bottom right x coordinate 
-     * 
+     * Bottom right x coordinate
+     *
      * @var float
      */
     public $x1 = false;
 
     /**
-     * Bottom right y coordinate 
-     * 
+     * Bottom right y coordinate
+     *
      * @var float
      */
     public $y1 = false;
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param float $x0 Top left x coordinate
      * @param float $y0 Top left y coordinate
      * @param float $x1 Bottom right x coordinate
@@ -104,7 +104,7 @@ class ezcGraphBoundings
      * Getter for calculated values depending on the boundings.
      *  - 'width': Width of bounding recangle
      *  - 'height': Height of bounding recangle
-     * 
+     *
      * @param string $name Name of property to get
      * @return mixed Calculated value
      */

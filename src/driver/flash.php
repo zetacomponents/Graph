@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,12 +33,12 @@
  *   $graph = new ezcGraphPieChart();
  *   $graph->title = 'Access statistics';
  *   $graph->legend = false;
- *   
+ *
  *   $graph->driver = new ezcGraphFlashDriver();
  *   $graph->options->font = 'tutorial_font.fdb';
- *   
+ *
  *   $graph->driver->options->compression = 7;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -46,7 +46,7 @@
  *       'Safari' => 652,
  *       'Konqueror' => 474,
  *   ) );
- *   
+ *
  *   $graph->render( 400, 200, 'tutorial_driver_flash.swf' );
  * </code>
  *
@@ -59,28 +59,28 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 {
     /**
      * Flash movie
-     * 
+     *
      * @var SWFMovie
      */
     protected $movie;
 
     /**
      * Unique element id
-     * 
+     *
      * @var int
      */
     protected $id = 1;
 
     /**
      * Array with strings to draw later
-     * 
+     *
      * @var array
      */
     protected $strings = array();
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -93,7 +93,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
     /**
      * Returns unique movie object as a parent canvas for all swf objects.
-     * 
+     *
      * @return SWFMovie
      */
     public function getDocument()
@@ -111,13 +111,13 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     }
 
     /**
-     * Set the fill and line properties for a SWWFShape according to the 
+     * Set the fill and line properties for a SWWFShape according to the
      * given parameters.
-     * 
+     *
      * @param SWFShape $shape
-     * @param ezcGraphColor $color 
-     * @param mixed $thickness 
-     * @param mixed $filled 
+     * @param ezcGraphColor $color
+     * @param mixed $thickness
+     * @param mixed $filled
      * @return void
      */
     protected function setShapeColor( SWFShape $shape, ezcGraphColor $color, $thickness, $filled )
@@ -128,41 +128,43 @@ class ezcGraphFlashDriver extends ezcGraphDriver
             {
                 case ( $color instanceof ezcGraphLinearGradient ):
                     $gradient = new SWFGradient();
-                    $gradient->addEntry( 
-                        0, 
-                        $color->startColor->red, 
-                        $color->startColor->green, 
-                        $color->startColor->blue, 
-                        255 - $color->startColor->alpha 
+                    $gradient->addEntry(
+                        0,
+                        $color->startColor->red,
+                        $color->startColor->green,
+                        $color->startColor->blue,
+                        255 - $color->startColor->alpha
                     );
-                    $gradient->addEntry( 
-                        1, 
-                        $color->endColor->red, 
-                        $color->endColor->green, 
-                        $color->endColor->blue, 
-                        255 - $color->endColor->alpha 
+                    $gradient->addEntry(
+                        1,
+                        $color->endColor->red,
+                        $color->endColor->green,
+                        $color->endColor->blue,
+                        255 - $color->endColor->alpha
                     );
 
                     $fill = $shape->addFill( $gradient, SWFFILL_LINEAR_GRADIENT );
 
                     // Calculate desired length of gradient
-                    $length = sqrt( 
-                        pow( $color->endPoint->x - $color->startPoint->x, 2 ) + 
-                        pow( $color->endPoint->y - $color->startPoint->y, 2 ) 
-                    ); 
+                    $length = sqrt(
+                        pow( $color->endPoint->x - $color->startPoint->x, 2 ) +
+                        pow( $color->endPoint->y - $color->startPoint->y, 2 )
+                    );
 
                     $fill->scaleTo( $this->modifyCoordinate( $length ) / 32768 , $this->modifyCoordinate( $length ) / 32768 );
-                    $fill->rotateTo( 
-                        rad2deg( asin( 
-                            ( $color->endPoint->x - $color->startPoint->x ) / $length
-                        ) + 180 )
+                    $fill->rotateTo(
+                        rad2deg(
+                            asin(
+                                ( $color->endPoint->x - $color->startPoint->x ) / $length
+                            ) + 180
+                        )
                     );
-                    $fill->moveTo( 
-                        $this->modifyCoordinate( 
-                            ( $color->startPoint->x + $color->endPoint->x ) / 2 
-                        ), 
-                        $this->modifyCoordinate( 
-                            ( $color->startPoint->y + $color->endPoint->y ) / 2 
+                    $fill->moveTo(
+                        $this->modifyCoordinate(
+                            ( $color->startPoint->x + $color->endPoint->x ) / 2
+                        ),
+                        $this->modifyCoordinate(
+                            ( $color->startPoint->y + $color->endPoint->y ) / 2
                         )
                     );
 
@@ -170,19 +172,19 @@ class ezcGraphFlashDriver extends ezcGraphDriver
                     break;
                 case ( $color instanceof ezcGraphRadialGradient ):
                     $gradient = new SWFGradient();
-                    $gradient->addEntry( 
-                        0, 
-                        $color->startColor->red, 
-                        $color->startColor->green, 
-                        $color->startColor->blue, 
-                        255 - $color->startColor->alpha 
+                    $gradient->addEntry(
+                        0,
+                        $color->startColor->red,
+                        $color->startColor->green,
+                        $color->startColor->blue,
+                        255 - $color->startColor->alpha
                     );
-                    $gradient->addEntry( 
-                        1, 
-                        $color->endColor->red, 
-                        $color->endColor->green, 
-                        $color->endColor->blue, 
-                        255 - $color->endColor->alpha 
+                    $gradient->addEntry(
+                        1,
+                        $color->endColor->red,
+                        $color->endColor->green,
+                        $color->endColor->blue,
+                        255 - $color->endColor->alpha
                     );
 
                     $fill = $shape->addFill( $gradient, SWFFILL_RADIAL_GRADIENT );
@@ -205,10 +207,10 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     }
 
     /**
-     * Modifies a coordinate value, as flash usally uses twips instead of 
+     * Modifies a coordinate value, as flash usally uses twips instead of
      * pixels for a higher solution, as it only accepts integer values.
-     * 
-     * @param float $pointValue 
+     *
+     * @param float $pointValue
      * @return float
      */
     protected function modifyCoordinate( $pointValue )
@@ -217,10 +219,10 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     }
 
     /**
-     * Demodifies a coordinate value, as flash usally uses twips instead of 
+     * Demodifies a coordinate value, as flash usally uses twips instead of
      * pixels for a higher solution, as it only accepts integer values.
-     * 
-     * @param float $pointValue 
+     *
+     * @param float $pointValue
      * @return float
      */
     protected function deModifyCoordinate( $pointValue )
@@ -229,8 +231,8 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     }
 
     /**
-     * Draws a single polygon. 
-     * 
+     * Draws a single polygon.
+     *
      * @param array $points Point array
      * @param ezcGraphColor $color Polygon color
      * @param mixed $filled Filled
@@ -243,7 +245,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
         if ( !$filled )
         {
-            // The middle of the border is on the outline of a polygon in ming, 
+            // The middle of the border is on the outline of a polygon in ming,
             // fix that:
             try
             {
@@ -272,10 +274,10 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
         return $id;
     }
-    
+
     /**
-     * Draws a line 
-     * 
+     * Draws a line
+     *
      * @param ezcGraphCoordinate $start Start point
      * @param ezcGraphCoordinate $end End point
      * @param ezcGraphColor $color Line color
@@ -301,7 +303,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
     /**
      * Returns boundings of text depending on the available font extension
-     * 
+     *
      * @param float $size Textsize
      * @param ezcGraphFontOptions $font Font
      * @param string $text Text
@@ -314,13 +316,13 @@ class ezcGraphFlashDriver extends ezcGraphDriver
         $t->setHeight( $size );
 
         $boundings = new ezcGraphBoundings( 0, 0, $t->getWidth( $text ), $size );
-        
+
         return $boundings;
     }
-    
+
     /**
      * Writes text in a box of desired size
-     * 
+     *
      * @param string $string Text
      * @param ezcGraphCoordinate $position Top left position
      * @param float $width Width of text box
@@ -361,13 +363,12 @@ class ezcGraphFlashDriver extends ezcGraphDriver
                  ( $this->options->autoShortenString ) )
             {
                 $result = $this->tryFitShortenedString( $string, $position, $width, $height, $size = $this->modifyCoordinate( $this->options->font->minFontSize ) );
-            } 
+            }
             else
             {
                 throw new ezcGraphFontRenderingException( $string, $this->options->font->minFontSize, $width, $height );
             }
         }
-
 
         $this->options->font->minimalUsedFont = $this->deModifyCoordinate( $size );
 
@@ -384,19 +385,19 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
         return $id;
     }
-    
+
     /**
      * Render text depending of font type and available font extensions
-     * 
-     * @param string $id 
-     * @param string $text 
-     * @param string $chars 
-     * @param int $type 
-     * @param string $path 
-     * @param ezcGraphColor $color 
-     * @param ezcGraphCoordinate $position 
-     * @param float $size 
-     * @param float $rotation 
+     *
+     * @param string $id
+     * @param string $text
+     * @param string $chars
+     * @param int $type
+     * @param string $path
+     * @param ezcGraphColor $color
+     * @param ezcGraphCoordinate $position
+     * @param float $size
+     * @param float $rotation
      * @return void
      */
     protected function renderText( $id, $text, $chars, $type, $path, ezcGraphColor $color, ezcGraphCoordinate $position, $size, $rotation = null )
@@ -414,7 +415,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
         $object->rotate(
             ( $rotation !== null ? -$rotation->getRotation() : 0 )
         );
-        $object->moveTo( 
+        $object->moveTo(
             $position->x +
                 ( $rotation === null ? 0 : $this->modifyCoordinate( $rotation->get( 0, 2 ) ) ),
             $position->y -
@@ -427,17 +428,17 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     /**
      * Draw all collected texts
      *
-     * The texts are collected and their maximum possible font size is 
+     * The texts are collected and their maximum possible font size is
      * calculated. This function finally draws the texts on the image, this
      * delayed drawing has two reasons:
      *
-     * 1) This way the text strings are always on top of the image, what 
+     * 1) This way the text strings are always on top of the image, what
      *    results in better readable texts
      * 2) The maximum possible font size can be calculated for a set of texts
-     *    with the same font configuration. Strings belonging to one chart 
+     *    with the same font configuration. Strings belonging to one chart
      *    element normally have the same font configuration, so that all texts
      *    belonging to one element will have the same font size.
-     * 
+     *
      * @access protected
      * @return void
      */
@@ -564,8 +565,8 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
             if ( $text['font']->background !== false )
             {
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     $text['font']->background,
                     true
                 );
@@ -573,8 +574,8 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
             if ( $text['font']->border !== false )
             {
-                $this->drawPolygon( 
-                    $borderPolygonArray, 
+                $this->drawPolygon(
+                    $borderPolygonArray,
                     $text['font']->border,
                     false,
                     $text['font']->borderWidth
@@ -593,20 +594,20 @@ class ezcGraphFlashDriver extends ezcGraphDriver
                 switch ( true )
                 {
                     case ( $text['align'] & ezcGraph::LEFT ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x, 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x,
                             $text['position']->y + $yOffset
                         );
                         break;
                     case ( $text['align'] & ezcGraph::RIGHT ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x + ( $text['width'] - $boundings->width ), 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x + ( $text['width'] - $boundings->width ),
                             $text['position']->y + $yOffset
                         );
                         break;
                     case ( $text['align'] & ezcGraph::CENTER ):
-                        $position = new ezcGraphCoordinate( 
-                            $text['position']->x + ( ( $text['width'] - $boundings->width ) / 2 ), 
+                        $position = new ezcGraphCoordinate(
+                            $text['position']->x + ( ( $text['width'] - $boundings->width ) / 2 ),
                             $text['position']->y + $yOffset
                         );
                         break;
@@ -615,12 +616,12 @@ class ezcGraphFlashDriver extends ezcGraphDriver
                 // Optionally draw text shadow
                 if ( $text['font']->textShadow === true )
                 {
-                    $this->renderText( 
+                    $this->renderText(
                         $text['id'],
                         $string,
                         $chars[$text['font']->path],
-                        $text['font']->type, 
-                        $text['font']->path, 
+                        $text['font']->type,
+                        $text['font']->path,
                         $text['font']->textShadowColor,
                         new ezcGraphCoordinate(
                             $position->x + $this->modifyCoordinate( $text['font']->textShadowOffset ),
@@ -630,15 +631,15 @@ class ezcGraphFlashDriver extends ezcGraphDriver
                         $text['rotation']
                     );
                 }
-                
+
                 // Finally draw text
-                $this->renderText( 
+                $this->renderText(
                     $text['id'],
                     $string,
                     $chars[$text['font']->path],
-                    $text['font']->type, 
-                    $text['font']->path, 
-                    $text['font']->color, 
+                    $text['font']->type,
+                    $text['font']->path,
+                    $text['font']->color,
                     $position,
                     $size,
                     $text['rotation']
@@ -651,7 +652,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
     /**
      * Draws a sector of cirlce
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of circle
      * @param mixed $width Width
      * @param mixed $height Height
@@ -696,13 +697,10 @@ class ezcGraphFlashDriver extends ezcGraphDriver
         $shape->movePenTo( $this->modifyCoordinate( $center->x ), $this->modifyCoordinate( $center->y ) );
 
         // @TODO: User SWFShape::curveTo
-        for(
-            $angle = $startAngle;
-            $angle <= $endAngle;
-            $angle = min( $angle + $this->options->circleResolution, $endAngle ) )
+        for( $angle = $startAngle; $angle <= $endAngle; $angle = min( $angle + $this->options->circleResolution, $endAngle ) )
         {
-            $shape->drawLineTo( 
-                $this->modifyCoordinate( $center->x + cos( deg2rad( $angle ) ) * $width / 2 ), 
+            $shape->drawLineTo(
+                $this->modifyCoordinate( $center->x + cos( deg2rad( $angle ) ) * $width / 2 ),
                 $this->modifyCoordinate( $center->y + sin( deg2rad( $angle ) ) * $height / 2 )
             );
 
@@ -712,9 +710,9 @@ class ezcGraphFlashDriver extends ezcGraphDriver
             }
         }
 
-        $shape->drawLineTo( 
-            $this->modifyCoordinate( $center->x ), 
-            $this->modifyCoordinate( $center->y ) 
+        $shape->drawLineTo(
+            $this->modifyCoordinate( $center->x ),
+            $this->modifyCoordinate( $center->y )
         );
 
         $object = $movie->add( $shape );
@@ -724,17 +722,17 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     }
 
     /**
-     * Draws a circular arc consisting of several minor steps on the bounding 
+     * Draws a circular arc consisting of several minor steps on the bounding
      * lines.
-     * 
-     * @param ezcGraphCoordinate $center 
-     * @param mixed $width 
-     * @param mixed $height 
-     * @param mixed $size 
-     * @param mixed $startAngle 
-     * @param mixed $endAngle 
-     * @param ezcGraphColor $color 
-     * @param bool $filled 
+     *
+     * @param ezcGraphCoordinate $center
+     * @param mixed $width
+     * @param mixed $height
+     * @param mixed $size
+     * @param mixed $startAngle
+     * @param mixed $endAngle
+     * @param ezcGraphColor $color
+     * @param bool $filled
      * @return string Element id
      */
     protected function simulateCircularArc( ezcGraphCoordinate $center, $width, $height, $size, $startAngle, $endAngle, ezcGraphColor $color, $filled )
@@ -742,27 +740,21 @@ class ezcGraphFlashDriver extends ezcGraphDriver
         $movie = $this->getDocument();
         $id = 'ezcGraphCircularArc_' . $this->id++;
 
-        for ( 
-            $tmpAngle = min( ceil ( $startAngle / 180 ) * 180, $endAngle ); 
-            $tmpAngle <= $endAngle; 
-            $tmpAngle = min( ceil ( $startAngle / 180 + 1 ) * 180, $endAngle ) )
+        for ( $tmpAngle = min( ceil( $startAngle / 180 ) * 180, $endAngle ); $tmpAngle <= $endAngle; $tmpAngle = min( ceil( $startAngle / 180 + 1 ) * 180, $endAngle ) )
         {
             $shape = new SWFShape();
             $this->setShapeColor( $shape, $color, 1, $filled );
 
-            $shape->movePenTo( 
-                $this->modifyCoordinate( $center->x + cos( deg2rad( $startAngle ) ) * $width / 2 ), 
+            $shape->movePenTo(
+                $this->modifyCoordinate( $center->x + cos( deg2rad( $startAngle ) ) * $width / 2 ),
                 $this->modifyCoordinate( $center->y + sin( deg2rad( $startAngle ) ) * $height / 2 )
             );
 
             // @TODO: Use SWFShape::curveTo
-            for(
-                $angle = $startAngle;
-                $angle <= $tmpAngle;
-                $angle = min( $angle + $this->options->circleResolution, $tmpAngle ) )
+            for( $angle = $startAngle; $angle <= $tmpAngle; $angle = min( $angle + $this->options->circleResolution, $tmpAngle ) )
             {
-                $shape->drawLineTo( 
-                    $this->modifyCoordinate( $center->x + cos( deg2rad( $angle ) ) * $width / 2 ), 
+                $shape->drawLineTo(
+                    $this->modifyCoordinate( $center->x + cos( deg2rad( $angle ) ) * $width / 2 ),
                     $this->modifyCoordinate( $center->y + sin( deg2rad( $angle ) ) * $height / 2 + $size )
                 );
 
@@ -772,13 +764,10 @@ class ezcGraphFlashDriver extends ezcGraphDriver
                 }
             }
 
-            for(
-                $angle = $tmpAngle;
-                $angle >= $startAngle;
-                $angle = max( $angle - $this->options->circleResolution, $startAngle ) )
+            for( $angle = $tmpAngle; $angle >= $startAngle; $angle = max( $angle - $this->options->circleResolution, $startAngle ) )
             {
-                $shape->drawLineTo( 
-                    $this->modifyCoordinate( $center->x + cos( deg2rad( $angle ) ) * $width / 2 ), 
+                $shape->drawLineTo(
+                    $this->modifyCoordinate( $center->x + cos( deg2rad( $angle ) ) * $width / 2 ),
                     $this->modifyCoordinate( $center->y + sin( deg2rad( $angle ) ) * $height / 2 )
                 );
 
@@ -792,7 +781,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
             $object->setName( $id );
 
             $startAngle = $tmpAngle;
-            if ( $tmpAngle === $endAngle ) 
+            if ( $tmpAngle === $endAngle )
             {
                 break;
             }
@@ -803,7 +792,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
     /**
      * Draws a circular arc
-     * 
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param integer $width Width of ellipse
      * @param integer $height Height of ellipse
@@ -840,7 +829,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
                 ezcGraphColor::fromHex( '#FFFFFF' )->transparent( $this->options->shadeCircularArc * 1.5 ),
                 ezcGraphColor::fromHex( '#000000' )->transparent( $this->options->shadeCircularArc * 1.5 )
             );
-        
+
             $this->simulateCircularArc( $center, $width, $height, $size, $startAngle, $endAngle, $gradient, $filled );
         }
 
@@ -848,8 +837,8 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     }
 
     /**
-     * Draw circle 
-     * 
+     * Draw circle
+     *
      * @param ezcGraphCoordinate $center Center of ellipse
      * @param mixed $width Width of ellipse
      * @param mixed $height height of ellipse
@@ -871,22 +860,22 @@ class ezcGraphFlashDriver extends ezcGraphDriver
             $height -= 1;
         }
 
-        $shape->movePenTo( 
-            $this->modifyCoordinate( $center->x + $width / 2 ), 
+        $shape->movePenTo(
+            $this->modifyCoordinate( $center->x + $width / 2 ),
             $this->modifyCoordinate( $center->y )
         );
 
         // @TODO: User SWFShape::curveTo
         for ( $angle = $this->options->circleResolution; $angle < 360; $angle += $this->options->circleResolution )
         {
-            $shape->drawLineTo( 
-                $this->modifyCoordinate( $center->x + cos( deg2rad( $angle ) ) * $width / 2 ), 
+            $shape->drawLineTo(
+                $this->modifyCoordinate( $center->x + cos( deg2rad( $angle ) ) * $width / 2 ),
                 $this->modifyCoordinate( $center->y + sin( deg2rad( $angle ) ) * $height / 2 )
             );
         }
 
-        $shape->drawLineTo( 
-            $this->modifyCoordinate( $center->x + $width / 2 ), 
+        $shape->drawLineTo(
+            $this->modifyCoordinate( $center->x + $width / 2 ),
             $this->modifyCoordinate( $center->y )
         );
 
@@ -897,12 +886,12 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     }
 
     /**
-     * Draw an image 
+     * Draw an image
      *
      * The image will be inlined in the SVG document using data URL scheme. For
-     * this the mime type and base64 encoded file content will be merged to 
+     * this the mime type and base64 encoded file content will be merged to
      * URL.
-     * 
+     *
      * @param mixed $file Image file
      * @param ezcGraphCoordinate $position Top left position
      * @param float $width Width of image in destination image
@@ -937,7 +926,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
         );
 
         // Move object to the right position
-        $object->moveTo( 
+        $object->moveTo(
             $this->modifyCoordinate( $position->x ),
             $this->modifyCoordinate( $position->y )
         );
@@ -949,7 +938,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
     /**
      * Return mime type for current image format
-     * 
+     *
      * @return string
      */
     public function getMimeType()
@@ -959,7 +948,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
     /**
      * Finally save image
-     * 
+     *
      * @param string $file Destination filename
      * @return void
      */
@@ -976,7 +965,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
      * Return the resource of the rendered result. You should not use this
      * method before you called either renderToOutput() or render(), as the
      * image may not be completely rendered until then.
-     * 
+     *
      * @return SWFMovie
      */
     public function getResource()

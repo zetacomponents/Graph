@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -44,24 +44,24 @@ class ezcGraphRotation extends ezcGraphTransformation
 {
     /**
      * Rotation in degrees
-     * 
+     *
      * @var float
      */
     protected $rotation;
 
     /**
-     * Center point 
-     * 
+     * Center point
+     *
      * @var ezcGraphCoordinate
      */
     protected $center;
 
     /**
-     * Construct rotation matrix from rotation (in degrees) and optional 
+     * Construct rotation matrix from rotation (in degrees) and optional
      * center point.
-     * 
-     * @param int $rotation 
-     * @param ezcGraphCoordinate $center 
+     *
+     * @param int $rotation
+     * @param ezcGraphCoordinate $center
      * @return ezcGraphTransformation
      */
     public function __construct( $rotation = 0, ezcGraphCoordinate $center = null )
@@ -73,7 +73,7 @@ class ezcGraphRotation extends ezcGraphTransformation
             $this->center = new ezcGraphCoordinate( 0, 0 );
 
             $clockwiseRotation = deg2rad( $rotation );
-            $rotationMatrixArray = array( 
+            $rotationMatrixArray = array(
                 array( cos( $clockwiseRotation ), -sin( $clockwiseRotation ), 0 ),
                 array( sin( $clockwiseRotation ), cos( $clockwiseRotation ), 0 ),
                 array( 0, 0, 1 ),
@@ -93,7 +93,7 @@ class ezcGraphRotation extends ezcGraphTransformation
 
     /**
      * Return rotaion angle in degrees
-     * 
+     *
      * @return float
      */
     public function getRotation()
@@ -103,7 +103,7 @@ class ezcGraphRotation extends ezcGraphTransformation
 
     /**
      * Return the center point of the current rotation
-     * 
+     *
      * @return ezcGraphCoordinate
      */
     public function getCenter()

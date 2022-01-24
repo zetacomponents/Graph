@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,15 +33,15 @@
 class ezcGraphPaletteTango extends ezcGraphPalette
 {
     /**
-     * Axiscolor 
-     * 
+     * Axiscolor
+     *
      * @var ezcGraphColor
      */
     protected $axisColor = '#2E3436';
 
     /**
      * Array with colors for datasets
-     * 
+     *
      * @var array
      */
     protected $dataSetColor = array(
@@ -56,8 +56,8 @@ class ezcGraphPaletteTango extends ezcGraphPalette
     );
 
     /**
-     * Array with symbols for datasets 
-     * 
+     * Array with symbols for datasets
+     *
      * @var array
      */
     protected $dataSetSymbol = array(
@@ -66,35 +66,35 @@ class ezcGraphPaletteTango extends ezcGraphPalette
 
     /**
      * Name of font to use
-     * 
+     *
      * @var string
      */
     protected $fontName = 'sans-serif';
 
     /**
-     * Fontcolor 
-     * 
+     * Fontcolor
+     *
      * @var ezcGraphColor
      */
     protected $fontColor = '#2E3436';
 
     /**
      * Backgroundcolor for chart
-     * 
+     *
      * @var ezcGraphColor
      */
     protected $chartBackground = '#EEEEEC';
 
     /**
      * Padding in elements
-     * 
+     *
      * @var integer
      */
     protected $padding = 1;
 
     /**
      * Margin of elements
-     * 
+     *
      * @var integer
      */
     protected $margin = 0;

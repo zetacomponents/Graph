@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,40 +36,40 @@
  * @package Graph
  * @mainclass
  */
-class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet 
+class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
 {
 
     /**
      * Source dataset to base averation on.
-     * 
+     *
      * @var ezcGraphDataSet
      */
     protected $source;
 
     /**
      * Calculated averation polynom
-     * 
+     *
      * @var ezcGraphPolynom
      */
     protected $polynom = false;
 
     /**
      * Minimum key
-     * 
+     *
      * @var float
      */
     protected $min = false;
 
     /**
      * Maximum key
-     * 
+     *
      * @var float
      */
     protected $max = false;
 
     /**
      * Position of the data iterator. Depends on the configured resolution.
-     * 
+     *
      * @var int
      */
     protected $position = 0;
@@ -83,7 +83,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
 
     /**
      * Constructor
-     * 
+     *
      * @param ezcGraphDataSet $dataset Dataset to interpolate
      * @param int $order Maximum order of interpolating polynom
      * @return void
@@ -101,7 +101,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
 
     /**
      * Options write access
-     * 
+     *
      * @throws ezcBasePropertyNotFoundException
      *          If Option could not be found
      * @throws ezcBaseValueException
@@ -110,7 +110,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
      * @param mixed $propertyValue  Option value;
      * @return mixed
      */
-    public function __set( $propertyName, $propertyValue ) 
+    public function __set( $propertyName, $propertyValue )
     {
         switch ( $propertyName ) {
             case 'polynomOrder':
@@ -141,7 +141,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
     /**
      * Property get access.
      * Simply returns a given option.
-     * 
+     *
      * @param string $propertyName The name of the option to get.
      * @return mixed The option value.
      *
@@ -156,10 +156,10 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
         }
         return parent::__get( $propertyName );
     }
-    
+
     /**
      * Build the polynom based on the given points.
-     * 
+     *
      * @return void
      */
     protected function buildPolynom()
@@ -201,7 +201,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
 
         $at = clone $a;
         $at->transpose();
-        
+
         $left = $at->multiply( $a );
         $right = $at->multiply( $b );
 
@@ -211,7 +211,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
     /**
      * Returns a polynom of the defined order witch matches the datapoints
      * using the least squares algorithm.
-     * 
+     *
      * @return ezcGraphPolynom Polynom
      */
     public function getPolynom()
@@ -226,7 +226,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
 
     /**
      * Get the x coordinate for the current position
-     * 
+     *
      * @param int $position Position
      * @return float x coordinate
      */
@@ -236,11 +236,11 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
         return $this->min +
             ( $this->max - $this->min ) / $this->resolution * $this->position;
     }
-    
+
     /**
      * Returns true if the given datapoint exists
      * Allows isset() using ArrayAccess.
-     * 
+     *
      * @param string $key The key of the datapoint to get.
      * @return bool Wether the key exists.
      */
@@ -253,7 +253,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
     /**
      * Returns the value for the given datapoint
      * Get an datapoint value by ArrayAccess.
-     * 
+     *
      * @param string $key The key of the datapoint to get.
      * @return float The datapoint value.
      */
@@ -266,7 +266,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
     /**
      * Throws a ezcBasePropertyPermissionException because single datapoints
      * cannot be set in average datasets.
-     * 
+     *
      * @param string $key The kex of a datapoint to set.
      * @param float $value The value for the datapoint.
      * @throws ezcBasePropertyPermissionException
@@ -281,10 +281,10 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
     /**
      * Returns the currently selected datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return string The currently selected datapoint.
      */
     final public function current()
@@ -296,7 +296,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
     /**
      * Returns the next datapoint and selects it or false on the last datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -308,7 +308,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
         {
             return false;
         }
-        else 
+        else
         {
             return $this->current();
         }
@@ -317,10 +317,10 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
     /**
      * Returns the key of the currently selected datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return string The key of the currently selected datapoint.
      */
     final public function key()
@@ -331,7 +331,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
     /**
      * Returns if the current datapoint is valid.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -351,7 +351,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
 
     /**
      * Selects the very first datapoint and returns it.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -364,7 +364,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
 
     /**
      * Returns the number of elements in this dataset
-     * 
+     *
      * @return int
      */
     public function count()

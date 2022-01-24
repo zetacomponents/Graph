@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -43,13 +43,13 @@
  *
  *   $graph->options->fillLines = 220;
  *   $graph->options->lineThickness = 3;
- *   
+ *
  *   // Add data
  *   foreach ( $wikidata as $language => $data )
  *   {
  *       $graph->data[$language] = new ezcGraphArrayDataSet( $data );
  *   }
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_line_chart.svg' );
  * </code>
  *
@@ -66,13 +66,13 @@
  * @property int $highlightSize
  *           Size of highlight blocks
  * @property bool $highlightLines
- *           If true, it adds lines to highlight the values position on the 
+ *           If true, it adds lines to highlight the values position on the
  *           axis.
  * @property float $highlightXOffset
- *           Horizontal offset for highlight strings, applied to all chart 
+ *           Horizontal offset for highlight strings, applied to all chart
  *           highlight strings
  * @property float $highlightYOffset
- *           Vertical offset for highlight strings, applied to all chart 
+ *           Vertical offset for highlight strings, applied to all chart
  *           highlight strings
  * @property true $stackBars
  *           Stack bars
@@ -84,7 +84,7 @@ class ezcGraphLineChartOptions extends ezcGraphChartOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -101,15 +101,15 @@ class ezcGraphLineChartOptions extends ezcGraphChartOptions
         $this->properties['highlightYOffset'] = 0;
         $this->properties['highlightLines'] = false;
         $this->properties['stackBars'] = false;
-    
+
         parent::__construct( $options );
     }
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void
@@ -120,7 +120,7 @@ class ezcGraphLineChartOptions extends ezcGraphChartOptions
         {
             case 'lineThickness':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 0 ) ) 
+                     ( $propertyValue < 0 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 0' );
                 }
@@ -130,7 +130,7 @@ class ezcGraphLineChartOptions extends ezcGraphChartOptions
             case 'symbolSize':
             case 'highlightSize':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 1 ) ) 
+                     ( $propertyValue < 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 1' );
                 }
@@ -138,7 +138,7 @@ class ezcGraphLineChartOptions extends ezcGraphChartOptions
                 break;
             case 'highlightXOffset':
             case 'highlightYOffset':
-                if ( !is_numeric ( $propertyValue ) )
+                if ( !is_numeric( $propertyValue ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int' );
                 }
@@ -153,7 +153,7 @@ class ezcGraphLineChartOptions extends ezcGraphChartOptions
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'false OR 0 <= int <= 255' );
                 }
 
-                $this->properties[$propertyName] = ( 
+                $this->properties[$propertyName] = (
                     $propertyValue === false
                     ? false
                     : (int) $propertyValue );
@@ -200,11 +200,11 @@ class ezcGraphLineChartOptions extends ezcGraphChartOptions
                 return parent::__set( $propertyName, $propertyValue );
         }
     }
-    
+
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed

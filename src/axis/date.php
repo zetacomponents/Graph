@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -55,9 +55,9 @@
  *  $graph->options->fillLines = 210;
  *  $graph->title = 'Concurrent requests';
  *  $graph->legend = false;
- *  
+ *
  *  $graph->xAxis = new ezcGraphChartElementDateAxis();
- *  
+ *
  *  // Add data
  *  $graph->data['Machine 1'] = new ezcGraphArrayDataSet( array(
  *      '8:00' => 3241,
@@ -73,10 +73,10 @@
  *      '8:43' => 2034,
  *      '8:59' => 3410,
  *  ) );
- *  
+ *
  *  $graph->data['Machine 1']->symbol = ezcGraph::BULLET;
  *  $graph->data['Machine 2']->symbol = ezcGraph::BULLET;
- *  
+ *
  *  $graph->render( 400, 150, 'tutorial_axis_datetime.svg' );
  * </code>
  *
@@ -96,7 +96,7 @@
  */
 class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 {
-    
+
     const MONTH = 2629800;
 
     const YEAR = 31536000;
@@ -105,21 +105,21 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 
     /**
      * Minimum inserted date
-     * 
+     *
      * @var int
      */
     protected $minValue = false;
 
     /**
-     * Maximum inserted date 
-     * 
+     * Maximum inserted date
+     *
      * @var int
      */
     protected $maxValue = false;
 
     /**
      * Nice time intervals to used if there is no user defined interval
-     * 
+     *
      * @var array
      */
     protected $predefinedIntervals = array(
@@ -156,14 +156,14 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
     );
 
     /**
-     * Constant used for calculation of automatic definition of major scaling 
+     * Constant used for calculation of automatic definition of major scaling
      * steps
      */
     const MAJOR_COUNT = 10;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -179,10 +179,10 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -216,10 +216,10 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
     /**
      * Ensure proper timestamp
      *
-     * Takes a mixed value from datasets, like timestamps, or strings 
+     * Takes a mixed value from datasets, like timestamps, or strings
      * describing some time and converts it to a timestamp.
-     * 
-     * @param mixed $value 
+     *
+     * @param mixed $value
      * @return int
      */
     protected static function ensureTimestamp( $value )
@@ -238,7 +238,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 
     /**
      * Add data for this axis
-     * 
+     *
      * @param array $values Value which will be displayed on this axis
      * @return void
      */
@@ -269,7 +269,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
      *
      * Use the best fitting time interval defined in class property array
      * predefinedIntervals.
-     * 
+     *
      * @param int $min Start time
      * @param int $max End time
      * @return void
@@ -311,9 +311,9 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
      *
      * Calculates a date which is earlier or equal to the given date, and is
      * divisible by the given interval.
-     * 
+     *
      * @param int $min Date
-     * @param int $interval Interval 
+     * @param int $interval Interval
      * @return int Earlier date
      */
     protected function calculateLowerNiceDate( $min, $interval )
@@ -321,8 +321,8 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
         switch ( $interval )
         {
             case self::MONTH:
-                // Special handling for months - not covered by the default 
-                // algorithm 
+                // Special handling for months - not covered by the default
+                // algorithm
                 return mktime(
                     1,
                     0,
@@ -367,10 +367,10 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
     /**
      * Calculate start date
      *
-     * Use calculateLowerNiceDate to get a date earlier or equal date then the 
+     * Use calculateLowerNiceDate to get a date earlier or equal date then the
      * minimum date to use it as the start date for the axis depending on the
      * selected interval.
-     * 
+     *
      * @param mixed $min Minimum date
      * @param mixed $max Maximum date
      * @return void
@@ -408,10 +408,10 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
     /**
      * Calculate end date
      *
-     * Use calculateLowerNiceDate to get a date later or equal date then the 
+     * Use calculateLowerNiceDate to get a date later or equal date then the
      * maximum date to use it as the end date for the axis depending on the
      * selected interval.
-     * 
+     *
      * @param mixed $min Minimum date
      * @param mixed $max Maximum date
      * @return void
@@ -440,8 +440,8 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
     }
 
     /**
-     * Calculate axis bounding values on base of the assigned values 
-     * 
+     * Calculate axis bounding values on base of the assigned values
+     *
      * @return void
      */
     public function calculateAxisBoundings()
@@ -495,7 +495,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 
     /**
      * Get coordinate for a dedicated value on the chart
-     * 
+     *
      * @param float $value Value to determine position for
      * @return float Position on chart
      */
@@ -533,7 +533,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 
     /**
      * Return count of minor steps
-     * 
+     *
      * @return integer Count of minor steps
      */
     public function getMinorStepCount()
@@ -543,7 +543,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 
     /**
      * Return count of major steps
-     * 
+     *
      * @return integer Count of major steps
      */
     public function getMajorStepCount()
@@ -553,7 +553,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 
     /**
      * Get label for a dedicated step on the axis
-     * 
+     *
      * @param integer $step Number of step
      * @return string label
      */
@@ -564,7 +564,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 
     /**
      * Get label for timestamp
-     * 
+     *
      * @param int $time
      * @param int $step
      * @return string
@@ -589,7 +589,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 
     /**
      * Return array of steps on this axis
-     * 
+     *
      * @return array( ezcGraphAxisStep )
      */
     public function getSteps()
@@ -636,7 +636,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
      * Is zero step
      *
      * Returns true if the given step is the one on the initial axis position
-     * 
+     *
      * @param int $step Number of step
      * @return bool Status If given step is initial axis position
      */

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -24,7 +24,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 /**
- * Exception thrown when an invalid data source is provided for an array 
+ * Exception thrown when an invalid data source is provided for an array
  * data set.
  *
  * @package Graph
@@ -34,7 +34,7 @@ class ezcGraphInvalidArrayDataSourceException extends ezcGraphException
 {
     /**
      * Constructor
-     * 
+     *
      * @param mixed $value
      * @return void
      * @ignore

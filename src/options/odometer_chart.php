@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -29,12 +29,12 @@
  *
  * <code>
  *  $graph = new ezcGraphOdoMeterChart();
- *  
+ *
  *  $graph->data['Test'] = new ezcGraphArrayDataSet( array( 0, 1, 23, 30 ) );
- * 
+ *
  *  $graph->options->odometerHeight = .3;
  *  $graph->options->borderColor = '#2e3436';
- *  
+ *
  *  $graph->render( 150, 50, 'odometer.svg' );
  * </code>
  *
@@ -50,7 +50,7 @@
  *           Width of odometer markers
  * @property float $odometerHeight
  *           Height consumed by odometer chart
- * 
+ *
  * @version //autogentag//
  * @package Graph
  */
@@ -95,7 +95,7 @@ class ezcGraphOdometerChartOptions extends ezcGraphChartOptions
             case 'borderWidth':
             case 'markerWidth':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 1 ) ) 
+                     ( $propertyValue < 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 1' );
                 }

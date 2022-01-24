@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,8 +39,8 @@ class ezcGraphDataSetAxisProperty extends ezcGraphDataSetProperty
 {
     /**
      * Chacks if value is really an axis
-     * 
-     * @param ezcGraphChartElementAxis $value 
+     *
+     * @param ezcGraphChartElementAxis $value
      * @return void
      */
     protected function checkValue( &$value )
@@ -60,7 +60,7 @@ class ezcGraphDataSetAxisProperty extends ezcGraphDataSetProperty
      *
      * This is deaktivated, because you need not set a different axis for some
      * data point.
-     * 
+     *
      * @param string $key The option to set.
      * @param mixed $value The value for the option.
      * @return void
@@ -72,7 +72,6 @@ class ezcGraphDataSetAxisProperty extends ezcGraphDataSetProperty
     {
         throw new ezcGraphInvalidAssignementException();
     }
-
 }
 
 ?>

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -34,7 +34,7 @@ class ezcGraphArrayDataSet extends ezcGraphDataSet
 {
     /**
      * Constructor
-     * 
+     *
      * @param array|Iterator $data Array or Iterator containing the data
      * @return void
      */
@@ -48,14 +48,14 @@ class ezcGraphArrayDataSet extends ezcGraphDataSet
      * setData
      *
      * Can handle data provided through an array or iterator.
-     * 
-     * @param array|Iterator $data 
+     *
+     * @param array|Iterator $data
      * @access public
      * @return void
      */
-    protected function createFromArray( $data = array() ) 
+    protected function createFromArray( $data = array() )
     {
-        if ( !is_array( $data ) && 
+        if ( !is_array( $data ) &&
              !( $data instanceof Traversable ) )
         {
             throw new ezcGraphInvalidArrayDataSourceException( $data );
@@ -75,7 +75,7 @@ class ezcGraphArrayDataSet extends ezcGraphDataSet
 
     /**
      * Returns the number of elements in this dataset
-     * 
+     *
      * @return int
      */
     #[ReturnTypeWillChange]

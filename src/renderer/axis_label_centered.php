@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,8 +31,8 @@
  * </code>
  *
  * @property bool $showZeroValue
- *           Show the value at the zero point of an axis. This value might be 
- *           crossed by the other axis which would result in an unreadable 
+ *           Show the value at the zero point of an axis. This value might be
+ *           crossed by the other axis which would result in an unreadable
  *           label.
  *
  * @version //autogentag//
@@ -43,7 +43,7 @@ class ezcGraphAxisCenteredLabelRenderer extends ezcGraphAxisLabelRenderer
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -56,10 +56,10 @@ class ezcGraphAxisCenteredLabelRenderer extends ezcGraphAxisLabelRenderer
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -140,22 +140,22 @@ class ezcGraphAxisCenteredLabelRenderer extends ezcGraphAxisLabelRenderer
                 // major grid
                 if ( $axis->majorGrid )
                 {
-                    $this->drawGrid( 
-                        $renderer, 
-                        $gridBoundings, 
+                    $this->drawGrid(
+                        $renderer,
+                        $gridBoundings,
                         $position,
                         $stepSize,
                         $axis->majorGrid
                     );
                 }
-                
+
                 // major step
-                $this->drawStep( 
-                    $renderer, 
+                $this->drawStep(
+                    $renderer,
                     $position,
-                    $direction, 
-                    $axis->position, 
-                    $this->majorStepSize, 
+                    $direction,
+                    $axis->position,
+                    $this->majorStepSize,
                     $axis->border
                 );
             }
@@ -256,22 +256,22 @@ class ezcGraphAxisCenteredLabelRenderer extends ezcGraphAxisLabelRenderer
 
                     if ( $axis->minorGrid )
                     {
-                        $this->drawGrid( 
-                            $renderer, 
-                            $gridBoundings, 
+                        $this->drawGrid(
+                            $renderer,
+                            $gridBoundings,
                             $minorStepPosition,
                             $minorStepSize,
                             $axis->minorGrid
                         );
                     }
-                    
+
                     // major step
-                    $this->drawStep( 
-                        $renderer, 
+                    $this->drawStep(
+                        $renderer,
                         $minorStepPosition,
-                        $direction, 
-                        $axis->position, 
-                        $this->minorStepSize, 
+                        $direction,
+                        $axis->position,
+                        $this->minorStepSize,
                         $axis->border
                     );
                 }

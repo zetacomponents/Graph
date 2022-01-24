@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -31,7 +31,7 @@
  *   $graph->background->color = '#FFFFFFFF';
  *   $graph->title = 'Access statistics';
  *   $graph->legend = false;
- *   
+ *
  *   $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
  *       'Mozilla' => 19113,
  *       'Explorer' => 10917,
@@ -39,24 +39,24 @@
  *       'Safari' => 652,
  *       'Konqueror' => 474,
  *   ) );
- *   
+ *
  *   $graph->driver->options->templateDocument = dirname( __FILE__ ) . '/template.svg';
  *   $graph->driver->options->graphOffset = new ezcGraphCoordinate( 25, 40 );
  *   $graph->driver->options->insertIntoGroup = 'ezcGraph';
- *   
+ *
  *   $graph->render( 400, 200, 'tutorial_driver_svg.svg' );
  * </code>
  *
  * @property string $encoding
  *           Encoding of the SVG XML document
  * @property float $assumedNumericCharacterWidth
- *           Assumed percentual average width of chars in numeric strings with 
+ *           Assumed percentual average width of chars in numeric strings with
  *           the used font.
  * @property float $assumedTextCharacterWidth
  *           Assumed percentual average width of chars in non numeric strings
  *           with the used font.
  * @property string $strokeLineCap
- *           This specifies the shape to be used at the end of open subpaths 
+ *           This specifies the shape to be used at the end of open subpaths
  *           when they are stroked.
  * @property string $strokeLineJoin
  *           This specifies the shape to be used at the edges of paths.
@@ -68,19 +68,19 @@
  * @property string $colorRendering
  *           "The creator of SVG content might want to provide a hint to the
  *           implementation about how to make speed vs. quality tradeoffs as it
- *           performs color interpolation and compositing. The 
- *           'color-rendering' property provides a hint to the SVG user agent 
- *           about how to optimize its color interpolation and compositing 
+ *           performs color interpolation and compositing. The
+ *           'color-rendering' property provides a hint to the SVG user agent
+ *           about how to optimize its color interpolation and compositing
  *           operations."
  * @property string $textRendering
  *           "The creator of SVG content might want to provide a hint to the
  *           implementation about what tradeoffs to make as it renders text."
  * @property mixed $templateDocument
  *           Use existing SVG document as template to insert graph into. If
- *           insertIntoGroup is not set, a new group will be inserted in the 
+ *           insertIntoGroup is not set, a new group will be inserted in the
  *           svg root node.
  * @property mixed $insertIntoGroup
- *           ID of a SVG group node to insert the graph. Only works with a 
+ *           ID of a SVG group node to insert the graph. Only works with a
  *           custom template document.
  * @property ezcGraphCoordinate $graphOffset
  *           Offset of the graph in the svg.
@@ -88,7 +88,7 @@
  *           Prefix used for the ids in SVG documents.
  * @property string $linkCursor
  *           CSS value for cursor property used for linked SVG elements
- * 
+ *
  * @version //autogentag//
  * @package Graph
  */
@@ -96,7 +96,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -122,9 +122,9 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -65,7 +65,7 @@ class ezcGraphChartElementText extends ezcGraphChartElement
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -78,10 +78,10 @@ class ezcGraphChartElementText extends ezcGraphChartElement
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -110,14 +110,14 @@ class ezcGraphChartElementText extends ezcGraphChartElement
 
     /**
      * Render the text
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer
      * @param ezcGraphBoundings $boundings Boundings for the axis
      * @return ezcGraphBoundings Remaining boundings
      */
     public function render( ezcGraphRenderer $renderer, ezcGraphBoundings $boundings )
     {
-        $height = (int) min( 
+        $height = (int) min(
             round( $this->properties['maxHeight'] * ( $boundings->y1 - $boundings->y0 ) ),
             $this->properties['font']->maxFontSize + $this->padding * 2 + $this->margin * 2
         );

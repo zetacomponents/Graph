@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -75,10 +75,9 @@
  */
 class ezcGraphChartElementBackground extends ezcGraphChartElement
 {
-
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -92,10 +91,10 @@ class ezcGraphChartElementBackground extends ezcGraphChartElement
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -122,7 +121,7 @@ class ezcGraphChartElementBackground extends ezcGraphChartElement
                 }
 
                 // SWF files are useless..
-                if ( $data[2] === 4 ) 
+                if ( $data[2] === 4 )
                 {
                     throw new ezcGraphInvalidImageFileException( 'We cant use SWF files like <' . $propertyValue . '>.' );
                 }
@@ -140,14 +139,14 @@ class ezcGraphChartElementBackground extends ezcGraphChartElement
                 }
                 break;
             case 'position':
-                // Overwrite parent position setter, to be able to use 
-                // combination of positions like 
+                // Overwrite parent position setter, to be able to use
+                // combination of positions like
                 //      ezcGraph::TOP | ezcGraph::CENTER
                 if ( is_int( $propertyValue ) )
                 {
                     $this->properties['position'] = $propertyValue;
                 }
-                else 
+                else
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'integer' );
                 }
@@ -162,9 +161,9 @@ class ezcGraphChartElementBackground extends ezcGraphChartElement
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -185,9 +184,9 @@ class ezcGraphChartElementBackground extends ezcGraphChartElement
     /**
      * Set colors and border for this element
      *
-     * Method is overwritten because we do not ant to apply the global padding 
+     * Method is overwritten because we do not ant to apply the global padding
      * and margin here.
-     * 
+     *
      * @param ezcGraphPalette $palette Palette
      * @return void
      */

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,29 +33,29 @@
 class ezcGraphPaletteBlack extends ezcGraphPalette
 {
     /**
-     * Axiscolor 
-     * 
+     * Axiscolor
+     *
      * @var ezcGraphColor
      */
     protected $axisColor = '#EEEEEC';
 
     /**
      * Color of grid lines
-     * 
+     *
      * @var ezcGraphColor
      */
     protected $majorGridColor = '#888A85';
 
     /**
      * Color of minor grid lines
-     * 
+     *
      * @var ezcGraphColor
      */
     protected $minorGridColor = '#888A8588';
 
     /**
      * Array with colors for datasets
-     * 
+     *
      * @var array
      */
     protected $dataSetColor = array(
@@ -69,8 +69,8 @@ class ezcGraphPaletteBlack extends ezcGraphPalette
     );
 
     /**
-     * Array with symbols for datasets 
-     * 
+     * Array with symbols for datasets
+     *
      * @var array
      */
     protected $dataSetSymbol = array(
@@ -79,49 +79,49 @@ class ezcGraphPaletteBlack extends ezcGraphPalette
 
     /**
      * Name of font to use
-     * 
+     *
      * @var string
      */
     protected $fontName = 'sans-serif';
 
     /**
-     * Fontcolor 
-     * 
+     * Fontcolor
+     *
      * @var ezcGraphColor
      */
     protected $fontColor = '#D3D7CF';
 
     /**
-     * Backgroundcolor 
-     * 
+     * Backgroundcolor
+     *
      * @var ezcGraphColor
      */
     protected $chartBackground = '#2E3436';
 
     /**
      * Border color for chart elements
-     * 
+     *
      * @var string
      */
     protected $elementBorderColor = '#555753';
 
     /**
      * Border width for chart elements
-     * 
+     *
      * @var integer
      */
     protected $elementBorderWidth = 1;
 
     /**
      * Padding in elements
-     * 
+     *
      * @var integer
      */
     protected $padding = 1;
 
     /**
      * Margin of elements
-     * 
+     *
      * @var integer
      */
     protected $margin = 1;

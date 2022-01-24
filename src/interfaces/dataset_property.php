@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -28,7 +28,7 @@
  *
  * This class is used to extends datasets with additional properties, and
  * stores only non default values for each data point in a data set.
- * 
+ *
  * The class is extended by property implementations including simple value
  * validators, like:
  *
@@ -63,14 +63,14 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
 {
     /**
      * Default value for this property
-     * 
+     *
      * @var mixed
      */
     protected $defaultValue;
 
     /**
      * Contains specified values for single dataset elements
-     * 
+     *
      * @var array
      */
     protected $dataValue;
@@ -78,23 +78,23 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
     /**
      * Contains a reference to the dataset to check for availability of data
      * keys
-     * 
+     *
      * @var ezcGraphDataSet
      */
     protected $dataset;
 
     /**
      * Abstract method to contain the check for validity of the value
-     * 
-     * @param mixed $value 
+     *
+     * @param mixed $value
      * @return void
      */
     abstract protected function checkValue( &$value );
 
     /**
      * Constructor
-     * 
-     * @param ezcGraphDataSet $dataset 
+     *
+     * @param ezcGraphDataSet $dataset
      * @ignore
      * @return void
      */
@@ -105,7 +105,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
 
     /**
      * Set the default value for this property
-     * 
+     *
      * @param string $name Property name
      * @param mixed $value Property value
      * @return void
@@ -121,7 +121,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
 
     /**
      * Get the default value for this property
-     * 
+     *
      * @param string $name Property name
      * @return mixed
      */
@@ -136,7 +136,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
     /**
      * Returns if an option exists.
      * Allows isset() using ArrayAccess.
-     * 
+     *
      * @param string $key The name of the option to get.
      * @return bool Wether the option exists.
      */
@@ -149,7 +149,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
     /**
      * Returns an option value.
      * Get an option value by ArrayAccess.
-     * 
+     *
      * @param string $key The name of the option to get.
      * @return mixed The option value.
      *
@@ -176,7 +176,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
     /**
      * Set an option.
      * Sets an option using ArrayAccess.
-     * 
+     *
      * @param string $key The option to set.
      * @param mixed $value The value for the option.
      * @return void
@@ -203,7 +203,7 @@ abstract class ezcGraphDataSetProperty implements ArrayAccess
     /**
      * Unset an option.
      * Unsets an option using ArrayAccess.
-     * 
+     *
      * @param string $key The options to unset.
      * @return void
      *

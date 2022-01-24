@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -41,28 +41,28 @@ class ezcGraphAxisBoxedLabelRenderer extends ezcGraphAxisLabelRenderer
 {
     /**
      * Store step array for later coordinate modifications
-     * 
+     *
      * @var array(ezcGraphStep)
      */
     protected $steps;
 
     /**
      * Store direction for later coordinate modifications
-     * 
+     *
      * @var ezcGraphVector
      */
     protected $direction;
 
     /**
      * Store coordinate width modifier for later coordinate modifications
-     * 
+     *
      * @var float
      */
     protected $widthModifier;
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -108,7 +108,7 @@ class ezcGraphAxisBoxedLabelRenderer extends ezcGraphAxisLabelRenderer
             $end->y - $start->y
         );
         $this->direction->unify();
-        
+
         // Get axis space
         $gridBoundings = null;
         list( $xSpace, $ySpace ) = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
@@ -126,7 +126,7 @@ class ezcGraphAxisBoxedLabelRenderer extends ezcGraphAxisLabelRenderer
                 $start->x + ( $end->x - $start->x ) * ( $step->position + $step->width ) / $this->widthModifier,
                 $start->y + ( $end->y - $start->y ) * ( $step->position + $step->width ) / $this->widthModifier
             );
-    
+
             $stepWidth = $step->width / $this->widthModifier;
 
             $stepSize = new ezcGraphCoordinate(
@@ -189,32 +189,32 @@ class ezcGraphAxisBoxedLabelRenderer extends ezcGraphAxisLabelRenderer
             // major grid
             if ( $axis->majorGrid )
             {
-                $this->drawGrid( 
-                    $renderer, 
-                    $gridBoundings, 
+                $this->drawGrid(
+                    $renderer,
+                    $gridBoundings,
                     $position,
                     $stepSize,
                     $axis->majorGrid
                 );
             }
-            
+
             // major step
-            $this->drawStep( 
-                $renderer, 
+            $this->drawStep(
+                $renderer,
                 $position,
-                $this->direction, 
-                $axis->position, 
-                $this->majorStepSize, 
+                $this->direction,
+                $axis->position,
+                $this->majorStepSize,
                 $axis->border
             );
         }
     }
-    
+
     /**
      * Modify chart data position
      *
      * Optionally additionally modify the coodinate of a data point
-     * 
+     *
      * @param ezcGraphCoordinate $coordinate Data point coordinate
      * @return ezcGraphCoordinate Modified coordinate
      */

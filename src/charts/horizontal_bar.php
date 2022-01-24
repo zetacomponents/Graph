@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -24,7 +24,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 /**
- * Class for bar charts. Can make use of an unlimited amount of datasets and 
+ * Class for bar charts. Can make use of an unlimited amount of datasets and
  * will display them as bars by default.
  * X axis:
  *  - Labeled axis
@@ -45,7 +45,7 @@
  *          '300' => -34.14,
  *          '350' => 65,
  *          '400' => 123,
- *      )   
+ *      )
  *  );
  *
  *  // Render chart with the special designated renderer and default SVG driver
@@ -53,7 +53,7 @@
  *  $chart->render( 500, 200, 'bar_chart.svg' );
  * </code>
  *
- * Each chart consists of several chart elements which represents logical 
+ * Each chart consists of several chart elements which represents logical
  * parts of the chart and can be formatted independently. The bar chart
  * consists of:
  *  - title ( {@link ezcGraphChartElementText} )
@@ -71,7 +71,7 @@
  *
  * The chart itself also offers several options to configure the appearance. As
  * bar charts extend line charts the the extended configure options are
- * available in {@link ezcGraphLineChartOptions} extending the 
+ * available in {@link ezcGraphLineChartOptions} extending the
  * {@link ezcGraphChartOptions}.
  *
  * @property ezcGraphLineChartOptions $options
@@ -85,7 +85,7 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -108,10 +108,10 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
     /**
      * Render the assigned data
      *
-     * Will renderer all charts data in the remaining boundings after drawing 
-     * all other chart elements. The data will be rendered depending on the 
+     * Will renderer all charts data in the remaining boundings after drawing
+     * all other chart elements. The data will be rendered depending on the
      * settings in the dataset.
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer
      * @param ezcGraphBoundings $boundings Remaining boundings
      * @return void
@@ -176,9 +176,9 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
             foreach ( $data as $key => $value )
             {
                 // Calculate point in chart
-                $point = $xAxis->axisLabelRenderer->modifyChartDataPosition( 
+                $point = $xAxis->axisLabelRenderer->modifyChartDataPosition(
                     $yAxis->axisLabelRenderer->modifyChartDataPosition(
-                        new ezcGraphCoordinate( 
+                        new ezcGraphCoordinate(
                             $xAxis->getCoordinate( $value ),
                             $yAxis->getCoordinate( $key )
                         )
@@ -226,7 +226,7 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
                         throw new ezcGraphInvalidDisplayTypeException( $data->displayType->default );
                         break;
                 }
-    
+
                 // Store last point, used to connect lines in line chart.
                 $lastPoint = $point;
             }
@@ -238,7 +238,7 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
      *
      * This function is nearly the same as in ezcGraphLineChart, but reverses
      * the usage of keys and values for the axis.
-     * 
+     *
      * @return void
      */
     protected function setAxisValues()

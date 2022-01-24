@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -49,35 +49,35 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
 {
     /**
      * Store step array for later coordinate modifications
-     * 
+     *
      * @var array(ezcGraphStep)
      */
     protected $steps;
 
     /**
      * Store direction for later coordinate modifications
-     * 
+     *
      * @var ezcGraphVector
      */
     protected $direction;
 
     /**
      * Store coordinate width modifier for later coordinate modifications
-     * 
+     *
      * @var float
      */
     protected $widthModifier;
-    
+
     /**
      * Store coordinate offset for later coordinate modifications
-     * 
+     *
      * @var float
      */
     protected $offset;
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -90,10 +90,10 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -134,8 +134,8 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
      *
      * Determine the optiomal angle for the axis labels, of no angle has been
      * provided by the user.
-     * 
-     * @param array $steps 
+     *
+     * @param array $steps
      * @return void
      */
     protected function determineAngle( array $steps, $xSpace, $ySpace, ezcGraphBoundings $axisBoundings )
@@ -145,7 +145,7 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
             $minimumStepWidth = null;
             foreach ( $steps as $nr => $step )
             {
-                if ( ( $minimumStepWidth === null ) || 
+                if ( ( $minimumStepWidth === null ) ||
                      ( $step->width < $minimumStepWidth ) )
                 {
                     $minimumStepWidth = $step->width;
@@ -173,19 +173,20 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
      * text angle.
      *
      * Returns the text angle in degrees.
-     * 
+     *
      * @param ezcGraphChartElementAxis $axis
      * @param array $steps
      * @return float
      */
-    protected function determineTextOffset( ezcGraphChartElementAxis $axis, array $steps ) {
+    protected function determineTextOffset( ezcGraphChartElementAxis $axis, array $steps )
+    {
         // Determine additional required axis space by boxes
         $firstStep = reset( $steps );
         $lastStep = end( $steps );
 
         $axisAngle = -$this->direction->angle( new ezcGraphVector( 1, 0 ) );
-        $textAngle = $axisAngle + 
-            deg2rad( $this->angle ) + 
+        $textAngle = $axisAngle +
+            deg2rad( $this->angle ) +
             ( $axis->position & ( ezcGraph::TOP | ezcGraph::BOTTOM ) ? deg2rad( 270 ) : deg2rad( 90 ) );
 
         // Ensure angle between 0 and 360 degrees
@@ -214,13 +215,13 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
      * Calculate label size
      *
      * Calculate the size of a single lable in a single step.
-     * 
+     *
      * @param array $steps
-     * @param int $nr 
-     * @param array $step 
-     * @param float $xSpace 
-     * @param float $ySpace 
-     * @param ezcGraphBoundings $axisBoundings 
+     * @param int $nr
+     * @param array $step
+     * @param float $xSpace
+     * @param float $ySpace
+     * @param ezcGraphBoundings $axisBoundings
      * @return float
      */
     protected function calculateLabelSize( array $steps, $nr, $step, $xSpace, $ySpace, ezcGraphBoundings $axisBoundings )
@@ -229,26 +230,30 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
         {
             case ( $nr === 0 ):
                 $labelSize = min(
-                    abs( 
+                    abs(
                         $xSpace * 2 * $this->direction->y +
-                        $ySpace * 2 * $this->direction->x ),
-                    abs( 
+                        $ySpace * 2 * $this->direction->x
+                    ),
+                    abs(
                         $step->width * $axisBoundings->width * $this->direction->x +
-                        $step->width * $axisBoundings->height * $this->direction->y )
+                        $step->width * $axisBoundings->height * $this->direction->y
+                    )
                 );
                 break;
             case ( $step->isLast ):
                 $labelSize = min(
-                    abs( 
+                    abs(
                         $xSpace * 2 * $this->direction->y +
-                        $ySpace * 2 * $this->direction->x ),
-                    abs( 
+                        $ySpace * 2 * $this->direction->x
+                    ),
+                    abs(
                         $steps[$nr - 1]->width * $axisBoundings->width * $this->direction->x +
-                        $steps[$nr - 1]->width * $axisBoundings->height * $this->direction->y )
+                        $steps[$nr - 1]->width * $axisBoundings->height * $this->direction->y
+                    )
                 );
                 break;
             default:
-                $labelSize = abs( 
+                $labelSize = abs(
                     $step->width * $axisBoundings->width * $this->direction->x +
                     $step->width * $axisBoundings->height * $this->direction->y
                 );
@@ -260,12 +265,12 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
 
     /**
      * Calculate general label length
-     * 
-     * @param ezcGraphCoordinate $start 
-     * @param ezcGraphCoordinate $end 
-     * @param float $xSpace 
-     * @param float $ySpace 
-     * @param ezcGraphBoundings $axisBoundings 
+     *
+     * @param ezcGraphCoordinate $start
+     * @param ezcGraphCoordinate $end
+     * @param float $xSpace
+     * @param float $ySpace
+     * @param ezcGraphBoundings $axisBoundings
      * @return float
      */
     protected function calculateLabelLength( ezcGraphCoordinate $start, ezcGraphCoordinate $end, $xSpace, $ySpace, ezcGraphBoundings $axisBoundings )
@@ -289,18 +294,20 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
         $labelLength = sqrt(
             pow(
                 $xSpace * $this->direction->y +
-                ( $this->labelOffset ? 
+                ( $this->labelOffset ?
                     $axisSpaceFactor * $this->offset * ( $end->x - $start->x ) :
                     $ySpace * 2 * $this->direction->x
                 ),
-                2 ) +
+                2
+            ) +
             pow(
                 $ySpace * $this->direction->x +
-                ( $this->labelOffset ? 
+                ( $this->labelOffset ?
                     $axisSpaceFactor * $this->offset * ( $end->y - $start->y ) :
                     $xSpace * 2 * $this->direction->y
                 ),
-                2 )
+                2
+            )
         );
 
         $this->offset *= $axisSpaceFactor;
@@ -312,28 +319,28 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
      *
      * Render the text of a single label, depending on the position, length and
      * rotation of the label.
-     * 
+     *
      * @param ezcGraphRenderer $renderer
-     * @param ezcGraphChartElementAxis $axis 
-     * @param ezcGraphCoordinate $position 
-     * @param string $label 
-     * @param float $degTextAngle 
-     * @param float $labelLength 
-     * @param float $labelSize 
-     * @param float $lengthReducement 
+     * @param ezcGraphChartElementAxis $axis
+     * @param ezcGraphCoordinate $position
+     * @param string $label
+     * @param float $degTextAngle
+     * @param float $labelLength
+     * @param float $labelSize
+     * @param float $lengthReducement
      * @return void
      */
     protected function renderLabelText( ezcGraphRenderer $renderer, ezcGraphChartElementAxis $axis, ezcGraphCoordinate $position, $label, $degTextAngle, $labelLength, $labelSize, $lengthReducement )
     {
         switch ( true )
         {
-            case ( ( ( $degTextAngle >= 0 ) && 
+            case ( ( ( $degTextAngle >= 0 ) &&
                      ( $degTextAngle < 90 ) &&
                      ( ( $axis->position === ezcGraph::LEFT ) ||
                        ( $axis->position === ezcGraph::RIGHT )
                      )
                    ) ||
-                   ( ( $degTextAngle >= 270 ) && 
+                   ( ( $degTextAngle >= 270 ) &&
                      ( $degTextAngle < 360 ) &&
                      ( ( $axis->position === ezcGraph::TOP ) ||
                        ( $axis->position === ezcGraph::BOTTOM )
@@ -349,13 +356,13 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
                 $labelAlignement = ezcGraph::LEFT | ezcGraph::TOP;
                 $labelRotation = $degTextAngle;
                 break;
-            case ( ( ( $degTextAngle >= 90 ) && 
+            case ( ( ( $degTextAngle >= 90 ) &&
                      ( $degTextAngle < 180 ) &&
                      ( ( $axis->position === ezcGraph::LEFT ) ||
                        ( $axis->position === ezcGraph::RIGHT )
                      )
                    ) ||
-                   ( ( $degTextAngle >= 180 ) && 
+                   ( ( $degTextAngle >= 180 ) &&
                      ( $degTextAngle < 270 ) &&
                      ( ( $axis->position === ezcGraph::TOP ) ||
                        ( $axis->position === ezcGraph::BOTTOM )
@@ -371,13 +378,13 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
                 $labelAlignement = ezcGraph::RIGHT | ezcGraph::TOP;
                 $labelRotation = $degTextAngle - 180;
                 break;
-            case ( ( ( $degTextAngle >= 180 ) && 
+            case ( ( ( $degTextAngle >= 180 ) &&
                      ( $degTextAngle < 270 ) &&
                      ( ( $axis->position === ezcGraph::LEFT ) ||
                        ( $axis->position === ezcGraph::RIGHT )
                      )
                    ) ||
-                   ( ( $degTextAngle >= 90 ) && 
+                   ( ( $degTextAngle >= 90 ) &&
                      ( $degTextAngle < 180 ) &&
                      ( ( $axis->position === ezcGraph::TOP ) ||
                        ( $axis->position === ezcGraph::BOTTOM )
@@ -393,13 +400,13 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
                 $labelAlignement = ezcGraph::RIGHT | ezcGraph::BOTTOM;
                 $labelRotation = $degTextAngle - 180;
                 break;
-            case ( ( ( $degTextAngle >= 270 ) && 
+            case ( ( ( $degTextAngle >= 270 ) &&
                      ( $degTextAngle < 360 ) &&
                      ( ( $axis->position === ezcGraph::LEFT ) ||
                        ( $axis->position === ezcGraph::RIGHT )
                      )
                    ) ||
-                   ( ( $degTextAngle >= 0 ) && 
+                   ( ( $degTextAngle >= 0 ) &&
                      ( $degTextAngle < 90 ) &&
                      ( ( $axis->position === ezcGraph::TOP ) ||
                        ( $axis->position === ezcGraph::BOTTOM )
@@ -479,7 +486,7 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
                 $start->x + ( $end->x - $start->x ) * $step->position * abs( $this->direction->x ),
                 $start->y + ( $end->y - $start->y ) * $step->position * abs( $this->direction->y )
             );
-    
+
             $stepSize = new ezcGraphCoordinate(
                 ( $end->x - $start->x ) * $step->width,
                 ( $end->y - $start->y ) * $step->width
@@ -499,17 +506,17 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
             {
                 $this->drawGrid( $renderer, $gridBoundings, $position, $stepSize, $axis->majorGrid );
             }
-            
+
             // Major step
             $this->drawStep( $renderer, $position, $this->direction, $axis->position, $this->majorStepSize, $axis->border );
         }
     }
-    
+
     /**
      * Modify chart data position
      *
      * Optionally additionally modify the coodinate of a data point
-     * 
+     *
      * @param ezcGraphCoordinate $coordinate Data point coordinate
      * @return ezcGraphCoordinate Modified coordinate
      */

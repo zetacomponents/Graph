@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -64,12 +64,12 @@
  * choose between different axis label renderer, or create you own, and assign
  * an instance of one to the property $axisLabelRenderer. Currently the
  * available axis label renderers are:
- * 
+ *
  * - ezcGraphAxisBoxedLabelRenderer
  *
  *   Renders grid and labels like commonly used in bar charts, with the label
  *   between two grid lines.
- *  
+ *
  * - ezcGraphAxisCenteredLabelRenderer
  *
  *   Centers the label right next to a tick. Commonly used for labeled axis.
@@ -96,7 +96,7 @@
  * @property float $nullPosition
  *           The position of the null value.
  * @property float $axisSpace
- *           Percent of the chart space used to display axis labels and 
+ *           Percent of the chart space used to display axis labels and
  *           arrowheads instead of data values.
  * @property float $outerAxisSpace
  *           Percent of the chart space used to display axis arrow at the outer
@@ -127,7 +127,7 @@
  *           AxisLabelRenderer used to render labels and grid on this axis.
  * @property callback $labelCallback
  *           Callback function to format chart labels.
- *           Function will receive two parameters and should return a 
+ *           Function will receive two parameters and should return a
  *           reformatted label.
  *              string function( label, step )
  * @property float $chartPosition
@@ -146,7 +146,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
 {
     /**
      * Axis label renderer class
-     * 
+     *
      * @var ezcGraphAxisLabelRenderer
      */
     protected $axisLabelRenderer;
@@ -154,14 +154,14 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
     /**
      * Optionally set inner boundings. May be null depending on the used chart
      * implementation.
-     * 
+     *
      * @var ezcGraphBoundings
      */
     protected $innerBoundings;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -196,7 +196,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
 
     /**
      * Set colors and border fro this element
-     * 
+     *
      * @param ezcGraphPalette $palette Palette
      * @return void
      */
@@ -210,10 +210,10 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -260,7 +260,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'float > 0' );
                 }
-                
+
                 $this->properties['majorStep'] = (float) $propertyValue;
                 break;
             case 'minorStep':
@@ -269,7 +269,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'float > 0' );
                 }
-                
+
                 $this->properties['minorStep'] = (float) $propertyValue;
                 break;
             case 'formatString':
@@ -284,7 +284,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 6' );
                 }
-                
+
                 $this->properties['labelSize'] = (int) $propertyValue;
                 break;
             case 'labelMargin':
@@ -293,7 +293,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 0' );
                 }
-                
+
                 $this->properties['labelMargin'] = (int) $propertyValue;
                 break;
             case 'maxArrowHeadSize':
@@ -302,7 +302,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 0' );
                 }
-                
+
                 $this->properties['maxArrowHeadSize'] = (int) $propertyValue;
                 break;
             case 'minArrowHeadSize':
@@ -311,7 +311,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 0' );
                 }
-                
+
                 $this->properties['minArrowHeadSize'] = (int) $propertyValue;
                 break;
             case 'axisLabelRenderer':
@@ -349,7 +349,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'float' );
                 }
-                
+
                 $this->properties['labelRotation'] = fmod( (float) $propertyValue, 360. );
                 break;
             default:
@@ -359,9 +359,9 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -380,7 +380,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
 
     /**
      * Get coordinate for a dedicated value on the chart
-     * 
+     *
      * @param float $value Value to determine position for
      * @return float Position on chart
      */
@@ -388,21 +388,21 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
 
     /**
      * Return count of minor steps
-     * 
+     *
      * @return integer Count of minor steps
      */
     abstract public function getMinorStepCount();
 
     /**
      * Return count of major steps
-     * 
+     *
      * @return integer Count of major steps
      */
     abstract public function getMajorStepCount();
 
     /**
      * Get label for a dedicated step on the axis
-     * 
+     *
      * @param integer $step Number of step
      * @return string label
      */
@@ -410,7 +410,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
 
     /**
      * Return array of steps on this axis
-     * 
+     *
      * @return array( ezcGraphAxisStep )
      */
     public function getSteps()
@@ -456,7 +456,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
      * Is zero step
      *
      * Returns true if the given step is the one on the initial axis position
-     * 
+     *
      * @param int $step Number of step
      * @return bool Status If given step is initial axis position
      */
@@ -464,15 +464,15 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
 
     /**
      * Add data for this axis
-     * 
+     *
      * @param array $values
      * @return void
      */
     abstract public function addData( array $values );
 
     /**
-     * Calculate axis bounding values on base of the assigned values 
-     * 
+     * Calculate axis bounding values on base of the assigned values
+     *
      * @abstract
      * @access public
      * @return void
@@ -480,8 +480,8 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
     abstract public function calculateAxisBoundings();
 
     /**
-     * Render the axis 
-     * 
+     * Render the axis
+     *
      * @param ezcGraphRenderer $renderer Renderer
      * @param ezcGraphBoundings $boundings Boundings for the axis
      * @return ezcGraphBoundings Remaining boundings
@@ -553,7 +553,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
             $innerBoundings
         );
 
-        return $boundings;   
+        return $boundings;
     }
 }
 

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -28,19 +28,19 @@
  *
  * <code>
  *   $wikidata = include 'tutorial_wikipedia_data.php';
- *   
+ *
  *   $graph = new ezcGraphRadarChart();
  *   $graph->title = 'Wikipedia articles';
  *
  *   $graph->options->fillLines = 220;
- *   
+ *
  *   // Add data
  *   foreach ( $wikidata as $language => $data )
  *   {
  *       $graph->data[$language] = new ezcGraphArrayDataSet( $data );
  *       $graph->data[$language][] = reset( $data );
  *   }
- *   
+ *
  *   $graph->render( 400, 150, 'tutorial_radar_chart.svg' );
  * </code>
  *
@@ -57,7 +57,7 @@
  * @property int $highlightSize
  *           Size of highlight blocks
  * @property bool $highlightRadars
- *           If true, it adds lines to highlight the values position on the 
+ *           If true, it adds lines to highlight the values position on the
  *           axis.
  *
  * @version //autogentag//
@@ -67,7 +67,7 @@ class ezcGraphRadarChartOptions extends ezcGraphChartOptions
 {
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -81,15 +81,15 @@ class ezcGraphRadarChartOptions extends ezcGraphChartOptions
         $this->properties['highlightFontCloned'] = false;
         $this->properties['highlightSize'] = 14;
         $this->properties['highlightRadars'] = false;
-    
+
         parent::__construct( $options );
     }
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void
@@ -102,7 +102,7 @@ class ezcGraphRadarChartOptions extends ezcGraphChartOptions
             case 'symbolSize':
             case 'highlightSize':
                 if ( !is_numeric( $propertyValue ) ||
-                     ( $propertyValue < 1 ) ) 
+                     ( $propertyValue < 1 ) )
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'int >= 1' );
                 }
@@ -118,7 +118,7 @@ class ezcGraphRadarChartOptions extends ezcGraphChartOptions
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'false OR 0 <= int <= 255' );
                 }
 
-                $this->properties[$propertyName] = ( 
+                $this->properties[$propertyName] = (
                     $propertyValue === false
                     ? false
                     : (int) $propertyValue );
@@ -157,11 +157,11 @@ class ezcGraphRadarChartOptions extends ezcGraphChartOptions
                 return parent::__set( $propertyName, $propertyValue );
         }
     }
-    
+
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed

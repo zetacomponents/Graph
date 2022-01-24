@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -97,7 +97,7 @@
  * @property int $padding
  *           Padding between text and border.
  * @property bool $minimizeBorder
- *           Fit the border exactly around the text, or use the complete 
+ *           Fit the border exactly around the text, or use the complete
  *           possible space. This setting is only relevant, when a border
  *           color has been set for the font.
  * @property bool $textShadow
@@ -117,14 +117,14 @@ class ezcGraphFontOptions extends ezcBaseOptions
 {
     /**
      * Indicates if path already has been checked for correct font
-     * 
+     *
      * @var bool
      */
     protected $pathChecked = false;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -146,7 +146,7 @@ class ezcGraphFontOptions extends ezcBaseOptions
         $this->properties['borderWidth'] = 1;
         $this->properties['padding'] = 0;
         $this->properties['minimizeBorder'] = true;
-        
+
         $this->properties['textShadow'] = false;
         $this->properties['textShadowOffset'] = 1;
         $this->properties['textShadowColor'] = false;
@@ -156,9 +156,9 @@ class ezcGraphFontOptions extends ezcBaseOptions
 
     /**
      * Set an option value
-     * 
-     * @param string $propertyName 
-     * @param mixed $propertyValue 
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBasePropertyNotFoundException
      *          If a property is not defined in this class
      * @return void
@@ -240,7 +240,7 @@ class ezcGraphFontOptions extends ezcBaseOptions
                 {
                     $this->properties['name'] = $propertyValue;
                 }
-                else 
+                else
                 {
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'string' );
                 }
@@ -270,7 +270,7 @@ class ezcGraphFontOptions extends ezcBaseOptions
                     }
                     $this->pathChecked = true;
                 }
-                else 
+                else
                 {
                     throw new ezcBaseFileNotFoundException( $propertyValue, 'font' );
                 }
@@ -292,9 +292,9 @@ class ezcGraphFontOptions extends ezcBaseOptions
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -24,7 +24,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  */
 /**
- * Class for line charts. Can make use of an unlimited amount of datasets and 
+ * Class for line charts. Can make use of an unlimited amount of datasets and
  * will display them as lines by default.
  * X axis:
  *  - Labeled axis
@@ -45,14 +45,14 @@
  *          '300' => -34.14,
  *          '350' => 65,
  *          '400' => 123,
- *      )   
+ *      )
  *  );
  *
  *  // Render chart with default 2d renderer and default SVG driver
  *  $chart->render( 500, 200, 'line_chart.svg' );
  * </code>
  *
- * Each chart consists of several chart elements which represents logical 
+ * Each chart consists of several chart elements which represents logical
  * parts of the chart and can be formatted independently. The line chart
  * consists of:
  *  - title ( {@link ezcGraphChartElementText} )
@@ -69,7 +69,7 @@
  * </code>
  *
  * The chart itself also offers several options to configure the appearance.
- * The extended configure options are available in 
+ * The extended configure options are available in
  * {@link ezcGraphLineChartOptions} extending the {@link ezcGraphChartOptions}.
  *
  * @property ezcGraphLineChartOptions $options
@@ -83,14 +83,14 @@ class ezcGraphLineChart extends ezcGraphChart
 {
     /**
      * Array with additional axis for the chart
-     * 
+     *
      * @var ezcGraphAxisContainer
      */
     protected $additionalAxis;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -112,9 +112,9 @@ class ezcGraphLineChart extends ezcGraphChart
     }
 
     /**
-     * __get 
-     * 
-     * @param mixed $propertyName 
+     * __get
+     *
+     * @param mixed $propertyName
      * @throws ezcBasePropertyNotFoundException
      *          If a the value for the property options is not an instance of
      * @return mixed
@@ -133,7 +133,7 @@ class ezcGraphLineChart extends ezcGraphChart
 
     /**
      * Options write access
-     * 
+     *
      * @throws ezcBasePropertyNotFoundException
      *          If Option could not be found
      * @throws ezcBaseValueException
@@ -143,7 +143,7 @@ class ezcGraphLineChart extends ezcGraphChart
      * @return mixed
      * @ignore
      */
-    public function __set( $propertyName, $propertyValue ) 
+    public function __set( $propertyName, $propertyValue )
     {
         switch ( $propertyName ) {
             case 'xAxis':
@@ -175,7 +175,7 @@ class ezcGraphLineChart extends ezcGraphChart
 
     /**
      * Set colors and border for this element
-     * 
+     *
      * @param ezcGraphPalette $palette Palette
      * @return void
      */
@@ -191,7 +191,7 @@ class ezcGraphLineChart extends ezcGraphChart
 
     /**
      * Calculate bar chart step width
-     * 
+     *
      * @return void
      */
     protected function calculateStepWidth( ezcGraphChartElementAxis $mainAxis, ezcGraphChartElementAxis $secondAxis, $width )
@@ -204,7 +204,7 @@ class ezcGraphLineChart extends ezcGraphChart
             if ( $stepWidth === null )
             {
                 $stepWidth = $step->width;
-            } 
+            }
             elseif ( $step->width !== $stepWidth )
             {
                 throw new ezcGraphUnregularStepsException();
@@ -220,7 +220,7 @@ class ezcGraphLineChart extends ezcGraphChart
         }
 
         $checkedRegularSteps = true;
-        return $mainAxis->axisLabelRenderer->modifyChartDataPosition( 
+        return $mainAxis->axisLabelRenderer->modifyChartDataPosition(
             $secondAxis->axisLabelRenderer->modifyChartDataPosition(
                 new ezcGraphCoordinate(
                     $width * $stepWidth,
@@ -233,10 +233,10 @@ class ezcGraphLineChart extends ezcGraphChart
     /**
      * Render the assigned data
      *
-     * Will renderer all charts data in the remaining boundings after drawing 
-     * all other chart elements. The data will be rendered depending on the 
+     * Will renderer all charts data in the remaining boundings after drawing
+     * all other chart elements. The data will be rendered depending on the
      * settings in the dataset.
-     * 
+     *
      * @param ezcGraphRenderer $renderer Renderer
      * @param ezcGraphBoundings $boundings Remaining boundings
      * @return void
@@ -301,9 +301,9 @@ class ezcGraphLineChart extends ezcGraphChart
             foreach ( $data as $key => $value )
             {
                 // Calculate point in chart
-                $point = $xAxis->axisLabelRenderer->modifyChartDataPosition( 
+                $point = $xAxis->axisLabelRenderer->modifyChartDataPosition(
                     $yAxis->axisLabelRenderer->modifyChartDataPosition(
-                        new ezcGraphCoordinate( 
+                        new ezcGraphCoordinate(
                             $xAxis->getCoordinate( $key ),
                             $yAxis->getCoordinate( $value )
                         )
@@ -364,18 +364,18 @@ class ezcGraphLineChart extends ezcGraphChart
                         }
                         else
                         {
-                            $start = $xAxis->axisLabelRenderer->modifyChartDataPosition( 
+                            $start = $xAxis->axisLabelRenderer->modifyChartDataPosition(
                                 $yAxis->axisLabelRenderer->modifyChartDataPosition(
-                                    new ezcGraphCoordinate( 
+                                    new ezcGraphCoordinate(
                                         $xAxis->getCoordinate( $key ),
                                         $yAxis->getCoordinate( $stackedValue[(int) ( $point->x * 10000 )][(int) $value > 0] )
                                     )
                                 )
                             );
 
-                            $point = $xAxis->axisLabelRenderer->modifyChartDataPosition( 
+                            $point = $xAxis->axisLabelRenderer->modifyChartDataPosition(
                                 $yAxis->axisLabelRenderer->modifyChartDataPosition(
-                                    new ezcGraphCoordinate( 
+                                    new ezcGraphCoordinate(
                                         $xAxis->getCoordinate( $key ),
                                         $yAxis->getCoordinate( $stackedValue[(int) ( $point->x * 10000 )][(int) $value > 0] += $value )
                                     )
@@ -463,7 +463,7 @@ class ezcGraphLineChart extends ezcGraphChart
                         throw new ezcGraphInvalidDisplayTypeException( $data->displayType->default );
                         break;
                 }
-    
+
                 // Store last point, used to connect lines in line chart.
                 $lastPoint = $point;
             }
@@ -472,7 +472,7 @@ class ezcGraphLineChart extends ezcGraphChart
 
     /**
      * Returns the default display type of the current chart type.
-     * 
+     *
      * @return int Display type
      */
     public function getDefaultDisplayType()
@@ -483,7 +483,7 @@ class ezcGraphLineChart extends ezcGraphChart
     /**
      * Check if renderer supports features requested by some special chart
      * options.
-     * 
+     *
      * @throws ezcBaseValueException
      *         If some feature is not supported
      *
@@ -503,7 +503,7 @@ class ezcGraphLineChart extends ezcGraphChart
 
     /**
      * Aggregate and calculate value boundings on axis.
-     * 
+     *
      * @return void
      */
     protected function setAxisValues()
@@ -580,9 +580,9 @@ class ezcGraphLineChart extends ezcGraphChart
 
     /**
      * Renders the basic elements of this chart type
-     * 
-     * @param int $width 
-     * @param int $height 
+     *
+     * @param int $width
+     * @param int $height
      * @return void
      */
     protected function renderElements( $width, $height )
@@ -614,7 +614,7 @@ class ezcGraphLineChart extends ezcGraphChart
         $boundings->x1 = $this->options->width;
         $boundings->y1 = $this->options->height;
 
-        $boundings = $this->elements['xAxis']->axisLabelRenderer->modifyChartBoundings( 
+        $boundings = $this->elements['xAxis']->axisLabelRenderer->modifyChartBoundings(
             $this->elements['yAxis']->axisLabelRenderer->modifyChartBoundings(
                 $boundings, new ezcGraphCoordinate( 1, 0 )
             ), new ezcGraphCoordinate( -1, 0 )
@@ -689,10 +689,10 @@ class ezcGraphLineChart extends ezcGraphChart
     /**
      * Render the line chart
      *
-     * Renders the chart into a file or stream. The width and height are 
+     * Renders the chart into a file or stream. The width and height are
      * needed to specify the dimensions of the resulting image. For direct
      * output use 'php://stdout' as output file.
-     * 
+     *
      * @param int $width Image width
      * @param int $height Image height
      * @param string $file Output file
@@ -713,18 +713,18 @@ class ezcGraphLineChart extends ezcGraphChart
 
     /**
      * Renders this chart to direct output
-     * 
-     * Does the same as ezcGraphChart::render(), but renders directly to 
+     *
+     * Does the same as ezcGraphChart::render(), but renders directly to
      * output and not into a file.
      *
      * @param int $width
      * @param int $height
-     * @apichange 
+     * @apichange
      * @return void
      */
     public function renderToOutput( $width, $height )
     {
-        // @TODO: merge this function with render an deprecate ommit of third 
+        // @TODO: merge this function with render an deprecate ommit of third
         // argument in render() when API break is possible
         $this->renderElements( $width, $height );
         $this->renderer->render( null );

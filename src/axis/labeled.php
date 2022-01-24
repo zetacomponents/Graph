@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -55,13 +55,13 @@
  *  $graph->options->font->maxFontSize = 10;
  *  $graph->title = 'Error level colors';
  *  $graph->legend = false;
- *  
+ *
  *  $graph->yAxis = new ezcGraphChartElementLabeledAxis();
  *  $graph->yAxis->axisLabelRenderer->showZeroValue = true;
- *  
+ *
  *  $graph->yAxis->label = 'Color';
  *  $graph->xAxis->label = 'Error level';
- *  
+ *
  *  // Add data
  *  $graph->data['colors'] = new ezcGraphArrayDataSet(
  *      array(
@@ -72,13 +72,13 @@
  *          'fatal' => 'red',
  *      )
  *  );
- *  
+ *
  *  $graph->render( 400, 150, 'tutorial_axis_labeled.svg' );
  * </code>
  *
  * @property float $labelCount
  *           Define count of displayed labels on the axis
- * 
+ *
  * @version //autogentag//
  * @package Graph
  * @mainclass
@@ -86,22 +86,22 @@
 class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 {
     /**
-     * Array with labeles for data 
-     * 
+     * Array with labeles for data
+     *
      * @var array
      */
     protected $labels = array();
 
     /**
      * Labels indexed by their name as key for faster lookups
-     * 
+     *
      * @var array
      */
     protected $labelsIndexed = array();
 
     /**
      * Reduced amount of labels which will be displayed in the chart
-     * 
+     *
      * @var array
      */
     protected $displayedLabels = array();
@@ -114,14 +114,14 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 
     /**
      * Precalculated steps on the axis
-     * 
+     *
      * @var array(ezcGraphAxisStep)
      */
     protected $steps;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -136,10 +136,10 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -169,7 +169,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
     /**
      * Increase the keys of all elements in the array up from the start key, to
      * insert an additional element at the correct position.
-     * 
+     *
      * @param array $array Array
      * @param int $startKey Key to increase keys from
      * @return array Updated array
@@ -181,7 +181,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
             if ( $key === $startKey )
             {
                 // Recursive check, if next key should be increased, too
-                if ( isset ( $array[$key + 1] ) )
+                if ( isset( $array[$key + 1] ) )
                 {
                     $array = $this->increaseKeys( $array, $key + 1 );
                 }
@@ -201,8 +201,8 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
      * This method may be used to provide an ordered set of labels, containing
      * labels, which are not available in the datasets or to provide a label
      * order different to the one in the given dataset.
-     * 
-     * @param array $labels 
+     *
+     * @param array $labels
      * @return void
      */
     public function provideLabels( array $labels )
@@ -212,7 +212,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 
     /**
      * Add data for this axis
-     * 
+     *
      * @param array $values Value which will be displayed on this axis
      * @return void
      */
@@ -235,7 +235,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
                     $this->labels[$position++] = $label;
                 }
             }
-            else 
+            else
             {
                 $position = array_search( $label, $this->labels, true ) + 1;
             }
@@ -247,8 +247,8 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
     }
 
     /**
-     * Calculate axis bounding values on base of the assigned values 
-     * 
+     * Calculate axis bounding values on base of the assigned values
+     *
      * @abstract
      * @access public
      * @return void
@@ -309,7 +309,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
                     );
                 }
 
-                // @TODO: This line is deprecated and only build for 
+                // @TODO: This line is deprecated and only build for
                 // deprecated getLabel()
                 $this->displayedLabels = $this->labels;
 
@@ -320,7 +320,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
             {
                 if ( ( $labelCount % $div ) === 0 )
                 {
-                    // @TODO: This part is deprecated and only build for 
+                    // @TODO: This part is deprecated and only build for
                     // deprecated getLabel()
                     $step = $labelCount / $div;
 
@@ -386,7 +386,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 
             $position = 0;
             $minorStepSize = 1 / $labelCount;
-            
+
             foreach ( $this->labels as $nr => $label )
             {
                 if ( $nr >= $position )
@@ -403,7 +403,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
                         $nr === $labelCount
                     );
 
-                    // @TODO: This line is deprecated and only build for 
+                    // @TODO: This line is deprecated and only build for
                     // deprecated getLabel()
                     $this->displayedLabels[] = $label;
 
@@ -422,7 +422,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 
     /**
      * Return array of steps on this axis
-     * 
+     *
      * @return array( ezcGraphAxisStep )
      */
     public function getSteps()
@@ -432,13 +432,13 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 
     /**
      * Get coordinate for a dedicated value on the chart
-     * 
+     *
      * @param string $value Value to determine position for
      * @return float Position on chart
      */
     public function getCoordinate( $value )
     {
-        if ( ( $value === false ) || 
+        if ( ( $value === false ) ||
              ( $value === null ) ||
              ( !isset( $this->labelsIndexed[$value] ) ) )
         {
@@ -461,7 +461,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
                 case ezcGraph::TOP:
                     if ( count( $this->labels ) > 1 )
                     {
-                        return (float) $key / ( count ( $this->labels ) - 1 );
+                        return (float) $key / ( count( $this->labels ) - 1 );
                     }
                     else
                     {
@@ -471,7 +471,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
                 case ezcGraph::RIGHT:
                     if ( count( $this->labels ) > 1 )
                     {
-                        return (float) 1 - $key / ( count ( $this->labels ) - 1 );
+                        return (float) 1 - $key / ( count( $this->labels ) - 1 );
                     }
                     else
                     {
@@ -483,7 +483,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 
     /**
      * Return count of minor steps
-     * 
+     *
      * @return integer Count of minor steps
      */
     public function getMinorStepCount()
@@ -493,7 +493,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 
     /**
      * Return count of major steps
-     * 
+     *
      * @return integer Count of major steps
      */
     public function getMajorStepCount()
@@ -503,7 +503,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
 
     /**
      * Get label for a dedicated step on the axis
-     * 
+     *
      * @param integer $step Number of step
      * @return string label
      */
@@ -523,7 +523,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
      * Is zero step
      *
      * Returns true if the given step is the one on the initial axis position
-     * 
+     *
      * @param int $step Number of step
      * @return bool Status If given step is initial axis position
      */

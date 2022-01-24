@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -41,7 +41,7 @@
  * The used interval is considered as nice, if it is equal to [1,2,5] * 10^x
  * with x in [.., -1, 0, 1, ..].
  *
- * The start and end value are the next bigger / smaller multiple of the 
+ * The start and end value are the next bigger / smaller multiple of the
  * intervall compared to the maximum / minimum axis value.
  *
  * You may specify custom step sizes using the properties $majorStep and
@@ -60,14 +60,14 @@
  *  $graph = new ezcGraphLineChart();
  *  $graph->title = 'Some random data';
  *  $graph->legend = false;
- *  
+ *
  *  $graph->xAxis = new ezcGraphChartElementNumericAxis();
  *  // The y axis is numeric by default.
- *  
+ *
  *  $graph->xAxis->min = -15;
  *  $graph->xAxis->max = 15;
  *  $graph->xAxis->majorStep = 5;
- *  
+ *
  *  $data = array(
  *      array(),
  *      array()
@@ -77,11 +77,11 @@
  *      $data[0][$i] = mt_rand( -23, 59 );
  *      $data[1][$i] = mt_rand( -23, 59 );
  *  }
- *  
+ *
  *  // Add data
  *  $graph->data['random blue'] = new ezcGraphArrayDataSet( $data[0] );
  *  $graph->data['random green'] = new ezcGraphArrayDataSet( $data[1] );
- *  
+ *
  *  $graph->render( 400, 150, 'tutorial_axis_numeric.svg' );
  * </code>
  *
@@ -97,7 +97,7 @@
  *                Minimum Value to display on this axis.
  * @property-read float $maxValue
  *                Maximum value to display on this axis.
- *           
+ *
  * @version //autogentag//
  * @package Graph
  * @mainclass
@@ -106,20 +106,20 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
 {
 
     /**
-     * Constant used for calculation of automatic definition of major scaling 
+     * Constant used for calculation of automatic definition of major scaling
      * steps
      */
     const MIN_MAJOR_COUNT = 5;
 
     /**
-     * Constant used for automatic calculation of minor steps from given major 
-     * steps 
+     * Constant used for automatic calculation of minor steps from given major
+     * steps
      */
     const MIN_MINOR_COUNT = 8;
 
     /**
      * Constructor
-     * 
+     *
      * @param array $options Default option array
      * @return void
      * @ignore
@@ -135,10 +135,10 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
     }
 
     /**
-     * __set 
-     * 
-     * @param mixed $propertyName 
-     * @param mixed $propertyValue 
+     * __set
+     *
+     * @param mixed $propertyName
+     * @param mixed $propertyValue
      * @throws ezcBaseValueException
      *          If a submitted parameter was out of range or type.
      * @throws ezcBasePropertyNotFoundException
@@ -179,7 +179,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
      *
      * Nice numbers are steps on a scale which are easily recognized by humans
      * like 0.5, 25, 1000 etc.
-     * 
+     *
      * @param float $float Number to be altered
      * @return float Nice number
      */
@@ -192,7 +192,6 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
         // Normalize number to a range between 1 and 10
         $log = (int) round( log10( $abs ), 0 );
         $abs /= pow( 10, $log );
-
 
         // find next nice number
         if ( $abs > 5 )
@@ -219,8 +218,8 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
     /**
      * Calculate minimum value for displayed axe basing on real minimum and
      * major step size
-     * 
-     * @param float $min Real data minimum 
+     *
+     * @param float $min Real data minimum
      * @param float $max Real data maximum
      * @return void
      */
@@ -233,8 +232,9 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
         else
         {
             $calculatedMin = $this->properties['max'];
-            
-            do {
+
+            do
+            {
                 $calculatedMin -= $this->properties['majorStep'];
             } while ( $calculatedMin > $min );
 
@@ -245,16 +245,17 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
     /**
      * Calculate maximum value for displayed axe basing on real maximum and
      * major step size
-     * 
-     * @param float $min Real data minimum 
+     *
+     * @param float $min Real data minimum
      * @param float $max Real data maximum
      * @return void
      */
     protected function calculateMaximum( $min, $max )
     {
         $calculatedMax = $this->properties['min'];
-        
-        do {
+
+        do
+        {
             $calculatedMax += $this->properties['majorStep'];
         } while ( $calculatedMax < $max );
 
@@ -264,7 +265,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
     /**
      * Calculate size of minor steps based on the size of the major step size
      *
-     * @param float $min Real data minimum 
+     * @param float $min Real data minimum
      * @param float $max Real data maximum
      * @return void
      */
@@ -278,7 +279,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
      * Calculate size of major step based on the span to be displayed and the
      * defined MIN_MAJOR_COUNT constant.
      *
-     * @param float $min Real data minimum 
+     * @param float $min Real data minimum
      * @param float $max Real data maximum
      * @return void
      */
@@ -291,7 +292,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
 
     /**
      * Add data for this axis
-     * 
+     *
      * @param array $values Value which will be displayed on this axis
      * @return void
      */
@@ -316,8 +317,8 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
     }
 
     /**
-     * Calculate axis bounding values on base of the assigned values 
-     * 
+     * Calculate axis bounding values on base of the assigned values
+     *
      * @abstract
      * @access public
      * @return void
@@ -420,7 +421,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
 
     /**
      * Get coordinate for a dedicated value on the chart
-     * 
+     *
      * @param float $value Value to determine position for
      * @return float Position on chart
      */
@@ -458,7 +459,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
 
     /**
      * Return count of minor steps
-     * 
+     *
      * @return integer Count of minor steps
      */
     public function getMinorStepCount()
@@ -468,7 +469,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
 
     /**
      * Return count of major steps
-     * 
+     *
      * @return integer Count of major steps
      */
     public function getMajorStepCount()
@@ -478,7 +479,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
 
     /**
      * Get label for a dedicated step on the axis
-     * 
+     *
      * @param integer $step Number of step
      * @return string label
      */
@@ -508,7 +509,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
      * Is zero step
      *
      * Returns true if the given step is the one on the initial axis position
-     * 
+     *
      * @param int $step Number of step
      * @return bool Status If given step is initial axis position
      */

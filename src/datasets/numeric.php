@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,7 +33,7 @@
  * @property float $end
  *           End value for x axis values of function
  * @property callback $callback
- *           Callback function which represents the mathmatical function to 
+ *           Callback function which represents the mathmatical function to
  *           show
  * @property int $resolution
  *           Steps used to draw line in graph
@@ -42,11 +42,11 @@
  * @package Graph
  * @mainclass
  */
-class ezcGraphNumericDataSet extends ezcGraphDataSet 
+class ezcGraphNumericDataSet extends ezcGraphDataSet
 {
     /**
      * Position of the data iterator. Depends on the configured resolution.
-     * 
+     *
      * @var int
      */
     protected $position = 0;
@@ -60,7 +60,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
 
     /**
      * Constructor
-     * 
+     *
      * @param float $start Start value for x axis values of function
      * @param float $end End value for x axis values of function
      * @param callback $callback Callback function
@@ -95,7 +95,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
 
     /**
      * Options write access
-     * 
+     *
      * @throws ezcBasePropertyNotFoundException
      *          If Option could not be found
      * @throws ezcBaseValueException
@@ -104,7 +104,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
      * @param mixed $propertyValue  Option value;
      * @return mixed
      */
-    public function __set( $propertyName, $propertyValue ) 
+    public function __set( $propertyName, $propertyValue )
     {
         switch ( $propertyName ) {
             case 'resolution':
@@ -142,7 +142,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
     /**
      * Property get access.
      * Simply returns a given option.
-     * 
+     *
      * @param string $propertyName The name of the option to get.
      * @return mixed The option value.
      *
@@ -160,7 +160,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
 
     /**
      * Get the x coordinate for the current position
-     * 
+     *
      * @param int $position Position
      * @return float x coordinate
      */
@@ -169,11 +169,11 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
         return $this->start +
             ( $this->end - $this->start ) / $this->resolution * $this->position;
     }
-    
+
     /**
      * Returns true if the given datapoint exists
      * Allows isset() using ArrayAccess.
-     * 
+     *
      * @param string $key The key of the datapoint to get.
      * @return bool Wether the key exists.
      */
@@ -186,7 +186,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
     /**
      * Returns the value for the given datapoint
      * Get an datapoint value by ArrayAccess.
-     * 
+     *
      * @param string $key The key of the datapoint to get.
      * @return float The datapoint value.
      */
@@ -199,7 +199,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
     /**
      * Throws a ezcBasePropertyPermissionException because single datapoints
      * cannot be set in average datasets.
-     * 
+     *
      * @param string $key The kex of a datapoint to set.
      * @param float $value The value for the datapoint.
      * @throws ezcBasePropertyPermissionException
@@ -215,10 +215,10 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
     /**
      * Returns the currently selected datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return string The currently selected datapoint.
      */
     #[ReturnTypeWillChange]
@@ -230,7 +230,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
     /**
      * Returns the next datapoint and selects it or false on the last datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -248,7 +248,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
         {
             return false;
         }
-        else 
+        else
         {
             return $this->current();
         }
@@ -257,10 +257,10 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
     /**
      * Returns the key of the currently selected datapoint.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return string The key of the currently selected datapoint.
      */
     #[ReturnTypeWillChange]
@@ -272,7 +272,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
     /**
      * Returns if the current datapoint is valid.
      *
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -286,7 +286,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
 
     /**
      * Selects the very first datapoint and returns it.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * datapoints of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -300,7 +300,7 @@ class ezcGraphNumericDataSet extends ezcGraphDataSet
 
     /**
      * Returns the number of elements in this dataset
-     * 
+     *
      * @return int
      */
     #[ReturnTypeWillChange]
