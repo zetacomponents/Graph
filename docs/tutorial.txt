@@ -514,8 +514,8 @@ results in a gray background for the title element only.
 The background element
 ----------------------
 
-With all drivers except the Ming (Flash) driver, you can set background images
-with the option to repeat them in the same way as in CSS definitions.
+With all drivers, you can set background images with the option to repeat them
+in the same way as in CSS definitions.
 
 .. include:: tutorial/tutorial_chart_background.php
    :literal:
@@ -1121,27 +1121,6 @@ high quality anti aliasing.
    :alt:   Cairo driver example jpeg
 
 __ http://pecl.php.net/package/cairo_wrapper
-
-Ming/Flash driver
------------------
-
-ezcGraph can use ext/ming to generate Flash swf files. This driver only
-supports Palm Format Fonts (.fdb) and can only handle a very small subset of
-JPEGs as images for the chart background. On the other hand, Flash is a vector
-graphic format, so the images are rather small and can be compressed
-effectively. The font size estimation is exact and it support gradients and
-all of the used shapes. Ming does not support the generation of swf files using
-transparent backgrounds.
-
-.. include:: tutorial/tutorial_driver_flash.php
-   :literal:
-
-The Ming driver does not have a lot of available options. You need to use a
-valid font file, as in line 10, and you can set the
-compression rate used by the Ming driver to compress the resulting swf. The
-result is a `beautiful Flash image`__.
-
-__ img/tutorial_driver_flash.swf
 
 Element references
 ==================

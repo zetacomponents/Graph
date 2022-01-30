@@ -126,9 +126,9 @@ abstract class ezcGraphRenderer
      * on the respective dataset.
      *
      * The data assigned to the legends and data elements is completely direver
-     * dependent. In the SVG and Flash driver there will jsut be some IDs,
-     * which allow you to reference the affected elements or element groups
-     * inside the flash or SVG file.
+     * dependent. In the SVG driver there will just be some IDs, which allow
+     * you to reference the affected elements or element groups inside the
+     * SVG file.
      *
      * For bitmap formats, like in the Cairo or GD driver, $data will be an
      * array of ezcGraphCoordinate objects, which roughly describe the outline

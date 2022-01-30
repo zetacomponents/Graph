@@ -49,13 +49,6 @@ class ezcGraphDriverOptionsTest extends ezcTestImageCase
             'Wrong default value for property options in class ezcGraphSvgDriver'
         );
 
-        $driver->options = new ezcGraphFlashDriverOptions();
-        $this->assertEquals(
-            new ezcGraphFlashDriverOptions(),
-            $driver->options,
-            'Setting property value did not work for property options in class ezcGraphSvgDriver'
-        );
-
         try
         {
             $driver->options = false;
