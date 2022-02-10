@@ -32,66 +32,6 @@ abstract class ezcGraphTestCase extends ezcTestImageCase
     }
 
     /**
-     * Normalize given PHP code for flash generation
-     *
-     * @param string $code
-     * @return string
-     */
-    protected function normalizeFlashCode( $code )
-    {
-        return preg_replace(
-            array(
-                '/\$[sf]\d+/',
-                '[/\\*.*\\*/]i',
-                '(BitmapID:.*?,SWFFILL_RADIAL_GRADIENT\\);)s',
-            ),
-            array(
-                '$var',
-                '/* Comment irrelevant */',
-                '/* Inserted bitmap fill */',
-            ),
-            $code
-        );
-    }
-
-    /**
-     * Compares to flash files comparing the output of `swftophp`
-     *
-     * @param string $generated Filename of generated image
-     * @param string $compare Filename of stored image
-     * @return void
-     */
-    protected function swfCompare( $generated, $compare )
-    {
-        $this->assertTrue(
-            file_exists( $generated ),
-            'No image file has been created.'
-        );
-
-        $this->assertTrue(
-            file_exists( $compare ),
-            'Comparision image does not exist.'
-        );
-
-        $executeable = ezcBaseFeatures::findExecutableInPath( 'swftophp' );
-
-        if ( !$executeable )
-        {
-            $this->markTestSkipped( 'Could not find swftophp executeable to compare flash files. Please check your $PATH.' );
-        }
-
-        $this->assertEquals(
-            $this->normalizeFlashCode(
-                shell_exec( $executeable . ' ' . escapeshellarg( $compare ) )
-            ),
-            $this->normalizeFlashCode(
-                shell_exec( $executeable . ' ' . escapeshellarg( $generated ) )
-            ),
-            'Rendered image is not correct.'
-        );
-    }
-
-    /**
      * Compares a generated image with a stored file
      *
      * @param string $generated Filename of generated image
