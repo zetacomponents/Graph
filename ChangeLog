@@ -1,3 +1,11 @@
+1.6.0alpha1 - Thursday 10 Feb 2022
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- PHP 8.0 and 8.1 compatibility
+- GH-22: Interpret labels as UTF-8 in testFitStringInTextBox
+- GH-29: Adds "fillLine" option on dataSet to override global fillLines
+
+
 1.5.3 - Wednesday 05 May 2021
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
