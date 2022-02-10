@@ -217,7 +217,7 @@ the default display type to ezcGraph::LINE. To more prominently display the
 line, we set one graph option in line 16. Options are accessed like public
 properties and in this case we set an option for the graph called "fillLines",
 which indicates what transparency value is used to fill the space underneath
-the line.
+the line. Alternatively you can set "fillLine" on individual datasets.
 
 .. image:: img/tutorial_bar_line_chart.svg.png
    :alt:   Combined bar and line chart
