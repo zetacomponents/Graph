@@ -116,6 +116,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
         $this->properties['graphOffset'] = new ezcGraphCoordinate( 0, 0 );
         $this->properties['idPrefix'] = 'ezcGraph';
         $this->properties['linkCursor'] = 'pointer';
+        $this->properties['inline'] = false;
 
         parent::__construct( $options );
     }
@@ -277,6 +278,9 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 break;
             case 'linkCursor':
                 $this->properties['linkCursor'] = (string) $propertyValue;
+                break;
+            case 'inline':
+                $this->properties['inline'] = (bool) $propertyValue;
                 break;
             default:
                 parent::__set( $propertyName, $propertyValue );
