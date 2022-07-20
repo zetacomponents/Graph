@@ -162,39 +162,39 @@ class ezcGraphLabeledAxisTest extends ezcGraphTestCase
         $chart->xAxis->position = ezcGraph::LEFT;
         $chart->render( 500, 200 );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .0,
             $chart->xAxis->getCoordinate( false ),
-            'Wrong initial axis position. ',
-            .05
+            .05,
+            'Wrong initial axis position. '
         );
 
         $this->assertEquals(
             .0,
             $chart->xAxis->getCoordinate( '2000' ),
-            'Wrong minimal value. ',
-            .05
+            .05,
+            'Wrong minimal value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .33,
             $chart->xAxis->getCoordinate( 2001 ),
-            'Wrong mid value. ',
-            .05
+            .05,
+            'Wrong mid value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $chart->xAxis->getCoordinate( '2003' ),
-            'Wrong maximum value. ',
-            .05
+            .05,
+            'Wrong maximum value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .0,
             $chart->xAxis->getCoordinate( '1991' ),
-            'Wrong return for unknown value. ',
-            .05
+            .05,
+            'Wrong return for unknown value. '
         );
     }
 
@@ -205,39 +205,39 @@ class ezcGraphLabeledAxisTest extends ezcGraphTestCase
         $chart->xAxis->position = ezcGraph::RIGHT;
         $chart->render( 500, 200 );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $chart->xAxis->getCoordinate( false ),
-            'Wrong initial axis position. ',
-            .05
+            .05,
+            'Wrong initial axis position. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $chart->xAxis->getCoordinate( '2000' ),
-            'Wrong minimal value. ',
-            .05
+			.05,
+            'Wrong minimal value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .66,
             $chart->xAxis->getCoordinate( 2001 ),
-            'Wrong mid value. ',
-            .05
+			.05,
+            'Wrong mid value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .0,
             $chart->xAxis->getCoordinate( '2003' ),
-            'Wrong maximum value. ',
-            .05
+			.05,
+            'Wrong maximum value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $chart->xAxis->getCoordinate( '1991' ),
-            'Wrong return for unknown value. ',
-            .05
+			.05,
+            'Wrong return for unknown value. '
         );
     }
 
@@ -248,39 +248,39 @@ class ezcGraphLabeledAxisTest extends ezcGraphTestCase
         $chart->xAxis->position = ezcGraph::TOP;
         $chart->render( 500, 200 );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .0,
             $chart->xAxis->getCoordinate( false ),
-            'Wrong initial axis position. ',
-            .05
+            .05,
+            'Wrong initial axis position. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .0,
             $chart->xAxis->getCoordinate( '2000' ),
-            'Wrong minimal value. ',
-            .05
+            .05,
+            'Wrong minimal value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .33,
             $chart->xAxis->getCoordinate( 2001 ),
-            'Wrong mid value. ',
-            .05
+            .05,
+            'Wrong mid value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $chart->xAxis->getCoordinate( '2003' ),
-            'Wrong maximum value. ',
-            .05
+            .05,
+            'Wrong maximum value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .0,
             $chart->xAxis->getCoordinate( '1991' ),
-            'Wrong return for unknown value. ',
-            .05
+            .05,
+            'Wrong return for unknown value. '
         );
     }
 
@@ -291,39 +291,39 @@ class ezcGraphLabeledAxisTest extends ezcGraphTestCase
         $chart->xAxis->position = ezcGraph::BOTTOM;
         $chart->render( 500, 200 );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $chart->xAxis->getCoordinate( false ),
-            'Wrong initial axis position. ',
-            .05
+            .05,
+            'Wrong initial axis position. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $chart->xAxis->getCoordinate( '2000' ),
-            'Wrong minimal value. ',
-            .05
+            .05,
+            'Wrong minimal value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .66,
             $chart->xAxis->getCoordinate( 2001 ),
-            'Wrong mid value. ',
-            .05
+            .05,
+            'Wrong mid value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .0,
             $chart->xAxis->getCoordinate( '2003' ),
-            'Wrong maximum value. ',
-            .05
+            .05,
+            'Wrong maximum value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $chart->xAxis->getCoordinate( '1991' ),
-            'Wrong return for unknown value. ',
-            .05
+            .05,
+            'Wrong return for unknown value. '
         );
     }
 

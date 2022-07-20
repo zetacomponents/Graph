@@ -266,8 +266,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'Mozilla' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#3465A4' ) ),
-                $this->equalTo( 0., 1. ),
-                $this->equalTo( 220.5, .1 ),
+                $this->equalToWithDelta( 0., 1. ),
+                $this->equalToWithDelta( 220.5, .1 ),
                 $this->equalTo( 'Mozilla: 4375 (61.3%)' ),
                 $this->equalTo( false )
             );
@@ -278,8 +278,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'IE' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#4E9A06' ) ),
-                $this->equalTo( 220.5, .1 ),
-                $this->equalTo( 238., 1. ),
+                $this->equalToWithDelta( 220.5, .1 ),
+                $this->equalToWithDelta( 238., 1. ),
                 $this->equalTo( 'IE: 345 (4.8%)' ),
                 $this->equalTo( false )
             );
@@ -290,8 +290,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'Opera' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#CC0000' ) ),
-                $this->equalTo( 238., 1. ),
-                $this->equalTo( 298.6, 1. ),
+                $this->equalToWithDelta( 238., 1. ),
+                $this->equalToWithDelta( 298.6, 1. ),
                 $this->equalTo( 'Opera: 1204 (16.9%)' ),
                 $this->equalTo( false )
             );
@@ -302,8 +302,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'wget' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#EDD400' ) ),
-                $this->equalTo( 298.6, 1. ),
-                $this->equalTo( 310., 1. ),
+                $this->equalToWithDelta( 298.6, 1. ),
+                $this->equalToWithDelta( 310., 1. ),
                 $this->equalTo( 'wget: 231 (3.2%)' ),
                 $this->equalTo( true )
             );
@@ -314,8 +314,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'Safari' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#75505B' ) ),
-                $this->equalTo( 310., 1. ),
-                $this->equalTo( 360., 1. ),
+                $this->equalToWithDelta( 310., 1. ),
+                $this->equalToWithDelta( 360., 1. ),
                 $this->equalTo( 'Safari: 987 (13.8%)' ),
                 $this->equalTo( false )
             );
@@ -353,8 +353,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'Mozilla' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#3465A4' ) ),
-                $this->equalTo( 0., 1. ),
-                $this->equalTo( 220.5, .1 ),
+                $this->equalToWithDelta( 0., 1. ),
+                $this->equalToWithDelta( 220.5, .1 ),
                 $this->equalTo( 'Callback: Mozilla' ),
                 $this->equalTo( false )
             );
@@ -365,8 +365,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'IE' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#4E9A06' ) ),
-                $this->equalTo( 220.5, .1 ),
-                $this->equalTo( 238., 1. ),
+                $this->equalToWithDelta( 220.5, .1 ),
+                $this->equalToWithDelta( 238., 1. ),
                 $this->equalTo( 'Callback: IE' ),
                 $this->equalTo( false )
             );
@@ -377,8 +377,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'Opera' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#CC0000' ) ),
-                $this->equalTo( 238., 1. ),
-                $this->equalTo( 298.6, 1. ),
+                $this->equalToWithDelta( 238., 1. ),
+                $this->equalToWithDelta( 298.6, 1. ),
                 $this->equalTo( 'Callback: Opera' ),
                 $this->equalTo( false )
             );
@@ -389,8 +389,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'wget' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#EDD400' ) ),
-                $this->equalTo( 298.6, 1. ),
-                $this->equalTo( 310., 1. ),
+                $this->equalToWithDelta( 298.6, 1. ),
+                $this->equalToWithDelta( 310., 1. ),
                 $this->equalTo( 'Callback: wget' ),
                 $this->equalTo( true )
             );
@@ -401,8 +401,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
                 $this->equalTo( new ezcGraphBoundings( 80, 0, 400, 200 ) ),
                 $this->equalTo( new ezcGraphContext( 'sample', 'Safari' ) ),
                 $this->equalTo( ezcGraphColor::fromHex( '#75505B' ) ),
-                $this->equalTo( 310., 1. ),
-                $this->equalTo( 360., 1. ),
+                $this->equalToWithDelta( 310., 1. ),
+                $this->equalToWithDelta( 360., 1. ),
                 $this->equalTo( 'Callback: Safari' ),
                 $this->equalTo( false )
             );

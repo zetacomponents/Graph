@@ -365,32 +365,32 @@ class ezcGraphDateAxisTest extends ezcGraphTestCase
             // Ignore
         }
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             0.,
             $this->chart->xAxis->getCoordinate( false ),
+            .05,
             'Wrong initial axis position. ',
-            .05
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             0.,
             $this->chart->xAxis->getCoordinate( mktime( 6, 0, 0, 5, 7, 2006 ) ),
-            'Wrong minimal value. ',
-            .05
+            .05,
+            'Wrong minimal value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .575,
             $this->chart->xAxis->getCoordinate( mktime( 13, 1, 34, 5, 8, 2006 ) ),
-            'Wrong mid value. ',
-            .05
+            .05,
+            'Wrong mid value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $this->chart->xAxis->getCoordinate( mktime( 12, 0, 0, 5, 9, 2006 ) ),
-            'Wrong maximum value. ',
-            .05
+            .05,
+            'Wrong maximum value. '
         );
     }
 
@@ -413,32 +413,32 @@ class ezcGraphDateAxisTest extends ezcGraphTestCase
             // Ignore
         }
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $this->chart->xAxis->getCoordinate( false ),
-            'Wrong initial axis position. ',
-            .05
+            .05,
+            'Wrong initial axis position. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             1.,
             $this->chart->xAxis->getCoordinate( mktime( 6, 0, 0, 5, 7, 2006 ) ),
-            'Wrong minimal value. ',
-            .05
+            .05,
+            'Wrong minimal value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             .425,
             $this->chart->xAxis->getCoordinate( mktime( 13, 1, 34, 5, 8, 2006 ) ),
-            'Wrong mid value. ',
-            .05
+            .05,
+            'Wrong mid value. '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             0.,
             $this->chart->xAxis->getCoordinate( mktime( 12, 0, 0, 5, 9, 2006 ) ),
-            'Wrong maximum value. ',
-            .05
+            .05,
+            'Wrong maximum value. '
         );
     }
 

@@ -367,7 +367,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->resolution;
     }

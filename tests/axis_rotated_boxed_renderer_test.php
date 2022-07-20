@@ -229,18 +229,18 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
             $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->xAxis->axisLabelRenderer->angle,
             76.,
-            'Angle estimation wrong.',
-            1.
+            1.,
+            'Angle estimation wrong.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->axisLabelRenderer->angle,
             53.,
-            'Angle estimation wrong.',
-            1.
+            1.,
+            'Angle estimation wrong.'
         );
     }
 

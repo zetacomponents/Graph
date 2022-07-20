@@ -265,53 +265,53 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
             'As value for: max; '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( .01 ),
             1,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( .1 ),
             .833,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 1 ),
             .667,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 10 ),
             .5,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 100 ),
             .333,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 1000 ),
             .167,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 10000 ),
             0,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
     }
 
@@ -336,53 +336,53 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
             'As value for: max; '
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( .015625 ),
             1,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( .125 ),
             .833,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 1 ),
             .667,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 8 ),
             .5,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 64 ),
             .333,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 512 ),
             .167,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $chart->yAxis->getCoordinate( 4096 ),
             0,
-            'Wrong value calculated on logarithmical axis.',
-            .001
+            .001,
+            'Wrong value calculated on logarithmical axis.'
         );
     }
 

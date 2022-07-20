@@ -1,7 +1,7 @@
 <?php
 /**
- * ezcGraphNumericAxisTest 
- * 
+ * ezcGraphNumericAxisTest
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,7 +27,7 @@
 
 /**
  * Tests for ezcGraph class.
- * 
+ *
  * @package Graph
  * @subpackage Tests
  */
@@ -628,7 +628,7 @@ class ezcGraphNumericAxisTest extends ezcTestCase
 
     /**
      * Tests bug #12581
-     * 
+     *
      * @return void
      */
     public function testMixedAutomagicAndManualScaling9()
@@ -977,11 +977,11 @@ class ezcGraphNumericAxisTest extends ezcTestCase
         $chart->data['evenMoreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450) );
         $chart->render( 500, 200 );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             0.66,
             $chart->yAxis->getCoordinate( false ),
-            'Wrong initial axis position. ',
-            .05
+            .05,
+            'Wrong initial axis position.'
         );
     }
 

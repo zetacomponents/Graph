@@ -231,16 +231,16 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
            ->expects( $this->at( 0 ) )
             ->method( 'drawGridLine' )
             ->with(
-                $this->equalTo( new ezcGraphCoordinate( 338., 93.8 ), .1 ),
-                $this->equalTo( new ezcGraphCoordinate( 300., 80. ), .1 ),
+                $this->equalToWithDelta( new ezcGraphCoordinate( 338., 93.8 ), .1 ),
+                $this->equalToWithDelta( new ezcGraphCoordinate( 300., 80. ), .1 ),
                 $this->equalTo( ezcGraphColor::fromHex( '#888A85' ) )
             );
         $mockedRenderer
            ->expects( $this->at( 1 ) )
             ->method( 'drawGridLine' )
             ->with(
-                $this->equalTo( new ezcGraphCoordinate( 343.75, 92.9 ), .1 ),
-                $this->equalTo( new ezcGraphCoordinate( 300., 77. ), .1 ),
+                $this->equalToWithDelta( new ezcGraphCoordinate( 343.75, 92.9 ), .1 ),
+                $this->equalToWithDelta( new ezcGraphCoordinate( 300., 77. ), .1 ),
                 $this->equalTo( ezcGraphColor::fromHex( '#888A8588' ) )
             );
 
@@ -249,8 +249,8 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
            ->expects( $this->at( 21 ) )
             ->method( 'drawGridLine' )
             ->with(
-                $this->equalTo( new ezcGraphCoordinate( 323.5, 116.2 ), .1 ),
-                $this->equalTo( new ezcGraphCoordinate( 338., 93.8 ), .1 ),
+                $this->equalToWithDelta( new ezcGraphCoordinate( 323.5, 116.2 ), .1 ),
+                $this->equalToWithDelta( new ezcGraphCoordinate( 338., 93.8 ), .1 ),
                 $this->equalTo( ezcGraphColor::fromHex( '#888A85' ) )
             );
 

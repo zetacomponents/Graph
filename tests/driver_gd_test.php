@@ -404,7 +404,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
             2000
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $return,
             array(
                 new ezcGraphCoordinate( 100., 50. ),
@@ -412,8 +412,8 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
                 new ezcGraphCoordinate( 137., 58. ),
                 new ezcGraphCoordinate( 136., 58.5 ),
             ),
-            'Expected point array as return value.',
-            1.
+            1.,
+            'Expected point array as return value.'
         );
     }
 
@@ -595,7 +595,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
             2000
         );
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $return,
             array(
                 new ezcGraphCoordinate( 173., 59. ),
@@ -603,8 +603,8 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
                 new ezcGraphCoordinate( 153., 83. ),
                 new ezcGraphCoordinate( 183., 59. ),
             ),
-            'Expected point array as return value.',
-            1.
+            1.,
+            'Expected point array as return value.'
         );
     }
 
