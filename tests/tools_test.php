@@ -59,6 +59,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
     public function testPieChartImageMap()
     {
+        $this->skipIfNoFontSupport();
+
         $filename = $this->tempDir . __FUNCTION__ . '.png';
         $htmlFilename = $this->tempDir . __FUNCTION__ . '.html';
 
@@ -90,6 +92,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
     public function testPieChartImageMapCustomName()
     {
+        $this->skipIfNoFontSupport();
+
         $filename = $this->tempDir . __FUNCTION__ . '.png';
         $htmlFilename = $this->tempDir . __FUNCTION__ . '.html';
 
@@ -121,6 +125,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
     public function testLineChartImageMap()
     {
+        $this->skipIfNoFontSupport();
+
         $filename = $this->tempDir . __FUNCTION__ . '.png';
         $htmlFilename = $this->tempDir . __FUNCTION__ . '.html';
 
@@ -149,6 +155,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
     public function testLineChartImageMapOnlyDataPoint()
     {
+        $this->skipIfNoFontSupport();
+
         $filename = $this->tempDir . __FUNCTION__ . '.png';
         $htmlFilename = $this->tempDir . __FUNCTION__ . '.html';
 
@@ -176,6 +184,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
     public function testLineChartImageMapNoLegend()
     {
+        $this->skipIfNoFontSupport();
+
         $filename = $this->tempDir . __FUNCTION__ . '.png';
         $htmlFilename = $this->tempDir . __FUNCTION__ . '.html';
 

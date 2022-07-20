@@ -513,11 +513,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderLabeledPieSegmentWithGleamAndShadowGD()
     {
-        if ( !ezcBaseFeatures::hasExtensionSupport( 'gd' ) &&
-             ( ezcBaseFeatures::hasFunction( 'imagefttext' ) || ezcBaseFeatures::hasFunction( 'imagettftext' ) ) )
-        {
-            $this->markTestSkipped( 'This test needs ext/gd with native ttf support or FreeType 2 support.' );
-        }
+        $this->skipIfNoFontSupport();
 
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 

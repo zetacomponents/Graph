@@ -74,6 +74,19 @@ abstract class ezcGraphTestCase extends ezcTestImageCase
 
         return $data;
     }
+
+    protected function skipIfNoFontSupport()
+    {
+        if ( !ezcBaseFeatures::hasExtensionSupport( 'gd' ) )
+        {
+            $this->markTestSkipped( 'This test needs ext/gd with native ttf support or FreeType 2 support.' );
+        }
+
+        if ( !ezcBaseFeatures::hasFunction( 'imagefttext' ) && !ezcBaseFeatures::hasFunction( 'imagettftext' ) )
+        {
+            $this->markTestSkipped( 'This test needs ext/gd with native ttf support or FreeType 2 support.' );
+        }
+    }
 }
 
 ?>

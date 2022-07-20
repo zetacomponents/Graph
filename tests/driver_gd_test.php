@@ -31,7 +31,7 @@
  * @package Graph
  * @subpackage Tests
  */
-class ezcGraphGdDriverTest extends ezcTestImageCase
+class ezcGraphGdDriverTest extends ezcGraphTestCase
 {
     protected $driver;
 
@@ -54,11 +54,7 @@ class ezcGraphGdDriverTest extends ezcTestImageCase
     {
         parent::setUp();
 
-        if ( !ezcBaseFeatures::hasExtensionSupport( 'gd' ) &&
-             ( ezcBaseFeatures::hasFunction( 'imagefttext' ) || ezcBaseFeatures::hasFunction( 'imagettftext' ) ) )
-        {
-            $this->markTestSkipped( 'This test needs ext/gd with native ttf support or FreeType 2 support.' );
-        }
+        $this->skipIfNoFontSupport();
 
         static $i = 0;
         $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';

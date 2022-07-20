@@ -140,6 +140,8 @@ class ezcGraphImageMapTest extends ezcGraphTestCase
 
     public function testReturnFrom2dGdLineChart()
     {
+        $this->skipIfNoFontSupport();
+
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphLineChart();

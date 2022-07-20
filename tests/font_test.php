@@ -783,6 +783,8 @@ class ezcGraphFontTest extends ezcGraphTestCase
 
     public function testUTF8SpecialCharsGD()
     {
+        $this->skipIfNoFontSupport();
+
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $driver = new ezcGraphGdDriver();
@@ -820,6 +822,8 @@ class ezcGraphFontTest extends ezcGraphTestCase
 
     public function testISO_8859_15SpecialCharsGD()
     {
+        $this->skipIfNoFontSupport();
+
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $driver = new ezcGraphGdDriver();
