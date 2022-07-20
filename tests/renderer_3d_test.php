@@ -633,7 +633,6 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart->legend = false;
 
         $chart->renderer = new ezcGraphRenderer3d();
-        $chart->renderer->options->moveOut = .3;
 
         $chart->driver = new ezcGraphSvgDriver();
         $chart->render( 500, 200, $filename );
