@@ -100,9 +100,9 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
             'Setting property value did not work for property labelCallback in class ezcGraphPieChartOptions'
         );
 
-        $options->labelCallback = array( $this, __METHOD__ );
+        $options->labelCallback = array( $this, __FUNCTION__ );
         $this->assertSame(
-            array( $this, __METHOD__ ),
+            array( $this, __FUNCTION__ ),
             $options->labelCallback,
             'Setting property value did not work for property labelCallback in class ezcGraphPieChartOptions'
         );
