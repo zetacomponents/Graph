@@ -308,10 +308,10 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
         imageline(
             $image,
-            $this->supersample( $start->x ),
-            $this->supersample( $start->y ),
-            $this->supersample( $end->x ),
-            $this->supersample( $end->y ),
+            (int) $this->supersample( $start->x ),
+            (int) $this->supersample( $start->y ),
+            (int) $this->supersample( $end->x ),
+            (int) $this->supersample( $end->y ),
             $drawColor
         );
 
@@ -429,10 +429,8 @@ class ezcGraphGdDriver extends ezcGraphDriver
                             $image,
                             $size,
                             ( $rotation === null ? 0 : -$rotation->getRotation() ),
-                            $position->x +
-                                ( $rotation === null ? 0 : $rotation->get( 0, 2 ) ),
-                            $position->y +
-                                ( $rotation === null ? 0 : $rotation->get( 1, 2 ) ),
+                            (int) ( $position->x + ( $rotation === null ? 0 : $rotation->get( 0, 2 ) ) ),
+                            (int) ( $position->y + ( $rotation === null ? 0 : $rotation->get( 1, 2 ) ) ),
                             $this->allocate( $color ),
                             $path,
                             $text
@@ -443,10 +441,8 @@ class ezcGraphGdDriver extends ezcGraphDriver
                             $image,
                             $size,
                             ( $rotation === null ? 0 : -$rotation->getRotation() ),
-                            $position->x +
-                                ( $rotation === null ? 0 : $rotation->get( 0, 2 ) ),
-                            $position->y +
-                                ( $rotation === null ? 0 : $rotation->get( 1, 2 ) ),
+                            (int) ( $position->x + ( $rotation === null ? 0 : $rotation->get( 0, 2 ) ) ),
+                            (int) ( $position->y + ( $rotation === null ? 0 : $rotation->get( 1, 2 ) ) ),
                             $this->allocate( $color ),
                             $path,
                             $text
@@ -802,12 +798,12 @@ class ezcGraphGdDriver extends ezcGraphDriver
         {
             imagefilledarc(
                 $image,
-                $this->supersample( $center->x ),
-                $this->supersample( $center->y ),
-                $this->supersample( $width ),
-                $this->supersample( $height ),
-                $startAngle,
-                $endAngle,
+                (int) $this->supersample( $center->x ),
+                (int) $this->supersample( $center->y ),
+                (int) $this->supersample( $width ),
+                (int) $this->supersample( $height ),
+                (int) $startAngle,
+                (int) $endAngle,
                 $drawColor,
                 IMG_ARC_PIE
             );
@@ -816,12 +812,12 @@ class ezcGraphGdDriver extends ezcGraphDriver
         {
             imagefilledarc(
                 $image,
-                $this->supersample( $center->x ),
-                $this->supersample( $center->y ),
-                $this->supersample( $width ),
-                $this->supersample( $height ),
-                $startAngle,
-                $endAngle,
+                (int) $this->supersample( $center->x ),
+                (int) $this->supersample( $center->y ),
+                (int) $this->supersample( $width ),
+                (int) $this->supersample( $height ),
+                (int) $startAngle,
+                (int) $endAngle,
                 $drawColor,
                 IMG_ARC_PIE | IMG_ARC_NOFILL | IMG_ARC_EDGED
             );
@@ -976,12 +972,12 @@ class ezcGraphGdDriver extends ezcGraphDriver
         {
             imagefilledarc(
                 $image,
-                $this->supersample( $center->x ),
-                $this->supersample( $center->y ),
-                $this->supersample( $width ),
-                $this->supersample( $height ),
-                $startAngle,
-                $endAngle,
+                (int) $this->supersample( $center->x ),
+                (int) $this->supersample( $center->y ),
+                (int) $this->supersample( $width ),
+                (int) $this->supersample( $height ),
+                (int) $startAngle,
+                (int) $endAngle,
                 $drawColor,
                 IMG_ARC_PIE | IMG_ARC_NOFILL
             );
@@ -1044,10 +1040,10 @@ class ezcGraphGdDriver extends ezcGraphDriver
         {
             imagefilledellipse(
                 $image,
-                $this->supersample( $center->x ),
-                $this->supersample( $center->y ),
-                $this->supersample( $width ),
-                $this->supersample( $height ),
+                (int) $this->supersample( $center->x ),
+                (int) $this->supersample( $center->y ),
+                (int) $this->supersample( $width ),
+                (int) $this->supersample( $height ),
                 $drawColor
             );
         }
@@ -1055,10 +1051,10 @@ class ezcGraphGdDriver extends ezcGraphDriver
         {
             imageellipse(
                 $image,
-                $this->supersample( $center->x ),
-                $this->supersample( $center->y ),
-                $this->supersample( $width ),
-                $this->supersample( $height ),
+                (int) $this->supersample( $center->x ),
+                (int) $this->supersample( $center->y ),
+                (int) $this->supersample( $width ),
+                (int) $this->supersample( $height ),
                 $drawColor
             );
         }
@@ -1067,10 +1063,8 @@ class ezcGraphGdDriver extends ezcGraphDriver
         for ( $angle = 0; $angle < 360; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
-                $center->x +
-                    ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ),
-                $center->y +
-                    ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
+                $center->x + ( ( cos( deg2rad( $angle ) ) * $width ) / 2 ),
+                $center->y + ( ( sin( deg2rad( $angle ) ) * $height ) / 2 )
             );
         }
 

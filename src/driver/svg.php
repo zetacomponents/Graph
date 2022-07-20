@@ -1017,7 +1017,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
         }
 
         if ( ( $endAngle - $startAngle > 180 ) ||
-             ( ( $startAngle % 180 != 0) && ( $endAngle % 180 != 0) && ( ( $startAngle % 360 > 180 ) XOR ( $endAngle % 360 > 180 ) ) ) )
+             ( ( ((int) $startAngle) % 180 != 0) && ( ((int) $endAngle) % 180 != 0) && ( ( ((int) $startAngle) % 360 > 180 ) XOR ( ((int) $endAngle) % 360 > 180 ) ) ) )
         {
             // Border crosses he 180 degrees border
             $intersection = floor( $endAngle / 180 ) * 180;

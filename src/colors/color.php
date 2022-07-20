@@ -181,7 +181,7 @@ class ezcGraphColor extends ezcBaseOptions
             if ( isset( $keys[$nr] ) )
             {
                 $key = $keys[$nr++];
-                $color->$key = ( (float) $colorValue * 255 ) % 256;
+                $color->$key = ( (int) ( (float) $colorValue * 255 ) ) % 256;
             }
         }
 
