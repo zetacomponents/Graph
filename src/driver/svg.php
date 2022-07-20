@@ -594,7 +594,14 @@ class ezcGraphSvgDriver extends ezcGraphDriver
             case '':
             case 'utf-8':
             case 'utf-16':
-                $string = utf8_decode( $string );
+                if ( ezcBaseFeatures::hasFunction( 'iconv' ) )
+                {
+                    $string = iconv( 'UTF-8', 'ISO-8859-1', $string );
+                }
+                else
+                {
+                    $string = utf8_decode( $string );
+                }
             break;
         }
 
