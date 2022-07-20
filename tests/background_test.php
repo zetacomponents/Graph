@@ -35,6 +35,10 @@ require_once dirname( __FILE__ ) . '/test_case.php';
  */
 class ezcGraphBackgroundTest extends ezcGraphTestCase
 {
+    private $tempDir;
+
+    private $basePath;
+
     protected $testFiles = array(
         'jpeg'          => 'jpeg.jpg',
         'nonexistant'   => 'nonexisting.jpg',

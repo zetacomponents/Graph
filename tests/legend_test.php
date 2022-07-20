@@ -35,6 +35,10 @@ require_once dirname( __FILE__ ) . '/test_case.php';
  */
 class ezcGraphLegendTest extends ezcGraphTestCase
 {
+    private $tempDir;
+
+    private $basePath;
+
 	public static function suite()
 	{
 		return new \PHPUnit\Framework\TestSuite( "ezcGraphLegendTest" );

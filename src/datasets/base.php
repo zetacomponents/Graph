@@ -83,7 +83,7 @@ abstract class ezcGraphDataSet implements ArrayAccess, Iterator, Countable
      *
      * @var ezcGraphPalette
      */
-    protected $pallet;
+    protected $palette;
 
     /**
      * Array keys
