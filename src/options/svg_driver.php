@@ -88,6 +88,8 @@
  *           Prefix used for the ids in SVG documents.
  * @property string $linkCursor
  *           CSS value for cursor property used for linked SVG elements
+ * @property bool $inline
+ *           Switch to prevent set content type header for inline graphs
  *
  * @version //autogentag//
  * @package Graph
