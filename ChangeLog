@@ -1,7 +1,14 @@
+1.7.1 - Wednesday 14 September 2022
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Add 'inline' option to the SVG driver options. When set to true, a generated
+  SVG does not contain an extra Content-Type header. (Daniel Seifert)
+
+
 1.7.0 - Wednesday 14 September 2022
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Add 'responsive' option to the SVG driver options. When set to thrue, the
+- Add 'responsive' option to the SVG driver options. When set to true, the
   generated SVG is not of a fixed size, and can be resized by a viewer when
   necessary. (Daniel Seifert)
 
