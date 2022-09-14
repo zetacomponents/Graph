@@ -91,6 +91,8 @@
  * @property bool $responsive
  *           When set to thrue, the generated SVG is not of a fixed size,
  *           and can be resized by a viewer when necessary.
+ * @property bool $inline
+ *           Switch to prevent set content type header for inline graphs
  *
  * @version //autogentag//
  * @package Graph
@@ -120,6 +122,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
         $this->properties['idPrefix'] = 'ezcGraph';
         $this->properties['linkCursor'] = 'pointer';
         $this->properties['responsive'] = false;
+        $this->properties['inline'] = false;
 
         parent::__construct( $options );
     }
@@ -284,6 +287,9 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 break;
             case 'responsive':
                 $this->properties['responsive'] = (bool) $propertyValue;
+                break;
+            case 'inline':
+                $this->properties['inline'] = (bool) $propertyValue;
                 break;
             default:
                 parent::__set( $propertyName, $propertyValue );
