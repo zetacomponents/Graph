@@ -1,3 +1,11 @@
+1.7.0 - Wednesday 14 September 2022
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Add 'responsive' option to the SVG driver options. When set to thrue, the
+  generated SVG is not of a fixed size, and can be resized by a viewer when
+  necessary. (Daniel Seifert)
+
+
 1.6.0 - Wednesday 20 July 2022
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
