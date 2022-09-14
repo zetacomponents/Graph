@@ -88,6 +88,9 @@
  *           Prefix used for the ids in SVG documents.
  * @property string $linkCursor
  *           CSS value for cursor property used for linked SVG elements
+ * @property bool $responsive
+ *           When set to thrue, the generated SVG is not of a fixed size,
+ *           and can be resized by a viewer when necessary.
  *
  * @version //autogentag//
  * @package Graph
@@ -116,6 +119,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
         $this->properties['graphOffset'] = new ezcGraphCoordinate( 0, 0 );
         $this->properties['idPrefix'] = 'ezcGraph';
         $this->properties['linkCursor'] = 'pointer';
+        $this->properties['responsive'] = false;
 
         parent::__construct( $options );
     }
@@ -277,6 +281,9 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 break;
             case 'linkCursor':
                 $this->properties['linkCursor'] = (string) $propertyValue;
+                break;
+            case 'responsive':
+                $this->properties['responsive'] = (bool) $propertyValue;
                 break;
             default:
                 parent::__set( $propertyName, $propertyValue );
