@@ -170,7 +170,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                 $svg = $this->dom->createElementNS( 'http://www.w3.org/2000/svg', 'svg' );
                 $this->dom->appendChild( $svg );
 
-                if (false === $this->options->responsive) {
+                if ($this->options->responsive) {
                     $svg->setAttribute('viewBox', '0,0,' . $this->options->width . ',' . $this->options->height);
                     $svg->setAttribute('width', '100%');
                     $svg->setAttribute('height', '100%');

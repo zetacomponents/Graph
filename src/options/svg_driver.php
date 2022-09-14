@@ -88,6 +88,9 @@
  *           Prefix used for the ids in SVG documents.
  * @property string $linkCursor
  *           CSS value for cursor property used for linked SVG elements
+ * @property bool $responsive
+ *           When set to thrue, the generated SVG is not of a fixed size,
+ *           and can be resized by a viewer when necessary.
  *
  * @version //autogentag//
  * @package Graph
