@@ -121,7 +121,7 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
         // Use inner boundings for drawning chart data
         $boundings = $innerBoundings;
 
-        $yAxisNullPosition = $this->elements['xAxis']->getCoordinate( false );
+        $xAxisNullPosition = $this->elements['xAxis']->getCoordinate( false );
 
         // Initialize counters
         $nr = array();
@@ -188,6 +188,81 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
                 // Render depending on display type of dataset
                 switch ( true )
                 {
+                    case ( $data->displayType->default === ezcGraph::BAR ) &&
+                         $this->options->stackBars :
+                        // Check if a bar has already been stacked
+                        if ( !isset( $stackedValue[(int) ( $point->y * 10000 )][(int) $value > 0] ) )
+                        {
+                            $start = new ezcGraphCoordinate(
+                                $xAxisNullPosition,
+                                $point->y
+                            );
+
+                            $stackedValue[(int) ( $point->y * 10000 )][(int) $value > 0] = $value;
+                        }
+                        else
+                        {
+                            $start = $yAxis->axisLabelRenderer->modifyChartDataPosition( 
+                                $xAxis->axisLabelRenderer->modifyChartDataPosition(
+                                    new ezcGraphCoordinate( 
+                                        $xAxis->getCoordinate( $stackedValue[(int) ( $point->y * 10000 )][(int) $value > 0] ),
+                                        $yAxis->getCoordinate( $key )
+                                    )
+                                )
+                            );
+
+                            $point = $yAxis->axisLabelRenderer->modifyChartDataPosition( 
+                                $xAxis->axisLabelRenderer->modifyChartDataPosition(
+                                    new ezcGraphCoordinate( 
+                                        $xAxis->getCoordinate( $stackedValue[(int) ( $point->y * 10000 )][(int) $value > 0] += $value ),
+                                        $yAxis->getCoordinate( $key )
+                                    )
+                                )
+                            );
+                        }
+
+                        // Force one symbol for each stacked bar
+                        if ( !isset( $stackedSymbol[(int) ( $point->y * 10000 )] ) )
+                        {
+                            $stackedSymbol[(int) ( $point->y * 10000 )] = $data->symbol[$key];
+                        }
+
+                        // Store stacked value for next iteration
+                        $side = ( $point->x == 0 ? 1 : $point->x / abs( $point->x ) );
+                        $stacked[(int) ( $point->y * 10000 )][$side] = $point;
+
+                        $renderer->drawHorizontalStackedBar(
+                            $boundings,
+                            new ezcGraphContext( $datasetName, $key, $data->url[$key] ),
+                            $data->color->default,
+                            $start,
+                            $point,
+                            $height,
+                            $stackedSymbol[(int) ( $point->y * 10000 )],
+                            $xAxisNullPosition
+                        );
+
+                        // Render highlight string if requested
+                        if ( $data->highlight[$key] )
+                        {
+                            $renderer->drawDataHighlightText(
+                                $boundings,
+                                new ezcGraphContext( $datasetName, $key, $data->url[$key] ),
+                                $point,
+                                $xAxisNullPosition,
+                                $nr[$data->displayType->default],
+                                $count[$data->displayType->default],
+                                $this->options->highlightFont,
+                                ( $data->highlightValue[$key] ? $data->highlightValue[$key] : $value ),
+                                $this->options->highlightSize + $this->options->highlightFont->padding * 2,
+                                ( $this->options->highlightLines ? $data->color[$key] : null ),
+                                ( $this->options->highlightXOffset ? $this->options->highlightXOffset : 0 ),
+                                ( $this->options->highlightYOffset ? $this->options->highlightYOffset : 0 ),
+                                $height,
+                                $data->displayType->default
+                            );
+                        }
+                        break;
                     case $data->displayType->default === ezcGraph::BAR:
                         $renderer->drawHorizontalBar(
                             $boundings,
@@ -198,7 +273,7 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
                             $nr[$data->displayType->default],
                             $count[$data->displayType->default],
                             $data->symbol[$key],
-                            $yAxisNullPosition
+                            $xAxisNullPosition
                         );
 
                         // Render highlight string if requested
@@ -208,7 +283,7 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
                                 $boundings,
                                 new ezcGraphContext( $datasetName, $key, $data->url[$key] ),
                                 $point,
-                                $yAxisNullPosition,
+                                $xAxisNullPosition,
                                 $nr[$data->displayType->default],
                                 $count[$data->displayType->default],
                                 $this->options->highlightFont,
@@ -291,6 +366,14 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
             {
                 $this->elements['yAxis']->addData( array_reverse( $labels ) );
             }
+        }
+
+        // Also use stacked bar values as base for x axis value span
+        // calculation
+        if ( $this->options->stackBars )
+        {
+            $this->elements['xAxis']->addData( $virtualBarSumDataSet[0] );
+            $this->elements['xAxis']->addData( $virtualBarSumDataSet[1] );
         }
 
         // There should always be something assigned to the main x and y axis.
