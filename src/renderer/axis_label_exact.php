@@ -206,6 +206,30 @@ class ezcGraphAxisExactLabelRenderer extends ezcGraphAxisLabelRenderer
                         // Skip last step if showLastValue is false
                         $showLabel = false;
                         break;
+                    case ( ( $axis->labelPosition === ezcGraph::RIGHT ) &&
+                           ( !$step->isLast ) ) ||
+                         ( ( $axis->labelPosition === ezcGraph::RIGHT ) &&
+                           ( $step->isLast ) &&
+                           ( $this->renderLastOutside ) ) :
+                        $labelBoundings = new ezcGraphBoundings(
+                            $position->x + $this->labelPadding,
+                            $position->y - $labelHeight + $this->labelPadding,
+                            $position->x + $labelWidth - $this->labelPadding,
+                            $position->y - $this->labelPadding
+                        );
+                        $alignement = ezcGraph::LEFT | ezcGraph::BOTTOM;
+                        break;
+                    case ( ( $axis->labelPosition === ezcGraph::RIGHT ) &&
+                           ( $step->isLast ) &&
+                           ( !$this->renderLastOutside ) ) :
+                        $labelBoundings = new ezcGraphBoundings(
+                            $position->x + $this->labelPadding,
+                            $position->y + $this->labelPadding,
+                            $position->x + $labelWidth - $this->labelPadding,
+                            $position->y + $labelHeight - $this->labelPadding
+                        );
+                        $alignement = ezcGraph::TOP | ezcGraph::LEFT;
+                        break;
                     // Draw label at top left of step
                     case ( ( $axis->position === ezcGraph::BOTTOM ) &&
                            ( !$step->isLast ) ) ||
