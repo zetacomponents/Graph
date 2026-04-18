@@ -1170,6 +1170,22 @@ class ezcGraphGdDriver extends ezcGraphDriver
      */
     public function render( $file )
     {
+        // Path traversal guard: resolve the destination directory and verify
+        // it exists and is reachable without escaping via '..' sequences.
+        if ( $file !== null )
+        {
+            if ( strpos( $file, "\0" ) !== false )
+            {
+                throw new ezcBaseValueException( 'file', $file, 'a valid filesystem path (no null bytes)' );
+            }
+            $dir = realpath( dirname( $file ) );
+            if ( $dir === false )
+            {
+                throw new ezcBaseFileNotFoundException( dirname( $file ), 'directory' );
+            }
+            $file = $dir . DIRECTORY_SEPARATOR . basename( $file );
+        }
+
         $destination = imagecreatetruecolor( $this->options->width, $this->options->height );
 
         // Default to a transparent white background

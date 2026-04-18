@@ -1266,12 +1266,25 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      */
     public function render( $file )
     {
+        // Path traversal guard: resolve the destination directory and verify
+        // it exists and is reachable without escaping via '..' sequences.
+        if ( strpos( $file, "\0" ) !== false )
+        {
+            throw new ezcBaseValueException( 'file', $file, 'a valid filesystem path (no null bytes)' );
+        }
+        $dir = realpath( dirname( $file ) );
+        if ( $dir === false )
+        {
+            throw new ezcBaseFileNotFoundException( dirname( $file ), 'directory' );
+        }
+        $safeFile = $dir . DIRECTORY_SEPARATOR . basename( $file );
+
         $this->createDocument();
         $this->drawAllTexts();
 
         // Embed used glyphs
         $this->font->addFontToDocument( $this->dom );
-        $this->dom->save( $file );
+        $this->dom->save( $safeFile );
     }
 
     /**
